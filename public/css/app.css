@@ -1,0 +1,979 @@
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+    --primary-color: #300708;
+    --gray-color: rgb(133, 133, 133);
+}
+
+*{
+    box-sizing: border-box;
+    font-family: "Nunito Sans", sans-serif !important;
+}
+        body {
+             font-family: "Nunito Sans", sans-serif !important;
+        }
+
+        .bg-custom-light {
+            background-color: #fcf8f8;
+        }
+.text-dark-gray{
+    color: var(--gray-color);
+}
+.base-color{
+    color:var(--primary-color) !important;
+}
+.light-font{
+    font-weight:300;
+}
+        .text-custom-dark {
+            color: #5c3e3e;
+        }
+
+        .border-custom-dark {
+            border-color: #5c3e3e !important;
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50px;
+            padding: 12px 32px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background-color: rgb(154, 27, 27); /* Bootstrap's red for hover effect */
+            color: #fff;
+        }
+
+        /* Override Bootstrap's form control style to match the design */
+        .form-select.border-bottom {
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-radius: 0;
+            background-color: transparent;
+        }
+        /* ///steps-1  */
+        .steps-1 h2{
+            font-size: 2rem;
+        }
+         .banner-height{
+            height:100%;
+        }
+        @media screen and (max-width:990px) {
+            .banner-height{
+            height: auto !important;
+        }
+
+        }
+ /* Custom CSS */
+/* ... existing styles ... */
+
+.outfit-card {
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.outfit-card:hover,
+.outfit-card.active {
+  border-color: #42210b; /* A darker shade for the active border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.detail-section {
+  display: none;
+  animation: fadeIn 0.5s ease-out; /* Add a subtle fade-in animation */
+}
+
+.detail-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Checklist buttons */
+.checklist-items .btn-outline-secondary {
+    color: #42210b;
+    border-color: #e5d8d3;
+    transition: all 0.2s ease-in-out;
+}
+
+.checklist-items .btn-outline-secondary:hover,
+.checklist-items .btn-outline-secondary.active {
+    background-color: #42210b;
+    color: white;
+    border-color: #42210b;
+}
+
+/* Optional: Add styles for the animated image labels if you want to implement them */
+.jewellery-label {
+    position: absolute;
+
+
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+.jewellery-input {
+     background-color: rgba(255, 255, 255, 0.8);
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+}
+#step2 .outfit-card img{
+    height:350px ;
+}
+
+/* ///new css legha css */
+
+/* Custom CSS */
+/* ...existing styles... */
+
+.animated-image-container {
+    max-width: 600px; /* Adjust as needed */
+    margin: auto; /* Center the image container */
+    position: relative;
+    margin-top: 40px;
+}
+.animated-image-container .outfit-img{
+    height:500px;
+
+}
+.animated-image-container img{
+
+    margin-inline: auto;
+    display: block;
+
+}
+.jewellery-item {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    transition: all 0.2s ease-in-out;
+}
+.jewellery-item img {
+   transform: translateY(6px);
+}
+
+.jewellery-input:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.jewellery-checkbox {
+    /* Hide the default checkbox */
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Custom checkbox style */
+.jewellery-item label::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #999;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    transition: all 0.2s;
+}
+
+/* Style the custom checkbox when checked */
+.jewellery-checkbox:checked + label::before {
+    background-color: #42210b; /* The brand's primary color */
+    border-color: #42210b;
+}
+
+/* Checkmark inside the custom checkbox */
+.jewellery-checkbox:checked + label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust this value to center the checkmark */
+    transform: translateY(-50%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+}
+
+/* Positioning for each item */
+/* Positioning for each jewelry item */
+.jewellery-item.hair-jewellery { top: -2%; right: 7%; }
+.jewellery-item.forehead-pendant { top: -2%; left: 18%; }
+.jewellery-item.earrings-stud { top: 5%; right: 5%; }
+.jewellery-item.earrings-drops { top: 9%; right: -4%; }
+.jewellery-item.ear-loops { top: 2%; right: 10%; }
+.jewellery-item.nose-pin { top: 4%; left: 27%; }
+.jewellery-item.choker-necklace { top: 14%; left: 19%; }
+.jewellery-item.short-necklace { top: 14%; right: 5%; }
+.jewellery-item.long-necklace { top: 9%;left: 22%; }
+.jewellery-item.multiple-bangles { top: 30%; left: 15%; }
+.jewellery-item.bracelet { top: 33%; right: 12%; }
+.jewellery-item.waist-belt { top: 28%; right: 10%; }
+.jewellery-item.single-bangle { top: 35%; left: 17%; }
+.jewellery-item.rings { top:38%; right: 16%; }
+.jewellery-item.anklet { top: 83%; right: 8%; }
+.jewellery-item.toe-ring { top: 90%; right: 8%; }
+/* ... and so on for all items */
+
+
+/* Positioning for each gown jewelry item on the Gown */
+.jewellery-item.gown-hair-jewellery { top: 9%; left: 8%; }
+.jewellery-item.gown-earrings-stud { top: 18%; left: 8%; }
+.jewellery-item.gown-earrings-drops { top: 25%; left: 8%; }
+.jewellery-item.gown-choker-necklace { top: 32%; left: 8%; }
+.jewellery-item.gown-short-necklace { top: 39%; left: 8%; }
+.jewellery-item.gown-long-necklace { top: 46%; left: 8%; }
+.jewellery-item.gown-ear-loop { top: 15%; right: 12%; }
+.jewellery-item.gown-nose-pin { top: 22%; right: 12%; }
+.jewellery-item.gown-bracelet { top: 40%; right: 12%; }
+.jewellery-item.gown-multiple-bangles { top: 56%; left: 8%; }
+.jewellery-item.gown-single-statement-bangle { top: 63%; left: 8%; }
+.jewellery-item.gown-rings { top: 70%; left: 8%; }
+
+
+
+/* Positioning for each saree jewelry item on the Saree */
+.jewellery-item.saree-hair-jewellery { top: 7%; left: 12%; }
+.jewellery-item.saree-forehead-pendant { top: 8%; right: 16%; }
+.jewellery-item.saree-earrings-stud { top: 15%; left: 12%; }
+.jewellery-item.saree-earrings-drops { top: 21%; left: 12%; }
+.jewellery-item.saree-ear-loops { top: 17%; right: 16%; }
+.jewellery-item.saree-nose-pin { top: 20%; right: 16%; }
+.jewellery-item.saree-choker-necklace { top: 28%; left: 12%; }
+.jewellery-item.saree-short-necklace { top: 33%; left: 12%; }
+.jewellery-item.saree-long-necklace { top: 42%; left: 12%; }
+.jewellery-item.saree-waist-belt { top: 48%; right: 16%; }
+.jewellery-item.saree-multiple-bangles { top: 55%; left: 12%; }
+.jewellery-item.saree-bracelet { top: 55%; right: 28%; }
+.jewellery-item.saree-single-bangle { top: 59%; right: 16%; }
+.jewellery-item.saree-rings { top: 66%; right: 16%; }
+.jewellery-item.saree-anklet { top: 86%; left: 16%; }
+.jewellery-item.saree-toe-ring { top: 90%; left: 16%; }
+
+
+.outfit-card-wrapper {
+    flex: 0 0 auto;
+    width: 25%; /* You can adjust width as needed */
+}
+
+
+@media screen and (max-width: 768px) {
+
+    #step2 .outfit-card img {
+  height: 250px;
+}
+    .animated-image-container {
+  max-width: 400px;
+font-size:12px
+
+}
+.jewellery-input {
+
+  padding: .2em .7em;
+
+  font-size: 0.8em;
+}
+    .animated-image-container {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+
+    .jewellery-item {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+
+    .jewellery-item img {
+        width: 30px; /* Smaller images on mobile */
+        height: 30px;
+    }
+
+}
+
+/* /// prduct choose page css */
+  .product-categories-section {
+        padding: 40px 0;
+        background-color: #fef9f7;
+    }
+
+    .product-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        cursor: pointer;
+        /* height: 100%; */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 400px; /* Fixed height for images */
+        object-fit: fill; /* Cover the area, cropping if necessary */
+    }
+
+    .product-card-body {
+        padding: 15px;
+        text-align: center;
+        flex-grow: 1; /* Allow body to take up remaining space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-card-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 0;
+    }
+
+
+    /* ///  category list page css */
+     /* New styles for the product categories section */
+    .product-categories-section {
+        padding: 40px 0;
+        background-color: #fef9f7;
+    }
+
+    .product-categories-section .section-title {
+        font-size: 2.5em;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .product-categories-section .section-subtitle {
+        font-size: 1.1em;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #777;
+    }
+
+    .product-category-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        cursor: pointer;
+        height: 100%; /* Ensure cards in a row have equal height */
+        display: flex;
+        flex-direction: column;
+    }
+.product-category-card img{
+    height:300px;
+}
+    .product-category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* .product-category-card:hover  img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        padding: 10px;
+        border-radius: 20px;
+    } */
+
+    .product-category-card-body {
+        padding: 15px;
+        text-align: center;
+        flex-grow: 1; /* Allow body to take up remaining space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-category-card-title {
+        font-size: 1.1em; /* Slightly smaller for more cards */
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 0;
+        text-transform: uppercase; /* Match the image style */
+    }
+
+    /* Responsive adjustments for 4-column grid */
+    @media (min-width: 992px) { /* Large devices (desktops) */
+        .product-categories-section .row > div {
+            flex: 0 0 auto;
+            width: 25%; /* 4 columns */
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px) { /* Medium devices (tablets) */
+        .product-categories-section .row > div {
+            flex: 0 0 auto;
+            width: 50%; /* 2 columns */
+        }
+    }
+    @media (max-width: 767px) { /* Small devices (phones) */
+        .product-categories-section .row > div {
+            flex: 0 0 auto;
+
+        }
+        .product-category-card img{
+            height:200px;
+            object-fit: cover;
+        }
+        .product-categories-section .section-title{
+            font-size: 1.5em;
+        }
+        .product-categories-section .section-subtitle{
+            font-size:.9em;
+        }
+        .product-category-card-title{
+            font-size: .9em;
+        }
+    }
+
+    /* // new product listing */
+
+    .product-listing-section {
+        padding: 40px 0;
+        background-color: #fef9f7;
+        min-height: 100vh;
+    }
+
+    .category-tabs {
+        display: flex;
+        justify-content: center;
+        margin-block: 30px;
+        overflow:scroll;
+        flex-wrap: nowrap; /* Allow tabs to wrap on smaller screens */
+        padding: 5px;
+    }
+
+    .category-tab {
+        background: none;
+        border: none;
+        padding: 5px 5px;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #777;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+        margin: 0 15px; /* Spacing between tabs */
+        text-transform: uppercase;
+    }
+
+    .category-tab:hover {
+        color: #333;
+    }
+
+    .category-tab.active {
+        color: #42210b; /* Active tab color */
+        border-bottom: 2px solid #42210b; /* Active tab underline */
+    }
+
+    .product-grid-container {
+        display: none; /* Hidden by default */
+        animation: fadeIn 0.5s ease-out; /* Fade in effect */
+    }
+
+    .product-grid-container.active {
+        display: block;
+    }
+
+    .product-item-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative; /* For the try-on and heart icons */
+    }
+
+    .product-item-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Image container for hover effect */
+    .product-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: auto; /* Fixed height for product images */
+        overflow: hidden; /* Hide overflow during transition */
+        background-color: white;
+    }
+
+.active > .page-link{
+    background-color: #fef9f7 !important;
+    border-color: inherit !important;
+
+}
+
+    .product-image-wrapper img {
+        /* position: absolute;
+        top: 0;
+        left: 0; */
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease-in-out; /* Smooth transition for opacity */
+    }
+
+    .product-image-wrapper .default-image {
+        opacity: 1;
+    }
+
+    .product-image-wrapper .hover-image {
+        opacity: 0;
+    }
+
+    .product-item-card:hover .product-image-wrapper .default-image {
+        /* opacity: 0; */
+    }
+
+    .product-item-card:hover .product-image-wrapper .hover-image {
+        /* opacity: 1; */
+    }
+
+
+    .product-item-body {
+        padding: 15px;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .product-item-id {
+        font-size: 0.9em;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .product-item-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .product-item-buttons .btn {
+        font-size: 0.9em;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .product-item-buttons .btn-outline-secondary {
+        border-color: #ccc;
+        color: #555;
+    }
+
+    .product-item-buttons .btn-outline-secondary:hover {
+        background-color: #f0f0f0;
+    }
+
+    .try-on-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #42210b;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        font-weight: bold;
+        text-transform: uppercase;
+        z-index: 10; /* Ensure badge is above images */
+    }
+
+    .heart-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em;
+        color: #ccc;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+        z-index: 10; /* Ensure heart is above images */
+    }
+
+    .heart-icon:hover {
+        color: #e74c3c; /* Red on hover */
+    }
+
+    /* Animation for fading in content */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+.filter-bar {
+
+    display: flex;
+
+    margin: 0 auto 20px;
+}
+
+.filter-btn {
+    border: none;
+    background: none;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+  padding: 10px 30px;
+  border-radius: 50px;
+  background: #fff; */
+
+}
+.filter-btn img{
+    margin-right:5px;
+}
+
+.search-input {
+    flex-grow: 2;
+    max-width: 500px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    padding: 5px 10px;
+    background-color: #fff;
+    box-shadow: none;
+    outline:none;
+margin-left: -12%;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 50px;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.filter-bar .input-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-grow:3;
+}
+
+
+/* Filter Button Styles */
+/* .filter-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+} */
+
+.filter-btn:hover {
+    background: #f8f9fa;
+    border-color: #ccc;
+}
+
+.filter-btn img {
+    margin-right: 8px;
+    width: 26px;
+    height: 26px;
+}
+
+/* Filter Expand Section */
+.filter-expand-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+/* Price Range Styles */
+.form-range {
+    width: 100%;
+    height: 8px;
+    margin-top: 10px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .filter-bar {
+        /* flex-direction: column; */
+    }
+
+    .filter-btn {
+        margin-bottom: 10px;
+        /* width: 100%; */
+        justify-content: center;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .filter-expand-section .row {
+        flex-direction: column;
+    }
+
+    .filter-expand-section .col-md-4 {
+        /* margin-bottom: 15px; */
+        width: 100%;
+    }
+    .filter-bar .input-wrapper{
+        flex-grow: 0;
+    }
+}
+
+.info-box {
+      background-color: #f1f7ff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      max-width: 260px;
+      border: 1px solid #e0eaff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #0053d6;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        margin: 10px auto; /* Center the info box */
+    }
+
+    .info-box .icon {
+      background-color: #2e88ff;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .info-box .title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .info-box .description {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+/* -------------------- Sidebar Filter Styles -------------------- */
+.sidebar-filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    backdrop-filter: blur(4px); /* Blur effect */
+    display: none;
+    z-index: 1050;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar-filter-overlay.active {
+    display: block;
+}
+
+.sidebar-filter-content {
+    background-color: #fff;
+    width: 350px; /* Adjust width as needed */
+    max-width: 90%;
+    height: 100%;
+    padding: 1.5rem;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-filter-overlay.active .sidebar-filter-content {
+    transform: translateX(0); /* Slide-in effect */
+}
+
+.sidebar-header {
+    padding-bottom: 1rem;
+}
+
+.sidebar-header h5 {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.close-sidebar-btn {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.filter-options-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px; /* For scrollbar spacing */
+}
+
+/* Accordion styling to match the screenshot */
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa; /* Light gray for open accordion header */
+    box-shadow: none;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-button::after {
+    display: none; /* Hide default accordion arrow */
+}
+
+/* Custom dropdown arrow for accordion */
+.accordion-button {
+    position: relative;
+}
+.accordion-button::before {
+    content: '\2304'; /* Downwards chevron */
+    position: absolute;
+    right: 1rem;
+    font-size: .9rem;
+    transition: transform 0.5s ease-in-out;
+}
+.accordion-button.collapsed::before {
+    transform: rotate(180deg); /* Rotate for collapsed state */
+}
+
+.sidebar-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+.sidebar-footer .btn-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+.sidebar-footer .btn-link:hover {
+    text-decoration: underline;
+}
+.sidebar-footer .btn-dark {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0;
+}
+
+/* Main Content Wrapper (for blur effect) */
+.main-content-wrapper.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Your existing styles for .product-listing-section, .category-tabs, etc. go here */
+/* Make sure .category-tabs and .product-item-card match your desired styling */
+.category-tabs {
+  overflow-x: auto; /* Allow horizontal scroll */
+  overflow-y: hidden; /* Hide vertical scroll */
+  scrollbar-width: none; /* Firefox: hide scrollbar */
+}
+
+.category-tabs::-webkit-scrollbar {
+  height: 6px; /* Horizontal scrollbar height */
+  background: transparent; /* Hide by default */
+}
+
+.category-tabs:hover::-webkit-scrollbar {
+  background: rgba(0, 0, 0, 0.05); /* Show track on hover */
+}
+
+.category-tabs::-webkit-scrollbar-thumb {
+  background: transparent; /* Hide by default */
+  border-radius: 10px;
+}
+
+.category-tabs:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3); /* Show thumb on hover */
+}
+
+/* Firefox hover behavior */
+.category-tabs {
+  scrollbar-color: transparent transparent;
+}
+
+.category-tabs-wrapper:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+img.productDetails_img {
+    max-height: 500px;
+
+}
+
+/* ------media screen max-width: 768px */
+@media screen and (max-width:990px){
+       .category-tabs{
+
+        justify-content: start;
+
+
+       }
+.category-tab{
+       font-size: 0.8em;
+         margin: 0 5px;
+         min-width: max-content;
+
+}
+.filter-bar{
+    justify-content: space-between;
+}
+.filter-bar .input-wrapper{
+    flex-grow: 0;
+}
+    }
+
+/* ------media screen max-width: 500px */
+@media screen and (max-width:778px){
+        .product-image-wrapper {
+                  height: 150px;
+                  padding: 10px;
+          }
+
+
+.filter-btn img {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+.filter-bar{
+    justify-content:space-between;
+}
+img.productDetails_img {
+    max-height: 300px;
+
+}
+}

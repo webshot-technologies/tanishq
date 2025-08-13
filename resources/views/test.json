@@ -1,0 +1,1936 @@
+{
+    "status": 200,
+    "message": "Success",
+    "data": [
+        {
+            "productId": 2445078,
+            "productImages": [
+                "https://l.mirrar.com/qeoog42"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502617FBLAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Zany 18 Karat White Gold And Diamond Finger Ring",
+            "productCollection": "Aveer",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522634,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502617FBLAA02",
+                    "variantTitle": "Zany 18 Karat White Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502617FBLAA02/1687837519/502617FBLAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502617FBLAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/zany-18-karat-white-gold-and-diamond-finger-ring-502617fblaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Male"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445079,
+            "productImages": [
+                "https://l.mirrar.com/bm2h7he"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "500005FDAAB04",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Distinctive 18 Karat Gold And Diamond Finger Ring",
+            "productCollection": "Diamond Treats",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522635,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "500005FDAAB04",
+                    "variantTitle": "Distinctive 18 Karat Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/500005FDAAB04/1687837383/500005FDAAB04.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/500005FDAAB04_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/distinctive-18-karat-gold-and-diamond-finger-ring-500005fdaab04.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445080,
+            "productImages": [
+                "https://l.mirrar.com/80ykc7e"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJRAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Captivating 18 Karat Yellow Gold And Diamond Finger Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522636,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJRAA02",
+                    "variantTitle": "Captivating 18 Karat Yellow Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/tanishqwebar/Rings/502419FJRAA02/1670216008/502419FJRAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJRAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/captivating-18-karat-yellow-gold-and-diamond-finger-ring-502419fjraa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445081,
+            "productImages": [
+                "https://d1s0l7jckv1cut.cloudfront.net/tanishqwebar/Rings/502419FJRAA09/1716871857/502419FJRAA09.png"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJRAA09",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Astral Diamond Finger Ring",
+            "productCollection": "Bestsellers",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522637,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJRAA09",
+                    "variantTitle": "Astral Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/tanishqwebar/Rings/502419FJRAA09/1716871857/502419FJRAA09.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw5eff25ab/images/hi-res/502419FJRAA09_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/astral-diamond-finger-ring-502419fjraa09.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445082,
+            "productImages": [
+                "https://l.mirrar.com/ouajie8"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJSAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Delightful 18 Karat Yellow Gold And Diamond Swirled Finger Ring",
+            "productCollection": "Zuhur",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522638,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJSAA02",
+                    "variantTitle": "Delightful 18 Karat Yellow Gold And Diamond Swirled Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FJSAA02/1687837505/502419FJSAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJSAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/delightful-18-karat-yellow-gold-and-diamond-swirled-finger-ring-502419fjsaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445083,
+            "productImages": [
+                "https://l.mirrar.com/25vthvx"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJTAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Endearing 18 Karat Rose Gold Sleek Geometric Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522639,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJTAA02",
+                    "variantTitle": "Endearing 18 Karat Rose Gold Sleek Geometric Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha/Rings/502419FJTAA02/1615284741/502419FJTAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJTAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/endearing-18-karat-rose-gold-sleek-geometric-ring-502419fjtaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445084,
+            "productImages": [
+                "https://l.mirrar.com/q1eq27m"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJUAA37",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Elegant Solitaire Look Rose Gold and Diamond Ring",
+            "productCollection": "Zuhur",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522640,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJUAA37",
+                    "variantTitle": "Elegant Solitaire Look Rose Gold and Diamond Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FJUAA37/1687837495/502419FJUAA37.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJUAA37_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/elegant-solitaire-look-rose-gold-and-diamond-ring-502419fjuaa37.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445085,
+            "productImages": [
+                "https://l.mirrar.com/33xiz0x"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJVAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Adorable 18 Karat Yellow Gold And Diamond Teardrop Finger Ring",
+            "productCollection": "Zuhur",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522641,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJVAA02",
+                    "variantTitle": "Adorable 18 Karat Yellow Gold And Diamond Teardrop Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FJVAA02/1687837495/502419FJVAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJVAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/adorable-18-karat-yellow-gold-and-diamond-teardrop-finger-ring-502419fjvaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445086,
+            "productImages": [
+                "https://l.mirrar.com/pkg5jty"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJYAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Timeless Rose Gold Finger Ring",
+            "productCollection": "Diamond Treats",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522642,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJYAA02",
+                    "variantTitle": "Timeless Rose Gold Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/sdm-test30-mirrar/Rings/502419FJYAA02/1622552178/502419FJYAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJYAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/timeless-rose-gold-finger-ring-502419fjyaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445087,
+            "productImages": [
+                "https://l.mirrar.com/fwkcrnk"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FJZAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Chic 18 Karat Rose Gold Ropy Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522643,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FJZAA02",
+                    "variantTitle": "Chic 18 Karat Rose Gold Ropy Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha/Rings/502419FJZAA02/1615284742/502419FJZAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FJZAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/chic-18-karat-rose-gold-ropy-ring-502419fjzaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445088,
+            "productImages": [
+                "https://l.mirrar.com/mgk9qgf"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKBAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Distinctive 18 Karat Rose Gold And Diamond Finger Ring",
+            "productCollection": "Diamond Treats",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522644,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKBAA02",
+                    "variantTitle": "Distinctive 18 Karat Rose Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FKBAA02/1687837505/502419FKBAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKBAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/distinctive-18-karat-rose-gold-and-diamond-finger-ring-502419fkbaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445089,
+            "productImages": [
+                "https://l.mirrar.com/g4kuy24"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKFAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Luxurious 18 Karat Rose Gold And Diamond Overlap Statement Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522645,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKFAA02",
+                    "variantTitle": "Luxurious 18 Karat Rose Gold And Diamond Overlap Statement Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FKFAA02/1687837508/502419FKFAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKFAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/luxurious-18-karat-rose-gold-and-diamond-overlap-statement-ring-502419fkfaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445090,
+            "productImages": [
+                "https://l.mirrar.com/tlr7kjk"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKHAA37",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Dainty Solitaire Look Rose Gold and Diamond Ring for Daily Use",
+            "productCollection": "Zuhur",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522646,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKHAA37",
+                    "variantTitle": "Dainty Solitaire Look Rose Gold and Diamond Ring for Daily Use",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FKHAA37/1687837495/502419FKHAA37.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKHAA37_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/dainty-solitaire-look-rose-gold-and-diamond-ring-for-daily-use-502419fkhaa37.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445091,
+            "productImages": [
+                "https://l.mirrar.com/dxcbiv1"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKIAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Enthralling 18 Karat Rose Gold Festive Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522647,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKIAA02",
+                    "variantTitle": "Enthralling 18 Karat Rose Gold Festive Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/new-json-test/Rings/502419FKIAA02/1687837510/502419FKIAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKIAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/enthralling-18-karat-rose-gold-festive-ring-502419fkiaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445092,
+            "productImages": [
+                "https://l.mirrar.com/hkuu726"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKJAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Enchanting 18 Karat Yellow Gold And Diamond Interweaving Finger Ring",
+            "productCollection": "Diamond Treats",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522648,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKJAA02",
+                    "variantTitle": "Enchanting 18 Karat Yellow Gold And Diamond Interweaving Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha/Rings/502419FKJAA02/1615284740/502419FKJAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKJAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/enchanting-18-karat-yellow-gold-and-diamond-interweaving-finger-ring-502419fkjaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445093,
+            "productImages": [
+                "https://l.mirrar.com/fizmlcy"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKLAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Exquisite 18 Karat Rose Gold And Diamond Stacked Finger Ring",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522649,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKLAA02",
+                    "variantTitle": "Exquisite 18 Karat Rose Gold And Diamond Stacked Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha/Rings/502419FKLAA02/1615284744/502419FKLAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKLAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/exquisite-18-karat-rose-gold-and-diamond-stacked-finger-ring-502419fklaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445094,
+            "productImages": [
+                "https://l.mirrar.com/ubbtdb0"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKNAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Classic 18 Karat Rose Gold And Diamond Finger Ring",
+            "productCollection": "Zuhur",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522650,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKNAA02",
+                    "variantTitle": "Classic 18 Karat Rose Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha-test-ar/Rings/502419FKNAA02/1616004161/502419FKNAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKNAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/classic-18-karat-rose-gold-and-diamond-finger-ring-502419fknaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445095,
+            "productImages": [
+                "https://d1s0l7jckv1cut.cloudfront.net/tanishqwebar/Rings/502419FKNAB02/1716871923/502419FKNAB02.png"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKNAB02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Duo Diamond Finger Ring",
+            "productCollection": "Bestsellers",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522651,
+                    "variantOrderId": 1,
+                    "variantPrice": 59159,
+                    "variantCompareAtPrice": 59159,
+                    "variantSku": "502419FKNAB02",
+                    "variantTitle": "Duo Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/tanishqwebar/Rings/502419FKNAB02/1716871923/502419FKNAB02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw5eff25ab/images/hi-res/502419FKNAB02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/duo-diamond-finger-ring-502419fknab02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445096,
+            "productImages": [
+                "https://l.mirrar.com/ho50utc"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKOAA02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Glamorous Gold and Diamond Ring Perfect for Party Wear",
+            "productCollection": "Classic",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522652,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKOAA02",
+                    "variantTitle": "Glamorous Gold and Diamond Ring Perfect for Party Wear",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/tanishqwebar/Rings/502419FKOAA02/1670216012/502419FKOAA02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKOAA02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/glamorous-gold-and-diamond-ring-perfect-for-party-wear-502419fkoaa02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        },
+        {
+            "productId": 2445097,
+            "productImages": [
+                "https://l.mirrar.com/wmab3vb"
+            ],
+            "productCategoryId": 1293,
+            "productHandle": "502419FKP2B02",
+            "productStatus": true,
+            "productMetaJSON": {
+                "": null
+            },
+            "productTitle": "Covetable 18 Karat Dual Gold And Diamond Finger Ring",
+            "productCollection": "Diamond Treats",
+            "modifiedBy": "51",
+            "productBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+            "productSubBrandId": null,
+            "createdAt": "2025-08-04T14:05:23.774Z",
+            "updatedAt": "2025-08-04T14:05:23.774Z",
+            "variants": [
+                {
+                    "variantId": 2522653,
+                    "variantOrderId": 1,
+                    "variantPrice": 0,
+                    "variantCompareAtPrice": 0,
+                    "variantSku": "502419FKP2B02",
+                    "variantTitle": "Covetable 18 Karat Dual Gold And Diamond Finger Ring",
+                    "variantDescription": null,
+                    "variantImageURLs": {
+                        "0": "https://img.mirrar.com/nishtha/Rings/502419FKP2B02/1615284741/502419FKP2B02.png"
+                    },
+                    "variantThumbnails": {
+                        "0": "https://www.tanishq.co.in/dw/image/v2/BKCK_PRD/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw72e63c46/images/hi-res/502419FKP2B02_1.jpg"
+                    },
+                    "variantWebsiteLink": "https://www.tanishq.co.in/product/covetable-18-karat-dual-gold-and-diamond-finger-ring-502419fkp2b02.html?lang=en_IN",
+                    "variantTags": [],
+                    "variantMetaJSON": {
+                        "faceWidth": null,
+                        "faceHeight": null,
+                        "model": null,
+                        "scalingFactor": null,
+                        "": null
+                    },
+                    "variantData": null,
+                    "variantStatus": true,
+                    "variantIsCalibrated": false,
+                    "variantIsQCCalibrated": false,
+                    "variantFilter": null,
+                    "variantBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    "modifiedBy": "51",
+                    "variantCategoryId": "1293",
+                    "variantIsSetOnly": false,
+                    "variantInventory": {
+                        "gender": "Female"
+                    },
+                    "variantHeight": {
+                        "0": 40,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantXoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantYoffset": {
+                        "0": null,
+                        "1": 1,
+                        "": null
+                    },
+                    "variantOption": {
+                        "": null
+                    },
+                    "createdAt": "2025-08-04T14:05:28.587Z",
+                    "updatedAt": "2025-08-04T14:05:28.587Z",
+                    "setChild": []
+                }
+            ],
+            "category": {
+                "categoryId": "1293",
+                "categoryKey": "Rings",
+                "categoryLabel": "Rings",
+                "categorySortOrder": 2,
+                "categorySortBy": "",
+                "categoryStatus": true,
+                "modifiedBy": "1",
+                "categoryIcon": "",
+                "categoryType": "finger",
+                "categoryParent": null,
+                "categoryIsSet": false,
+                "categoryBrandId": "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                "categoryImages": [],
+                "createdAt": "2025-08-04T13:58:44.682Z",
+                "updatedAt": "2025-08-04T13:58:44.682Z",
+                "categorySubBrandId": null
+            }
+        }
+    ],
+    "meta": {
+        "current_page": 1,
+        "error_code": "",
+        "has_more_pages": true,
+        "message": "Success",
+        "total": 9891,
+        "total_variant_record": 9891,
+        "totalPages": 495
+    },
+    "filter": {}
+}
