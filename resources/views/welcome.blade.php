@@ -92,11 +92,11 @@
                                     </div>
 
                                     <!-- Step 1 Form -->
-                                    <form id="step1-form" class=" mt-5">
-                                        <div class="d-flex  mb-5">
-                                            <h2 class=" fw-semibold me-3 mb-0">My dream</h2>
+                                    <form id="step1-form" class="mt-5">
+                                        <div class="d-flex  mb-5 align-items-baseline">
+                                            <span class="me-3 mb-0 text-nowrap">My Dream</span>
                                             <select
-                                                class="form-select w-50 form-select-lg border-bottom border-custom-dark text-custom-dark py-0"
+                                                class="form-select border-bottom border-custom-dark text-custom-dark py-0"
                                                 required id="language-select">
                                                 <option selected>Tamil</option>
                                                 <option>Telugu</option>
@@ -109,7 +109,7 @@
                                         </div>
                                         <div class="d-flex align-items-baseline mb-5">
                                             <select
-                                                class="form-select form-select-lg border-bottom border-custom-dark text-custom-dark me-3 py-0"
+                                                class="form-select border-bottom border-custom-dark text-custom-dark me-3 py-0"
                                                 required id="event-select">
                                                 <option selected>Mehendi</option>
                                                 <option>Engagement</option>
@@ -119,7 +119,7 @@
                                                 <option>Reception</option>
                                                 <option>Wedding</option>
                                             </select>
-                                            <h2 class=" fw-semibold">checklist.</h2>
+                                            <span class="mb-0">Checklist</span>
                                         </div>
 
                                         <button type="submit" class="btn border border-2 rounded-5 btn-custom">Choose
@@ -129,7 +129,7 @@
                                 </div>
 
                                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
                 </div>
                             </div>
                         </div>
@@ -165,10 +165,10 @@
                     </div>
 
                     <div class="row text-center outfit-selection-row mt-4">
-                        <h2 class="base-color mb-5 light-font">
+                        <span class="fw-normal fs-1 base-color mb-5 light-font">
                             Jewellery For <span id="dynamic-language">Tamil</span> Style
                             <span id="dynamic-event">Mehendi</span> Ceremony
-                        </h2>
+                        </span>
 
                         <!-- Scrollable Row -->
                         <div class="d-flex flex-nowrap overflow-auto px-3 w-100 ">
@@ -226,8 +226,7 @@
 
                         <div id="lehanga-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the Jewellery Pieces
-                                you want to see</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
 
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/lehnga.png') }}" class="img-fluid outfit-img"
@@ -398,8 +397,7 @@
 
                     <div id="gown-details" class="detail-section">
                         <h3 class="text-center fw-semibold base-color mt-4">Gown Checklist</h3>
-                        <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces you
-                            want to see</p>
+                        <p class="text-center text-muted light-weight text-dark-gray">Click on the jewellery you want to explore</p>
 
                          <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/gown.png') }}" class="img-fluid outfit-img"
@@ -569,8 +567,7 @@
 
                     <div id="saree-details" class="detail-section">
                         <h3 class="text-center fw-semibold base-color mt-4">Saree Checklist</h3>
-                        <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces you
-                            want to see</p>
+                        <p class="text-center text-muted light-weight text-dark-gray">Click on the jewellery you want to explore</p>
                           <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img"
                                     alt="Saree Model">
@@ -916,7 +913,7 @@
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
                 </div>
                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
                 </div>
             </div>
         </div>
@@ -943,7 +940,7 @@
             <div
                 class="col-12 col-xl-10 card py-5 px-4 shadow-lg mx-auto rounded-4 justify-content-center mb-5 ">
                 <div class="px-md-5">
-                    <h4 class="text-custom-dark mb-4 fw-bold">Share my jewellery checklist to:</h4>
+                    <h4 class="text-custom-dark mb-4 fw-normal">Share My Jewellery Checklist To:</h4>
                     <form id="step3-form" method="POST" action="{{ route('productChoose') }}">
                         @csrf
                         <input type="hidden" name="language" id="hidden-language">
@@ -952,22 +949,22 @@
                         <input type="hidden" name="jewellery_pieces" id="hidden-jewellery-pieces">
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
-                                <label for="name" class="form-label fw-bold">Name *</label>
+                                <label for="name" class="form-label fw-normal">Name *</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Please enter name of person of contact" required>
+                                    placeholder="Contact person’s name" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="contactNumber" class="form-label fw-bold">Contact Number *</label>
+                                <label for="contactNumber" class="form-label fw-normal">Contact Number *</label>
                                 <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
-                                    placeholder="Collected to send SMS to link of checklist" required>
+                                    placeholder="Contact person's phone number" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="email" class="form-label fw-bold">Your E-mail ID *</label>
+                                <label for="email" class="form-label fw-normal">Your E-mail ID *</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Backup copy to be sent on email" required>
+                                    placeholder="you@example.com" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="weddingDate" class="form-label fw-bold">Choose your wedding date *</label>
+                                <label for="weddingDate" class="form-label fw-normal">Choose your wedding date *</label>
                                 <input type="date" class="form-control" id="weddingDate" name="weddingDate"
                                     placeholder="mm/dd/yyyy" required>
                                 <script>
@@ -1011,8 +1008,10 @@
                         </div>
                         <div class="form-check d-flex justify-content-center px-0">
 
-                        <button type="submit"  name="recommended_products" class="btn border border-2 rounded-5 btn-custom">View Recommended Product</button>
-                        <button type="submit" name="full_catalogue" class="btn border border-2 rounded-5 btn-custom">View Full Catalogue</button>
+                        <div class="d-flex gap-4">
+                            <button type="submit"  name="recommended_products" class="btn border border-2 rounded-5 btn-custom">View Recommendation</button>
+                            <button type="submit" name="full_catalogue" class="btn border border-2 rounded-5 btn-custom">View Full Catalogue</button>
+                        </div>
                         </div>
                     </form>
                 </div>
@@ -1023,7 +1022,7 @@
                         your date of wedding</p>
                 </div>
                 <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
                 </div>
             </div>
         </div>
