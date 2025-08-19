@@ -105,6 +105,18 @@
                                                 <option>Odia</option>
                                                 <option>Bihar</option>
                                                 <option>UP</option>
+                                                <option>Marwari</option>
+                                                <option>Pubjabi</option>
+                                                <option>Odia</option>
+                                                <option>Marathi</option>
+                                                <option>Kannada</option>
+                                                <option>Jat</option>
+                                                <option>Rajput</option>
+                                                <option>Assamese</option>
+                                                <option>Manipuri</option>
+                                                <option>Malayalee</option>
+                                                <option>Kumoani</option>
+                                                <option>Muslim</option>
                                             </select>
                                         </div>
                                         <div class="d-flex align-items-baseline mb-5">
