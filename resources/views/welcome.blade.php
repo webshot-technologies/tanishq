@@ -828,11 +828,43 @@
         </div>
         <!-- OTP Modal -->
         <div id="otp-modal">
-            <div class="modal-content">
-                <h5>Enter OTP sent to your mobile</h5>
-                <input type="text" id="otp-code" class="form-control mb-2" placeholder="Enter OTP">
-                <div id="otp-error" class="text-danger mb-2"></div>
-                <button id="verify-otp-btn" class="btn btn-primary">Verify OTP</button>
+            <div class="otp-modal-content">
+                <div class="otp-right">
+                    <h4 class="otp-heading">Verify with OTP</h4>
+                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
+
+                    <!-- OTP Input Boxes -->
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" class="otp-box" data-index="1" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="2" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="3" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="4" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="5" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="6" onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+
+                    <div id="otp-error" class="otp-error"></div>
+                    
+                    <div class="otp-loading">
+                        <div class="otp-spinner"></div>
+                        <span>Verifying OTP...</span>
+                    </div>
+                    
+                    <div class="otp-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        Verified successfully!
+                    </div>
+
+                    <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
+
+                    <button id="verify-otp-btn" class="otp-btn" onclick="verifyOTP()">Verify OTP</button>
+                    
+                    <p class="otp-terms">
+                        By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
+                    </p>
+                </div>
             </div>
         </div>
         <!-- reCAPTCHA container (hidden) -->
@@ -854,6 +886,8 @@
         messagingSenderId: "237630463530",
         appId: "1:237630463530:web:fe124e4b765287aaa6ed53"
     };
+
+
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth(); // Use a consistent auth variable
@@ -942,7 +976,7 @@
 
         step3Form.addEventListener('submit', function(e) {
             e.preventDefault();
-             document.getElementById('step3-form').submit();
+
             let contactNumber = document.getElementById('contactNumber').value;
             console.log('Contact Number:', contactNumber);
             if (/^\d{10}$/.test(contactNumber)) {
@@ -955,7 +989,7 @@
                 return;
             }
 
-            // document.getElementById('otp-modal').style.display = 'flex';
+            document.getElementById('otp-modal').style.display = 'flex';
             console.log('Sending OTP to:', contactNumber);
 
             auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier)
@@ -988,6 +1022,240 @@
         });
     }
 
+    // OTP Verification Functions
+    let otpTimer = null;
+    let otpTimeLeft = 120; // 2 minutes in seconds
+
+    // Handle OTP input and auto-focus
+    function handleOTPInput(input) {
+        const value = input.value;
+        const index = parseInt(input.getAttribute('data-index'));
+        
+        // Only allow numbers
+        if (value && !/^\d$/.test(value)) {
+            input.value = '';
+            return;
+        }
+        
+        // Auto-focus to next input if a digit is entered
+        if (value && index < 6) {
+            const nextInput = document.querySelector(`.otp-box[data-index="${index + 1}"]`);
+            if (nextInput) nextInput.focus();
+        }
+        
+        // Handle backspace
+        if (!value && index > 1) {
+            const prevInput = document.querySelector(`.otp-box[data-index="${index - 1}"]`);
+            if (prevInput) prevInput.focus();
+        }
+        
+        // Auto-verify if all digits are entered
+        if (index === 6 && value) {
+            const otp = getOTP();
+            if (otp.length === 6) {
+                verifyOTP(otp);
+            }
+        }
+    }
+    
+    // Get the full OTP from all input fields
+    function getOTP() {
+        let otp = '';
+        for (let i = 1; i <= 6; i++) {
+            const input = document.querySelector(`.otp-box[data-index="${i}"]`);
+            if (input) otp += input.value;
+        }
+        return otp;
+    }
+    
+    // Show/hide loading state
+    function showLoading(show) {
+        const loadingEl = document.querySelector('.otp-loading');
+        const errorEl = document.getElementById('otp-error');
+        const verifyBtn = document.getElementById('verify-otp-btn');
+        
+        if (show) {
+            loadingEl.style.display = 'block';
+            errorEl.textContent = '';
+            verifyBtn.disabled = true;
+        } else {
+            loadingEl.style.display = 'none';
+            verifyBtn.disabled = false;
+        }
+    }
+    
+    // Show success state and redirect
+    function showSuccess() {
+        const successEl = document.querySelector('.otp-success');
+        successEl.style.display = 'block';
+        
+        // Hide other elements
+        showLoading(false);
+        document.querySelector('.otp-inputs').style.opacity = '0.5';
+        document.getElementById('verify-otp-btn').style.display = 'none';
+        
+        // Redirect after a short delay
+        setTimeout(() => {
+            // Submit the form or redirect to next page
+            const form = document.getElementById('step3-form');
+            if (form) {
+                form.submit();
+            } else {
+                // If no form, redirect to home or next step
+                window.location.href = '/success'; // Update this URL as needed
+            }
+        }, 1000);
+    }
+    
+    // Start OTP timer
+    function startOTPTimer() {
+        clearInterval(otpTimer);
+        otpTimeLeft = 120; // Reset to 2 minutes
+        updateTimerDisplay();
+        
+        otpTimer = setInterval(() => {
+            otpTimeLeft--;
+            updateTimerDisplay();
+            
+            if (otpTimeLeft <= 0) {
+                clearInterval(otpTimer);
+                // Enable resend button if you have one
+                const resendBtn = document.getElementById('resend-otp');
+                if (resendBtn) {
+                    resendBtn.disabled = false;
+                    resendBtn.textContent = 'Resend OTP';
+                }
+            }
+        }, 1000);
+    }
+    
+    // Update timer display
+    function updateTimerDisplay() {
+        const timerEl = document.getElementById('otp-timer');
+        if (timerEl) {
+            const minutes = Math.floor(otpTimeLeft / 60);
+            const seconds = otpTimeLeft % 60;
+            timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+    }
+    
+    // Verify OTP
+    function verifyOTP(code = null) {
+        const otp = code || getOTP();
+        
+        if (!otp || otp.length !== 6) {
+            document.getElementById('otp-error').textContent = 'Please enter a valid 6-digit OTP';
+            return;
+        }
+        
+        showLoading(true);
+        
+        confirmationResult.confirm(otp)
+            .then((result) => {
+                // User signed in successfully
+                showSuccess();
+            })
+            .catch((error) => {
+                showLoading(false);
+                document.getElementById('otp-error').textContent = 'Invalid OTP. Please try again.';
+                // Clear OTP fields on error
+                document.querySelectorAll('.otp-box').forEach(input => input.value = '');
+                document.querySelector('.otp-box[data-index="1"]').focus();
+            });
+    }
+    
+    // Update phone number in OTP modal
+    function updatePhoneNumber(phone) {
+        if (!phone) return;
+        const formatted = phone.replace(/(\d{2})(\d{4})(\d+)/, '+$1 $2 ••••');
+        const phoneEl = document.getElementById('otp-phone-number');
+        if (phoneEl) phoneEl.textContent = formatted;
+    }
+    
+    // Initialize OTP modal
+    function initOTPModal() {
+        // Focus first OTP input when modal is shown
+        const modal = document.getElementById('otp-modal');
+        if (modal) {
+            modal.addEventListener('shown.bs.modal', function () {
+                const firstInput = document.querySelector('.otp-box[data-index="1"]');
+                if (firstInput) firstInput.focus();
+            });
+        }
+        
+        // Add click handler for verify button
+        const verifyBtn = document.getElementById('verify-otp-btn');
+        if (verifyBtn) {
+            verifyBtn.addEventListener('click', function() {
+                verifyOTP();
+            });
+        }
+    }
+    
+    // Call this when showing the OTP modal
+    function showOTPModal(phoneNumber = '') {
+        updatePhoneNumber(phoneNumber);
+        document.getElementById('otp-modal').style.display = 'flex';
+        document.querySelector('.otp-box[data-index="1"]').focus();
+        startOTPTimer();
+    }
+    
+    // Update the existing setupPhoneVerification function
+    function setupPhoneVerification() {
+        const step3Form = document.getElementById('step3-form');
+        if (!step3Form) return;
+
+        step3Form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            let contactNumber = document.getElementById('contactNumber').value.trim();
+            
+            // Format phone number
+            if (/^\d{10}$/.test(contactNumber)) {
+                contactNumber = '+91' + contactNumber;
+            }
+            
+            // Validate phone number
+            if (!contactNumber.match(/^\+\d{10,15}$/)) {
+                document.getElementById('otp-error').textContent = 'Please enter a valid phone number (e.g. +919876543210)';
+                return;
+            }
+
+            // Show OTP modal
+            showOTPModal(contactNumber);
+
+            try {
+                // Send OTP
+                confirmationResult = await auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier);
+                console.log('OTP sent successfully');
+            } catch (error) {
+                console.error("Error sending OTP:", error);
+                document.getElementById('otp-error').textContent = "Error: " + error.message;
+            }
+        });
+    }
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Your existing DOMContentLoaded code...
+        
+        // Initialize OTP modal
+        initOTPModal();
+        
+        // Initialize reCAPTCHA verifier
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+            'size': 'invisible',
+            'callback': (response) => {
+                console.log('reCAPTCHA solved, proceed with OTP verification.');
+            },
+            'expired-callback': () => {
+                console.log('reCAPTCHA expired, please try again.');
+            }
+        });
+        
+        // Initialize phone verification
+        setupPhoneVerification();
+    });
 </script>
 </body>
 
