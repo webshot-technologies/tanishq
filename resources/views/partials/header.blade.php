@@ -127,12 +127,33 @@
         margin-right: 5px;
     }
     @media (max-width: 768px) {
-        .tanishq-logo {
-            width: 120px;
-        }
+        .tanishq-header {
+
+        /* padding:  0; */
+
+    }
+
+             .tanishq-logo {
+    width: 70px;
+    transform: scale;
+    transform: scale(1.2);
+  }
+
         .header-content {
-            padding-left: 8px;
-            padding-right: 8px;
+            /* padding-left: 8px;
+            padding-right: 8px; */
         }
+        .header-right {
+  border: 2px solid #42210b;
+  padding: 5px 10px;
+  border-radius: 30px;
+    }
+    .header-right button{
+        font-size: 13px !important;
+    }
+    .header-right button svg{
+        width:14px;
+        height:14px;
+    }
     }
 </style>
