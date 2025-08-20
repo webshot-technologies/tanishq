@@ -122,9 +122,9 @@
 }
 .jewellery-input {
      background-color: rgba(255, 255, 255, 0.8);
-  padding: 3px 6px;
+  padding: 2px 5px;
   border-radius: 5px;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   border: 1px solid #ccc;
 }
 #step2 .outfit-card img{
@@ -143,7 +143,7 @@
     margin-top: 40px;
 }
 .animated-image-container .outfit-img{
-    height:500px;
+    height:650px;
 
 }
 .animated-image-container img{
@@ -213,11 +213,11 @@
 
 /* Positioning for each item */
 /* Positioning for each jewelry item */
-.jewellery-item.hair-jewellery { top: -2%; right: 7%; }
+.jewellery-item.hair-jewellery { top: -3%; right: 10%; }
 .jewellery-item.forehead-pendant { top: -2%; left: 18%; }
-.jewellery-item.earrings-stud { top: 5%; right: 5%; }
-.jewellery-item.earrings-drops { top: 9%; right: -4%; }
-.jewellery-item.ear-loops { top: 2%; right: 10%; }
+.jewellery-item.earrings-stud { top: 6%; right: 5%; }
+.jewellery-item.earrings-drops { top: 10%; right: 4%; }
+.jewellery-item.ear-loops { top: 1%; right: 10%; }
 .jewellery-item.nose-pin { top: 4%; left: 27%; }
 .jewellery-item.choker-necklace { top: 14%; left: 19%; }
 .jewellery-item.short-necklace { top: 14%; right: 5%; }
@@ -272,6 +272,22 @@
     width: 25%; /* You can adjust width as needed */
 }
 
+.step-container .form-logo-img{
+    width: 150px;
+    height: auto;
+}
+
+@media screen and (max-width:768px) {
+
+   .step-container .form-logo-img{
+    width: 80px;
+    height: auto;
+}
+.step-container svg{
+    width:25px;
+    height: 25px;
+}
+}
 
 @media screen and (max-width: 768px) {
 
@@ -298,9 +314,43 @@ font-size:12px
     }
 
     .jewellery-item img {
-        width: 30px; /* Smaller images on mobile */
-        height: 30px;
+         width: 40px;
+        /* height: 30px;  */
     }
+ .jewellery-item .right-img{
+width: 90px;}
+}
+
+@media screen and (max-width: 540px) {
+   .jewellery-input {
+    padding: 2px 3px;
+    font-size: 8px;
+    font-weight: bold;
+
+
+}
+.animated-image-container .outfit-img {
+  height: 550px;
+}
+.jewellery-item label::before {
+
+  width: 10px;
+  height: 10px;
+
+
+
+
+}
+}
+@media screen and (max-width: 442px) {
+
+    .jewellery-item .right-img {
+    width: 68px;
+  }
+.jewellery-item img {
+    width: 34px;
+
+  }
 
 }
 
@@ -358,7 +408,7 @@ font-size:12px
     }
 
     .product-categories-section .section-title {
-        font-size: 2.5em;
+        /* font-size: 2.5em; */
         font-weight: 400;
         text-align: center;
         margin-bottom: 5px;
@@ -366,7 +416,7 @@ font-size:12px
     }
 
     .product-categories-section .section-subtitle {
-        font-size: 1.1em;
+        /* font-size: 1.1em; */
         text-align: center;
         margin-bottom: 30px;
         color: #777;
@@ -379,7 +429,7 @@ font-size:12px
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         cursor: pointer;
-        height: 100%; /* Ensure cards in a row have equal height */
+        /* height: 100%; */
         display: flex;
         flex-direction: column;
     }
@@ -429,7 +479,7 @@ font-size:12px
             width: 50%; /* 2 columns */
         }
     }
-    @media (max-width: 767px) { /* Small devices (phones) */
+    @media (max-width: 768px) { /* Small devices (phones) */
         .product-categories-section .row > div {
             flex: 0 0 auto;
 
@@ -446,6 +496,13 @@ font-size:12px
         }
         .product-category-card-title{
             font-size: .9em;
+        }
+        .btn-custom{
+            font-size:12px;
+            padding: 12px 20px;
+        }
+        .note-disclaimer{
+            font-size:12px;
         }
     }
 
@@ -581,7 +638,7 @@ font-size:12px
 
     .product-item-buttons .btn {
         font-size: 0.9em;
-        padding: 8px 15px;
+        /* padding: 8px 15px; */
         border-radius: 5px;
     }
 
@@ -724,7 +781,7 @@ margin-left: -12%;
     }
 
     .filter-btn {
-        margin-bottom: 10px;
+        /* margin-bottom: 10px; */
         /* width: 100%; */
         justify-content: center;
     }
@@ -744,6 +801,25 @@ margin-left: -12%;
     .filter-bar .input-wrapper{
         flex-grow: 0;
     }
+    .product-listing-section h2{
+        font-size:20px;
+
+    }
+    .product-listing-section p{
+        font-size:13px;
+
+    }
+
+.product-categories-section .section-title {
+        font-size: 20px;
+
+    }
+
+    .product-categories-section .section-subtitle {
+        font-size: 13px;
+
+    }
+
 }
 
 .info-box {
@@ -955,6 +1031,10 @@ img.productDetails_img {
 .filter-bar .input-wrapper{
     flex-grow: 0;
 }
+.outfit-card-wrapper {
+  flex: 0 0 auto;
+  width: 50%;
+}
     }
 
 /* ------media screen max-width: 500px */
@@ -964,7 +1044,9 @@ img.productDetails_img {
                   padding: 10px;
           }
 
-
+#step2 .heading-content{
+    font-size:22px;
+}
 .filter-btn img {
     margin-right: 8px;
     width: 16px;
@@ -977,4 +1059,157 @@ img.productDetails_img {
     max-height: 300px;
 
 }
+.search-input{
+    max-width: 200px;
+    border: 1px solid var(--primary-color);
+    font-weight: 10px;
 }
+}
+
+
+@media screen and (max-width:520px) {
+    .product-item-buttons .btn {
+  font-size: 0.7em;
+  /* padding: 8px 15px; */
+  border-radius: 5px;
+}
+ #step2 .outfit-card img {
+    height: 220px;
+  }
+    #step2 .heading-content {
+    font-size: 19px;
+  }
+}
+@media screen and (max-width:420px){
+   .product-category-card img{
+    height: 150px;
+   }
+   #step2 .heading-content{
+    font-size:18px;
+}
+#step2 .outfit-card img {
+    height: 180px;
+  }
+}
+
+
+
+
+/* --otp model  */
+#otp-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+  background: rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+.otp-modal-content {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.otp-left {
+  flex: 1;
+  background: #fef3e7;
+  display: flex; justify-content: center; align-items: center;
+}
+
+.otp-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.otp-right {
+  flex: 1;
+  padding: 30px 25px;
+}
+
+.otp-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.otp-text {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.otp-box {
+  width: 45px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.otp-box:focus {
+  border-color: #a32b2b;
+  box-shadow: 0 0 4px rgba(163,43,43,0.5);
+}
+
+.otp-error {
+  font-size: 13px;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.otp-timer {
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.otp-btn {
+  width: 100%;
+  padding: 12px;
+  background: #a32b2b;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.otp-btn:hover {
+  background: #7e1f1f;
+}
+
+.otp-terms {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+.otp-terms a {
+  color: #a32b2b;
+  text-decoration: none;
+}
+
+.otp-terms a:hover {
+  text-decoration: underline;
+}
+
+
