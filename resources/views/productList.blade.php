@@ -182,7 +182,7 @@
                 </div>
 
                     <div class="mt-auto text-center pt-4 fs-6 text-custom-dark text-dark-gray opacity-75">
-                                                                        &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                                                                        &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
 
                                     </div>

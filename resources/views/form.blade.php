@@ -24,24 +24,19 @@
         }
 
         .text-custom-dark {
-            color: #5c3e3e;
+            color: #300708;
         }
 
         .border-custom-dark {
-            border-color: #5c3e3e !important;
+            border-color: #300708 !important;
         }
 
         .btn-custom {
-            background-color: #5c3e3e;
+            background-color: #300708;
             color: #fff;
             border-radius: 50px;
             padding: 12px 32px;
             transition: background-color 0.3s ease-in-out;
-        }
-
-        .btn-custom:hover {
-            background-color: #dc3545;
-            color: #fff;
         }
 
         .form-select.border-bottom {
@@ -67,9 +62,9 @@
         }
 
         .category-card.active {
-            background-color: #5c3e3e;
+            background-color: #300708;
             color: #fff;
-            border-color: #5c3e3e;
+            border-color: #300708;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
     </style>
@@ -146,7 +141,7 @@
 
                 <div id="jewelry-checklist-section" style="display:none;" class="mt-5">
                     <h3 class="display-6 fw-bold mb-3">Saree Checklist</h3>
-                    <p class="text-muted">Click on the Jewellery Pieces you want to see</p>
+                    <p class="text-muted">Click on the jewellery you want to explore</p>
                     <div class="row">
                         <div class="col-md-6 d-flex flex-column justify-content-center">
                             <div id="checklist-items"></div>

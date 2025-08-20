@@ -112,11 +112,11 @@
                                     </div>
 
                                     <!-- Step 1 Form -->
-                                    <form id="step1-form" class=" mt-5">
-                                        <div class="d-flex  mb-5">
-                                            <h2 class=" fw-semibold me-3 mb-0">My dream</h2>
+                                    <form id="step1-form" class="mt-5">
+                                        <div class="d-flex  mb-5 align-items-baseline">
+                                            <span class="me-3 mb-0 text-nowrap">My Dream</span>
                                             <select
-                                                class="form-select w-50 form-select-lg border-bottom border-custom-dark text-custom-dark py-0"
+                                                class="form-select border-bottom border-custom-dark text-custom-dark py-0"
                                                 required id="language-select">
                                                 <option selected>Tamil</option>
                                                 <option>Telugu</option>
@@ -125,11 +125,23 @@
                                                 <option>Odia</option>
                                                 <option>Bihar</option>
                                                 <option>UP</option>
+                                                <option>Marwari</option>
+                                                <option>Pubjabi</option>
+                                                <option>Odia</option>
+                                                <option>Marathi</option>
+                                                <option>Kannada</option>
+                                                <option>Jat</option>
+                                                <option>Rajput</option>
+                                                <option>Assamese</option>
+                                                <option>Manipuri</option>
+                                                <option>Malayalee</option>
+                                                <option>Kumoani</option>
+                                                <option>Muslim</option>
                                             </select>
                                         </div>
                                         <div class="d-flex align-items-baseline mb-5">
                                             <select
-                                                class="form-select form-select-lg border-bottom border-custom-dark text-custom-dark me-3 py-0"
+                                                class="form-select border-bottom border-custom-dark text-custom-dark me-3 py-0"
                                                 required id="event-select">
                                                 <option selected>Mehendi</option>
                                                 <option>Engagement</option>
@@ -139,7 +151,7 @@
                                                 <option>Reception</option>
                                                 <option>Wedding</option>
                                             </select>
-                                            <h2 class=" fw-semibold">checklist.</h2>
+                                            <span class="mb-0">Checklist</span>
                                         </div>
 
                                         <button type="submit" class="btn border border-2 rounded-5 btn-custom">Choose
@@ -148,9 +160,9 @@
                                     </form>
                                 </div>
 
-                               <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                                       &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
-                                   </div>
+                                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
+                                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
+                                </div>
                             </div>
                         </div>
 
@@ -185,10 +197,10 @@
                     </div>
 
                     <div class="row text-center outfit-selection-row mt-4">
-                        <h2 class="base-color heading-content mb-5 light-font">
+                        <span class="fw-normal fs-1 base-color mb-5 light-font">
                             Jewellery For <span id="dynamic-language">Tamil</span> Style
                             <span id="dynamic-event">Mehendi</span> Ceremony
-                        </h2>
+                        </span>
 
                         <!-- Scrollable Row -->
                         <div class="d-flex flex-wrap md-flex-nowrap overflow-auto px-3 w-100 ">
@@ -245,8 +257,7 @@
 
                         <div id="lehanga-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the Jewellery Pieces
-                                you want to see</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
 
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/lehnga.png') }}" class="img-fluid outfit-img"
@@ -413,8 +424,6 @@
 
                             </div>
                         </div>
-
-
                          <div id="gown-details" class="detail-section">
                           <h3 class="text-center fw-semibold base-color mt-4">Gown Checklist</h3>
                         <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces you want to see</p>
@@ -501,7 +510,6 @@
                         <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces you want to see</p>
                         <div class="animated-image-container position-relative">
                             <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img" alt="Saree Model">
-
                             <div class="jewellery-item saree-hair-jewellery">
                                 <input type="checkbox" id="saree-hair-jewellery-cb" name="jewellery_pieces"
                                     value="saree-hair-jewellery" class="jewellery-checkbox">
@@ -718,7 +726,7 @@
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
                 </div>
                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
                 </div>
             </div>
         </div>
@@ -742,7 +750,7 @@
             </div>
             <div class="col-12 col-xl-10 card py-5 px-4 shadow-lg mx-auto rounded-4 justify-content-center mb-5 ">
                 <div class="px-md-5">
-                    <h4 class="text-custom-dark mb-4 fw-bold">Share my jewellery checklist to:</h4>
+                    <h4 class="text-custom-dark mb-4 fw-normal">Share My Jewellery Checklist To:</h4>
                     <form id="step3-form" method="POST" action="{{ route('productChoose') }}">
                         @csrf
                         <input type="hidden" name="language" id="hidden-language">
@@ -751,22 +759,22 @@
                         <input type="hidden" name="jewellery_pieces" id="hidden-jewellery-pieces">
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
-                                <label for="name" class="form-label fw-bold">Name *</label>
+                                <label for="name" class="form-label fw-normal">Name *</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Please enter name of person of contact" required>
+                                    placeholder="Contact person’s name" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="contactNumber" class="form-label fw-bold">Contact Number *</label>
+                                <label for="contactNumber" class="form-label fw-normal">Contact Number *</label>
                                 <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
-                                    placeholder="Collected to send SMS to link of checklist" required>
+                                    placeholder="Contact person's phone number" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="email" class="form-label fw-bold">Your E-mail ID *</label>
+                                <label for="email" class="form-label fw-normal">Your E-mail ID *</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    placeholder="Backup copy to be sent on email" required>
+                                    placeholder="you@example.com" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="weddingDate" class="form-label fw-bold">Choose your wedding date *</label>
+                                <label for="weddingDate" class="form-label fw-normal">Choose your wedding date *</label>
                                 <input type="date" class="form-control" id="weddingDate" name="weddingDate"
                                     placeholder="mm/dd/yyyy" required>
                                 <script>
@@ -810,8 +818,10 @@
                         </div>
                         <div class="form-check d-flex justify-content-center px-0">
 
-                        <button type="submit"  name="recommended_products" class="btn border border-2 rounded-5 btn-custom">View Recommended Product</button>
-                        <button type="submit" name="full_catalogue" class="btn border border-2 rounded-5 btn-custom">View Full Catalogue</button>
+                        <div class="d-flex gap-4">
+                            <button type="submit"  name="recommended_products" class="btn border border-2 rounded-5 btn-custom">View Recommendation</button>
+                            <button type="submit" name="full_catalogue" class="btn border border-2 rounded-5 btn-custom">View Full Catalogue</button>
+                        </div>
                         </div>
                     </form>
                 </div>
@@ -822,7 +832,7 @@
                         your date of wedding</p>
                 </div>
                 <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> MIRRAR </a>
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
                 </div>
             </div>
         </div>
@@ -844,12 +854,12 @@
                     </div>
 
                     <div id="otp-error" class="otp-error"></div>
-                    
+
                     <div class="otp-loading">
                         <div class="otp-spinner"></div>
                         <span>Verifying OTP...</span>
                     </div>
-                    
+
                     <div class="otp-success">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -860,7 +870,7 @@
                     <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
 
                     <button id="verify-otp-btn" class="otp-btn" onclick="verifyOTP()">Verify OTP</button>
-                    
+
                     <p class="otp-terms">
                         By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>
                     </p>
@@ -1030,25 +1040,25 @@
     function handleOTPInput(input) {
         const value = input.value;
         const index = parseInt(input.getAttribute('data-index'));
-        
+
         // Only allow numbers
         if (value && !/^\d$/.test(value)) {
             input.value = '';
             return;
         }
-        
+
         // Auto-focus to next input if a digit is entered
         if (value && index < 6) {
             const nextInput = document.querySelector(`.otp-box[data-index="${index + 1}"]`);
             if (nextInput) nextInput.focus();
         }
-        
+
         // Handle backspace
         if (!value && index > 1) {
             const prevInput = document.querySelector(`.otp-box[data-index="${index - 1}"]`);
             if (prevInput) prevInput.focus();
         }
-        
+
         // Auto-verify if all digits are entered
         if (index === 6 && value) {
             const otp = getOTP();
@@ -1057,7 +1067,7 @@
             }
         }
     }
-    
+
     // Get the full OTP from all input fields
     function getOTP() {
         let otp = '';
@@ -1067,13 +1077,13 @@
         }
         return otp;
     }
-    
+
     // Show/hide loading state
     function showLoading(show) {
         const loadingEl = document.querySelector('.otp-loading');
         const errorEl = document.getElementById('otp-error');
         const verifyBtn = document.getElementById('verify-otp-btn');
-        
+
         if (show) {
             loadingEl.style.display = 'block';
             errorEl.textContent = '';
@@ -1083,17 +1093,17 @@
             verifyBtn.disabled = false;
         }
     }
-    
+
     // Show success state and redirect
     function showSuccess() {
         const successEl = document.querySelector('.otp-success');
         successEl.style.display = 'block';
-        
+
         // Hide other elements
         showLoading(false);
         document.querySelector('.otp-inputs').style.opacity = '0.5';
         document.getElementById('verify-otp-btn').style.display = 'none';
-        
+
         // Redirect after a short delay
         setTimeout(() => {
             // Submit the form or redirect to next page
@@ -1106,17 +1116,17 @@
             }
         }, 1000);
     }
-    
+
     // Start OTP timer
     function startOTPTimer() {
         clearInterval(otpTimer);
         otpTimeLeft = 120; // Reset to 2 minutes
         updateTimerDisplay();
-        
+
         otpTimer = setInterval(() => {
             otpTimeLeft--;
             updateTimerDisplay();
-            
+
             if (otpTimeLeft <= 0) {
                 clearInterval(otpTimer);
                 // Enable resend button if you have one
@@ -1128,7 +1138,7 @@
             }
         }, 1000);
     }
-    
+
     // Update timer display
     function updateTimerDisplay() {
         const timerEl = document.getElementById('otp-timer');
@@ -1138,18 +1148,18 @@
             timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
     }
-    
+
     // Verify OTP
     function verifyOTP(code = null) {
         const otp = code || getOTP();
-        
+
         if (!otp || otp.length !== 6) {
             document.getElementById('otp-error').textContent = 'Please enter a valid 6-digit OTP';
             return;
         }
-        
+
         showLoading(true);
-        
+
         confirmationResult.confirm(otp)
             .then((result) => {
                 // User signed in successfully
@@ -1163,7 +1173,7 @@
                 document.querySelector('.otp-box[data-index="1"]').focus();
             });
     }
-    
+
     // Update phone number in OTP modal
     function updatePhoneNumber(phone) {
         if (!phone) return;
@@ -1171,7 +1181,7 @@
         const phoneEl = document.getElementById('otp-phone-number');
         if (phoneEl) phoneEl.textContent = formatted;
     }
-    
+
     // Initialize OTP modal
     function initOTPModal() {
         // Focus first OTP input when modal is shown
@@ -1182,7 +1192,7 @@
                 if (firstInput) firstInput.focus();
             });
         }
-        
+
         // Add click handler for verify button
         const verifyBtn = document.getElementById('verify-otp-btn');
         if (verifyBtn) {
@@ -1191,7 +1201,7 @@
             });
         }
     }
-    
+
     // Call this when showing the OTP modal
     function showOTPModal(phoneNumber = '') {
         updatePhoneNumber(phoneNumber);
@@ -1199,7 +1209,7 @@
         document.querySelector('.otp-box[data-index="1"]').focus();
         startOTPTimer();
     }
-    
+
     // Update the existing setupPhoneVerification function
     function setupPhoneVerification() {
         const step3Form = document.getElementById('step3-form');
@@ -1209,12 +1219,12 @@
             e.preventDefault();
 
             let contactNumber = document.getElementById('contactNumber').value.trim();
-            
+
             // Format phone number
             if (/^\d{10}$/.test(contactNumber)) {
                 contactNumber = '+91' + contactNumber;
             }
-            
+
             // Validate phone number
             if (!contactNumber.match(/^\+\d{10,15}$/)) {
                 document.getElementById('otp-error').textContent = 'Please enter a valid phone number (e.g. +919876543210)';
@@ -1234,14 +1244,14 @@
             }
         });
     }
-    
+
     // Initialize when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         // Your existing DOMContentLoaded code...
-        
+
         // Initialize OTP modal
         initOTPModal();
-        
+
         // Initialize reCAPTCHA verifier
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
             'size': 'invisible',
@@ -1252,7 +1262,7 @@
                 console.log('reCAPTCHA expired, please try again.');
             }
         });
-        
+
         // Initialize phone verification
         setupPhoneVerification();
     });
