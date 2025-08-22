@@ -263,7 +263,7 @@
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item lehanga-hair-jewellery">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox">
@@ -277,11 +277,11 @@
                                             value="forehead-pendant" class="jewellery-checkbox">
                                         <label for="forehead-pendant-cb">Forehead Pendant</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-stud">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
@@ -291,7 +291,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-drops">
-                                    <img src="{{ asset('image/right-line.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox">
@@ -300,7 +300,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-ear-loops">
-                                    <img src="{{ asset('image/right-line.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
@@ -315,7 +315,7 @@
                                             value="nose-pin" class="jewellery-checkbox">
                                         <label for="nose-pin-cb">Nose Pin</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-choker-necklace">
@@ -324,11 +324,11 @@
                                             value="choker-necklace" class="jewellery-checkbox">
                                         <label for="choker-necklace-cb">Choker Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-short-necklace">
-                                    <img src="{{ asset('image/right-line.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}"  class="right-img" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox">
@@ -342,7 +342,7 @@
                                             value="long-necklace" class="jewellery-checkbox">
                                         <label for="long-necklace-cb">Long Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-multiple-bangles">
@@ -351,11 +351,11 @@
                                             value="multiple-bangles" class="jewellery-checkbox">
                                         <label for="multiple-bangles-cb">Multiple Bangles</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-bracelet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox">
@@ -369,11 +369,11 @@
                                             value="single-bangle" class="jewellery-checkbox">
                                         <label for="single-bangle-cb">Single Bangle</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-rings">
-                                    <img src="{{ asset('image/right-line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
                                             class="jewellery-checkbox">
@@ -382,7 +382,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-waist-belt">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox">
@@ -391,7 +391,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-anklet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
                                             class="jewellery-checkbox">
@@ -400,7 +400,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-toe-ring">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox">

@@ -219,68 +219,68 @@ body {
 /* Positioning for each item */
 /* Positioning for each jewelry item */
 .jewellery-item.lehanga-hair-jewellery {
-    top: -3%;
-    right: 10%;
+    top: -4%;
+    right: 12%;
 }
 .jewellery-item.lehanga-forehead-pendant {
-    top: -2%;
-    left: 18%;
+    top: -3%;
+    left: 13%;
 }
 .jewellery-item.lehanga-earrings-stud {
-    top: 6%;
-    right: 5%;
+    top: 3%;
+    right: 10%;
 }
 .jewellery-item.lehanga-earrings-drops {
     top: 10%;
-    right: 4%;
+    right: 14%;
 }
 .jewellery-item.lehanga-ear-loops {
-    top: 1%;
-    right: 10%;
+    top: 8%;
+    right: -5%;
 }
 .jewellery-item.lehanga-nose-pin {
-    top: 4%;
-    left: 27%;
+    top: 2%;
+    left: 22%;
 }
 .jewellery-item.lehanga-choker-necklace {
-    top: 14%;
-    left: 19%;
+    top: 8%;
+    left: 3%;
 }
 .jewellery-item.lehanga-short-necklace {
     top: 14%;
     right: 5%;
 }
 .jewellery-item.lehanga-long-necklace {
-    top: 9%;
-    left: 22%;
+    top: 14%;
+    left: 10%;
 }
 .jewellery-item.lehanga-multiple-bangles {
-    top: 30%;
-    left: 15%;
+    top: 27%;
+    left: -4%;
 }
 .jewellery-item.lehanga-bracelet {
-    top: 33%;
-    right: 12%;
+    top: 28%;
+    right: 15%;
 }
 .jewellery-item.lehanga-waist-belt {
-    top: 28%;
-    right: 10%;
+    top: 23%;
+    right: 5%;
 }
 .jewellery-item.lehanga-single-bangle {
-    top: 35%;
-    left: 17%;
+    top: 32%;
+    left: 6%;
 }
 .jewellery-item.lehanga-rings {
-    top: 38%;
+    top: 35%;
     right: 16%;
 }
 .jewellery-item.lehanga-anklet {
-    top: 83%;
-    right: 8%;
+    top: 71%;
+    right: -8%;
 }
 .jewellery-item.lehanga-toe-ring {
-    top: 90%;
-    right: 8%;
+    top: 78%;
+    right: -3%;
 }
 /* ... and so on for all items */
 
