@@ -358,68 +358,68 @@ body {
 
 /* Positioning for each saree jewelry item on the Saree */
 .jewellery-item.saree-hair-jewellery {
-    top: 7%;
-    left: 12%;
+    top: -1%;
+    left: 21%;
 }
 .jewellery-item.saree-forehead-pendant {
-    top: 8%;
-    right: 16%;
+    top: 0%;
+    right: 37%;
 }
 .jewellery-item.saree-earrings-stud {
-    top: 15%;
-    left: 12%;
+    top: 4%;
+    left: 23%;
 }
 .jewellery-item.saree-earrings-drops {
-    top: 21%;
-    left: 12%;
+    top: 11%;
+    left: 17%;
 }
 .jewellery-item.saree-ear-loops {
-    top: 17%;
-    right: 16%;
+    top: 10%;
+    right: -1%;
 }
 .jewellery-item.saree-nose-pin {
-    top: 20%;
-    right: 16%;
+    top: 8%;
+    right: 20%;
 }
 .jewellery-item.saree-choker-necklace {
-    top: 28%;
-    left: 12%;
+    top: 9%;
+    left: -2%;
 }
 .jewellery-item.saree-short-necklace {
-    top: 33%;
-    left: 12%;
+    top: 15%;
+    left: 39%;
 }
 .jewellery-item.saree-long-necklace {
-    top: 42%;
-    left: 12%;
+    top: 15%;
+    left: 5%;
 }
 .jewellery-item.saree-waist-belt {
-    top: 48%;
-    right: 16%;
+    top: 34%;
+    right: 14%;
 }
 .jewellery-item.saree-multiple-bangles {
-    top: 55%;
-    left: 12%;
+    top: 37%;
+    left: 3%;
 }
 .jewellery-item.saree-bracelet {
-    top: 55%;
-    right: 28%;
+    top: 25%;
+    right: 23%;
 }
 .jewellery-item.saree-single-bangle {
-    top: 59%;
-    right: 16%;
+    top: 41%;
+    right: 43%;
 }
 .jewellery-item.saree-rings {
-    top: 66%;
-    right: 16%;
+    top: 30%;
+    right: 12%;
 }
 .jewellery-item.saree-anklet {
-    top: 86%;
-    left: 16%;
+    top: 76%;
+    left: 46%;
 }
 .jewellery-item.saree-toe-ring {
-    top: 90%;
-    left: 16%;
+    top: 84%;
+    left: 39%;
 }
 
 .outfit-card-wrapper {
