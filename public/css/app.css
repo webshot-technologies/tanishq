@@ -127,9 +127,13 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 2px 5px;
     border-radius: 5px;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     border: 1px solid #ccc;
     z-index: 100;
+
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Optional: hides overflowing text */
+    text-overflow: ellipsis;
 }
 #step2 .outfit-card img {
     height: 350px;
@@ -282,74 +286,74 @@ body {
 
 /* Positioning for each gown jewelry item on the Gown */
 .jewellery-item.gown-hair-jewellery {
-    top: -4%;
-    left: 20%;
+    top: -5%;
+    left: 22%;
+}
+.jewellery-item.gown-forehead-pendant {
+    top: -3%;
+    left: 13%;
 }
 .jewellery-item.gown-earrings-stud {
-    top: 2.5%;
-    left: 24.4%;
+    top: 1.5%;
+    left: 38.4%;
 }
 .jewellery-item.gown-earrings-drops {
-    top: 5%;
-    left: 9.4%;
+    top: 4%;
+    left: 11.4%;
 }
 .jewellery-item.gown-choker-necklace {
-    top: 12%;
-    left: 21%;
+    top: 8.4%;
+    left: 14%;
 }
 .jewellery-item.gown-short-necklace {
     top: 12.5%;
-    left: 36%;
+    left: 30%;
 }
 .jewellery-item.gown-long-necklace {
-    top: 17%;
-    left: 22%;
+    top: 10%;
+    left: -9%;
 }
 .jewellery-item.gown-ear-loops {
     top: 8%;
-    right: 22%;
+    right: 21%;
 }
 .jewellery-item.gown-nose-pin {
-    top: 1.3%;
-    right: 27%;
+    top: 1%;
+    right: 47%;
 }
 .jewellery-item.gown-bracelet {
-    top: 25%;
-    right: 13%;
+    top: 24%;
+    right: 4%;
 }
 
 .jewellery-item.gown-waist-belt {
-    top: 31%;
-    right: 6%;
+    top: 28%;
+    right: 16%;
 }
 .jewellery-item.gown-anklet {
-    top: 77%;
-    right: 10%;
+    top: 71%;
+    right: -6%;
 }
 .jewellery-item.gown-toe-ring {
-    top: 81%;
-    right: 9%;
+    top: 75%;
+    right: 7%;
 }
 
 .jewellery-item.gown-multiple-bangles {
     top: 24%;
-    left: 12%;
+    left: -5%;
 }
 .jewellery-item.gown-single-statement-bangle {
     top: 63%;
     left: 8%;
 }
 .jewellery-item.gown-rings {
-    top: 29.5%;
-    left: 12.5%;
+    top: 25%;
+    left: 24%;
 }
 .jewellery-item.gown-single-bangle {
-    top: 33.5%;
-    left: 9.5%;
-}
-.jewellery-item.gown-forehead-pendant {
-    top: -3%;
-    left: 19%;
+    top: 29.5%;
+    left: 5.5%;
 }
 
 /* Positioning for each saree jewelry item on the Saree */
