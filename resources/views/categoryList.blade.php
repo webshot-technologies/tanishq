@@ -3,6 +3,10 @@
 @section('title', 'Category List')
 
 @section('content')
+@php
+// dd(session('user_id'));
+
+@endphp
 <section class="product-categories-section">
     <div class="container">
         <h2 class="section-title base-color light-font">Find Your Perfect Match</h2>
