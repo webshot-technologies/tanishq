@@ -36,7 +36,9 @@
     .then(res => res.json())
     .then(data => {
         const products = data.data || [];
-        const product = products.find(p => p.productId == productId) || {};
+        console.log(products);
+
+        const product = products.find(p =>  p.variants?.[0]?.variantSku == productId) || {};
         if (!product.productTitle) {
             detailsContainer.innerHTML = '<div class="text-danger text-center py-5">Product not found.</div>';
             return;

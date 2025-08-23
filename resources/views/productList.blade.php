@@ -2,7 +2,10 @@
 
 @section('title', 'Product List')
 @section('content')
+    @php
 
+        // dd(session('user_id'));
+    @endphp
     {{-- New sidebar filter section --}}
     <div class="sidebar-filter-overlay" id="sidebar-filter-overlay">
         <div class="sidebar-filter-content">
@@ -17,14 +20,14 @@
 
 
             <div class="info-box">
-    <div class="title">
-      <span class="icon">i</span>
-      Filters Not Configured
-    </div>
-    <div class="description">
-      Filter functionality is not available in this demo. All search results are displayed without filtering.
-    </div>
-  </div>
+                <div class="title">
+                    <span class="icon">i</span>
+                    Filters Not Configured
+                </div>
+                <div class="description">
+                    Filter functionality is not available in this demo. All search results are displayed without filtering.
+                </div>
+            </div>
             <div class="filter-options-container">
                 {{-- This is where your filter options will go, as per the screenshot --}}
 
@@ -34,13 +37,12 @@
                     <div class="accordion-item my-3">
                         <h2 class="accordion-header" id="headingMetal">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseMetal" aria-expanded="false"
-                                aria-controls="collapseMetal">
+                                data-bs-target="#collapseMetal" aria-expanded="false" aria-controls="collapseMetal">
                                 Metal
                             </button>
                         </h2>
-                        <div id="collapseMetal" class="accordion-collapse collapse  mt-3"
-                            aria-labelledby="headingMetal" data-bs-parent="#sidebar-accordion">
+                        <div id="collapseMetal" class="accordion-collapse collapse  mt-3" aria-labelledby="headingMetal"
+                            data-bs-parent="#sidebar-accordion">
                             <div class="accordion-body">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="Gold" id="checkGold">
@@ -59,7 +61,8 @@
                                     <label class="form-check-label" for="checkTitanium">Titanium</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Stainless Steel" id="checkStainlessSteel">
+                                    <input class="form-check-input" type="checkbox" value="Stainless Steel"
+                                        id="checkStainlessSteel">
                                     <label class="form-check-label" for="checkStainlessSteel">Stainless Steel</label>
                                 </div>
                                 <!-- ... more types ... -->
@@ -71,13 +74,12 @@
                     <div class="accordion-item my-3">
                         <h2 class="accordion-header" id="headingPurity">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapsePurity" aria-expanded="false"
-                                aria-controls="collapsePurity">
+                                data-bs-target="#collapsePurity" aria-expanded="false" aria-controls="collapsePurity">
                                 Purity
                             </button>
                         </h2>
-                        <div id="collapsePurity" class="accordion-collapse collapse mt-3"
-                            aria-labelledby="headingPurity" data-bs-parent="#sidebar-accordion">
+                        <div id="collapsePurity" class="accordion-collapse collapse mt-3" aria-labelledby="headingPurity"
+                            data-bs-parent="#sidebar-accordion">
                             <div class="accordion-body">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="14" id="check14">
@@ -112,24 +114,30 @@
                             aria-labelledby="headingOccasion" data-bs-parent="#sidebar-accordion">
                             <div class="accordion-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Bridal Wear" id="checkBridalWear">
+                                    <input class="form-check-input" type="checkbox" value="Bridal Wear"
+                                        id="checkBridalWear">
                                     <label class="form-check-label" for="checkBridalWear">Bridal Wear</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Casual Wear" id="checkCasualWear">
+                                    <input class="form-check-input" type="checkbox" value="Casual Wear"
+                                        id="checkCasualWear">
                                     <label class="form-check-label" for="checkCasualWear">Casual Wear</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Modern Wear" id="checkModernWear">
+                                    <input class="form-check-input" type="checkbox" value="Modern Wear"
+                                        id="checkModernWear">
                                     <label class="form-check-label" for="checkModernWear">Modern Wear</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Office Wear" id="checkOfficeWear">
+                                    <input class="form-check-input" type="checkbox" value="Office Wear"
+                                        id="checkOfficeWear">
                                     <label class="form-check-label" for="checkOfficeWear">Office Wear</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Traditional and Ethnic Wear" id="checkTraditionalEthnicWear">
-                                    <label class="form-check-label" for="checkTraditionalEthnicWear">Traditional and Ethnic Wear</label>
+                                    <input class="form-check-input" type="checkbox" value="Traditional and Ethnic Wear"
+                                        id="checkTraditionalEthnicWear">
+                                    <label class="form-check-label" for="checkTraditionalEthnicWear">Traditional and
+                                        Ethnic Wear</label>
                                 </div>
                             </div>
                         </div>
@@ -168,24 +176,44 @@
                     </div>
                 </div>
 
-              <div class="category-tabs my-5" id="category-tabs">
+                <div class="category-tabs my-5" id="category-tabs">
                     {{-- <button class="category-tab active" data-category="pendant-sets">Pendant Sets</button>
                     <button class="category-tab" data-category="chains">Chains</button>
                     <button class="category-tab" data-category="earrings">Earrings</button>
                     <button class="category-tab" data-category="necklaces">Necklaces</button>
                     <button class="category-tab" data-category="rings">Rings</button> --}}
-             </div>
+                        @php
+                            $allCategories = [
+                                'chains' => 'Chains',
+                                'earrings' => 'Earrings',
+                                'necklaces' => 'Necklaces',
+                                'rings' => 'Rings',
+                                'pendants' => 'Pendants',
+                                'bracelets' => 'Bracelets',
+                                'mangalsutras' => 'Mangalsutras',
+                                'sets' => 'Sets',
+                            ];
+                            $showCategories = isset($categoryPresence) && is_array($categoryPresence) && count($categoryPresence) > 0
+                                ? $categoryPresence
+                                : array_keys($allCategories);
+                        @endphp
+                        @foreach ($showCategories as $catKey)
+                            @if(isset($allCategories[$catKey]))
+                                <button class="category-tab" data-category="{{ $catKey }}">{{ $allCategories[$catKey] }}</button>
+                            @endif
+                        @endforeach
+                    </div>
 
                 <div id="product-grids-container">
                     <!-- Pendant Sets Grid (Active by default) -->
                 </div>
-                </div>
+            </div>
 
-                    <div class="mt-auto text-center pt-4 fs-6 text-custom-dark text-dark-gray opacity-75">
-                                                                        &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
+            <div class="mt-auto text-center pt-4 fs-6 text-custom-dark text-dark-gray opacity-75">
+                &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
 
-                                    </div>
+            </div>
 
         </section>
     </div>
@@ -221,25 +249,29 @@
                 }
             });
 
-            clearFiltersBtn.addEventListener('click', function() {
-                // Reset filter form inputs
-                const filterForm = sidebarOverlay.querySelector('.filter-options-container');
-                filterForm.querySelectorAll('input').forEach(input => {
-                    if (input.type === 'checkbox' || input.type === 'radio') input.checked = false;
-                    if (input.type === 'range') input.value = input.min;
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', function() {
+                    // Reset filter form inputs
+                    const filterForm = sidebarOverlay.querySelector('.filter-options-container');
+                    filterForm.querySelectorAll('input').forEach(input => {
+                        if (input.type === 'checkbox' || input.type === 'radio') input.checked = false;
+                        if (input.type === 'range') input.value = input.min;
+                    });
+                    filterForm.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+                    console.log('Filters cleared!');
+                    // You would typically make an API call to get unfiltered products here
                 });
-                filterForm.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+            }
 
-                console.log('Filters cleared!');
-                // You would typically make an API call to get unfiltered products here
-            });
-
-            applyFiltersBtn.addEventListener('click', function() {
-                // Collect filter data and send to backend or filter on frontend
-                console.log('Filters applied!');
-                sidebarOverlay.classList.remove('active');
-                // An AJAX call to filter products would go here
-            });
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', function() {
+                    // Collect filter data and send to backend or filter on frontend
+                    console.log('Filters applied!');
+                    sidebarOverlay.classList.remove('active');
+                    // An AJAX call to filter products would go here
+                });
+            }
 
             // 2. Category Tabs Functionality
             categoryTabs.forEach(tab => {
@@ -255,27 +287,66 @@
                 });
             });
 
-            // 3. Heart Icon Functionality
+            // 3. Wishlist State Sync on Page Load
+            const userId = "{{ session('user_id') }}";
+            const idToken = "{{ session('id_token') }}";
+            // Get wishlist productIds from backend (Blade)
+            @if(isset($wishlistProductIds) && is_array($wishlistProductIds))
+                let wishlistSkus = @json($wishlistProductIds);
+            @else
+                let wishlistSkus = [];
+            @endif
+            console.log(wishlistSkus);
+            localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
+            // Sync UI hearts
+            document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
+                const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+                const borderHeart = btn.querySelector('.border-heart');
+                const fillHeart = btn.querySelector('.fill-heart');
+                if (sku && wishlistSkus.includes(sku)) {
+                    borderHeart.style.display = 'none';
+                    fillHeart.style.display = 'inline';
+                } else {
+                    borderHeart.style.display = 'inline';
+                    fillHeart.style.display = 'none';
+                }
+            });
+
+            // 4. Heart Icon Functionality
             heartIcons.forEach(icon => {
                 icon.addEventListener('click', function(event) {
                     event.stopPropagation();
-                    const svgPath = this.querySelector('.heart-svg path');
-                    const isFavorited = svgPath.getAttribute('fill') === '#e74c3c';
-
-                    // Toggle the heart color
-                    svgPath.setAttribute('stroke', isFavorited ? '#ccc' : '#e74c3c');
+                    const btn = this.closest('.wishlist-btn');
+                    const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
+                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+                    const borderHeart = btn.querySelector('.border-heart');
+                    const fillHeart = btn.querySelector('.fill-heart');
+                    const isFavorited = fillHeart.style.display === 'inline';
+                    if (!sku) return;
+                    if (isFavorited) {
+                        // Remove from wishlist
+                        borderHeart.style.display = 'inline';
+                        fillHeart.style.display = 'none';
+                        wishlistSkus = wishlistSkus.filter(id => id !== sku);
+                    } else {
+                        // Add to wishlist
+                        borderHeart.style.display = 'none';
+                        fillHeart.style.display = 'inline';
+                        if (!wishlistSkus.includes(sku)) wishlistSkus.push(sku);
+                    }
+                    localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
                 });
             });
 
-            // 4. Search Functionality
+            // 5. Search Functionality
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
                 const activeGrid = document.querySelector('.product-grid-container.active');
                 if (activeGrid) {
                     const productItems = activeGrid.querySelectorAll('.product-item-card');
                     productItems.forEach(item => {
-                        const productId = item.querySelector('.product-item-id').textContent
-                            .toLowerCase();
+                        const productId = item.querySelector('.product-item-id').textContent.toLowerCase();
                         item.style.display = productId.includes(searchTerm) ? 'block' : 'none';
                     });
                 }
@@ -294,115 +365,137 @@
 
                     // Check the current color and toggle it
                     const isFavorited = svgPath.getAttribute('fill') ===
-                    '#e74c3c'; // Red color for favorited
+                        '#e74c3c'; // Red color for favorited
                     svgPath.setAttribute('fill', isFavorited ? '#ccc' :
-                    '#e74c3c'); // Toggle between gray and red
+                        '#e74c3c'); // Toggle between gray and red
                 });
             });
         });
     </script>
-{{-- categor-tab  --}}
-<script>
+    {{-- categor-tab  --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabsContainer = document.getElementById('category-tabs');
+            const gridsContainer = document.getElementById('product-grids-container');
+            const userId = "{{ session('user_id') }}";
+            const idToken = "{{ session('id_token') }}";
+            // console.log('Wishlist userId:', userId, 'idToken:', idToken);
+            let categories = [];
+            // Store wishlist items (using localStorage for persistence)
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
 
-document.addEventListener('DOMContentLoaded', function() {
-    const tabsContainer = document.getElementById('category-tabs');
-    const gridsContainer = document.getElementById('product-grids-container');
-    let categories = [];
-
-    // Store wishlist items (using localStorage for persistence)
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
-
-    // Get selected category from query param
-    function getQueryParam(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
-    const selectedCategory = getQueryParam('category');
-
-    // Fetch categories and render tabs
-    fetch('https://ar-api.mirrar.com/category/get/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8')
-        .then(response => response.json())
-        .then(data => {
-            categories = data.data || [];
-            tabsContainer.innerHTML = '';
-
-            let selectedIdx = 0;
-            if (selectedCategory) {
-                const idx = categories.findIndex(cat => cat.categoryKey === selectedCategory);
-                if (idx !== -1) selectedIdx = idx;
+            // Get selected category from query param
+            function getQueryParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
             }
+            const selectedCategory = getQueryParam('category');
 
-            categories.forEach((category, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'category-tab' + (idx === selectedIdx ? ' active' : '');
-                btn.dataset.category = category.categoryKey;
-                btn.textContent = category.categoryLabel;
-                tabsContainer.appendChild(btn);
-            });
+            // Fetch categories and render tabs
+            fetch('https://ar-api.mirrar.com/category/get/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8')
+                .then(response => response.json())
+                .then(data => {
+                    categories = data.data || [];
+                    tabsContainer.innerHTML = '';
 
-            // Fetch products for the selected category by default
-            if (categories.length > 0) {
-                fetchAndRenderProducts(categories[selectedIdx].categoryKey);
-            }
-
-            // Tab switching logic
-            const tabBtns = tabsContainer.querySelectorAll('.category-tab');
-            tabBtns.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    tabBtns.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    fetchAndRenderProducts(this.dataset.category);
-                });
-            });
-        });
-
-    // Fetch and render products for a category
-
-    function fetchAndRenderProducts(categoryKey, page = 1) {
-        gridsContainer.innerHTML = '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
-
-        fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                limit: 20,
-                product_code: "",
-                filter_field: {
-                    page: page,
-                    isSetOnly: [false]
-                }
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            const products = data.data || [];
-            const total = data.total || 0;
-            const pageSize = 20;
-            const currentPage = page;
-            const totalPages = Math.ceil(total / pageSize) || (products.length === pageSize ? currentPage + 1 : currentPage);
-            if (products.length === 0) {
-                gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
-                return;
-            }
-
-            let html = '<div class="row">';
-            products.forEach(product => {
-                const productId = product.productId || product.sku;
-                const isWishlisted = wishlist[productId] || false;
-
-                let imgSrc = 'https://placehold.co/300x220?text=No+Image';
-                const variant = product.variants?.[0];
-                if (variant) {
-                    if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
-                        imgSrc = Object.values(variant.variantThumbnails)[0];
-                    } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
-                        imgSrc = Object.values(variant.variantImageURLs)[0];
+                    // Get allowed categories from Blade (if present)
+                    let allowedCategories = [];
+                    @if(isset($categoryPresence) && is_array($categoryPresence) && count($categoryPresence) > 0)
+                        allowedCategories = @json($categoryPresence);
+                    @endif
+                    console.log(allowedCategories);
+                    // Filter categories if allowedCategories is set
+                    let filteredCategories = categories;
+                    console.log(categories);
+                    if (allowedCategories.length > 0) {
+                        filteredCategories = categories.filter(cat => allowedCategories.includes(cat.categoryKey));
                     }
-                }
 
-                html += `
+                    let selectedIdx = 0;
+                    if (selectedCategory) {
+                        const idx = filteredCategories.findIndex(cat => cat.categoryKey === selectedCategory);
+                        if (idx !== -1) selectedIdx = idx;
+                    }
+
+                    filteredCategories.forEach((category, idx) => {
+                        const btn = document.createElement('button');
+                        btn.className = 'category-tab' + (idx === selectedIdx ? ' active' : '');
+                        btn.dataset.category = category.categoryKey;
+                        btn.textContent = category.categoryLabel;
+                        tabsContainer.appendChild(btn);
+                    });
+
+                    // Fetch products for the selected category by default
+                    if (filteredCategories.length > 0) {
+                        fetchAndRenderProducts(filteredCategories[selectedIdx].categoryKey);
+                    }
+
+                    // Tab switching logic
+                    const tabBtns = tabsContainer.querySelectorAll('.category-tab');
+                    tabBtns.forEach(tab => {
+                        tab.addEventListener('click', function() {
+                            tabBtns.forEach(t => t.classList.remove('active'));
+                            this.classList.add('active');
+                            fetchAndRenderProducts(this.dataset.category);
+                        });
+                    });
+                });
+
+            // Fetch and render products for a category
+
+            function fetchAndRenderProducts(categoryKey, page = 1) {
+                gridsContainer.innerHTML =
+                    '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
+
+                fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            limit: 20,
+                            product_code: "",
+                            filter_field: {
+                                page: page,
+                                isSetOnly: [false]
+                            }
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const products = data.data || [];
+                        const total = data.total || 0;
+                        const pageSize = 20;
+                        const currentPage = page;
+                        const totalPages = Math.ceil(total / pageSize) || (products.length === pageSize ? currentPage + 1 : currentPage);
+                        if (products.length === 0) {
+                            gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
+                            return;
+                        }
+
+                        // Sync wishlist from localStorage (set by backend fetch)
+                        let wishlistSkus = [];
+                        try {
+                            wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
+                        } catch (e) {}
+
+                        let html = '<div class="row">';
+                        products.forEach(product => {
+                            const productId = product.productId || product.sku;
+                            const isWishlisted = wishlistSkus.includes(productId);
+
+                            let imgSrc = 'https://placehold.co/300x220?text=No+Image';
+                            const variant = product.variants?.[0];
+                            if (variant) {
+                                if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
+                                    imgSrc = Object.values(variant.variantThumbnails)[0];
+                                } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
+                                    imgSrc = Object.values(variant.variantImageURLs)[0];
+                                }
+                            }
+
+                            html += `
+
                     <div class="col-lg-3 col-md-4 col-6 mb-4">
                         <div class="product-item-card">
                             <div class="product-image-wrapper position-relative">
@@ -436,18 +529,18 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">${product.productTitle || ''}</p>
                                 <div class="product-item-buttons">
-                                    <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.productId}?category=${categoryKey}"> View Details </a></button>
+                                    <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
                                     <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try it on</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
-            });
-            html += '</div>';
+                        });
+                        html += '</div>';
 
-            // Pagination controls
-            html += `<div class="d-flex justify-content-center my-4">
+                        // Pagination controls
+                        html += `<div class="d-flex justify-content-center my-4">
                 <nav aria-label="Product pagination">
                     <ul class="pagination">
                         <li class="page-item${currentPage === 1 ? ' disabled' : ''}">
@@ -455,10 +548,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#300708" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
                             </a>
                         </li>`;
-            for (let i = 1; i <= totalPages; i++) {
-                html += `<li class="page-item${i === currentPage ? ' active' : ''}"><a class="base-color page-link h-100" href="#" style="font-size:14px;" data-page="${i}">${i}</a></li>`;
-            }
-            html += `<li class="page-item${currentPage === totalPages ? ' disabled' : ''}">
+                        for (let i = 1; i <= totalPages; i++) {
+                            html +=
+                                `<li class="page-item${i === currentPage ? ' active' : ''}"><a class="base-color page-link h-100" href="#" style="font-size:14px;" data-page="${i}">${i}</a></li>`;
+                        }
+                        html += `<li class="page-item${currentPage === totalPages ? ' disabled' : ''}">
                             <a class="page-link h-100 d-flex align-items-center" href="#" data-page="${currentPage + 1}" aria-label="Next">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#300708" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 14.354a.5.5 0 0 1 0-.708L10.293 8 4.646 2.354a.5.5 0 1 1 .708-.708l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708 0z"/></svg>
                             </a>
@@ -467,72 +561,236 @@ document.addEventListener('DOMContentLoaded', function() {
                 </nav>
             </div>`;
 
-            gridsContainer.innerHTML = html;
-            attachWishlistListeners();
+                        gridsContainer.innerHTML = html;
+                        attachWishlistListeners();
 
-            // Attach Try On button listeners
-            document.querySelectorAll('.try-on-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sku = this.getAttribute('data-sku');
-                    // Load Mirrar SDK if not loaded
-                    if (!window.mirrarUILoaded) {
-                        const script = document.createElement('script');
-                        script.src = "https://cdn.mirrar.com/general/scripts/mirrar-ui.js";
-                        script.onload = () => {
-                            window.mirrarUILoaded = true;
-                            initMirrarUI(sku, { brandId: "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8" });
-                        };
-                        document.body.appendChild(script);
+                        // Attach Try On button listeners
+                        document.querySelectorAll('.try-on-btn').forEach(btn => {
+                            btn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const sku = this.getAttribute('data-sku');
+                                // Load Mirrar SDK if not loaded
+                                if (!window.mirrarUILoaded) {
+                                    const script = document.createElement('script');
+                                    script.src =
+                                        "https://cdn.mirrar.com/general/scripts/mirrar-ui.js";
+                                    script.onload = () => {
+                                        window.mirrarUILoaded = true;
+                                        initMirrarUI(sku, {
+                                            brandId: "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8"
+                                        });
+                                    };
+                                    document.body.appendChild(script);
+                                } else {
+                                    initMirrarUI(sku, {
+                                        brandId: "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8"
+                                    });
+                                }
+                            });
+                        });
+
+                        // Pagination click handler
+                        const paginationLinks = gridsContainer.querySelectorAll('.pagination .page-link');
+                        paginationLinks.forEach(link => {
+                            link.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const page = parseInt(this.getAttribute('data-page'));
+                                if (!isNaN(page) && page > 0 && page <= totalPages && page !==
+                                    currentPage) {
+                                    fetchAndRenderProducts(categoryKey, page);
+                                }
+                            });
+                        });
+                    })
+                    .catch(() => {
+                        gridsContainer.innerHTML =
+                            '<div class="text-center py-5 text-danger">Failed to load products.</div>';
+                    });
+            }
+
+            // Function to attach event listeners to wishlist buttons
+            function attachWishlistListeners() {
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        console.log('Wishlist button clicked');
+
+                        const productCard = this.closest('.product-item-card');
+                        const skuBtn = productCard.querySelector('.try-on-btn');
+                        const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+                        const borderHeart = this.querySelector('.border-heart');
+                        const fillHeart = this.querySelector('.fill-heart');
+
+                        console.log('Wishlist clicked:', {
+                            userId,
+                            idToken,
+                            sku
+                        });
+
+                        if (!userId || !idToken || !sku) {
+                            console.error('Missing userId, idToken, or sku for wishlist API call');
+                            alert('Please log in to manage wishlist items');
+                            return;
+                        }
+
+                        // Determine if we're adding or removing
+                        const isCurrentlyFilled = fillHeart.style.display === 'inline';
+                        const method = isCurrentlyFilled ? 'DELETE' : 'POST';
+                        const url = `/users/${userId}/wishlist`;
+
+                        // Get CSRF token
+                        const csrfToken = document.querySelector('meta[name="csrf-token"]')
+                        ?.content;
+
+                        // Toggle UI immediately for better UX
+                        borderHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
+                        fillHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
+                        // Get optional fields from product card
+                        // const productCard = this.closest('.product-item-card');
+
+                        // Send API request
+                        // Get product data from card
+                        const imgElem = productCard.querySelector('img.default-image');
+                        const variantThumbnails = imgElem ? imgElem.src : '';
+                        const categoryKey = productCard.closest('.product-listing-section')
+                            ?.querySelector('.category-tab.active')?.dataset.category || '';
+                        const productTitle = productCard.querySelector('.product-item-id')
+                            ?.textContent || '';
+
+                        fetch(url, {
+                                method: method,
+                                headers: {
+                                    'Authorization': 'Bearer ' + idToken,
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken,
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    sku: sku,
+                                    variantThumbnails: variantThumbnails,
+                                    categoryKey: categoryKey,
+                                    productTitle: productTitle,
+                                })
+                            })
+                            .then(response => {
+                                console.log('Response status:', response.status, 'Method:',
+                                    method);
+                                if (!response.ok) {
+                                    return response.json().then(err => {
+                                        throw new Error(err.message ||
+                                            `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`
+                                            )
+                                    });
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log('API response:', data);
+                                // Update localStorage to track wishlist state
+                                updateWishlistStorage(sku, method === 'POST');
+                            })
+                            .catch(error => {
+                                console.error('Wishlist API error:', error);
+                                // Revert UI on error
+                                borderHeart.style.display = isCurrentlyFilled ? 'none' :
+                                    'inline';
+                                fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
+                                alert('Error: ' + error.message);
+                            });
+                    });
+                });
+            }
+
+            // Helper function to manage localStorage
+            function updateWishlistStorage(sku, isAdded) {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+                if (isAdded) {
+                    wishlist[sku] = true;
+                } else {
+                    delete wishlist[sku];
+                }
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+
+            // Function to initialize wishlist state from localStorage
+            function initializeWishlistState() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
+                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+                    const borderHeart = btn.querySelector('.border-heart');
+                    const fillHeart = btn.querySelector('.fill-heart');
+
+                    if (sku && wishlist[sku]) {
+                        borderHeart.style.display = 'none';
+                        fillHeart.style.display = 'inline';
                     } else {
-                        initMirrarUI(sku, { brandId: "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8" });
+                        borderHeart.style.display = 'inline';
+                        fillHeart.style.display = 'none';
                     }
                 });
-            });
-
-            // Pagination click handler
-            const paginationLinks = gridsContainer.querySelectorAll('.pagination .page-link');
-            paginationLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = parseInt(this.getAttribute('data-page'));
-                    if (!isNaN(page) && page > 0 && page <= totalPages && page !== currentPage) {
-                        fetchAndRenderProducts(categoryKey, page);
-                    }
-                });
-            });
-        })
-        .catch(() => {
-            gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
+            }
         });
-    }
+    </script>
+    {{-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get user_id and id_token from Blade (Laravel session)
 
-    // Function to attach event listeners to wishlist buttons
+
     function attachWishlistListeners() {
         document.querySelectorAll('.wishlist-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                const productId = this.dataset.productId;
-                const borderHeart = this.querySelector('.border-heart');
-                const fillHeart = this.querySelector('.fill-heart');
+                console.log('Wishlist button clicked');
+                try {
+                    const skuBtn = this.closest('.product-item-card').querySelector('.try-on-btn');
+                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+                    const borderHeart = this.querySelector('.border-heart');
+                    const fillHeart = this.querySelector('.fill-heart');
 
-                // Toggle wishlist state
-                wishlist[productId] = !wishlist[productId];
+                    console.log('Wishlist clicked:', { userId, idToken, sku });
 
-                // Update UI
-                if (wishlist[productId]) {
+                    if (!userId || !idToken || !sku) {
+                        console.error('Missing userId, idToken, or sku for wishlist API call');
+                        alert('Missing userId, idToken, or sku for wishlist API call');
+                        return;
+                    }
+
+                    // Toggle UI
                     borderHeart.style.display = 'none';
                     fillHeart.style.display = 'inline';
-                } else {
-                    borderHeart.style.display = 'inline';
-                    fillHeart.style.display = 'none';
-                }
 
-                // Save to localStorage
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    // Send API request
+                    fetch(`/users/${userId}/wishlist`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + idToken,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ sku: sku })
+                    })
+                    .then(response => {
+                        console.log('Fetch response:', response);
+                        if (!response.ok) throw new Error('Failed to add to wishlist');
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('API response:', data);
+                        alert('Wishlist API success!');
+                    })
+                    .catch(error => {
+                        console.error('Wishlist API error:', error);
+                        alert('Wishlist API error: ' + error);
+                        borderHeart.style.display = 'inline';
+                        fillHeart.style.display = 'none';
+                    });
+                } catch (err) {
+                    console.error('Wishlist JS error:', err);
+                    alert('Wishlist JS error: ' + err);
+                }
             });
         });
     }
-});
-</script>
 
+    attachWishlistListeners();
+});
+</script> --}}
 @endpush
