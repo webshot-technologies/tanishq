@@ -1,8 +1,8 @@
 
 /* ===============================================
    TANISHQ JEWELRY WEBSITE STYLES
-   =============================================== 
-   
+   ===============================================
+
    TABLE OF CONTENTS:
    ------------------
    1. IMPORTS & FONTS
@@ -28,7 +28,7 @@
    21. OTP MODAL COMPONENT
    22. PRODUCT DETAILS IMAGE
    23. RESPONSIVE STYLES (organized by breakpoint)
-   
+
    Total: 1179 lines (reduced from 1215 lines)
    =============================================== */
 
@@ -134,13 +134,13 @@ body {
    ANIMATIONS & TRANSITIONS
    =============================================== */
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(10px); 
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -148,9 +148,9 @@ body {
    OUTFIT CARDS & SELECTION
    =============================================== */
 .outfit-card {
-  border: 2px solid transparent;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .outfit-card:hover,
@@ -170,7 +170,7 @@ body {
 }
 
 .detail-section.active {
-  display: block;
+    display: block;
 }
 
 #step2 .outfit-card img {
@@ -273,73 +273,222 @@ body {
 }
 
 .jewellery-checkbox:checked + label::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%) rotate(45deg);
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Adjust this value to center the checkmark */
+    transform: translateY(-50%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
 }
 
-/* ===============================================
-   JEWELRY POSITIONING - LEHENGA
-   =============================================== */
-.jewellery-item.hair-jewellery { top: -3%; right: 10%; }
-.jewellery-item.forehead-pendant { top: -2%; left: 18%; }
-.jewellery-item.earrings-stud { top: 6%; right: 5%; }
-.jewellery-item.earrings-drops { top: 10%; right: 4%; }
-.jewellery-item.ear-loops { top: 1%; right: 10%; }
-.jewellery-item.nose-pin { top: 4%; left: 27%; }
-.jewellery-item.choker-necklace { top: 14%; left: 19%; }
-.jewellery-item.short-necklace { top: 14%; right: 5%; }
-.jewellery-item.long-necklace { top: 9%; left: 22%; }
-.jewellery-item.multiple-bangles { top: 30%; left: 15%; }
-.jewellery-item.bracelet { top: 33%; right: 12%; }
-.jewellery-item.waist-belt { top: 28%; right: 10%; }
-.jewellery-item.single-bangle { top: 35%; left: 17%; }
-.jewellery-item.rings { top: 38%; right: 16%; }
-.jewellery-item.anklet { top: 83%; right: 8%; }
-.jewellery-item.toe-ring { top: 90%; right: 8%; }
+/* Positioning for each item */
+/* Positioning for each jewelry item */
+.jewellery-item.lehanga-hair-jewellery {
+    top: -4%;
+    right: 12%;
+}
+.jewellery-item.lehanga-forehead-pendant {
+    top: -3%;
+    left: 13%;
+}
+.jewellery-item.lehanga-earrings-stud {
+    top: 3%;
+    right: 10%;
+}
+.jewellery-item.lehanga-earrings-drops {
+    top: 10%;
+    right: 14%;
+}
+.jewellery-item.lehanga-ear-loops {
+    top: 8%;
+    right: -5%;
+}
+.jewellery-item.lehanga-nose-pin {
+    top: 2%;
+    left: 22%;
+}
+.jewellery-item.lehanga-choker-necklace {
+    top: 8%;
+    left: 3%;
+}
+.jewellery-item.lehanga-short-necklace {
+    top: 14%;
+    right: 5%;
+}
+.jewellery-item.lehanga-long-necklace {
+    top: 14%;
+    left: 10%;
+}
+.jewellery-item.lehanga-multiple-bangles {
+    top: 27%;
+    left: -4%;
+}
+.jewellery-item.lehanga-bracelet {
+    top: 28%;
+    right: 15%;
+}
+.jewellery-item.lehanga-waist-belt {
+    top: 23%;
+    right: 5%;
+}
+.jewellery-item.lehanga-single-bangle {
+    top: 32%;
+    left: 6%;
+}
+.jewellery-item.lehanga-rings {
+    top: 35%;
+    right: 16%;
+}
+.jewellery-item.lehanga-anklet {
+    top: 71%;
+    right: -8%;
+}
+.jewellery-item.lehanga-toe-ring {
+    top: 78%;
+    right: -3%;
+}
+/* ... and so on for all items */
 
-/* ===============================================
-   JEWELRY POSITIONING - GOWN
-   =============================================== */
-.jewellery-item.gown-hair-jewellery { top: 9%; left: 8%; }
-.jewellery-item.gown-earrings-stud { top: 18%; left: 8%; }
-.jewellery-item.gown-earrings-drops { top: 25%; left: 8%; }
-.jewellery-item.gown-choker-necklace { top: 32%; left: 8%; }
-.jewellery-item.gown-short-necklace { top: 39%; left: 8%; }
-.jewellery-item.gown-long-necklace { top: 46%; left: 8%; }
-.jewellery-item.gown-ear-loop { top: 15%; right: 12%; }
-.jewellery-item.gown-nose-pin { top: 22%; right: 12%; }
-.jewellery-item.gown-bracelet { top: 40%; right: 12%; }
-.jewellery-item.gown-multiple-bangles { top: 56%; left: 8%; }
-.jewellery-item.gown-single-statement-bangle { top: 63%; left: 8%; }
-.jewellery-item.gown-rings { top: 70%; left: 8%; }
+/* Positioning for each gown jewelry item on the Gown */
+.jewellery-item.gown-hair-jewellery {
+    top: -5%;
+    left: 22%;
+}
+.jewellery-item.gown-forehead-pendant {
+    top: -3%;
+    left: 13%;
+}
+.jewellery-item.gown-earrings-stud {
+    top: 1.5%;
+    left: 38.4%;
+}
+.jewellery-item.gown-earrings-drops {
+    top: 4%;
+    left: 11.4%;
+}
+.jewellery-item.gown-choker-necklace {
+    top: 8.4%;
+    left: 14%;
+}
+.jewellery-item.gown-short-necklace {
+    top: 12.5%;
+    left: 30%;
+}
+.jewellery-item.gown-long-necklace {
+    top: 10%;
+    left: -9%;
+}
+.jewellery-item.gown-ear-loops {
+    top: 8%;
+    right: 21%;
+}
+.jewellery-item.gown-nose-pin {
+    top: 1%;
+    right: 47%;
+}
+.jewellery-item.gown-bracelet {
+    top: 24%;
+    right: 4%;
+}
 
-/* ===============================================
-   JEWELRY POSITIONING - SAREE
-   =============================================== */
-.jewellery-item.saree-hair-jewellery { top: 7%; left: 12%; }
-.jewellery-item.saree-forehead-pendant { top: 8%; right: 16%; }
-.jewellery-item.saree-earrings-stud { top: 15%; left: 12%; }
-.jewellery-item.saree-earrings-drops { top: 21%; left: 12%; }
-.jewellery-item.saree-ear-loops { top: 17%; right: 16%; }
-.jewellery-item.saree-nose-pin { top: 20%; right: 16%; }
-.jewellery-item.saree-choker-necklace { top: 28%; left: 12%; }
-.jewellery-item.saree-short-necklace { top: 33%; left: 12%; }
-.jewellery-item.saree-long-necklace { top: 42%; left: 12%; }
-.jewellery-item.saree-waist-belt { top: 48%; right: 16%; }
-.jewellery-item.saree-multiple-bangles { top: 55%; left: 12%; }
-.jewellery-item.saree-bracelet { top: 55%; right: 28%; }
-.jewellery-item.saree-single-bangle { top: 59%; right: 16%; }
-.jewellery-item.saree-rings { top: 66%; right: 16%; }
-.jewellery-item.saree-anklet { top: 86%; left: 16%; }
-.jewellery-item.saree-toe-ring { top: 90%; left: 16%; }
+.jewellery-item.gown-waist-belt {
+    top: 28%;
+    right: 16%;
+}
+.jewellery-item.gown-anklet {
+    top: 71%;
+    right: -6%;
+}
+.jewellery-item.gown-toe-ring {
+    top: 75%;
+    right: 7%;
+}
 
+.jewellery-item.gown-multiple-bangles {
+    top: 24%;
+    left: -5%;
+}
+.jewellery-item.gown-single-statement-bangle {
+    top: 63%;
+    left: 8%;
+}
+.jewellery-item.gown-rings {
+    top: 25%;
+    left: 24%;
+}
+.jewellery-item.gown-single-bangle {
+    top: 29.5%;
+    left: 5.5%;
+}
+
+/* Positioning for each saree jewelry item on the Saree */
+.jewellery-item.saree-hair-jewellery {
+    top: -1%;
+    left: 21%;
+}
+.jewellery-item.saree-forehead-pendant {
+    top: 0%;
+    right: 37%;
+}
+.jewellery-item.saree-earrings-stud {
+    top: 4%;
+    left: 23%;
+}
+.jewellery-item.saree-earrings-drops {
+    top: 11%;
+    left: 17%;
+}
+.jewellery-item.saree-ear-loops {
+    top: 10%;
+    right: -1%;
+}
+.jewellery-item.saree-nose-pin {
+    top: 8%;
+    right: 20%;
+}
+.jewellery-item.saree-choker-necklace {
+    top: 9%;
+    left: -2%;
+}
+.jewellery-item.saree-short-necklace {
+    top: 15%;
+    left: 39%;
+}
+.jewellery-item.saree-long-necklace {
+    top: 15%;
+    left: 5%;
+}
+.jewellery-item.saree-waist-belt {
+    top: 34%;
+    right: 14%;
+}
+.jewellery-item.saree-multiple-bangles {
+    top: 37%;
+    left: 3%;
+}
+.jewellery-item.saree-bracelet {
+    top: 25%;
+    right: 23%;
+}
+.jewellery-item.saree-single-bangle {
+    top: 41%;
+    right: 43%;
+}
+.jewellery-item.saree-rings {
+    top: 30%;
+    right: 12%;
+}
+.jewellery-item.saree-anklet {
+    top: 76%;
+    left: 46%;
+}
+.jewellery-item.saree-toe-ring {
+    top: 84%;
+    left: 39%;
+}
 
 /* ===============================================
    PRODUCT CARDS & CATEGORIES
@@ -857,44 +1006,44 @@ body {
 }
 
 .otp-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .otp-right {
-  flex: 1;
-  padding: 30px 25px;
+    flex: 1;
+    padding: 30px 25px;
 }
 
 .otp-heading {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
 .otp-text {
-  font-size: 14px;
-  margin-bottom: 20px;
-  color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #666;
 }
 
 .otp-inputs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
 .otp-box {
-  width: 45px;
-  height: 50px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  outline: none;
-  transition: border 0.2s;
+    width: 45px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    transition: border 0.2s;
 }
 
 .otp-box:focus {
@@ -903,48 +1052,48 @@ body {
 }
 
 .otp-error {
-  font-size: 13px;
-  color: red;
-  margin-bottom: 10px;
+    font-size: 13px;
+    color: red;
+    margin-bottom: 10px;
 }
 
 .otp-timer {
-  font-size: 13px;
-  margin-bottom: 15px;
-  color: #555;
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #555;
 }
 
 .otp-btn {
-  width: 100%;
-  padding: 12px;
-  background: #a32b2b;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s;
+    width: 100%;
+    padding: 12px;
+    background: #a32b2b;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .otp-btn:hover {
-  background: #7e1f1f;
+    background: #7e1f1f;
 }
 
 .otp-terms {
-  margin-top: 15px;
-  font-size: 12px;
-  color: #666;
-  text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
 }
 
 .otp-terms a {
-  color: #a32b2b;
-  text-decoration: none;
+    color: #a32b2b;
+    text-decoration: none;
 }
 
 .otp-terms a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* ===============================================
