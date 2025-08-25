@@ -52,19 +52,19 @@
             @endphp
             @if($shareUrl)
             <div class="d-flex justify-content-center gap-3">
-                <a href="https://wa.me/?text={{ urlencode($shareUrl) }}" target="_blank" class="btn btn-outline-success">
+                <a href="https://wa.me/?text={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-whatsapp"></i> WhatsApp --}}
                     <img src="{{asset('image/whatsapp.png')}}" style="width:50px" alt="">
                 </a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareUrl) }}" target="_blank" class="btn btn-outline-primary">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-facebook"></i> Facebook --}}
                     <img src="{{asset('image/facebook.png')}}" style="width:50px" alt="">
                 </a>
-                <a href="https://www.instagram.com/?url={{ urlencode($shareUrl) }}" target="_blank" class="btn btn-outline-danger">
+                <a href="https://www.instagram.com/?url={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-instagram"></i> Instagram --}}
                     <img src="{{asset('image/instagram.png')}}" style="width:50px" alt="">
                 </a>
-                <a href="mailto:?subject=My Wishlist&body={{ urlencode($shareUrl) }}" class="btn btn-outline-dark">
+                <a href="mailto:?subject=My Wishlist&body={{ urlencode($shareUrl) }}" class="btn ">
                     {{-- <i class="fa fa-envelope"></i> Email --}}
                     <img src="{{asset('image/gmail.png')}}" style="width:50px" alt="">
                 </a>
