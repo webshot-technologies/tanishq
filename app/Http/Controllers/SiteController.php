@@ -13,8 +13,7 @@ class SiteController extends Controller
 
 
     public function productChoose(Request $request){
-   
-//  dd($request);
+
         $userData = [
             'phoneNumber'   => $request->input('phone'),
             'idToken'       => $request->input('id_token'),
@@ -50,9 +49,16 @@ class SiteController extends Controller
         }
 
         // Store userId and idToken , refresh token in session for use on every page
-        session(['user_id' => $userId, 'id_token' => $idToken, 'refresh_token' => $refreshToken]);
+                session([
+                    'user_id' => $userId,
+                    'id_token' => $idToken,
+                    'refresh_token' => $refreshToken,
+                    'username' => $request->input('name'),
+                    'token_created_at' => time() // store current timestamp
+                ]);
 
-       
+
+
 
         if ($request->submit_type === 'recommended_products') {
 
@@ -78,8 +84,8 @@ class SiteController extends Controller
                 }
             }
         }
-            /// wishlist id 
-             //fetcing share-url  
+            /// wishlist id
+             //fetcing share-url
                 $client = new Client();
                 $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
                     'headers' => [
@@ -88,7 +94,7 @@ class SiteController extends Controller
                     ],
                     'timeout' => 30
                 ]);
-                
+
                 $apiResult = json_decode($response->getBody(), true);
                 $shareUrl = $apiResult['shareUrl'] ?? null;
                 // fetching wishlist product details
@@ -104,7 +110,7 @@ class SiteController extends Controller
                     $products = $productResult['items'] ?? [];
                 }
                 $wishlistProductIds = array_column($products, 'id');
-                
+
 
 
 
@@ -144,9 +150,8 @@ class SiteController extends Controller
     }
    public function addToWishlist(Request $request, $user_id) {
     $sku = $request->input('sku');
-    $idToken = session('id_token');
- $idToken = TokenService::getValidToken();
- 
+    $idToken = $this->getValidToken();
+
     // \Log::info('Wishlist request received', [
     //     'user_id' => $user_id,
     //     'sku' => $sku,
@@ -195,14 +200,7 @@ class SiteController extends Controller
 
 public function removeFromWishlist(Request $request, $user_id) {
     $sku = $request->input('sku');
-    $idToken = $request->bearerToken();
-
-    \Log::info('Remove from wishlist request', [
-        'user_id' => $user_id,
-        'sku' => $sku,
-        'has_token' => !empty($idToken)
-    ]);
-
+    $idToken = $this->getValidToken();
     try {
         $client = new Client();
         $response = $client->delete(
@@ -218,16 +216,15 @@ public function removeFromWishlist(Request $request, $user_id) {
         );
 
         $apiResult = json_decode($response->getBody(), true);
-        \Log::info('External API remove success', ['response' => $apiResult]);
 
         return response()->json($apiResult, $response->getStatusCode());
 
     } catch (\Exception $e) {
-        \Log::error('Wishlist remove API error', [
-            'error' => $e->getMessage(),
-            'user_id' => $user_id,
-            'sku' => $sku
-        ]);
+        // \Log::error('Wishlist remove API error', [
+        //     'error' => $e->getMessage(),
+        //     'user_id' => $user_id,
+        //     'sku' => $sku
+        // ]);
 
         return response()->json([
             'error' => 'Failed to remove from wishlist',
@@ -237,16 +234,15 @@ public function removeFromWishlist(Request $request, $user_id) {
 }
 
     public function viewWishlist() {
-        $userId = Session::get('user_id');
-        $products = [];
-        
-        // Get valid token (refresh if needed)
-        $idToken = $this->getValidToken();
-        // dd($idToken);
-        
+    $userId = Session::get('user_id');
+
+    $products = [];
+
+    // Get valid token (refresh if needed)
+    $idToken = $this->getValidToken();
+
             try {
-               
-                //fetcing share-url  
+                //fetcing share-url
                 $client = new Client();
                 $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
                     'headers' => [
@@ -255,10 +251,11 @@ public function removeFromWishlist(Request $request, $user_id) {
                     ],
                     'timeout' => 30
                 ]);
-                
+
                 $apiResult = json_decode($response->getBody(), true);
                 $shareUrl = $apiResult['shareUrl'] ?? null;
-                // fetching wishlist product details
+
+                $shareId  = $apiResult['shareId'] ?? null;              // fetching wishlist product details
                 if ($shareUrl) {
                     $productResponse = $client->get($shareUrl, [
                         'headers' => [
@@ -271,15 +268,42 @@ public function removeFromWishlist(Request $request, $user_id) {
                     $products = $productResult['items'] ?? [];
                 }
             } catch (RequestException $e) {
-                
+
                 $products = [];
                 return redirect()->back();
 
             }
 
-
-        return view('wishlist', compact('products'));
+    $isShared = 0;
+        $username = session('username');
+        // Slug for URL (lowercase, hyphenated)
+        $username = strtolower(str_replace(' ', '-', trim($username)));
+        return view('wishlist', compact('products', 'shareId', 'isShared', 'username'));
     }
+
+public function shareWishlist($username,$userId, $shareId){
+
+    $client = new Client();
+    // For feature display: first word before hyphen or space, possessive
+    $username_first = strtolower(preg_split('/[- ]/', trim($username))[0]);
+    $wishlistOwner = ucfirst($username_first) . "'s";
+
+    $shareurl = "https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/" . $shareId;
+    $productResponse = $client->get($shareurl, [
+        'headers' => [
+            'Content-Type' => 'application/json',
+        ],
+        'timeout' => 30
+    ]);
+    $productResult = json_decode($productResponse->getBody(), true);
+    $products = $productResult['items'] ?? [];
+
+    $isShared = 1;
+
+    return view('wishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared'));
+
+
+}
 
 
 // / Add these private methods for token handling
@@ -299,13 +323,14 @@ public function removeFromWishlist(Request $request, $user_id) {
 
             $data = json_decode($response->getBody(), true);
             // dd($data);
-            // Update session with new tokens
-            Session::put('id_token', $data['id_token'] ?? null);
-            Session::put('refresh_token', $data['refresh_token'] ?? $refreshToken);
-            
-            Log::info('Token refreshed successfully');
-            return $data['id_token'] ?? null;
-            
+            // Update session with new tokens and new timestamp
+            Session::put('id_token', $data['idToken'] ?? null);
+            Session::put('refresh_token', $data['refreshToken'] ?? $refreshToken);
+            Session::put('token_created_at', time());
+
+            // Log::info('Token refreshed successfully');
+            return $data['idToken'] ?? null;
+
         } catch (\Exception $e) {
             Log::error('Token refresh failed', [
                 'error' => $e->getMessage(),
@@ -319,13 +344,20 @@ public function removeFromWishlist(Request $request, $user_id) {
     {
         $idToken = Session::get('id_token');
         $refreshToken = Session::get('refresh_token');
-        
-        // Simple check - if idToken is missing but refreshToken exists, try to refresh
+        $tokenCreatedAt = Session::get('token_created_at');
+
+        // If token is missing, try to refresh
         if (!$idToken && $refreshToken) {
-            Log::info('Attempting token refresh');
+
             return $this->refreshToken($refreshToken);
         }
-        
+
+        // If token is older than 3600 seconds (1 hour), refresh
+        if ($tokenCreatedAt && (time() - $tokenCreatedAt > 3600) && $refreshToken) {
+
+            return $this->refreshToken($refreshToken);
+        }
+
         return $idToken;
     }
 

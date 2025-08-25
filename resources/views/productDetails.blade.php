@@ -3,6 +3,11 @@
 @section('title', 'Product Choose')
 
 @section('content')
+    <!-- Wishlist Notification Popup -->
+    <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
+        <span id="wishlist-popup-icon" style="font-size:22px;"></span>
+        <span id="wishlist-popup-msg"></span>
+    </div>
 
 
 <section class="section-productDetails min-h-100" style="min-height: 100vh;">
@@ -82,9 +87,9 @@
             </div>
               <div class="row mt-4 col-md-8 mx-auto">
             <div class="col-6">
-                <button class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#8a2323" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    Wishlist
+                <button id="wishlistBtn" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+                    <span id="wishlistBtnIcon" style="margin-right:8px;font-size:20px;">&#9825;</span>
+                    <span id="wishlistBtnText">Add to Wishlist</span>
                 </button>
             </div>
             <div class="col-6">
@@ -97,6 +102,106 @@
 
         // Attach event listener after rendering
         setTimeout(() => {
+            // Wishlist button logic
+            const wishlistBtn = document.getElementById('wishlistBtn');
+            const wishlistBtnIcon = document.getElementById('wishlistBtnIcon');
+            const wishlistBtnText = document.getElementById('wishlistBtnText');
+            const sku = product.variants?.[0]?.variantSku || '';
+            const userId = "{{ session('user_id') }}";
+            const idToken = "{{ session('id_token') }}";
+            let isWishlisted = false;
+            // Always start as not wishlisted
+            function updateWishlistBtnUI() {
+                if (isWishlisted) {
+                    wishlistBtnIcon.innerHTML = '&#10084;'; // filled heart
+                    wishlistBtnText.textContent = 'Remove from Wishlist';
+                } else {
+                    wishlistBtnIcon.innerHTML = '&#9825;'; // border heart
+                    wishlistBtnText.textContent = 'Add to Wishlist';
+                }
+            }
+            updateWishlistBtnUI();
+            function showWishlistPopup(type, sku) {
+                const popup = document.getElementById('wishlist-popup');
+                const icon = document.getElementById('wishlist-popup-icon');
+                const msg = document.getElementById('wishlist-popup-msg');
+                if (type === 'add') {
+                    icon.innerHTML = '❤️';
+                    msg.textContent = `Added to wishlist! SKU: ${sku}`;
+                } else if (type === 'remove') {
+                    icon.innerHTML = '🗑️';
+                    msg.textContent = `Removed from wishlist! SKU: ${sku}`;
+                } else {
+                    icon.innerHTML = '';
+                    msg.textContent = '';
+                }
+                popup.style.display = 'flex';
+                setTimeout(() => {
+                    popup.style.opacity = '1';
+                    popup.style.transform = 'translateX(0)';
+                }, 10);
+                setTimeout(() => {
+                    popup.style.opacity = '0';
+                    popup.style.transform = 'translateX(-60px)';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 400);
+                }, 2000);
+            }
+            wishlistBtn.addEventListener('click', function() {
+                if (!userId || !idToken || !sku) {
+                    alert('Please log in to manage wishlist items');
+                    return;
+                }
+                const method = isWishlisted ? 'DELETE' : 'POST';
+                const url = `/users/${userId}/wishlist`;
+                // Toggle UI immediately
+                isWishlisted = !isWishlisted;
+                updateWishlistBtnUI();
+                showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
+                fetch(url, {
+                    method: method,
+                    headers: {
+                        'Authorization': 'Bearer ' + idToken,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
+                    },
+                    body: JSON.stringify({
+                        sku: sku,
+                        variantThumbnails: mainImg,
+                        categoryKey: categoryKey,
+                        productTitle: product.productTitle || '',
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update localStorage
+                    let wishlist = [];
+                    try {
+                        wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    } catch (e) {}
+                    if (method === 'POST') {
+                        if (!wishlist.includes(sku)) wishlist.push(sku);
+                    } else {
+                        wishlist = wishlist.filter(id => id !== sku);
+                    }
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                })
+                .catch(error => {
+                    // Revert UI on error
+                    isWishlisted = !isWishlisted;
+                    updateWishlistBtnUI();
+                    alert('Error: ' + error.message);
+                });
+            });
             const tryOnButton = document.getElementById('tryOnButton');
             if (tryOnButton) {
                 tryOnButton.addEventListener('click', function() {

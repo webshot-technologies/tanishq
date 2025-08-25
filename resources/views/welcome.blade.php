@@ -105,7 +105,7 @@
                                     <!-- Logo and Headline -->
                                     <div class="mb-5 ">
                                         <div class="d-flex flex-column align-items-start">
-                                            <a href="/"><img
+                                            <a class="mx-auto mx-lg-0" href="/"><img
                                                     src="{{ asset('image/logo.png') }}"class="form-logo-img"
                                                     class="mb-2" alt="Tanishq Logo"></a>
 
@@ -154,10 +154,11 @@
                                             </select>
                                             <span class="mb-0">Checklist</span>
                                         </div>
-
-                                        <button type="submit" class="btn border border-2 rounded-5 btn-custom">Choose
+                                           <div class="mx-auto mx-lg-0 d-flex justify-content-center justify-content-lg-start">
+                                        <button type="submit" class="btn rounded-5 btn-custom">Choose
                                             My
                                             Look</button>
+                                        </div>
                                     </form>
                                 </div>
 
@@ -169,7 +170,8 @@
 
                         <!-- RIGHT: Image -->
                         <div class="col-lg-6 col-12  p-0 banner-height">
-                            <img src="{{ asset('image/banner-img.jpg') }}" alt="Wedding jewelry on hands"
+                            <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg
+" alt="Wedding jewelry on hands"
                                 class="img-fluid w-100 h-100 object-fit-cover">
                         </div>
                     </div>
@@ -1438,9 +1440,9 @@
 
                             <div class="d-flex gap-4">
                                 <button type="submit" name="recommended_products"
-                                    class="btn border border-2 rounded-5 btn-custom">View Recommendation</button>
+                                    class="btn border border-2 rounded-5 btn-custom">Recommended Products</button>
                                 <button type="submit" name="full_catalogue"
-                                    class="btn border border-2 rounded-5 btn-custom">View Full Catalogue</button>
+                                    class="btn border border-2 rounded-5 btn-custom">Explore Catalogue</button>
                             </div>
                         </div>
                     </form>
@@ -1459,7 +1461,9 @@
         </div>
         <!-- OTP Modal -->
         <div id="otp-modal">
-            <div class="otp-modal-content">
+            <div class="otp-modal-content" style="position:relative;">
+                <button id="otp-modal-close" type="button" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;" aria-label="Close OTP Modal">&times;</button>
+
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
                     <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
@@ -1506,10 +1510,10 @@
 
                     <button id="verify-otp-btn" class="otp-btn" onclick="verifyOTP()">Verify OTP</button>
 
-                    <p class="otp-terms">
+                    {{-- <p class="otp-terms">
                         By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy
                             Policy</a>
-                    </p>
+                    </p> --}}
                 </div>
             </div>
         </div>
@@ -1523,6 +1527,18 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script>
+
+
+  // OTP Modal close button logic
+        document.addEventListener('DOMContentLoaded', function() {
+            var otpModal = document.getElementById('otp-modal');
+            var otpCloseBtn = document.getElementById('otp-modal-close');
+            if (otpCloseBtn) {
+                otpCloseBtn.onclick = function() {
+                    otpModal.style.display = 'none';
+                };
+            }
+        });
         // Helper: Store selected outfit and jewellery pieces in hidden fields when moving to step 3
         function storeStep2Selections() {
             // Get selected outfit
