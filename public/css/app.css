@@ -244,7 +244,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.jewellery-item img 
+.jewellery-item img
   /* transform: translateY(6px); */
 
   transform: translateY(0px);
@@ -1823,8 +1823,9 @@ img.productDetails_img {
    =============================================== */
 @media screen and (max-width: 520px) {
   .product-item-buttons .btn {
-    font-size: 0.7em;
+    font-size: 0.6em;
     border-radius: 5px;
+    padding:8px;
   }
 
   #step2 .outfit-card img {

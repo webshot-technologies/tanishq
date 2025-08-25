@@ -192,12 +192,12 @@
     </button>
 
     <!-- Search Wrapper -->
-    <div class="search-wrapper">
+    {{-- <div class="search-wrapper">
         <input type="text" class="search-input" placeholder="Search by SKU Code, Product Name..." />
         <button class="search-btn ">
 <svg height="32" fill="#42210b" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg"><g id="Layer_2" data-name="Layer 2"><path d="m12 23.5a11.5 11.5 0 1 1 11.5-11.5 11.5131 11.5131 0 0 1 -11.5 11.5zm0-22a10.5 10.5 0 1 0 10.5 10.5 10.5118 10.5118 0 0 0 -10.5-10.5z"/></g><g id="Layer_3" data-name="Layer 3"><path fill="000" d="m17 17.5a.5.5 0 0 0 .3535-.8535l-2.213-2.2135a4.8265 4.8265 0 0 0 1.11-3.058 4.875 4.875 0 1 0 -4.875 4.875 4.8273 4.8273 0 0 0 3.0585-1.11l2.213 2.2134a.4981.4981 0 0 0 .353.1466zm-9.5-6.125a3.875 3.875 0 1 1 6.6281 2.7215c-.0057.0052-.0132.0069-.0187.0124s-.0073.0131-.0125.0188a3.8712 3.8712 0 0 1 -6.5969-2.7527z"/></g></svg>
         </button>
-    </div>
+    </div> --}}
 </div>
 
                 <div class="category-tabs my-5" id="category-tabs">
@@ -286,7 +286,7 @@ searchBtn.addEventListener('click', () => {
                     });
                     filterForm.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
 
-                    console.log('Filters cleared!');
+                    // console.log('Filters cleared!');
                     // You would typically make an API call to get unfiltered products here
                 });
             }
@@ -294,7 +294,7 @@ searchBtn.addEventListener('click', () => {
             if (applyFiltersBtn) {
                 applyFiltersBtn.addEventListener('click', function() {
                     // Collect filter data and send to backend or filter on frontend
-                    console.log('Filters applied!');
+                    // console.log('Filters applied!');
                     sidebarOverlay.classList.remove('active');
                     // An AJAX call to filter products would go here
                 });
@@ -323,7 +323,7 @@ searchBtn.addEventListener('click', () => {
             @else
                 let wishlistSkus = [];
             @endif
-            console.log(wishlistSkus);
+            // console.log(wishlistSkus);
             localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
             // Sync UI hearts
             document.querySelectorAll('.wishlist-btn').forEach(btn => {
@@ -439,7 +439,7 @@ searchBtn.addEventListener('click', () => {
                                                 </svg>
                                                 <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
                                                      style="${isWishlisted ? '' : 'display:none;'}">
-                                                    <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                                    <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
                                                         c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
                                                         C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
                                                         C195.532,17.899,236.466,55.92,256.001,105.69"/>
@@ -517,10 +517,10 @@ searchBtn.addEventListener('click', () => {
                     @if(isset($categoryPresence) && is_array($categoryPresence) && count($categoryPresence) > 0)
                         allowedCategories = @json($categoryPresence);
                     @endif
-                    console.log(allowedCategories);
+                    // console.log(allowedCategories);
                     // Filter categories if allowedCategories is set
                     let filteredCategories = categories;
-                    console.log(categories);
+                    // console.log(categories);
                     if (allowedCategories.length > 0) {
                         filteredCategories = categories.filter(cat => allowedCategories.includes(cat.categoryKey));
                     }
@@ -728,7 +728,7 @@ searchBtn.addEventListener('click', () => {
                 const icon = document.getElementById('wishlist-popup-icon');
                 const msg = document.getElementById('wishlist-popup-msg');
                 if (type === 'add') {
-                    icon.innerHTML = '❤️';
+                    icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                                    <path style=\"fill:#8a2323;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                                        C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                                                </svg>";
                     msg.textContent = `Added to wishlist! SKU: ${sku}`;
                 } else if (type === 'remove') {
                     icon.innerHTML = '🗑️';
@@ -761,8 +761,8 @@ searchBtn.addEventListener('click', () => {
                         const borderHeart = this.querySelector('.border-heart');
                         const fillHeart = this.querySelector('.fill-heart');
                         if (!userId || !idToken || !sku) {
-                            console.error('Missing userId, idToken, or sku for wishlist API call');
-                            alert('Please log in to manage wishlist items');
+                            // console.error('Missing userId, idToken, or sku for wishlist API call');
+                            // alert('Please log in to manage wishlist items');
                             return;
                         }
                         // Determine if we're adding or removing
@@ -797,7 +797,7 @@ searchBtn.addEventListener('click', () => {
                         .then(response => {
                             if (!response.ok) {
                                 return response.json().then(err => {
-                                    throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
+                                    // throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
                                 });
                             }
                             return response.json();
@@ -809,7 +809,7 @@ searchBtn.addEventListener('click', () => {
                         .catch(error => {
                             borderHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
                             fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                            alert('Error: ' + error.message);
+                            // alert('Error: ' + error.message);
                         });
                     });
                 });

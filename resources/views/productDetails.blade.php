@@ -88,7 +88,24 @@
               <div class="row mt-4 col-md-8 mx-auto">
             <div class="col-6">
                 <button id="wishlistBtn" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
-                    <span id="wishlistBtnIcon" style="margin-right:8px;font-size:20px;">&#9825;</span>
+                    <span id="wishlistBtnIcon" style="margin-right:8px;font-size:20px;">
+                        <svg class="wishlist-heart-svg border-heart" style="margin-top:-3px" width="18" height="18" viewBox="0 0 512.289 512.289" style="display:inline;">
+                            <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
+                                c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
+                                c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
+                                c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
+                                c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
+                                c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
+                                c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
+                                c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
+                        </svg>
+                        <svg class="wishlist-heart-svg fill-heart" style="margin-top:-3px" width="18" height="18" viewBox="0 0 512.003 512.003" style="display:none;">
+                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+                                C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+                                C195.532,17.899,236.466,55.92,256.001,105.69"/>
+                        </svg>
+                    </span>
                     <span id="wishlistBtnText">Add to Wishlist</span>
                 </button>
             </div>
@@ -112,11 +129,15 @@
             let isWishlisted = false;
             // Always start as not wishlisted
             function updateWishlistBtnUI() {
+                const borderHeart = wishlistBtnIcon.querySelector('.border-heart');
+                const fillHeart = wishlistBtnIcon.querySelector('.fill-heart');
                 if (isWishlisted) {
-                    wishlistBtnIcon.innerHTML = '&#10084;'; // filled heart
+                    if (borderHeart) borderHeart.style.display = 'none';
+                    if (fillHeart) fillHeart.style.display = 'inline';
                     wishlistBtnText.textContent = 'Remove from Wishlist';
                 } else {
-                    wishlistBtnIcon.innerHTML = '&#9825;'; // border heart
+                    if (borderHeart) borderHeart.style.display = 'inline';
+                    if (fillHeart) fillHeart.style.display = 'none';
                     wishlistBtnText.textContent = 'Add to Wishlist';
                 }
             }
@@ -126,7 +147,8 @@
                 const icon = document.getElementById('wishlist-popup-icon');
                 const msg = document.getElementById('wishlist-popup-msg');
                 if (type === 'add') {
-                    icon.innerHTML = '❤️';
+                                       icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                                    <path style=\"fill:#E8594B;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                                        C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                                                </svg>";
+
                     msg.textContent = `Added to wishlist! SKU: ${sku}`;
                 } else if (type === 'remove') {
                     icon.innerHTML = '🗑️';
@@ -177,7 +199,7 @@
                 .then(response => {
                     if (!response.ok) {
                         return response.json().then(err => {
-                            throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
+                            // throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
                         });
                     }
                     return response.json();
@@ -199,7 +221,7 @@
                     // Revert UI on error
                     isWishlisted = !isWishlisted;
                     updateWishlistBtnUI();
-                    alert('Error: ' + error.message);
+                    // alert('Error: ' + error.message);
                 });
             });
             const tryOnButton = document.getElementById('tryOnButton');
