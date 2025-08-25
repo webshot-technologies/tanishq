@@ -93,7 +93,7 @@
     <div class="container px-0">
 
         <!-- STEP 1 -->
-        <div class="step-container    mx-auto " id="step1" style="height: 100vh;">
+        <div class="step-container active    mx-auto " id="step1" style="height: 100vh;">
             <div class="row align-items-center my-4 mx-auto container ">
                 <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 ">
                     <div class="row g-0 h-100">
@@ -181,7 +181,7 @@
  </div>
  <div class="container px-0">
         <!-- STEP 2 -->
-        <div id="step2" class="step-container active  overflow-hidden" style="min-height: 100vh; width: 100%;">
+        <div id="step2" class="step-container   overflow-hidden" style="min-height: 100vh; width: 100%;">
             <div class="row align-items-center ">
                 <div class="col-12 col-xl-10 card py-4 px-4 border-0 bg-transparent mx-auto rounded-4 overflow-hidden">
                     <div class="text-center mb-4 d-flex align-items-center justify-content-center" style="gap: 1rem;">
