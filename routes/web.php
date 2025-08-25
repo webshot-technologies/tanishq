@@ -18,6 +18,8 @@ Route::get('/', function () {
     Route::get('product/category-list', 'category_list')->name('category.list');
     Route::get('product/full-catalogue', 'full_catalogue')->name('full.catalogue');
 Route::get('wishlist', 'viewWishlist')->name('wishlist.page');
+Route::get('/wishlist/share/{username}/{user_id}/{shareId?}', 'shareWishlist')->name('wishlist.share');
+
 
     });
 

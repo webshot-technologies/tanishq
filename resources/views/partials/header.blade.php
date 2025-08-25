@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-end wishlist-btn">
             <!-- Right: Wishlist Button -->
             <div class="header-right">
-                <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto">
+                <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
                     <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist">
                         <svg version="1.1" class="mr-3" width="20px" height="20px" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -28,9 +28,9 @@
                             xml:space="preserve">
                         <g>
                             <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
-  c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
-  C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
-  C195.532,17.899,236.466,55.92,256.001,105.69" />
+                          c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+                          C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+                          C195.532,17.899,236.466,55.92,256.001,105.69" />
                         </g>
                         <g>
                         </g>

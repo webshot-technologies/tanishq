@@ -2,6 +2,11 @@
 
 @section('title', 'Product List')
 @section('content')
+    <!-- Wishlist Notification Popup -->
+    <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
+        <span id="wishlist-popup-icon" style="font-size:22px;"></span>
+        <span id="wishlist-popup-msg"></span>
+    </div>
     @php
 
         // dd(session('user_id'));
@@ -166,22 +171,23 @@
             </div>
 
             <div class="container">
-                <div class="filter-bar container d-flex align-items-center mb-3">
-                    <button class="filter-btn mr-2">
-                        <img src="{{ asset('image/filter.svg') }}" class="mr-5" alt="">
-                        Filter
-                    </button>
-                    <div class="input-wrapper ">
-                        <input type="text" class="form-control search-input" placeholder="Search by SKU Code..." />
-                    </div>
-                </div>
+                <div class="filter-bar container d-flex align-items-center justify-content-between mb-3">
+    <button class="filter-btn mr-2">
+        <img src="{{ asset('image/filter.svg') }}" class="mr-2" alt="">
+        Filter
+    </button>
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Search by SKU Code, Product Name..." />
+        <button class="search-btn ">
+<svg height="32" fill="#42210b" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg"><g id="Layer_2" data-name="Layer 2"><path d="m12 23.5a11.5 11.5 0 1 1 11.5-11.5 11.5131 11.5131 0 0 1 -11.5 11.5zm0-22a10.5 10.5 0 1 0 10.5 10.5 10.5118 10.5118 0 0 0 -10.5-10.5z"/></g><g id="Layer_3" data-name="Layer 3"><path fill="000" d="m17 17.5a.5.5 0 0 0 .3535-.8535l-2.213-2.2135a4.8265 4.8265 0 0 0 1.11-3.058 4.875 4.875 0 1 0 -4.875 4.875 4.8273 4.8273 0 0 0 3.0585-1.11l2.213 2.2134a.4981.4981 0 0 0 .353.1466zm-9.5-6.125a3.875 3.875 0 1 1 6.6281 2.7215c-.0057.0052-.0132.0069-.0187.0124s-.0073.0131-.0125.0188a3.8712 3.8712 0 0 1 -6.5969-2.7527z"/></g></svg>
+        </button>
+    </div>
+</div>
 
                 <div class="category-tabs my-5" id="category-tabs">
-                    {{-- <button class="category-tab active" data-category="pendant-sets">Pendant Sets</button>
-                    <button class="category-tab" data-category="chains">Chains</button>
-                    <button class="category-tab" data-category="earrings">Earrings</button>
-                    <button class="category-tab" data-category="necklaces">Necklaces</button>
-                    <button class="category-tab" data-category="rings">Rings</button> --}}
+
                         @php
                             $allCategories = [
                                 'chains' => 'Chains',
@@ -248,6 +254,13 @@
                     sidebarOverlay.classList.remove('active');
                 }
             });
+
+            const searchWrapper = document.querySelector('.search-wrapper');
+const searchBtn = document.querySelector('.search-btn');
+
+searchBtn.addEventListener('click', () => {
+  searchWrapper.classList.toggle('active');
+});
 
             if (clearFiltersBtn) {
                 clearFiltersBtn.addEventListener('click', function() {
@@ -339,17 +352,104 @@
                 });
             });
 
-            // 5. Search Functionality
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                const activeGrid = document.querySelector('.product-grid-container.active');
-                if (activeGrid) {
-                    const productItems = activeGrid.querySelectorAll('.product-item-card');
-                    productItems.forEach(item => {
-                        const productId = item.querySelector('.product-item-id').textContent.toLowerCase();
-                        item.style.display = productId.includes(searchTerm) ? 'block' : 'none';
+            // 5. Search Functionality (AJAX)
+            const searchBtnEl = document.querySelector('.search-btn');
+            searchBtnEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (!searchTerm) return;
+                // Get active category
+                const activeTab = document.querySelector('.category-tab.active');
+                const categoryKey = activeTab ? activeTab.dataset.category : '';
+                const gridsContainer = document.getElementById('product-grids-container');
+                gridsContainer.innerHTML = '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
+                // AJAX call to fetch products by search
+                fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        limit: 20,
+                        product_code: searchTerm,
+                        filter_field: {
+                            page: 1,
+                            isSetOnly: [false]
+                        }
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const products = data.data || [];
+                    if (products.length === 0) {
+                        gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
+                        return;
+                    }
+                    let wishlistSkus = [];
+                    try {
+                        wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    } catch (e) {}
+                    let html = '<div class="row">';
+                    products.forEach(product => {
+                        const productId = product.productId || product.sku;
+                        const isWishlisted = wishlistSkus.includes(productId);
+                        let imgSrc = 'https://placehold.co/300x220?text=No+Image';
+                        const variant = product.variants?.[0];
+                        if (variant) {
+                            if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
+                                imgSrc = Object.values(variant.variantThumbnails)[0];
+                            } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
+                                imgSrc = Object.values(variant.variantImageURLs)[0];
+                            }
+                        }
+                        html += `
+                            <div class="col-lg-3 col-md-4 col-6 mb-4">
+                                <div class="product-item-card">
+                                    <div class="product-image-wrapper position-relative">
+                                        <img src="${imgSrc}" class="default-image" alt="${product.productCollection}">
+                                        <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+                                                style="z-index:2;"
+                                                aria-label="Add to wishlist"
+                                                data-product-id="${productId}">
+                                            <span class="wishlist-icon-wrapper">
+                                                <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
+                                                     style="${isWishlisted ? 'display:none;' : ''}">
+                                                    <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
+                                                        c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
+                                                        c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
+                                                        c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
+                                                        c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
+                                                        c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
+                                                        c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
+                                                        c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
+                                                </svg>
+                                                <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
+                                                     style="${isWishlisted ? '' : 'display:none;'}">
+                                                    <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+                                                        C195.532,17.899,236.466,55.92,256.001,105.69"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="product-item-body">
+                                        <p class="product-item-id base-color">${product.productTitle || ''}</p>
+                                        <div class="product-item-buttons">
+                                            <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
+                                            <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
                     });
-                }
+                    html += '</div>';
+                    gridsContainer.innerHTML = html;
+                })
+                .catch(() => {
+                    gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
+                });
             });
         });
 
@@ -530,7 +630,7 @@
                                 <p class="product-item-id base-color">${product.productTitle || ''}</p>
                                 <div class="product-item-buttons">
                                     <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
-                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try it on</button>
+                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
                                 </div>
                             </div>
                         </div>
@@ -608,94 +708,95 @@
                     });
             }
 
+            // Wishlist notification popup
+            function showWishlistPopup(type, sku) {
+                const popup = document.getElementById('wishlist-popup');
+                const icon = document.getElementById('wishlist-popup-icon');
+                const msg = document.getElementById('wishlist-popup-msg');
+                if (type === 'add') {
+                    icon.innerHTML = '❤️';
+                    msg.textContent = `Added to wishlist! SKU: ${sku}`;
+                } else if (type === 'remove') {
+                    icon.innerHTML = '🗑️';
+                    msg.textContent = `Removed from wishlist!  SKU: ${sku}`;
+                } else {
+                    icon.innerHTML = '';
+                    msg.textContent = '';
+                }
+                popup.style.display = 'flex';
+                setTimeout(() => {
+                    popup.style.opacity = '1';
+                    popup.style.transform = 'translateX(0)';
+                }, 10);
+                setTimeout(() => {
+                    popup.style.opacity = '0';
+                    popup.style.transform = 'translateX(-60px)';
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                    }, 400);
+                }, 2000);
+            }
+
             // Function to attach event listeners to wishlist buttons
             function attachWishlistListeners() {
                 document.querySelectorAll('.wishlist-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
-                        console.log('Wishlist button clicked');
-
                         const productCard = this.closest('.product-item-card');
                         const skuBtn = productCard.querySelector('.try-on-btn');
                         const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
                         const borderHeart = this.querySelector('.border-heart');
                         const fillHeart = this.querySelector('.fill-heart');
-
-                        console.log('Wishlist clicked:', {
-                            userId,
-                            idToken,
-                            sku
-                        });
-
                         if (!userId || !idToken || !sku) {
                             console.error('Missing userId, idToken, or sku for wishlist API call');
                             alert('Please log in to manage wishlist items');
                             return;
                         }
-
                         // Determine if we're adding or removing
                         const isCurrentlyFilled = fillHeart.style.display === 'inline';
                         const method = isCurrentlyFilled ? 'DELETE' : 'POST';
                         const url = `/users/${userId}/wishlist`;
-
-                        // Get CSRF token
-                        const csrfToken = document.querySelector('meta[name="csrf-token"]')
-                        ?.content;
-
+                        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
                         // Toggle UI immediately for better UX
                         borderHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
                         fillHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
-                        // Get optional fields from product card
-                        // const productCard = this.closest('.product-item-card');
-
-                        // Send API request
                         // Get product data from card
                         const imgElem = productCard.querySelector('img.default-image');
                         const variantThumbnails = imgElem ? imgElem.src : '';
-                        const categoryKey = productCard.closest('.product-listing-section')
-                            ?.querySelector('.category-tab.active')?.dataset.category || '';
-                        const productTitle = productCard.querySelector('.product-item-id')
-                            ?.textContent || '';
-
+                        const categoryKey = productCard.closest('.product-listing-section')?.querySelector('.category-tab.active')?.dataset.category || '';
+                        const productTitle = productCard.querySelector('.product-item-id')?.textContent || '';
+                            showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
                         fetch(url, {
-                                method: method,
-                                headers: {
-                                    'Authorization': 'Bearer ' + idToken,
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': csrfToken,
-                                    'Accept': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    sku: sku,
-                                    variantThumbnails: variantThumbnails,
-                                    categoryKey: categoryKey,
-                                    productTitle: productTitle,
-                                })
+                            method: method,
+                            headers: {
+                                'Authorization': 'Bearer ' + idToken,
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': csrfToken,
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                sku: sku,
+                                variantThumbnails: variantThumbnails,
+                                categoryKey: categoryKey,
+                                productTitle: productTitle,
                             })
-                            .then(response => {
-                                console.log('Response status:', response.status, 'Method:',
-                                    method);
-                                if (!response.ok) {
-                                    return response.json().then(err => {
-                                        throw new Error(err.message ||
-                                            `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`
-                                            )
-                                    });
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log('API response:', data);
-                                // Update localStorage to track wishlist state
-                                updateWishlistStorage(sku, method === 'POST');
-                            })
-                            .catch(error => {
-                                console.error('Wishlist API error:', error);
-                                // Revert UI on error
-                                borderHeart.style.display = isCurrentlyFilled ? 'none' :
-                                    'inline';
-                                fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                                alert('Error: ' + error.message);
-                            });
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(err => {
+                                    throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            updateWishlistStorage(sku, method === 'POST');
+                            // showWishlistPopup(method === 'POST' ? 'add' : 'remove');
+                        })
+                        .catch(error => {
+                            borderHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
+                            fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
+                            alert('Error: ' + error.message);
+                        });
                     });
                 });
             }
@@ -733,6 +834,37 @@
     </script>
     {{-- <script>
 document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality for SKU, variant SKU, and product name
+            function filterProducts() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                const activeGrid = document.querySelector('.product-grid-container.active');
+                if (activeGrid) {
+                    const productItems = activeGrid.querySelectorAll('.product-item-card');
+                    productItems.forEach(item => {
+                        const productName = item.querySelector('.product-item-id')?.textContent.toLowerCase() || '';
+                        const skuBtn = item.querySelector('.try-on-btn');
+                        const variantSku = skuBtn ? skuBtn.getAttribute('data-sku').toLowerCase() : '';
+                        const productId = item.getAttribute('data-product-id')?.toLowerCase() || '';
+                        if (
+                            productName.includes(searchTerm) ||
+                            variantSku.includes(searchTerm) ||
+                            productId.includes(searchTerm)
+                        ) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            }
+            searchInput.addEventListener('input', filterProducts);
+            const searchBtnEl = document.querySelector('.search-btn');
+            if (searchBtnEl) {
+                searchBtnEl.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterProducts();
+                });
+            }
     // Get user_id and id_token from Blade (Laravel session)
 
 
