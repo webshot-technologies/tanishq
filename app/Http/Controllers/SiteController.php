@@ -14,6 +14,8 @@ class SiteController extends Controller
 
     public function productChoose(Request $request){
 
+        dd($request->all());
+
         $userData = [
             'phoneNumber'   => $request->input('phone'),
             'idToken'       => $request->input('id_token'),
@@ -42,10 +44,10 @@ class SiteController extends Controller
             // dd($idToken);
             // dd($refreshToken);
 
-
+             $idToken = $this->getValidToken();
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->route('home');
         }
 
         // Store userId and idToken , refresh token in session for use on every page

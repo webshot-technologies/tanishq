@@ -40,11 +40,17 @@
                 <div class="filter-group">
                     <!-- Metal Accordion -->
                     <div class="accordion-item my-3">
-                        <h2 class="accordion-header" id="headingMetal">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <h2 class="accordion-header d-flex justify-between" id="headingMetal">
+                            <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseMetal" aria-expanded="false" aria-controls="collapseMetal">
+                                <span class="d-block">
                                 Metal
+                                </span>
+
+                                <img src="{{ asset('image/arrow.png') }}" alt="arrow" class="accordion-arrow ms-2 d-block" >
+
                             </button>
+                            {{-- <img src={{asset('image/arrow.png')}} style="width:8px" alt="Metal" class="accordion-image"> --}}
                         </h2>
                         <div id="collapseMetal" class="accordion-collapse collapse  mt-3" aria-labelledby="headingMetal"
                             data-bs-parent="#sidebar-accordion">
@@ -77,11 +83,15 @@
 
                     <!-- Purity Accordion -->
                     <div class="accordion-item my-3">
-                        <h2 class="accordion-header" id="headingPurity">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <h2 class="accordion-header d-flex justify-between" id="headingPurity">
+                            <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapsePurity" aria-expanded="false" aria-controls="collapsePurity">
+                               <span class="d-block">
                                 Purity
+                        </span>
+                                <img src={{asset('image/arrow.png')}} style="width:8px" alt="Metal" class="accordion-arrow ms-2 d-block">
                             </button>
+
                         </h2>
                         <div id="collapsePurity" class="accordion-collapse collapse mt-3" aria-labelledby="headingPurity"
                             data-bs-parent="#sidebar-accordion">
@@ -108,12 +118,16 @@
                     </div>
                     <!-- Occasion Accordion -->
                     <div class="accordion-item my-3">
-                        <h2 class="accordion-header" id="headingOccasion">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        <h2 class="accordion-header d-flex justify-content-between" id="headingOccasion">
+                            <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapseOccasion" aria-expanded="false"
                                 aria-controls="collapseOccasion">
-                                Occasion
+                                <span class="d-block">
+                                    Occasion
+                                </span>
+                                <img src="{{ asset('image/arrow.png') }}" alt="arrow" class="accordion-arrow ms-2 d-block" >
                             </button>
+
                         </h2>
                         <div id="collapseOccasion" class="accordion-collapse collapse  mt-3"
                             aria-labelledby="headingOccasion" data-bs-parent="#sidebar-accordion">

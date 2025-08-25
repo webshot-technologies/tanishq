@@ -6,7 +6,7 @@ use App\Http\Controllers\SiteController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
   Route::controller(SiteController::class)->group(function() {
