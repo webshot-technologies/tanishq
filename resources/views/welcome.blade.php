@@ -93,7 +93,7 @@
     <div class="container px-0">
 
         <!-- STEP 1 -->
-        <div class="step-container  active  mx-auto " id="step1" style="height: 100vh;">
+        <div class="step-container    mx-auto " id="step1" style="height: 100vh;">
             <div class="row align-items-center my-4 mx-auto container ">
                 <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 ">
                     <div class="row g-0 h-100">
@@ -181,7 +181,7 @@
  </div>
  <div class="container px-0">
         <!-- STEP 2 -->
-        <div id="step2" class="step-container   overflow-hidden" style="min-height: 100vh; width: 100%;">
+        <div id="step2" class="step-container active  overflow-hidden" style="min-height: 100vh; width: 100%;">
             <div class="row align-items-center ">
                 <div class="col-12 col-xl-10 card py-4 px-4 border-0 bg-transparent mx-auto rounded-4 overflow-hidden">
                     <div class="text-center mb-4 d-flex align-items-center justify-content-center" style="gap: 1rem;">
@@ -423,17 +423,17 @@
                                 <div class="jewellery-item gown-hair-jewellery">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="hair-jewellery-gown" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox">
-                                        <label for="hair-jewellery-cb">Hair Jewellery</label>
+                                        <label for="hair-jewellery-gown">Hair Jewellery</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-forehead-pendant">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="forehead-pendant-gown" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox">
-                                        <label for="forehead-pendant-cb">Forehead Pendant</label>
+                                        <label for="forehead-pendant-gown">Forehead Pendant</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
@@ -441,26 +441,26 @@
                                 <div class="jewellery-item gown-earrings-stud">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-stud-gown" name="jewellery_pieces"
                                             value="earrings-stud" class="jewellery-checkbox">
-                                        <label for="earrings-stud-cb">Earrings - Stud</label>
+                                        <label for="earrings-stud-gown">Earrings - Stud</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-earrings-drops">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-drops-gown" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox">
-                                        <label for="earrings-drops-cb">Earrings - Drops</label>
+                                        <label for="earrings-drops-gown">Earrings - Drops</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item gown-choker-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="choker-necklace-gown" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox">
-                                        <label for="choker-necklace-cb">Choker Necklace</label>
+                                        <label for="choker-necklace-gown">Choker Necklace</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
@@ -469,17 +469,17 @@
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
 
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="ear-loops-gown" name="jewellery_pieces"
                                             value="ear-loops" class="jewellery-checkbox">
-                                        <label for="ear-loops-cb">Ear Loops</label>
+                                        <label for="ear-loops-gown">Ear Loops</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-nose-pin">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="nose-pin-gown" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox">
-                                        <label for="nose-pin-cb">Nose Pin</label>
+                                        <label for="nose-pin-gown">Nose Pin</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-long.png') }}" alt="">
                                 </div>
@@ -488,26 +488,26 @@
                                 <div class="jewellery-item gown-short-necklace">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}"  class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="short-necklace-gown" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox">
-                                        <label for="short-necklace-cb">Short Necklace</label>
+                                        <label for="short-necklace-gown">Short Necklace</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-long-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="long-necklace-gown" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox">
-                                        <label for="long-necklace-cb">Long Necklace</label>
+                                        <label for="long-necklace-gown">Long Necklace</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-long.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item gown-multiple-bangles">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="multiple-bangles-gown" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox">
-                                        <label for="multiple-bangles-cb">Multiple Bangles</label>
+                                        <label for="multiple-bangles-gown">Multiple Bangles</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
@@ -515,26 +515,26 @@
                                 <div class="jewellery-item gown-bracelet">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="bracelet-gown" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox">
-                                        <label for="bracelet-cb">Bracelet</label>
+                                        <label for="bracelet-gown">Bracelet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-single-bangle">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="single-bangle-gown" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox">
-                                        <label for="single-bangle-cb">Single Bangle</label>
+                                        <label for="single-bangle-gown">Single Bangle</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item gown-rings">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
+                                        <input type="checkbox" id="rings-gown" name="jewellery_pieces" value="rings"
                                             class="jewellery-checkbox">
-                                        <label for="rings-cb">Rings</label>
+                                        <label for="rings-gown">Rings</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
 
@@ -543,27 +543,27 @@
                                 <div class="jewellery-item gown-waist-belt">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="waist-belt-gown" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox">
-                                        <label for="waist-belt-cb">Waist Belt</label>
+                                        <label for="waist-belt-gown">Waist Belt</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-anklet">
                                     <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
+                                        <input type="checkbox" id="anklet-gown" name="jewellery_pieces" value="anklet"
                                             class="jewellery-checkbox">
-                                        <label for="anklet-cb">Anklet</label>
+                                        <label for="anklet-gown">Anklet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-toe-ring">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="toe-ring-gown" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox">
-                                        <label for="toe-ring-cb">Toe Ring</label>
+                                        <label for="toe-ring-gown">Toe Ring</label>
                                     </div>
                                 </div>
                             </div>
@@ -580,17 +580,17 @@
                                 <div class="jewellery-item saree-hair-jewellery">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="hair-jewellery-saree" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox">
-                                        <label for="hair-jewellery-cb">Hair Jewellery</label>
+                                        <label for="hair-jewellery-saree">Hair Jewellery</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-forehead-pendant">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="forehead-pendant-saree" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox">
-                                        <label for="forehead-pendant-cb">Forehead Pendant</label>
+                                        <label for="forehead-pendant-saree">Forehead Pendant</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
@@ -599,18 +599,18 @@
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
 
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-stud-saree" name="jewellery_pieces"
                                             value="earrings-stud" class="jewellery-checkbox">
-                                        <label for="earrings-stud-cb">Earrings - Stud</label>
+                                        <label for="earrings-stud-saree">Earrings - Stud</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-earrings-drops">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-drops-saree" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox">
-                                        <label for="earrings-drops-cb">Earrings - Drops</label>
+                                        <label for="earrings-drops-saree">Earrings - Drops</label>
                                     </div>
                                 </div>
 
@@ -618,26 +618,26 @@
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
 
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="ear-loops-saree" name="jewellery_pieces"
                                             value="ear-loops" class="jewellery-checkbox">
-                                        <label for="ear-loops-cb">Ear Loops</label>
+                                        <label for="ear-loops-saree">Ear Loops</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-nose-pin">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="nose-pin-saree" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox">
-                                        <label for="nose-pin-cb">Nose Pin</label>
+                                        <label for="nose-pin-saree">Nose Pin</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-choker-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="choker-necklace-saree" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox">
-                                        <label for="choker-necklace-cb">Choker Necklace</label>
+                                        <label for="choker-necklace-saree">Choker Necklace</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
@@ -645,26 +645,26 @@
                                 <div class="jewellery-item saree-short-necklace">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="short-necklace-saree" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox">
-                                        <label for="short-necklace-cb">Short Necklace</label>
+                                        <label for="short-necklace-saree">Short Necklace</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-long-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="long-necklace-saree" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox">
-                                        <label for="long-necklace-cb">Long Necklace</label>
+                                        <label for="long-necklace-saree">Long Necklace</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-multiple-bangles">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="multiple-bangles-saree" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox">
-                                        <label for="multiple-bangles-cb">Multiple Bangles</label>
+                                        <label for="multiple-bangles-saree">Multiple Bangles</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
@@ -672,17 +672,17 @@
                                 <div class="jewellery-item saree-bracelet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="bracelet-saree" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox">
-                                        <label for="bracelet-cb">Bracelet</label>
+                                        <label for="bracelet-saree">Bracelet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-single-bangle">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="single-bangle-saree" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox">
-                                        <label for="single-bangle-cb">Single Bangle</label>
+                                        <label for="single-bangle-saree">Single Bangle</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
@@ -690,36 +690,36 @@
                                 <div class="jewellery-item saree-rings">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
+                                        <input type="checkbox" id="rings-saree" name="jewellery_pieces" value="rings"
                                             class="jewellery-checkbox">
-                                        <label for="rings-cb">Rings</label>
+                                        <label for="rings-saree">Rings</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-waist-belt">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="waist-belt-saree" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox">
-                                        <label for="waist-belt-cb">Waist Belt</label>
+                                        <label for="waist-belt-saree">Waist Belt</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-anklet">
                                     <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
+                                        <input type="checkbox" id="anklet-saree" name="jewellery_pieces" value="anklet"
                                             class="jewellery-checkbox">
-                                        <label for="anklet-cb">Anklet</label>
+                                        <label for="anklet-saree">Anklet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-toe-ring">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="toe-ring-saree" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox">
-                                        <label for="toe-ring-cb">Toe Ring</label>
+                                        <label for="toe-ring-saree">Toe Ring</label>
                                     </div>
                                 </div>
                             </div>
@@ -733,154 +733,154 @@
                                 <img src="{{ asset('image/anarkali.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
-                                <div class="jewellery-item hair-jewellery">
+                                <div class="jewellery-item anarkali-hair-jewellery">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="hair-jewellery-anarkali" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox">
-                                        <label for="hair-jewellery-cb">Hair Jewellery</label>
+                                        <label for="hair-jewellery-anarkali">Hair Jewellery</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item forehead-pendant">
+                                <div class="jewellery-item anarkali-forehead-pendant">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="forehead-pendant-anarkali" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox">
-                                        <label for="forehead-pendant-cb">Forehead Pendant</label>
+                                        <label for="forehead-pendant-anarkali">Forehead Pendant</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item earrings-stud">
+                                <div class="jewellery-item anarkali-earrings-stud">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
 
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-stud-anarkali" name="jewellery_pieces"
                                             value="earrings-stud" class="jewellery-checkbox">
-                                        <label for="earrings-stud-cb">Earrings - Stud</label>
+                                        <label for="earrings-stud-anarkali">Earrings - Stud</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item earrings-drops">
+                                <div class="jewellery-item anarkali-earrings-drops">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="earrings-drops-anarkali" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox">
-                                        <label for="earrings-drops-cb">Earrings - Drops</label>
+                                        <label for="earrings-drops-anarkali">Earrings - Drops</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item ear-loops">
+                                <div class="jewellery-item anarkali-ear-loops">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
 
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="ear-loops-anarkali" name="jewellery_pieces"
                                             value="ear-loops" class="jewellery-checkbox">
-                                        <label for="ear-loops-cb">Ear Loops</label>
+                                        <label for="ear-loops-anarkali">Ear Loops</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item nose-pin">
+                                <div class="jewellery-item anarkali-nose-pin">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="nose-pin-anarkali" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox">
-                                        <label for="nose-pin-cb">Nose Pin</label>
+                                        <label for="nose-pin-anarkali">Nose Pin</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item choker-necklace">
+                                <div class="jewellery-item anarkali-choker-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="choker-necklace-anarkali" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox">
-                                        <label for="choker-necklace-cb">Choker Necklace</label>
+                                        <label for="choker-necklace-anarkali">Choker Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item short-necklace">
+                                <div class="jewellery-item anarkali-short-necklace">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="short-necklace-anarkali" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox">
                                         <label for="short-necklace-cb">Short Necklace</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item long-necklace">
+                                <div class="jewellery-item anarkali-long-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox">
-                                        <label for="long-necklace-cb">Long Necklace</label>
+                                        <label for="long-necklace-anarkali">Long Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item multiple-bangles">
+                                <div class="jewellery-item anarkali-multiple-bangles">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="multiple-bangles-anarkali" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox">
-                                        <label for="multiple-bangles-cb">Multiple Bangles</label>
+                                        <label for="multiple-bangles-anarkali">Multiple Bangles</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item bracelet">
+                                <div class="jewellery-item anarkali-bracelet">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="bracelet-anarkali" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox">
-                                        <label for="bracelet-cb">Bracelet</label>
+                                        <label for="bracelet-anarkali">Bracelet</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item single-bangle">
+                                <div class="jewellery-item anarkali-single-bangle">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="single-bangle-anarkali" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox">
-                                        <label for="single-bangle-cb">Single Bangle</label>
+                                        <label for="single-bangle-anarkali">Single Bangle</label>
                                     </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item rings">
+                                <div class="jewellery-item anarkali-rings">
                                     <img src="{{ asset('image/right-line.png') }}" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
+                                        <input type="checkbox" id="rings-anarkali" name="jewellery_pieces" value="rings"
                                             class="jewellery-checkbox">
-                                        <label for="rings-cb">Rings</label>
+                                        <label for="rings-anarkali">Rings</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item waist-belt">
+                                <div class="jewellery-item anarkali-waist-belt">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="waist-belt-anarkali" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox">
-                                        <label for="waist-belt-cb">Waist Belt</label>
+                                        <label for="waist-belt-anarkali">Waist Belt</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anklet">
+                                <div class="jewellery-item anarkali-anklet">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
+                                        <input type="checkbox" id="anklet-anarkali" name="jewellery_pieces" value="anklet"
                                             class="jewellery-checkbox">
-                                        <label for="anklet-cb">Anklet</label>
+                                        <label for="anklet-anarkali">Anklet</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item toe-ring">
+                                <div class="jewellery-item anarkali-toe-ring">
                                     <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="toe-ring-anarkali" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox">
-                                        <label for="toe-ring-cb">Toe Ring</label>
+                                        <label for="toe-ring-anarkali">Toe Ring</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="gown-details" class="detail-section">
+                        {{-- <div id="gown-details" class="detail-section">
                             <h3 class="text-center fw-semibold base-color mt-4">Gown Checklist</h3>
                             <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces
                                 you want to see</p>
@@ -1320,7 +1320,7 @@
                                     <label for="saree-toe-ring-cb">Toe Ring</label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -1586,8 +1586,6 @@
   appId: '1:718283592432:web:ec986b729c43ae39872835',
   measurementId: 'G-MJRQ18F8Z4',
 }
-
-
 
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth(); // Use a consistent auth variable

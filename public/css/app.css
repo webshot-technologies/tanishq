@@ -208,11 +208,9 @@ body {
   border-radius: 5px;
   font-size: 0.8rem;
   border: 1px solid #ccc;
-  z-index: 100;
 
-  white-space: nowrap;    /* Prevents text wrapping */
-  overflow: hidden;       /* Optional: hides overflowing text */
-  text-overflow: ellipsis;/* Optional: adds "..." when truncated */
+  z-index: 9999;
+
 }
 
 .jewellery-input:hover {
@@ -246,7 +244,9 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.jewellery-item img {
+.jewellery-item img 
+  /* transform: translateY(6px); */
+
   transform: translateY(0px);
 }
 
@@ -278,7 +278,7 @@ body {
 }
 
 .jewellery-checkbox:checked + label::after {
-    content: "";
+    /* content: ""; */
     position: absolute;
     top: 50%;
     left: 10px; /* Adjust this value to center the checkmark */
@@ -300,12 +300,12 @@ body {
     left: 13%;
 }
 .jewellery-item.lehanga-earrings-stud {
-    top: 3%;
-    right: 10%;
+    top: 1%;
+    right: 13%;
 }
 .jewellery-item.lehanga-earrings-drops {
-    top: 10%;
-    right: 14%;
+    top: 6%;
+    right: 17%;
 }
 .jewellery-item.lehanga-ear-loops {
     top: 8%;
@@ -355,9 +355,10 @@ body {
     top: 78%;
     right: -3%;
 }
-/* ... and so on for all items */
 
-/* Positioning for each gown jewelry item on the Gown */
+
+
+
 .jewellery-item.gown-hair-jewellery {
     top: -5%;
     left: 22%;
@@ -429,6 +430,9 @@ body {
     left: 5.5%;
 }
 
+
+
+
 /* Positioning for each saree jewelry item on the Saree */
 .jewellery-item.saree-hair-jewellery {
     top: -1%;
@@ -480,7 +484,7 @@ body {
 }
 .jewellery-item.saree-single-bangle {
     top: 41%;
-    right: 43%;
+    right: 39%;
 }
 .jewellery-item.saree-rings {
     top: 30%;
@@ -494,6 +498,441 @@ body {
     top: 84%;
     left: 39%;
 }
+
+
+/* Positioning for each saree jewelry item on the Saree */
+.jewellery-item.anarkali-hair-jewellery {
+    top: 3%;
+    left: 51%;
+}
+.jewellery-item.anarkali-forehead-pendant {
+    top: -2%;
+    right: 31%;
+}
+.jewellery-item.anarkali-earrings-stud {
+    top: 8%;
+    left: 56%;
+}
+.jewellery-item.anarkali-earrings-drops {
+    top: 12%;
+    left: 56%;
+}
+.jewellery-item.anarkali-ear-loops {
+    top: 16%;
+    right: 9%;
+}
+.jewellery-item.anarkali-nose-pin {
+    top: 3%;
+    right: 31%;
+}
+.jewellery-item.anarkali-choker-necklace {
+    top: 8%;
+    left: 6%;
+}
+.jewellery-item.anarkali-short-necklace {
+    top: 19%;
+    left: 55%;
+}
+.jewellery-item.anarkali-long-necklace {
+    top: 11%;
+    left: 21%;
+}
+.jewellery-item.anarkali-waist-belt {
+    top: 29%;
+    right: 11%;
+}
+.jewellery-item.anarkali-multiple-bangles {
+    top: 29%;
+    left: 3%;
+}
+.jewellery-item.anarkali-bracelet {
+    top: 33%;
+    right: 8%;
+}
+.jewellery-item.anarkali-single-bangle {
+    top: 25%;
+    right: 38%;
+}
+.jewellery-item.anarkali-rings {
+    top: 38%;
+    right: 17%;
+}
+.jewellery-item.anarkali-anklet {
+    top: 76%;
+    left: 67%;
+}
+.jewellery-item.anarkali-toe-ring {
+    top: 84%;
+    left: 66%;
+}
+
+
+@media screen and (max-width: 768px) {
+
+.jewellery-item.lehanga-hair-jewellery {
+    top: 2%;
+    right: 22%;
+}
+.jewellery-item.lehanga-forehead-pendant {
+    top: 1%;
+    left: 19%;
+}
+.jewellery-item.lehanga-earrings-stud {
+    top: 6%;
+    right: 17%;
+}
+.jewellery-item.lehanga-earrings-drops {
+    top: 10%;
+    right: 19%;
+}
+.jewellery-item.lehanga-ear-loops {
+    top: 13%;
+    right: 15%;
+}
+.jewellery-item.lehanga-nose-pin {
+    top: 7%;
+    left: 30%;
+}
+.jewellery-item.lehanga-choker-necklace {
+    top: 13%;
+    left: 18%;
+}
+.jewellery-item.lehanga-short-necklace {
+    top: 16%;
+    right: 17%;
+}
+.jewellery-item.lehanga-long-necklace {
+    top: 18%;
+    left: 22%;
+}
+.jewellery-item.lehanga-multiple-bangles {
+    top: 32%;
+    left: 12%;
+}
+.jewellery-item.lehanga-bracelet {
+    top: 32%;
+    right: 19%;
+}
+.jewellery-item.lehanga-waist-belt {
+    top: 28%;
+    right: 15%;
+}
+.jewellery-item.lehanga-single-bangle {
+    top: 37%;
+    left: 18%;
+}
+.jewellery-item.lehanga-rings {
+    top: 38%;
+    right: 23%;
+}
+.jewellery-item.lehanga-anklet {
+    top: 76%;
+    right: 12%;
+}
+.jewellery-item.lehanga-toe-ring {
+    top: 83%;
+    right: 18%;
+}
+/* start gown  */
+
+
+.jewellery-item.gown-hair-jewellery {
+    top: 0%;
+    left: 42%;
+}
+.jewellery-item.gown-forehead-pendant {
+    top: 2%;
+    left: 29%;
+}
+.jewellery-item.gown-earrings-stud {
+    top: 5.5%;
+    left: 50.4%;
+}
+.jewellery-item.gown-earrings-drops {
+    top: 9%;
+    left: 27.4%;
+}
+.jewellery-item.gown-choker-necklace {
+    top: 12.4%;
+    left: 29%;
+}
+.jewellery-item.gown-short-necklace {
+    top: 15.5%;
+    left: 46%;
+}
+.jewellery-item.gown-long-necklace {
+    top: 16%;
+    left: 25%;
+}
+.jewellery-item.gown-ear-loops {
+    top: 10%;
+    right: 32%;
+}
+.jewellery-item.gown-nose-pin {
+    top: 6%;
+    right: 48%;
+}
+.jewellery-item.gown-bracelet {
+    top: 32%;
+    right: 31%;
+}
+
+.jewellery-item.gown-waist-belt {
+    top: 28%;
+    right: 16%;
+}
+.jewellery-item.gown-anklet {
+    top: 71%;
+    right: 23%;
+}
+.jewellery-item.gown-toe-ring {
+    top: 75%;
+    right: 27%;
+}
+
+.jewellery-item.gown-multiple-bangles {
+    top: 27%;
+    left: 17%;
+}
+.jewellery-item.gown-single-statement-bangle {
+    top: 63%;
+    left: 8%;
+}
+.jewellery-item.gown-rings {
+    top: 35%;
+    left: 32%;
+}
+.jewellery-item.gown-single-bangle {
+    top: 31.5%;
+    left: 22.5%;
+}
+
+
+
+
+/* end gourn template */
+
+/* sarree alignment */
+.jewellery-item.saree-hair-jewellery {
+    top: 5%;
+    left: 37%;
+}
+.jewellery-item.saree-forehead-pendant {
+    top: 5%;
+    right: 47%;
+}
+.jewellery-item.saree-earrings-stud {
+    top: 12%;
+    left: 40%;
+}
+.jewellery-item.saree-earrings-drops {
+    top: 15%;
+    left: 39%;
+}
+.jewellery-item.saree-ear-loops {
+    top: 9%;
+    right: 20%;
+}
+.jewellery-item.saree-nose-pin {
+    top: 12%;
+    right: 39%;
+}
+.jewellery-item.saree-choker-necklace {
+    top: 16%;
+    left: 15%;
+}
+.jewellery-item.saree-short-necklace {
+    top: 19%;
+    left:48%;
+}
+.jewellery-item.saree-long-necklace {
+    top: 20%;
+    left: 17%;
+}
+.jewellery-item.saree-waist-belt {
+    top: 38%;
+    right: 28%;
+}
+.jewellery-item.saree-multiple-bangles {
+    top: 47%;
+    left: 9%;
+}
+.jewellery-item.saree-bracelet {
+    top: 29%;
+    right: 30%;
+}
+.jewellery-item.saree-single-bangle {
+    top: 44%;
+    right: 55%;
+}
+.jewellery-item.saree-rings {
+    top: 32%;
+    right: 31%;
+}
+.jewellery-item.saree-anklet {
+    top: 76%;
+    left: 46%;
+}
+.jewellery-item.saree-toe-ring {
+    top: 84%;
+    left: 39%;
+}
+
+
+
+/* end saree aligment */
+
+/* jewellyer anarkali */
+
+.jewellery-item.anarkali-hair-jewellery {
+    top: 3%;
+    left: 51%;
+}
+.jewellery-item.anarkali-forehead-pendant {
+    top: 3%;
+    right: 42%;
+}
+.jewellery-item.anarkali-earrings-stud {
+    top: 8%;
+    left: 56%;
+}
+.jewellery-item.anarkali-earrings-drops {
+    top: 12%;
+    left: 56%;
+}
+.jewellery-item.anarkali-ear-loops {
+    top: 16%;
+    right: 9%;
+}
+.jewellery-item.anarkali-nose-pin {
+    top: 9%;
+    right: 39%;
+}
+.jewellery-item.anarkali-choker-necklace {
+    top: 13%;
+    left: 17%;
+}
+.jewellery-item.anarkali-short-necklace {
+    top: 19%;
+    left: 55%;
+}
+.jewellery-item.anarkali-long-necklace {
+    top: 17%;
+    left: 15%;
+}
+.jewellery-item.anarkali-waist-belt {
+    top: 29%;
+    right: 11%;
+}
+.jewellery-item.anarkali-multiple-bangles {
+    top: 36%;
+    left: 14%;
+}
+.jewellery-item.anarkali-bracelet {
+    top: 33%;
+    right: 8%;
+}
+.jewellery-item.anarkali-single-bangle {
+    top: 32%;
+    right: 49%;
+}
+.jewellery-item.anarkali-rings {
+    top: 38%;
+    right: 17%;
+}
+.jewellery-item.anarkali-anklet {
+    top: 76%;
+    left: 67%;
+}
+.jewellery-item.anarkali-toe-ring {
+    top: 84%;
+    left: 66%;
+}
+
+
+
+
+.jewellery-item label::before {
+
+  width: 8px;
+  height: 8px;
+
+}
+
+
+}
+
+@media  screen and (max-width: 541px) {
+
+    .jewellery-item.anarkali-hair-jewellery {
+    top: 3%;
+    left: 51%;
+}
+.jewellery-item.anarkali-forehead-pendant {
+    top: 3%;
+    right: 42%;
+}
+.jewellery-item.anarkali-earrings-stud {
+    top: 8%;
+    left: 56%;
+}
+.jewellery-item.anarkali-earrings-drops {
+    top: 12%;
+    left: 56%;
+}
+.jewellery-item.anarkali-ear-loops {
+    top: 16%;
+    right: 15%
+}
+.jewellery-item.anarkali-nose-pin {
+    top: 9%;
+    right: 39%;
+}
+.jewellery-item.anarkali-choker-necklace {
+    top: 13%;
+    left: 27%;
+}
+.jewellery-item.anarkali-short-necklace {
+    top: 19%;
+    left: 55%;
+}
+.jewellery-item.anarkali-long-necklace {
+    top: 17%;
+    left: 33%;
+}
+.jewellery-item.anarkali-waist-belt {
+    top: 29%;
+    right: 11%;
+}
+.jewellery-item.anarkali-multiple-bangles {
+    top: 36%;
+    left: 23%;
+}
+.jewellery-item.anarkali-bracelet {
+    top: 33%;
+    right: 8%;
+}
+.jewellery-item.anarkali-single-bangle {
+    top: 32%;
+    right: 49%;
+}
+.jewellery-item.anarkali-rings {
+    top: 38%;
+    right: 26%;
+}
+.jewellery-item.anarkali-anklet {
+    top: 76%;
+    left: 57%;
+}
+.jewellery-item.anarkali-toe-ring {
+    top: 84%;
+    left: 56%;
+}
+
+
+
+}
+
 
 /* ===============================================
    PRODUCT CARDS & CATEGORIES
@@ -964,11 +1403,28 @@ body {
 }
 
 /* Accordion styling */
+.accordion-arrow {
+  transition: transform 0.3s;
+  transform: rotate(90deg);
+     width:8px;
+     height:20px;
+
+  transform: rotate(90deg);
+}
+.accordion-button:not(.collapsed) .accordion-arrow {
+  transform: rotate(270deg);
+}
 .accordion-button:not(.collapsed) {
   background-color: #f8f9fa;
   box-shadow: none;
 }
 
+.accordion-image{
+    transform: rotate(90deg);
+     width:10px;
+     height:20px;
+
+}
 .accordion-button:focus {
   box-shadow: none;
 }
@@ -982,7 +1438,7 @@ body {
 }
 
 .accordion-button::before {
-  content: '\2304';
+  /* content: '\2304'; */
   position: absolute;
   right: 1rem;
   font-size: 0.9rem;
@@ -1262,8 +1718,9 @@ img.productDetails_img {
   }
 
   .jewellery-input {
-    padding: 0.2em 0.7em;
-    font-size: 0.8em;
+    padding: 0.1em 0.7em;
+    font-size: 9px;
+    font-weight: bold;
   }
 
   .animated-image-container {
@@ -1275,7 +1732,7 @@ img.productDetails_img {
   }
 
   .jewellery-item img {
-    width: 40px;
+    width: 100px;
   }
 
   .jewellery-item .right-img {
@@ -1343,7 +1800,7 @@ img.productDetails_img {
 @media screen and (max-width: 540px) {
   .jewellery-input {
     padding: 2px 3px;
-    font-size: 8px;
+    font-size: 7px;
     font-weight: bold;
   }
 
@@ -1354,6 +1811,10 @@ img.productDetails_img {
   .jewellery-item label::before {
     width: 10px;
     height: 10px;
+  }
+
+  .jewellery-item img {
+    width: 57px;
   }
 }
 
