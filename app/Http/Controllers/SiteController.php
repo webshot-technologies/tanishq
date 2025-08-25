@@ -14,7 +14,7 @@ class SiteController extends Controller
 
     public function productChoose(Request $request){
 
-        dd($request->all());
+        // dd($request->all());
 
         $userData = [
             'phoneNumber'   => $request->input('phone'),
