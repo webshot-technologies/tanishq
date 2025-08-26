@@ -67,11 +67,19 @@ body {
 .base-color {
   color: var(--primary-color) !important;
 }
-
+.bg-color{
+    background-color: #300708;
+}
 .light-font {
   font-weight: 300;
 }
-
+#share-wishlist-btn.btn:hover{
+    background-color:#8a2323;
+}
+#share-wishlist-btn.btn{
+    color:white;
+    background-color:#8a2323;
+}
 .text-custom-dark {
   color: #300708;
 }
@@ -89,6 +97,173 @@ body {
 
 .banner-height {
   height: 100%;
+}
+.fw-200{
+    font-weight:200;
+}
+
+
+
+
+/* --------- Base polish (desktop stays as-is) --------- */
+:root{
+  --lux-bg: rgba(20,0,0,.82);
+  --lux-gold: #d4af37;
+  --lux-gold-soft: rgba(212,175,55,.35);
+  --lux-text: #f5e6c4;
+  --lux-btn-start: #800000;
+  --lux-btn-end: #a52a2a;
+  --lux-btn-start-hover:#600000;
+  --lux-btn-end-hover:#8b1a1a;
+}
+
+/* Luxury accents for the CTA */
+.btn.btn-custom{
+  min-width: 220px;
+  padding: 12px 22px;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: #300708;
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(0,0,0,.35);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn.btn-custom:hover{
+  background: #300708;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+}
+.btn.btn-custom:active{
+  background: #300708;
+  color:white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.45);
+}
+
+/* Subtle gold underline style for selects on desktop too */
+.form-select.border-custom-dark{
+  border: none !important;
+  border-bottom: 1px solid var(--lux-gold) !important;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+/* --------- Tablet/Mobile layout (≤ 998px) --------- */
+@media (max-width: 998px){
+  /* Make the card act like the full-screen stage */
+  #step1 .card{
+    height: 100vh;
+    border-radius: 0 !important;
+    background: #000; /* fallback under the image */
+  }
+
+  /* Use the right-column image as a fixed background layer */
+  .hero-img{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* Bottom overlay sheet replaces the left column content block */
+  #step-section-container{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    width: 100%;
+    z-index: 2;
+    background: var(--lux-bg);
+    color: #fff;
+    border-top: 1px solid var(--lux-gold-soft);
+    box-shadow: 0 -8px 28px rgba(0,0,0,.55);
+    padding: 18px 16px !important;
+  }
+
+  /* Remove desktop paddings/margins inside the overlay */
+  #step-section-container .bg-custom-light{
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  /* Centered top logo floating over the hero */
+  .logo-overlay{
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 180px;
+    width: 55%;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
+  }
+
+  /* Tidy the form stack */
+  #step1-form{
+    margin-top: 6px !important;
+  }
+  .form-content,
+  #step1-form .d-flex.align-items-baseline{
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 10px;
+    margin-bottom: 14px !important;
+  }
+
+  .form-text{
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--lux-text);
+    letter-spacing: .2px;
+  }
+
+  /* Inputs: full width, elegant edges */
+  #step1-form .form-select{
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px !important;
+    background: rgba(255,255,255,.95);
+    color: #333;
+    border: 1px solid var(--lux-gold);
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  }
+  #step1-form .form-select:focus{
+    border-color: var(--lux-gold);
+    box-shadow: 0 0 0 3px rgba(212,175,55,.25);
+  }
+
+  /* CTA full width */
+  #step1 .btn.btn-custom{
+    width: 100%;
+    min-width: 0;
+    margin-top: 6px;
+  }
+
+  /* Footer inside overlay, smaller + centered */
+  #step1 .opacity-75{
+    opacity: .85 !important;
+    font-size: 12px !important;
+    padding-top: 8px !important;
+  }
+
+  /* Ensure the right column occupies the whole screen height to host the image */
+  .banner-height{
+    height: 100vh !important;
+  }
+
+  /* Prevent outer margins that cause vertical scroll jump */
+  #step1 .container{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  #step1 .row.align-items-center.my-4{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
 }
 
 /* ===============================================
@@ -124,12 +299,36 @@ body {
 .steps-1 h2 {
   font-size: 2rem;
 }
-
+.step-1-tablet-view{
+    display: none
+}
 .step-container .form-logo-img {
   width: 150px;
   height: auto;
 }
+#step1-form .form-text{
+    font-size:45px;
+    /* flex:50% */
+    color:#300708;
 
+}
+#step1-form .form-content{
+    gap:40px;
+    
+}
+#step1-form .form-text:nth-child(2){
+    font-size:45px;
+    
+    margin-left:5px;
+    color:#300708;
+}
+
+#step1-form select{
+
+    /* flex:20% */
+    border-bottom-color: #300708;
+    width:max-content;
+}
 /* ===============================================
    ANIMATIONS & TRANSITIONS
    =============================================== */
@@ -244,7 +443,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.jewellery-item img
+.jewellery-item img{
   /* transform: translateY(6px); */
 
   transform: translateY(0px);
@@ -564,6 +763,30 @@ body {
 .jewellery-item.anarkali-toe-ring {
     top: 84%;
     left: 66%;
+}
+
+
+@media screen and (max-width:998px) {
+    .step-1-tablet-view{
+        display: block;
+    }
+    .step-1-desktop-view{
+        display:none;
+    }
+    .step-1-tablet-view button{
+
+    background-color:#fff;
+     color:   #300708 !important;
+    }
+    .step-1-tablet-view button:hover{
+     color:   #300708 !important;
+
+    background-color:#fff;
+    }
+.g-2rem{
+    gap:2rem;
+}
+    
 }
 
 
@@ -931,6 +1154,11 @@ body {
 
 
 
+}
+@media screen and (max-width:442px){
+    .g-2rem{
+        gap:1rem;
+    }
 }
 
 
@@ -1608,6 +1836,26 @@ img.productDetails_img {
   max-height: 500px;
 }
 
+
+   #wishlist-popup{
+    /* min-width:max-content; */
+    max-width:max-content;
+    padding:16px 24px;
+  }
+  #wishlist-popup-icon{
+    font-size:20px ;
+  }
+  #wishlist-popup-msg{
+    /* font-size: 12px !important; */
+  }
+
+  #tryOnButton{
+    background: #8a2323;
+  border: 2px solid #8a2323;
+  color: #fff;
+  font-weight: 500;
+  height: 44px;
+  }
 /* ===============================================
    RESPONSIVE STYLES - LARGE DEVICES (992px+)
    =============================================== */
@@ -1792,6 +2040,8 @@ img.productDetails_img {
   .product-listing-section p {
     font-size: 13px;
   }
+
+
 }
 
 /* ===============================================
@@ -1835,6 +2085,19 @@ img.productDetails_img {
   #step2 .heading-content {
     font-size: 19px;
   }
+
+
+   #wishlist-popup{
+    /* min-width:max-content; */
+    max-width:200px;
+     padding:8px 12px;
+  }
+  #wishlist-popup-icon{
+    font-size:15px ;
+  }
+  #wishlist-popup-msg{
+    font-size: 12px !important;
+  }
 }
 
 /* ===============================================
@@ -1848,6 +2111,8 @@ img.productDetails_img {
   .jewellery-item img {
     width: 34px;
   }
+
+
 }
 
 /* ===============================================
@@ -1865,4 +2130,16 @@ img.productDetails_img {
   #step2 .outfit-card img {
     height: 180px;
   }
+}
+
+@media screen and (max-width:390px){
+    .product-item-buttons
+{
+
+   gap:7px;
+   flex-direction: column;
+}
+.product-listing-section p{
+    font-size: 10px;
+}
 }

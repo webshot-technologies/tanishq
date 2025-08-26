@@ -26,7 +26,7 @@
     @if(!$isShared )
     <div class="d-flex justify-content-end mb-3">
         @if(!empty($products) && count($products) > 0 && !empty(session('user_id')))
-            <button id="share-wishlist-btn" class="btn btn-success">
+            <button id="share-wishlist-btn" class="btn bg-color">
                 <i class="fa fa-share-alt"></i> Share Wishlist
             </button>
         @endif
@@ -36,7 +36,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="shareWishlistModalLabel">Share Your Wishlist</h5>
+            <h5 class="modal-title " id="shareWishlistModalLabel">Share Your Wishlist</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center">
@@ -47,7 +47,7 @@
                     // Generate share URL from backend (controller should pass this ideally)
                     $shareUrl = url('/wishlist/share/'. $username . '/' . session('user_id') . '/' . $shareId);
                 }
-                // $shareUrl
+
 
             @endphp
             @if($shareUrl)
@@ -68,16 +68,21 @@
                     {{-- <i class="fa fa-envelope"></i> Email --}}
                     <img src="{{asset('image/gmail.png')}}" style="width:50px" alt="">
                 </a>
+
+                <button class="border-0 bg-transparent p-0" type="button" id="copy-share-link" title="Copy link">
+                    <img id="copy-share-link-img" src="{{asset('image/copy.png')}}" style="width:50px;cursor:pointer;" alt="Copy">
+                </button>
+                <input type="text" id="share-link-input" value="{{ $shareUrl }}" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;">
             </div>
-            <div class="mt-3">
+            {{-- <div class="mt-3">
                 <div class="input-group">
                     <input type="text" id="share-link-input" class="form-control" value="{{ $shareUrl }}" readonly onclick="this.select();">
-                    <button class="border-none  " type="button" id="copy-share-link">
+                                 <button class="border-none  " type="button" id="copy-share-link">
                         <img src="{{asset('image/copy.png')}}"  style="width:30px"  alt="">
                      </button>
                 </div>
                 <small class="text-muted">Copy and share this link anywhere</small>
-            </div>
+            </div> --}}
             @else
             <div class="alert alert-warning">Unable to generate share link.</div>
             @endif
@@ -117,9 +122,12 @@
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">{{ $product['productTitle'] ?? '' }}</p>
                                 <div class="product-item-buttons">
-                                    <button class="btn w-100" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
-                                        <a class="base-color text-decoration-none" href="/product/${product.productId}?category=${categoryKey}">View Details</a>
+                                    <button class="btn " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+                                        <a class="base-color text-decoration-none" href="/product/{{ $product['sku'] }}?category={{ $product['categoryKey'] ?? '' }}">View Details</a>
                                     </button>
+
+                                     <button id="tryOnButton"  class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try On</button>
+                                {{-- <button class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try On</button> --}}
                                 </div>
                             </div>
                         </div>
@@ -129,13 +137,91 @@
         @endif
     </div>
 </div>
-  <div class="mt-auto text-center py-4 fs-6 text-custom-dark text-dark-gray opacity-75">
+  <div class="mt-auto text-center py-4 fs-6 fw-200 text-custom-dark text-dark-gray opacity-75">
                                                                         &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
 
                                     </div>
 
 @push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Copy to clipboard functionality for share link (Clipboard API)
+    const copyBtn = document.getElementById('copy-share-link');
+    const copyImg = document.getElementById('copy-share-link-img');
+    const shareInput = document.getElementById('share-link-input');
+    if (copyBtn && shareInput && copyImg) {
+        copyBtn.addEventListener('click', function() {
+            const url = shareInput.value;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(function() {
+                    copyImg.src = "{{ asset('image/checkmark.png') }}";
+                    copyImg.style.width = '50px';
+                    setTimeout(() => {
+                        copyImg.src = "{{ asset('image/copy.png') }}";
+                        copyImg.style.width = '50px';
+                    }, 1200);
+                }, function() {
+                    copyImg.src = "{{ asset('image/copy.png') }}";
+                });
+            } else {
+                // Fallback for older browsers
+                shareInput.style.display = 'block';
+                shareInput.select();
+                shareInput.setSelectionRange(0, 99999);
+                try {
+                    document.execCommand('copy');
+                    copyImg.src = "{{ asset('image/checkmark.png') }}";
+                    copyImg.style.width = '50px';
+                    setTimeout(() => {
+                        copyImg.src = "{{ asset('image/copy.png') }}";
+                        copyImg.style.width = '50px';
+                    }, 1200);
+                } catch (err) {
+                    copyImg.src = "{{ asset('image/copy.png') }}";
+                }
+                shareInput.style.display = '';
+            }
+        });
+    }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mirrar Try On button logic (load SDK on page load, enable buttons after ready)
+    let mirrarReady = false;
+    function enableTryOnButtons() {
+        document.querySelectorAll('.try-on-btn').forEach(btn => {
+            btn.disabled = false;
+            btn.addEventListener('click', function() {
+                const sku = this.getAttribute('data-sku');
+                if (!sku) {
+                    alert('SKU not found for this product.');
+                    return;
+                }
+                if (typeof initMirrarUI === 'function') {
+                    const options = {
+                        brandId: "2df975fa-c1b8-45a1-a7c0-f94d9a9becd8",
+                    };
+                    initMirrarUI(sku, options);
+                } else {
+                    alert('Try On feature is not available. Please reload the page.');
+                }
+            });
+        });
+    }
+    // Disable buttons until SDK is ready
+    document.querySelectorAll('.try-on-btn').forEach(btn => { btn.disabled = true; });
+    // Load Mirrar SDK on page load
+    const mirrarScript = document.createElement('script');
+    mirrarScript.src = "https://cdn.mirrar.com/general/scripts/mirrar-ui.js";
+    mirrarScript.onload = function() {
+        mirrarReady = true;
+        enableTryOnButtons();
+    };
+    document.body.appendChild(mirrarScript);
+});
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Wishlist notification popup
@@ -227,8 +313,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-@endpush
 
-</section>
+@endpush
 @endsection
+
 

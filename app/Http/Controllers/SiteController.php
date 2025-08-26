@@ -237,11 +237,12 @@ public function removeFromWishlist(Request $request, $user_id) {
 
     public function viewWishlist() {
     $userId = Session::get('user_id');
-
+    $idToken = Session::get('id_token');
+   $refreshToken = Session::get('refresh_token');
     $products = [];
 
     // Get valid token (refresh if needed)
-    $idToken = $this->getValidToken();
+    $idToken = $this->refreshToken($refreshToken);
 
             try {
                 //fetcing share-url
@@ -271,16 +272,26 @@ public function removeFromWishlist(Request $request, $user_id) {
                 }
             } catch (RequestException $e) {
 
+
                 $products = [];
-                return redirect()->back();
+                return redirect()->route('home');
 
             }
 
     $isShared = 0;
         $username = session('username');
         // Slug for URL (lowercase, hyphenated)
+
+
+        $username_first = strtolower(preg_split('/[- ]/', $username)[0]);
+        $wishlistOwner = ucfirst($username) . "'s";
+        // dd($wishlistOwner);
+        // dd($products);
+        // for slug
         $username = strtolower(str_replace(' ', '-', trim($username)));
-        return view('wishlist', compact('products', 'shareId', 'isShared', 'username'));
+
+
+        return view('wishlist', compact('products', 'shareId', 'isShared', 'username','wishlistOwner'));
     }
 
 public function shareWishlist($username,$userId, $shareId){
@@ -344,6 +355,7 @@ public function shareWishlist($username,$userId, $shareId){
 
     private function getValidToken()
     {
+
         $idToken = Session::get('id_token');
         $refreshToken = Session::get('refresh_token');
         $tokenCreatedAt = Session::get('token_created_at');

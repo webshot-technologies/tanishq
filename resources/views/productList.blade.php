@@ -3,8 +3,8 @@
 @section('title', 'Product List')
 @section('content')
     <!-- Wishlist Notification Popup -->
-    <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
-        <span id="wishlist-popup-icon" style="font-size:22px;"></span>
+    <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
+        <span id="wishlist-popup-icon"></span>
         <span id="wishlist-popup-msg"></span>
     </div>
     @php
@@ -229,7 +229,7 @@
                 </div>
             </div>
 
-            <div class="mt-auto text-center pt-4 fs-6 text-custom-dark text-dark-gray opacity-75">
+            <div class="mt-auto text-center fw-200 pt-4 fs-6 text-custom-dark text-dark-gray opacity-75">
                 &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
 
@@ -270,11 +270,11 @@
             });
 
             const searchWrapper = document.querySelector('.search-wrapper');
-const searchBtn = document.querySelector('.search-btn');
+// const searchBtn = document.querySelector('.search-btn');
 
-searchBtn.addEventListener('click', () => {
-  searchWrapper.classList.toggle('active');
-});
+// searchBtn.addEventListener('click', () => {
+//   searchWrapper.classList.toggle('active');
+// });
 
             if (clearFiltersBtn) {
                 clearFiltersBtn.addEventListener('click', function() {
