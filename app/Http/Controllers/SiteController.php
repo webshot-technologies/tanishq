@@ -88,37 +88,37 @@ class SiteController extends Controller
         }
             /// wishlist id
              //fetcing share-url
-                $client = new Client();
-                $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $idToken,
-                        'Content-Type' => 'application/json',
-                    ],
-                    'timeout' => 30
-                ]);
+                // $client = new Client();
+                // $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
+                //     'headers' => [
+                //         'Authorization' => 'Bearer ' . $idToken,
+                //         'Content-Type' => 'application/json',
+                //     ],
+                //     'timeout' => 30
+                // ]);
 
-                $apiResult = json_decode($response->getBody(), true);
-                $shareUrl = $apiResult['shareUrl'] ?? null;
-                // fetching wishlist product details
-                if ($shareUrl) {
-                    $productResponse = $client->get($shareUrl, [
-                        'headers' => [
-                            'Content-Type' => 'application/json',
-                        ],
-                        'timeout' => 30
-                    ]);
-                    $productResult = json_decode($productResponse->getBody(), true);
-                    // dd($productResult);
-                    $products = $productResult['items'] ?? [];
-                }
-                $wishlistProductIds = array_column($products, 'id');
+                // $apiResult = json_decode($response->getBody(), true);
+                // $shareUrl = $apiResult['shareUrl'] ?? null;
+                // // fetching wishlist product details
+                // if ($shareUrl) {
+                //     $productResponse = $client->get($shareUrl, [
+                //         'headers' => [
+                //             'Content-Type' => 'application/json',
+                //         ],
+                //         'timeout' => 30
+                //     ]);
+                //     $productResult = json_decode($productResponse->getBody(), true);
+                //     // dd($productResult);
+                //     $products = $productResult['items'] ?? [];
+                // }
+                // $wishlistProductIds = array_column($products, 'id');
 
 
 
 
         // Example: $categoryPresence = ['necklace', 'bracelets']
         // Pass categoryPresence to recommended products view
-        return view('productList', compact('userId', 'idToken', 'categoryPresence', 'wishlistProductIds'));
+        return view('productList', compact('userId', 'idToken', 'categoryPresence'));
         } elseif ($request->submit_type === 'full_catalogue') {
             return redirect()->route('category.list', compact('userId', 'idToken'));
         }
