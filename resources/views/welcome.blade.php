@@ -84,102 +84,259 @@
             padding: 2rem;
             border-radius: 8px;
         }
+
+
+       
+
+   
+
+    /* Fullscreen background image */
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Top logo overlay */
+    .overlay-top {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .overlay-top img {
+      max-width: 200px;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    }
+
+    /* Bottom overlay with luxurious styling */
+    .overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(20, 0, 0, 0.8); /* rich maroon-black translucent */
+      color: #fff;
+      z-index: 2;
+      padding: 25px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,215,0,0.3); /* subtle gold line */
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+    }
+
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      /* font-size: 14px;
+      font-weight: bold;
+      color: #f5e6c4; warm gold */
+    }
+
+    select {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #d4af37; /* gold border */
+      font-size: 14px;
+      min-width: 180px;
+      background: rgba(255,255,255,0.95);
+      color: #333;
+      font-family: "Arial", sans-serif;
+    }
+
+    /* button {
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: none;
+      font-size: 15px;
+      min-width: 200px;
+      background: linear-gradient(135deg, #800000, #a52a2a);
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    } */
+
+    /* button:hover {
+      background: linear-gradient(135deg, #600000, #8b1a1a);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    } */
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .form-section {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      select, button {
+        min-width: 100%;
+      }
+    }
     </style>
 
 </head>
 
 <body>
 
-    <div class="container px-0">
+    <div class="container step-1-desktop-view px-0">
 
         <!-- STEP 1 -->
-        <div class="step-container active    mx-auto " id="step1" style="height: 100vh;">
-            <div class="row align-items-center my-4 mx-auto container ">
-                <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 ">
-                    <div class="row g-0 h-100">
-                        <!-- LEFT: Step Section -->
-                        <div id="step-section-container" class="col-lg-6 p-0 banner-height">
-                            <!-- Step 1 Content -->
-                            <div class="d-flex flex-column justify-content-between bg-custom-light p-4 p-md-5 h-100">
-                                <div class=" text-custom-dark">
-                                    <!-- Logo and Headline -->
-                                    <div class="mb-5 ">
-                                        <div class="d-flex flex-column align-items-start">
-                                            <a class="mx-auto mx-lg-0" href="/"><img
-                                                    src="{{ asset('image/logo.png') }}"class="form-logo-img"
-                                                    class="mb-2" alt="Tanishq Logo"></a>
+    <div class="step-container active mx-auto" id="step1-desktop" style="height: 100vh;">
+  <div class="row align-items-center my-4 mx-auto container">
+    <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 position-relative">
+      <div class="row g-0 h-100">
+        <!-- LEFT: Step Section -->
+        <div id="step-section-container" class="col-lg-6 p-0 banner-height">
+          <div class="d-flex flex-column justify-content-between bg-custom-light p-4 p-md-5 h-100">
+            <div class="text-custom-dark">
+              <div class="mb-5">
+                <div class="d-flex flex-column align-items-start">
+                  <a class="mx-auto" href="/">
+                    <img src="{{ asset('image/logo.png') }}" class="form-logo-img logo-overlay" alt="Tanishq Logo">
+                  </a>
+                </div>
+              </div>
 
-                                        </div>
-                                    </div>
+              <!-- Step 1 Form -->
+              <form id="step1-form" class="mt-5">
+                <div class="d-flex form-content mb-5 align-items-baseline">
+                  <span class="mb-0 text-nowrap form-text">My Dream</span>
+                  <select class="form-select border-bottom  py-0"
+                          required id="language-select" aria-label="Select community">
+                    <option selected>Tamil</option>
+                    <option>Telugu</option>
+                    <option>Gujarati</option>
+                    <option>Bengali</option>
+                    <option>Odia</option>
+                    <option>Bihari</option>
+                    <option>UP</option>
+                    <option>Marwari</option>
+                    <option>Punjabi</option>
+                    <option>Marathi</option>
+                    <option>Kannada</option>
+                    <option>Jat</option>
+                    <option>Rajput</option>
+                    <option>Assamese</option>
+                    <option>Manipuri</option>
+                    <option>Malayalee</option>
+                    <option>Kumaoni</option>
+                    <option>Muslim</option>
+                  </select>
+                </div>
 
-                                    <!-- Step 1 Form -->
-                                    <form id="step1-form" class="mt-5">
-                                        <div class="d-flex  mb-5 align-items-baseline">
-                                            <span class="me-3 mb-0 text-nowrap">My Dream</span>
-                                            <select
-                                                class="form-select border-bottom border-custom-dark text-custom-dark py-0"
-                                                required id="language-select">
-                                                <option selected>Tamil</option>
-                                                <option>Telugu</option>
-                                                <option>Gujarati</option>
-                                                <option>Bengali</option>
-                                                <option>Odia</option>
-                                                <option>Bihar</option>
-                                                <option>UP</option>
-                                                <option>Marwari</option>
-                                                <option>Pubjabi</option>
-                                                <option>Odia</option>
-                                                <option>Marathi</option>
-                                                <option>Kannada</option>
-                                                <option>Jat</option>
-                                                <option>Rajput</option>
-                                                <option>Assamese</option>
-                                                <option>Manipuri</option>
-                                                <option>Malayalee</option>
-                                                <option>Kumoani</option>
-                                                <option>Muslim</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-flex align-items-baseline mb-5">
-                                            <select
-                                                class="form-select border-bottom border-custom-dark text-custom-dark me-3 py-0"
-                                                required id="event-select">
-                                                <option selected>Mehendi</option>
-                                                <option>Engagement</option>
-                                                <option>Sangeet</option>
-                                                <option>Haldi</option>
-                                                <option>Cocktail</option>
-                                                <option>Reception</option>
-                                                <option>Wedding</option>
-                                            </select>
-                                            <span class="mb-0">Checklist</span>
-                                        </div>
-                                           <div class="mx-auto mx-lg-0 d-flex justify-content-center justify-content-lg-start">
-                                        <button type="submit" class="btn rounded-5 btn-custom">Choose
-                                            My
-                                            Look</button>
-                                        </div>
-                                    </form>
-                                </div>
+                <div class="d-flex align-items-baseline mb-5">
+                  <select class="form-select border-bottom  me-3 py-0"
+                          required id="event-select" aria-label="Select occasion">
+                    <option selected>Mehendi</option>
+                    <option>Engagement</option>
+                    <option>Sangeet</option>
+                    <option>Haldi</option>
+                    <option>Cocktail</option>
+                    <option>Reception</option>
+                    <option>Wedding</option>
+                  </select>
+                  <span class="mb-0 form-text">Checklist</span>
+                </div>
 
-                                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
-                                </div>
-                            </div>
+                <div class="mx-auto d-flex justify-content-center justify-content-lg-start">
+                  <button type="submit" class="btn rounded-5 mx-auto btn-custom">Choose My Look</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75 fw-200">
+              &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Image -->
+        <div class="col-lg-6 col-12 p-0 banner-height">
+          <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg"
+               alt="Wedding jewelry on hands" class="img-fluid w-100 h-100 object-fit-cover hero-img">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+   <div class="container step-1-tablet-view px-0">
+    <!-- Background Image -->
+    <div class="step-container active mx-auto" id="step1-tablet" style="height: 100vh;">
+    <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg" alt="Wedding" class="background-image">
+
+    <!-- Top Logo Overlay -->
+    <div class="overlay-top">
+      <img src="https://test.webshotglobal.com/image/logo.png" alt="Tanishq Logo">
+    </div>
+
+        <!-- Bottom Form Overlay -->
+        <div class="overlay-bottom">
+            <form id="step1-tablet-form" autocomplete="off">
+                <div class="form-section d-flex flex-row align-items-center justify-content-between" style="gap: 1.5rem;">
+                    <div class="d-flex flex-row align-items-center g-2rem w-100" >
+                        <div class="d-flex flex-column flex-grow-1">
+                            <label for="dream-select-tablet" class="fw-semibold mb-1 text-start">My Dream:</label>
+                            <select id="dream-select-tablet" class="form-select">
+                                 <option selected>Tamil</option>
+                    <option>Telugu</option>
+                    <option>Gujarati</option>
+                    <option>Bengali</option>
+                    <option>Odia</option>
+                    <option>Bihari</option>
+                    <option>UP</option>
+                    <option>Marwari</option>
+                    <option>Punjabi</option>
+                    <option>Marathi</option>
+                    <option>Kannada</option>
+                    <option>Jat</option>
+                    <option>Rajput</option>
+                    <option>Assamese</option>
+                    <option>Manipuri</option>
+                    <option>Malayalee</option>
+                    <option>Kumaoni</option>
+                    <option>Muslim</option>
+                            </select>
                         </div>
-
-                        <!-- RIGHT: Image -->
-                        <div class="col-lg-6 col-12  p-0 banner-height">
-                            <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg
-" alt="Wedding jewelry on hands"
-                                class="img-fluid w-100 h-100 object-fit-cover">
+                        <div class="d-flex flex-column flex-grow-1">
+                            <label for="occasion-select-tablet" class="fw-semibold mb-1 text-start">Occasion:</label>
+                            <select id="occasion-select-tablet" class="form-select">
+                                 <option selected>Mehendi</option>
+                    <option>Engagement</option>
+                    <option>Sangeet</option>
+                    <option>Haldi</option>
+                    <option>Cocktail</option>
+                    <option>Reception</option>
+                    <option>Wedding</option>
+                            </select>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-primary px-4 py-2" style="white-space:nowrap;">Choose My Look</button>
                 </div>
-            </div>
+                <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil">
+                <input type="hidden" id="hidden-event-tablet" name="event" value="Mehendi">
+            </form>
         </div>
- </div>
- <div class="container px-0">
+  </div>
+  </div>
+    <div class="container px-0">
         <!-- STEP 2 -->
         <div id="step2" class="step-container   overflow-hidden" style="min-height: 100vh; width: 100%;">
             <div class="row align-items-center ">
@@ -259,13 +416,15 @@
 
                         <div id="lehanga-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
+                                you want to explore</p>
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/lehnga.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item lehanga-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox d-none">
@@ -283,7 +442,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
@@ -293,7 +453,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-drops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox d-none">
@@ -302,7 +463,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                        alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
@@ -330,7 +492,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox d-none">
@@ -357,7 +520,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-bracelet">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox d-none">
@@ -384,7 +548,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox d-none">
@@ -393,7 +558,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
                                             class="jewellery-checkbox d-none">
@@ -402,7 +568,8 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox d-none">
@@ -415,13 +582,15 @@
 
                         <div id="gown-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Gown Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
+                                you want to explore</p>
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/gown.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item gown-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-gown" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox d-none">
@@ -439,7 +608,8 @@
                                 </div>
 
                                 <div class="jewellery-item gown-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-gown" name="jewellery_pieces"
                                             value="earrings-stud" class="jewellery-checkbox d-none">
@@ -466,7 +636,8 @@
                                 </div>
 
                                 <div class="jewellery-item gown-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                        alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="ear-loops-gown" name="jewellery_pieces"
@@ -486,7 +657,8 @@
 
 
                                 <div class="jewellery-item gown-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-gown" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox d-none">
@@ -513,7 +685,8 @@
                                 </div>
 
                                 <div class="jewellery-item gown-bracelet">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-gown" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox d-none">
@@ -532,8 +705,8 @@
 
                                 <div class="jewellery-item gown-rings">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-gown" name="jewellery_pieces" value="rings"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="rings-gown" name="jewellery_pieces"
+                                            value="rings" class="jewellery-checkbox d-none">
                                         <label for="rings-gown">Rings</label>
                                     </div>
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
@@ -541,7 +714,8 @@
                                 </div>
 
                                 <div class="jewellery-item gown-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-gown" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox d-none">
@@ -550,16 +724,18 @@
                                 </div>
 
                                 <div class="jewellery-item gown-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-gown" name="jewellery_pieces" value="anklet"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="anklet-gown" name="jewellery_pieces"
+                                            value="anklet" class="jewellery-checkbox d-none">
                                         <label for="anklet-gown">Anklet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item gown-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-gown" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox d-none">
@@ -572,13 +748,15 @@
 
                         <div id="saree-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Saree Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
+                                you want to explore</p>
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item saree-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-saree" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox d-none">
@@ -596,7 +774,8 @@
                                 </div>
 
                                 <div class="jewellery-item saree-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-saree" name="jewellery_pieces"
@@ -606,7 +785,8 @@
                                 </div>
 
                                 <div class="jewellery-item saree-earrings-drops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-saree" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox d-none">
@@ -615,7 +795,8 @@
                                 </div>
 
                                 <div class="jewellery-item saree-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                        alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="ear-loops-saree" name="jewellery_pieces"
@@ -643,7 +824,8 @@
                                 </div>
 
                                 <div class="jewellery-item saree-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}"  class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-saree" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox d-none">
@@ -670,7 +852,8 @@
                                 </div>
 
                                 <div class="jewellery-item saree-bracelet">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-saree" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox d-none">
@@ -690,14 +873,15 @@
                                 <div class="jewellery-item saree-rings">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-saree" name="jewellery_pieces" value="rings"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="rings-saree" name="jewellery_pieces"
+                                            value="rings" class="jewellery-checkbox d-none">
                                         <label for="rings-saree">Rings</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-saree" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox d-none">
@@ -706,16 +890,18 @@
                                 </div>
 
                                 <div class="jewellery-item saree-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-saree" name="jewellery_pieces" value="anklet"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="anklet-saree" name="jewellery_pieces"
+                                            value="anklet" class="jewellery-checkbox d-none">
                                         <label for="anklet-saree">Anklet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item saree-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                        alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-saree" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox d-none">
@@ -728,7 +914,8 @@
 
                         <div id="anarkali-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Anarkali Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery you want to explore</p>
+                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
+                                you want to explore</p>
                             <div class="animated-image-container position-relative">
                                 <img src="{{ asset('image/anarkali.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
@@ -826,7 +1013,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-bracelet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-anarkali" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox d-none">
@@ -846,14 +1033,14 @@
                                 <div class="jewellery-item anarkali-rings">
                                     <img src="{{ asset('image/right-line.png') }}" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-anarkali" name="jewellery_pieces" value="rings"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="rings-anarkali" name="jewellery_pieces"
+                                            value="rings" class="jewellery-checkbox d-none">
                                         <label for="rings-anarkali">Rings</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item anarkali-waist-belt">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-anarkali" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox d-none">
@@ -862,16 +1049,16 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-anklet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-anarkali" name="jewellery_pieces" value="anklet"
-                                            class="jewellery-checkbox d-none">
+                                        <input type="checkbox" id="anklet-anarkali" name="jewellery_pieces"
+                                            value="anklet" class="jewellery-checkbox d-none">
                                         <label for="anklet-anarkali">Anklet</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item anarkali-toe-ring">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img"  alt="">
+                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-anarkali" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox d-none">
@@ -1330,8 +1517,7 @@
 
                 <div class=" col-12 col-xl-10 d-flex px-4 mx-auto justify-content-center my-4">
 
-                    <button type="" onclick="nextStep(3)"
-                        class="btn border-2 rounded-5 btn-custom">Choose
+                    <button type="" onclick="nextStep(3)" class="btn border-2 rounded-5 btn-custom">Choose
                         Create List</button>
 
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
@@ -1341,7 +1527,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
 
     <!-- STEP 3 -->
@@ -1376,28 +1562,132 @@
                         <input type="hidden" name="refresh_token" id="hidden-refresh-token">
                         <input type="hidden" name="phone" id="hidden-phone">
                         <input type="hidden" name="submit_type" id="hidden-submit-type">
+                        <div id="step3-form-errors" style="color:#d00; font-size:15px; margin-bottom:10px;"></div>
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
                                 <label for="name" class="form-label fw-normal">Name *</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     placeholder="Contact person’s name" required>
+                                <div id="name-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="contactNumber" class="form-label fw-normal">Contact Number *</label>
                                 <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
                                     placeholder="Contact person's phone number" required>
+                                <div id="phone-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label fw-normal">Your E-mail ID *</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="you@example.com" required>
+                                <div id="email-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="weddingDate" class="form-label fw-normal">Choose your wedding date
                                     *</label>
                                 <input type="date" class="form-control" id="weddingDate" name="weddingDate"
                                     placeholder="mm/dd/yyyy" required>
+                                <div id="date-error" style="color:#d00;font-size:13px;"></div>
                                 <script>
+// Hide phone error when user corrects input
+document.addEventListener('DOMContentLoaded', function() {
+    var phoneInput = document.getElementById('contactNumber');
+    var phoneError = document.getElementById('phone-error');
+    if (phoneInput && phoneError) {
+        phoneInput.addEventListener('input', function() {
+            if (/^\d{10}$/.test(phoneInput.value.trim())) {
+                phoneError.textContent = '';
+            }
+        });
+    }
+});
+// Step 3 form validation: show errors only on submit
+document.addEventListener('DOMContentLoaded', function() {
+    var step3Form = document.getElementById('step3-form');
+    if (!step3Form) return;
+    var nameInput = document.getElementById('name');
+    var phoneInput = document.getElementById('contactNumber');
+    var emailInput = document.getElementById('email');
+    var dateInput = document.getElementById('weddingDate');
+    var nameError = document.getElementById('name-error');
+    var phoneError = document.getElementById('phone-error');
+    var emailError = document.getElementById('email-error');
+    var dateError = document.getElementById('date-error');
+    function validateStep3() {
+        var valid = true;
+        nameError.textContent = '';
+        phoneError.textContent = '';
+        emailError.textContent = '';
+        dateError.textContent = '';
+        if (!nameInput.value.trim()) {
+            nameError.textContent = 'Name is required.';
+            valid = false;
+        }
+        if (!phoneInput.value.match(/^\d{10}$/)) {
+            phoneError.textContent = 'Enter a valid 10-digit phone number.';
+            valid = false;
+        }
+        if (!emailInput.value.match(/^\S+@\S+\.\S+$/)) {
+            emailError.textContent = 'Enter a valid email address.';
+            valid = false;
+        }
+        if (!dateInput.value) {
+            dateError.textContent = 'Wedding date is required.';
+            valid = false;
+        }
+        return valid;
+    }
+    step3Form.addEventListener('submit', function(e) {
+        if (!validateStep3()) {
+            e.preventDefault();
+        }
+    });
+});
+// Responsive step 1 container toggle
+function showCorrectStep1Container() {
+    const desktopStep = document.getElementById('step1-desktop');
+    const tabletStep = document.getElementById('step1-tablet');
+    if (!desktopStep || !tabletStep) return;
+    if (window.innerWidth <= 991) {
+        desktopStep.style.display = 'none';
+        tabletStep.style.display = '';
+    } else {
+        desktopStep.style.display = '';
+        tabletStep.style.display = 'none';
+    }
+}
+document.addEventListener('DOMContentLoaded', showCorrectStep1Container);
+window.addEventListener('resize', function() {
+    // Only toggle if step 1 is active
+    if (document.getElementById('step1-desktop').classList.contains('active') || document.getElementById('step1-tablet').classList.contains('active')) {
+        showCorrectStep1Container();
+    }
+});
+// Tablet step 1 form logic
+document.addEventListener('DOMContentLoaded', function() {
+    const tabletForm = document.getElementById('step1-tablet-form');
+    if (tabletForm) {
+        tabletForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const languageSelect = document.getElementById('dream-select-tablet');
+            const eventSelect = document.getElementById('occasion-select-tablet');
+            const language = languageSelect.options[languageSelect.selectedIndex].text || 'Tamil';
+            const event = eventSelect.options[eventSelect.selectedIndex].text || 'Mehendi';
+            document.getElementById('hidden-language-tablet').value = language;
+            document.getElementById('hidden-event-tablet').value = event;
+            // Also set main hidden fields for backend
+            var mainLang = document.getElementById('hidden-language');
+            var mainEvent = document.getElementById('hidden-event');
+            if (mainLang) mainLang.value = language;
+            if (mainEvent) mainEvent.value = event;
+            const dynLang = document.getElementById('dynamic-language');
+            const dynEvent = document.getElementById('dynamic-event');
+            if (dynLang) dynLang.textContent = language;
+            if (dynEvent) dynEvent.textContent = event;
+            goToStep(2);
+        });
+    }
+});
                                     // Set min date to today for wedding date input
                                     document.addEventListener('DOMContentLoaded', function() {
                                         var weddingDateInput = document.getElementById('weddingDate');
@@ -1462,7 +1752,9 @@
         <!-- OTP Modal -->
         <div id="otp-modal">
             <div class="otp-modal-content" style="position:relative;">
-                <button id="otp-modal-close" type="button" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;" aria-label="Close OTP Modal">&times;</button>
+                <button id="otp-modal-close" type="button"
+                    style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
+                    aria-label="Close OTP Modal">&times;</button>
 
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
@@ -1499,8 +1791,8 @@
                     </div>
 
                     <div class="otp-success" style="display:none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                             <path
                                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                         </svg>
@@ -1519,7 +1811,7 @@
             </div>
         </div>
         <!-- reCAPTCHA container (hidden) -->
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container" class="d-none"></div>
     </div>
 
 
@@ -1528,9 +1820,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script>
-
-
-  // OTP Modal close button logic
+        // OTP Modal close button logic
         document.addEventListener('DOMContentLoaded', function() {
             var otpModal = document.getElementById('otp-modal');
             var otpCloseBtn = document.getElementById('otp-modal-close');
@@ -1549,7 +1839,9 @@
 
             // Get selected jewellery pieces (all checked checkboxes)
             var checkedJewellery = document.querySelectorAll('.jewellery-checkbox d-none:checked');
-            var jewelleryPieces = Array.from(checkedJewellery).map(function(cb) { return cb.value; });
+            var jewelleryPieces = Array.from(checkedJewellery).map(function(cb) {
+                return cb.value;
+            });
             document.getElementById('hidden-jewellery-pieces').value = jewelleryPieces.join(',');
         }
 
@@ -1578,13 +1870,52 @@
             }
         });
         // ...existing code...
+        // Interactive validation for step3 form with red border and inline errors
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('step3-form');
+            var nameInput = document.getElementById('name');
+            var emailInput = document.getElementById('email');
+            var phoneInput = document.getElementById('contactNumber');
+            var dateInput = document.getElementById('weddingDate');
+            var nameError = document.getElementById('name-error');
+            var emailError = document.getElementById('email-error');
+            var phoneError = document.getElementById('phone-error');
+            var dateError = document.getElementById('date-error');
+
+            function setError(input, errorDiv, message) {
+                input.style.borderColor = message ? '#d00' : '';
+                errorDiv.textContent = message || '';
+            }
+
+            function validateField() {
+                setError(nameInput, nameError, !nameInput.value.trim() ? 'Name is required.' : '');
+                setError(emailInput, emailError, !emailInput.value.trim() ? 'Email is required.' : (!
+                    /^\S+@\S+\.\S+$/.test(emailInput.value.trim()) ? 'Email format is invalid.' : ''));
+                var phoneVal = phoneInput.value.trim();
+                setError(phoneInput, phoneError, !phoneVal ? 'Phone number is required.' : (!/^\d{10}$/.test(
+                    phoneVal) ? 'Contact Number must be exactly 10 digits.' : ''));
+                setError(dateInput, dateError, !dateInput.value.trim() ? 'Date of occasion is required.' : '');
+            }
+
+
+            form.addEventListener('submit', function(e) {
+                validateField();
+                var hasError = nameError.textContent || emailError.textContent || phoneError.textContent ||
+                    dateError.textContent;
+                if (hasError) {
+                    e.preventDefault();
+                }
+            });
+        });
         // OTP input logic: enable Verify button only when 6 digits entered
         document.addEventListener('DOMContentLoaded', function() {
             var otpInputs = document.querySelectorAll('.otp-box');
             var verifyBtn = document.getElementById('verify-otp-btn');
             otpInputs.forEach(function(input) {
                 input.addEventListener('input', function() {
-                    var allFilled = Array.from(otpInputs).every(function(inp) { return inp.value.length === 1; });
+                    var allFilled = Array.from(otpInputs).every(function(inp) {
+                        return inp.value.length === 1;
+                    });
                     verifyBtn.disabled = !allFilled;
                 });
             });
@@ -1593,7 +1924,9 @@
         // Show loading spinner only after clicking Verify OTP
         function verifyOTP() {
             var otpInputs = document.querySelectorAll('.otp-box');
-            var otpValue = Array.from(otpInputs).map(function(inp) { return inp.value; }).join('');
+            var otpValue = Array.from(otpInputs).map(function(inp) {
+                return inp.value;
+            }).join('');
             if (otpValue.length !== 6) return;
             document.querySelector('.otp-loading').style.display = 'flex';
             document.getElementById('verify-otp-btn').disabled = true;
@@ -1603,15 +1936,15 @@
                 document.querySelector('.otp-success').style.display = 'flex';
             }, 1500);
         }
-     const firebaseConfig = {
-  apiKey: 'AIzaSyBqLtJbDYe-X-5a-d2BLc-su-X9GlxclQ0',
-  authDomain: 'localhost',
-  projectId: 'user-wishlist',
-  storageBucket: 'user-wishlist.firebasestorage.app',
-  messagingSenderId: '718283592432',
-  appId: '1:718283592432:web:ec986b729c43ae39872835',
-  measurementId: 'G-MJRQ18F8Z4',
-}
+        const firebaseConfig = {
+            apiKey: 'AIzaSyBqLtJbDYe-X-5a-d2BLc-su-X9GlxclQ0',
+            authDomain: 'localhost',
+            projectId: 'user-wishlist',
+            storageBucket: 'user-wishlist.firebasestorage.app',
+            messagingSenderId: '718283592432',
+            appId: '1:718283592432:web:ec986b729c43ae39872835',
+            measurementId: 'G-MJRQ18F8Z4',
+        }
 
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth(); // Use a consistent auth variable
@@ -1658,10 +1991,19 @@
         // Step navigation functions
         function goToStep(stepNum) {
             document.querySelectorAll('.step-container').forEach(step => step.classList.remove('active'));
-            const targetStep = document.getElementById('step' + stepNum);
-
-            if (targetStep) {
-                targetStep.classList.add('active');
+            if (stepNum === 1) {
+                if (window.innerWidth <= 991) {
+                    // Tablet/mobile
+                    const tabletStep = document.getElementById('step1-tablet');
+                    if (tabletStep) tabletStep.classList.add('active');
+                } else {
+                    // Desktop
+                    const desktopStep = document.getElementById('step1-desktop');
+                    if (desktopStep) desktopStep.classList.add('active');
+                }
+            } else {
+                const targetStep = document.getElementById('step' + stepNum);
+                if (targetStep) targetStep.classList.add('active');
             }
         }
 
@@ -1734,8 +2076,8 @@
                         document.getElementById('otp-error').textContent = ''; // Clear previous errors
                         console.log('OTP sent successfully.');
                     }).catch(function(error) {
-                        console.error("Error sending OTP:", error);
-                        document.getElementById('otp-error').textContent = "Error: " + error.message;
+                        // console.error("Error sending OTP:", error);
+                        document.getElementById('otp-error').textContent = "";
                         // You might want to hide the modal here or allow resend
                     });
             });
