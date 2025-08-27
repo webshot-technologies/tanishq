@@ -106,7 +106,7 @@
                                 C195.532,17.899,236.466,55.92,256.001,105.69"/>
                         </svg>
                     </span>
-                    <span id="wishlistBtnText">Add to Wishlist</span>
+                    <span id="wishlistBtnText"> Wishlist</span>
                 </button>
             </div>
             <div class="col-sm-6 col-12 " >
@@ -134,11 +134,11 @@
                 if (isWishlisted) {
                     if (borderHeart) borderHeart.style.display = 'none';
                     if (fillHeart) fillHeart.style.display = 'inline';
-                    wishlistBtnText.textContent = 'Remove from Wishlist';
+                    wishlistBtnText.textContent = 'Wishlist';
                 } else {
                     if (borderHeart) borderHeart.style.display = 'inline';
                     if (fillHeart) fillHeart.style.display = 'none';
-                    wishlistBtnText.textContent = 'Add to Wishlist';
+                    wishlistBtnText.textContent = 'Wishlist';
                 }
             }
             updateWishlistBtnUI();

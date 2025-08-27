@@ -118,7 +118,7 @@ body {
 }
 
 /* Luxury accents for the CTA */
-.btn.btn-custom{
+/* .btn.btn-custom{
   min-width: 220px;
   padding: 12px 22px;
   border: none;
@@ -128,7 +128,7 @@ body {
   color: #fff;
   box-shadow: 0 3px 12px rgba(0,0,0,.35);
   transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
-}
+} */
 .btn.btn-custom:hover{
   background: #300708;
   transform: translateY(-2px);
@@ -2143,3 +2143,30 @@ img.productDetails_img {
     font-size: 10px;
 }
 }
+
+
+
+/* ----------test csss  */
+.checklist{ max-width: 1100px; margin-inline:auto; padding: 32px 16px 48px; }
+    .figure{ position: relative; border-radius: 20px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+    .figure-inner{ position: relative; width: 100%; }
+    .model{ display:block; width:100%; height:auto; object-fit: contain; }
+
+    /* Anchors (body points) */
+    .anchor{ position:absolute; width:10px; height:10px; border-radius:999px; background:#3b2b28; opacity:.35; left: var(--x); top: var(--y); transform: translate(-50%,-50%); pointer-events:none; }
+
+    /* Chips */
+    .chip{ position:absolute; left: var(--cx); top: var(--cy); transform: translate(-50%,-50%); display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background: var(--chip); border:1px solid var(--chip-bd); border-radius: 999px; box-shadow: 0 6px 16px rgba(0,0,0,.06); white-space: nowrap; z-index:2; }
+    .chip input{ width:16px; height:16px; accent-color: var(--gold); }
+    .chip span{ font-size: 14px; color: var(--ink); }
+    .chip:hover{ transform: translate(-50%,-50%) translateY(-1px); }
+    .chip input:checked + span{ font-weight:600; }
+
+    /* Leader lines (SVG overlay) */
+    .leaders{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+    .leaders line{ stroke:#bfb8b4; stroke-width:1.5; stroke-linecap:round; }
+
+    /* CTA */
+    .cta-wrap{ display:flex; justify-content:center; margin-top: 28px; }
+    .btn-gold{ background:#2a0a08; color:#fff; border:none; border-radius: 999px; padding: 12px 20px; font-weight:600; }
+    .btn-gold:hover{ filter: brightness(1.05); }

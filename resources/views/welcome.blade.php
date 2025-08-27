@@ -86,9 +86,9 @@
         }
 
 
-       
 
-   
+
+
 
     /* Fullscreen background image */
     .background-image {
@@ -198,7 +198,7 @@
     <div class="container step-1-desktop-view px-0">
 
         <!-- STEP 1 -->
-    <div class="step-container active mx-auto" id="step1-desktop" style="height: 100vh;">
+    <div class="step-container  mx-auto" id="step1-desktop" style="height: 100vh;">
   <div class="row align-items-center my-4 mx-auto container">
     <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 position-relative">
       <div class="row g-0 h-100">
@@ -279,7 +279,7 @@
     </div>
    <div class="container step-1-tablet-view px-0">
     <!-- Background Image -->
-    <div class="step-container active mx-auto" id="step1-tablet" style="height: 100vh;">
+    <div class="step-container  mx-auto" id="step1-tablet" style="height: 100vh;">
     <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg" alt="Wedding" class="background-image">
 
     <!-- Top Logo Overlay -->
@@ -336,6 +336,7 @@
         </div>
   </div>
   </div>
+
     <div class="container px-0">
         <!-- STEP 2 -->
         <div id="step2" class="step-container   overflow-hidden" style="min-height: 100vh; width: 100%;">
@@ -412,7 +413,7 @@
                     </div>
 
 
-                    <div id="outfit-details-container " class="mt-4 ">
+                    <div id="outfit-details-container" class="mt-4">
 
                         <div id="lehanga-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
@@ -1531,7 +1532,7 @@
 
 
     <!-- STEP 3 -->
-    <div class="step-container container " id="step3">
+    <div class="step-container container active" id="step3">
         <div class="row align-items-center container px-0 mx-auto">
             <div
                 class="col-12 col-xl-10 py-4 text-center mx-auto d-flex align-items-center justify-content-center justify-normal position-relative">
@@ -1588,7 +1589,110 @@
                                 <input type="date" class="form-control" id="weddingDate" name="weddingDate"
                                     placeholder="mm/dd/yyyy" required>
                                 <div id="date-error" style="color:#d00;font-size:13px;"></div>
-                                <script>
+
+                            </div>
+                        </div>
+                        <div class="form-check mb-4 d-flex justify-content-center px-0 ">
+                            <input class="form-check-input " style="margin-right:5px" type="checkbox" value="1"
+                                id="receiveCall" name="receiveCall">
+                            <label class="form-check-label" for="receiveCall">
+                                Receive call from store for follow-up.
+                            </label>
+                        </div>
+                        <div class="form-check d-flex justify-content-center px-0">
+
+                            <div class="">
+                                <button type="submit" name="recommended_products"
+                                    class="btn border border-2 rounded-5 btn-custom mb-2">Recommended Products</button>
+                                <button type="submit" name="full_catalogue"
+                                    class="btn border border-2 rounded-5 btn-custom mb-2">Explore Catalogue</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class=" text-center text-muted note-disclaimer small mt-4 px-md-5">
+                    <p class="fw-bold text-dark mb-2 text-start">Note</p>
+                    <p class="text-start b">Please be advised that this checklist does not obligate you to make
+                        purchases from Tanishq.
+                        Information will only be saved in our store’s system for quick review when you revisit, until
+                        your date of wedding</p>
+                </div>
+                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
+                </div>
+            </div>
+        </div>
+        <!-- OTP Modal -->
+        <div id="otp-modal">
+            <div class="otp-modal-content" style="position:relative;">
+                <button id="otp-modal-close" type="button"
+                    style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
+                    aria-label="Close OTP Modal">&times;</button>
+
+                <div class="otp-right">
+                    <h4 class="otp-heading">Verify with OTP</h4>
+                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
+
+                    <!-- OTP Input Boxes -->
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" class="otp-box" data-index="1"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="2"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="3"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="4"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="5"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                        <input type="text" maxlength="1" class="otp-box" data-index="6"
+                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
+                            pattern="[0-9]*">
+                    </div>
+
+                    <div id="otp-error" class="otp-error"></div>
+
+
+                    <div class="otp-loading" style="display:none;">
+                        <div class="otp-spinner"></div>
+                        <span>Verifying OTP...</span>
+                    </div>
+
+                    <div class="otp-success" style="display:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
+                        Verified successfully!
+                    </div>
+
+                    <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
+
+                    <button id="verify-otp-btn" class="otp-btn" onclick="verifyOTP()" disabled>Verify OTP</button>
+
+                    {{-- <p class="otp-terms">
+                        By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy
+                            Policy</a>
+                    </p> --}}
+                </div>
+            </div>
+        </div>
+        <!-- reCAPTCHA container (hidden) -->
+        <div id="recaptcha-container" class="d-none"></div>
+    </div>
+
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+       <script>
 // Hide phone error when user corrects input
 document.addEventListener('DOMContentLoaded', function() {
     var phoneInput = document.getElementById('contactNumber');
@@ -1717,108 +1821,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         }
                                     });
                                 </script>
-                            </div>
-                        </div>
-                        <div class="form-check mb-4 d-flex justify-content-center px-0 ">
-                            <input class="form-check-input " style="margin-right:5px" type="checkbox" value="1"
-                                id="receiveCall" name="receiveCall">
-                            <label class="form-check-label" for="receiveCall">
-                                Receive call from store for follow-up.
-                            </label>
-                        </div>
-                        <div class="form-check d-flex justify-content-center px-0">
 
-                            <div class="d-flex gap-4">
-                                <button type="submit" name="recommended_products"
-                                    class="btn border border-2 rounded-5 btn-custom">Recommended Products</button>
-                                <button type="submit" name="full_catalogue"
-                                    class="btn border border-2 rounded-5 btn-custom">Explore Catalogue</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class=" text-center text-muted note-disclaimer small mt-4 px-md-5">
-                    <p class="fw-bold text-dark mb-2 text-start">Note</p>
-                    <p class="text-start b">Please be advised that this checklist does not obligate you to make
-                        purchases from Tanishq.
-                        Information will only be saved in our store’s system for quick review when you revisit, until
-                        your date of wedding</p>
-                </div>
-                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
-                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
-                </div>
-            </div>
-        </div>
-        <!-- OTP Modal -->
-        <div id="otp-modal">
-            <div class="otp-modal-content" style="position:relative;">
-                <button id="otp-modal-close" type="button"
-                    style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
-                    aria-label="Close OTP Modal">&times;</button>
-
-                <div class="otp-right">
-                    <h4 class="otp-heading">Verify with OTP</h4>
-                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
-
-                    <!-- OTP Input Boxes -->
-                    <div class="otp-inputs">
-                        <input type="text" maxlength="1" class="otp-box" data-index="1"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                        <input type="text" maxlength="1" class="otp-box" data-index="2"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                        <input type="text" maxlength="1" class="otp-box" data-index="3"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                        <input type="text" maxlength="1" class="otp-box" data-index="4"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                        <input type="text" maxlength="1" class="otp-box" data-index="5"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                        <input type="text" maxlength="1" class="otp-box" data-index="6"
-                            onkeyup="handleOTPInput(this)" onfocus="this.select()" inputmode="numeric"
-                            pattern="[0-9]*">
-                    </div>
-
-                    <div id="otp-error" class="otp-error"></div>
-
-
-                    <div class="otp-loading" style="display:none;">
-                        <div class="otp-spinner"></div>
-                        <span>Verifying OTP...</span>
-                    </div>
-
-                    <div class="otp-success" style="display:none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </svg>
-                        Verified successfully!
-                    </div>
-
-                    <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
-
-                    <button id="verify-otp-btn" class="otp-btn" onclick="verifyOTP()" disabled>Verify OTP</button>
-
-                    {{-- <p class="otp-terms">
-                        By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy
-                            Policy</a>
-                    </p> --}}
-                </div>
-            </div>
-        </div>
-        <!-- reCAPTCHA container (hidden) -->
-        <div id="recaptcha-container" class="d-none"></div>
-    </div>
-
-
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script>
         // OTP Modal close button logic
         document.addEventListener('DOMContentLoaded', function() {
@@ -2021,13 +2024,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.addEventListener('click', function() {
                     document.querySelectorAll('.outfit-card').forEach(c => c.classList.remove('active'));
                     this.classList.add('active');
-                    document.querySelectorAll('.detail-section').forEach(section => section.style.display =
-                        'none');
+                    document.querySelectorAll('.detail-section').forEach(section => section.style.display = 'none');
                     const outfit = this.getAttribute('data-outfit');
                     const detailsId = outfit + '-details';
                     const detailsSection = document.getElementById(detailsId);
                     if (detailsSection) {
                         detailsSection.style.display = 'block';
+                    }
+                    // Scroll to details container
+                    var detailsContainer = document.getElementById('outfit-details-container');
+                    if (detailsContainer) {
+                        detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
             });
