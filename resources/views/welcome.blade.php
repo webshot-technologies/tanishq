@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
     <!-- Custom CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
@@ -90,105 +91,310 @@
 
 
 
-    /* Fullscreen background image */
-    .background-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
+        /* Fullscreen background image */
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
 
-    /* Top logo overlay */
-    .overlay-top {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
+        /* Top logo overlay */
+        .overlay-top {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
 
-    .overlay-top img {
-      max-width: 200px;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-    }
+        .overlay-top img {
+            max-width: 200px;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+        }
 
-    /* Bottom overlay with luxurious styling */
-    .overlay-bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(20, 0, 0, 0.8); /* rich maroon-black translucent */
-      color: #fff;
-      z-index: 2;
-      padding: 25px 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255,215,0,0.3); /* subtle gold line */
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
-    }
+        /* Bottom overlay with luxurious styling */
+        .overlay-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(20, 0, 0, 0.8);
+            /* rich maroon-black translucent */
+            color: #fff;
+            z-index: 2;
+            padding: 25px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            /* subtle gold line */
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+        }
 
-    .form-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      align-items: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+        .form-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    label {
-      /* font-size: 14px;
+        label {
+            /* font-size: 14px;
       font-weight: bold;
       color: #f5e6c4; warm gold */
-    }
+        }
 
-    select {
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #d4af37; /* gold border */
-      font-size: 14px;
-      min-width: 180px;
-      background: rgba(255,255,255,0.95);
-      color: #333;
-      font-family: "Arial", sans-serif;
-    }
+        select {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            /* gold border */
+            font-size: 14px;
+            min-width: 180px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            font-family: "Arial", sans-serif;
+        }
 
-    /* button {
-      padding: 12px 20px;
-      border-radius: 30px;
-      border: none;
-      font-size: 15px;
-      min-width: 200px;
-      background: linear-gradient(135deg, #800000, #a52a2a);
-      color: #fff;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-    } */
 
-    /* button:hover {
-      background: linear-gradient(135deg, #600000, #8b1a1a);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    } */
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .form-section {
-        flex-direction: column;
-        gap: 12px;
-      }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-section {
+                flex-direction: column;
+                gap: 12px;
+            }
 
-      select, button {
-        min-width: 100%;
-      }
-    }
+            select,
+            button {
+                min-width: 100%;
+            }
+        }
+
+
+        .jewelry-section {
+            position: relative;
+            overflow: hidden;
+            /* padding: 4rem 0; */
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .dynamic-text {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        /* Swiper Container */
+        .jewelry-swiper {
+            width: 100%;
+            height: 500px;
+            padding: 2rem 0;
+            overflow: visible;
+        }
+
+        /* Parallax Background */
+        /* .parallax-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            background-size: cover;
+            background-position: center;
+        } */
+
+        /* Slide Card */
+        .jewelry-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid #8a2323;
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            height: 380px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 16px rgba(0, 0, 0, 0.08); */
+        }
+
+        .jewelry-card:hover {
+            transform: scale(1.02);
+            /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.12); */
+        }
+
+        .jewelry-card.active {
+            /* background: rgba(255, 255, 255, 0.2); */
+            border: 2px solid #8a2323;
+            transform: scale(1.02);
+        }
+
+        .card-image {
+            width: 100%;
+            /* height: 280px; */
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .jewelry-card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 3rem 1.5rem 1.5rem;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Swiper Navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Swiper Pagination */
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #ff6b6b;
+            transform: scale(1.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .jewelry-card {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .jewelry-card {
+                height: 360px;
+            }
+
+            .card-image {
+                /* height: 240px; */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .jewelry-card {
+                height: 340px;
+            }
+
+            .card-image {
+                /* height: 220px; */
+            }
+
+            .jewelry-section {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Shimmer Effect */
+        .shimmer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .jewelry-card:hover .shimmer::before {
+            left: 100%;
+        }
     </style>
 
 </head>
@@ -198,150 +404,157 @@
     <div class="container step-1-desktop-view px-0">
 
         <!-- STEP 1 -->
-    <div class="step-container  mx-auto" id="step1-desktop" style="height: 100vh;">
-  <div class="row align-items-center my-4 mx-auto container">
-    <div class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 position-relative">
-      <div class="row g-0 h-100">
-        <!-- LEFT: Step Section -->
-        <div id="step-section-container" class="col-lg-6 p-0 banner-height">
-          <div class="d-flex flex-column justify-content-between bg-custom-light p-4 p-md-5 h-100">
-            <div class="text-custom-dark">
-              <div class="mb-5">
-                <div class="d-flex flex-column align-items-start">
-                  <a class="mx-auto" href="/">
-                    <img src="{{ asset('image/logo.png') }}" class="form-logo-img logo-overlay" alt="Tanishq Logo">
-                  </a>
-                </div>
-              </div>
+        <div class="step-container active  mx-auto" id="step1-desktop" style="height: 100vh;">
+            <div class="row align-items-center my-4 mx-auto container">
+                <div
+                    class="col-12 col-xl-10 card px-0 shadow-lg mx-auto rounded-4 overflow-hidden h-100 position-relative">
+                    <div class="row g-0 h-100">
+                        <!-- LEFT: Step Section -->
+                        <div id="step-section-container" class="col-lg-6 p-0 banner-height">
+                            <div class="d-flex flex-column justify-content-between bg-custom-light p-4 p-md-5 h-100">
+                                <div class="text-custom-dark">
+                                    <div class="mb-5">
+                                        <div class="d-flex flex-column align-items-start">
+                                            <a class="mx-auto" href="/">
+                                                <img src="{{ asset('image/logo.png') }}"
+                                                    class="form-logo-img logo-overlay" alt="Tanishq Logo">
+                                            </a>
+                                        </div>
+                                    </div>
 
-              <!-- Step 1 Form -->
-              <form id="step1-form" class="mt-5">
-                <div class="d-flex form-content mb-5 align-items-baseline">
-                  <span class="mb-0 text-nowrap form-text">My Dream</span>
-                  <select class="form-select border-bottom  py-0"
-                          required id="language-select" aria-label="Select community">
-                    <option selected>Tamil</option>
-                    <option>Telugu</option>
-                    <option>Gujarati</option>
-                    <option>Bengali</option>
-                    <option>Odia</option>
-                    <option>Bihari</option>
-                    <option>UP</option>
-                    <option>Marwari</option>
-                    <option>Punjabi</option>
-                    <option>Marathi</option>
-                    <option>Kannada</option>
-                    <option>Jat</option>
-                    <option>Rajput</option>
-                    <option>Assamese</option>
-                    <option>Manipuri</option>
-                    <option>Malayalee</option>
-                    <option>Kumaoni</option>
-                    <option>Muslim</option>
-                  </select>
-                </div>
+                                    <!-- Step 1 Form -->
+                                    <form id="step1-form" class="mt-5">
+                                        <div class="d-flex form-content mb-5 align-items-baseline">
+                                            <span class="mb-0 text-nowrap form-text">My Dream</span>
+                                            <select class="form-select border-bottom  py-0" required
+                                                id="language-select" aria-label="Select community">
+                                                <option selected>Tamil</option>
+                                                <option>Telugu</option>
+                                                <option>Gujarati</option>
+                                                <option>Bengali</option>
+                                                <option>Odia</option>
+                                                <option>Bihari</option>
+                                                <option>UP</option>
+                                                <option>Marwari</option>
+                                                <option>Punjabi</option>
+                                                <option>Marathi</option>
+                                                <option>Kannada</option>
+                                                <option>Jat</option>
+                                                <option>Rajput</option>
+                                                <option>Assamese</option>
+                                                <option>Manipuri</option>
+                                                <option>Malayalee</option>
+                                                <option>Kumaoni</option>
+                                                <option>Muslim</option>
+                                            </select>
+                                        </div>
 
-                <div class="d-flex align-items-baseline mb-5">
-                  <select class="form-select border-bottom  me-3 py-0"
-                          required id="event-select" aria-label="Select occasion">
-                    <option selected>Mehendi</option>
-                    <option>Engagement</option>
-                    <option>Sangeet</option>
-                    <option>Haldi</option>
-                    <option>Cocktail</option>
-                    <option>Reception</option>
-                    <option>Wedding</option>
-                  </select>
-                  <span class="mb-0 form-text">Checklist</span>
-                </div>
+                                        <div class="d-flex align-items-baseline mb-5">
+                                            <select class="form-select border-bottom  me-3 py-0" required
+                                                id="event-select" aria-label="Select occasion">
+                                                <option selected>Mehendi</option>
+                                                <option>Engagement</option>
+                                                <option>Sangeet</option>
+                                                <option>Haldi</option>
+                                                <option>Cocktail</option>
+                                                <option>Reception</option>
+                                                <option>Wedding</option>
+                                            </select>
+                                            <span class="mb-0 form-text">Checklist</span>
+                                        </div>
 
-                <div class="mx-auto d-flex justify-content-center justify-content-lg-start">
-                  <button type="submit" class="btn rounded-5 mx-auto btn-custom">Choose My Look</button>
-                </div>
-              </form>
-            </div>
+                                        <div class="mx-auto d-flex justify-content-center justify-content-lg-start">
+                                            <button type="submit" class="btn rounded-5 mx-auto btn-custom">Choose My
+                                                Look</button>
+                                        </div>
+                                    </form>
+                                </div>
 
-            <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75 fw-200">
-              &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: Image -->
-        <div class="col-lg-6 col-12 p-0 banner-height">
-          <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg"
-               alt="Wedding jewelry on hands" class="img-fluid w-100 h-100 object-fit-cover hero-img">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </div>
-   <div class="container step-1-tablet-view px-0">
-    <!-- Background Image -->
-    <div class="step-container  mx-auto" id="step1-tablet" style="height: 100vh;">
-    <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg" alt="Wedding" class="background-image">
-
-    <!-- Top Logo Overlay -->
-    <div class="overlay-top">
-      <img src="https://test.webshotglobal.com/image/logo.png" alt="Tanishq Logo">
-    </div>
-
-        <!-- Bottom Form Overlay -->
-        <div class="overlay-bottom">
-            <form id="step1-tablet-form" autocomplete="off">
-                <div class="form-section d-flex flex-row align-items-center justify-content-between" style="gap: 1.5rem;">
-                    <div class="d-flex flex-row align-items-center g-2rem w-100" >
-                        <div class="d-flex flex-column flex-grow-1">
-                            <label for="dream-select-tablet" class="fw-semibold mb-1 text-start">My Dream:</label>
-                            <select id="dream-select-tablet" class="form-select">
-                                 <option selected>Tamil</option>
-                    <option>Telugu</option>
-                    <option>Gujarati</option>
-                    <option>Bengali</option>
-                    <option>Odia</option>
-                    <option>Bihari</option>
-                    <option>UP</option>
-                    <option>Marwari</option>
-                    <option>Punjabi</option>
-                    <option>Marathi</option>
-                    <option>Kannada</option>
-                    <option>Jat</option>
-                    <option>Rajput</option>
-                    <option>Assamese</option>
-                    <option>Manipuri</option>
-                    <option>Malayalee</option>
-                    <option>Kumaoni</option>
-                    <option>Muslim</option>
-                            </select>
+                                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75 fw-200">
+                                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color">mirrAR</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex flex-column flex-grow-1">
-                            <label for="occasion-select-tablet" class="fw-semibold mb-1 text-start">Occasion:</label>
-                            <select id="occasion-select-tablet" class="form-select">
-                                 <option selected>Mehendi</option>
-                    <option>Engagement</option>
-                    <option>Sangeet</option>
-                    <option>Haldi</option>
-                    <option>Cocktail</option>
-                    <option>Reception</option>
-                    <option>Wedding</option>
-                            </select>
+
+                        <!-- RIGHT: Image -->
+                        <div class="col-lg-6 col-12 p-0 banner-height">
+                            <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg"
+                                alt="Wedding jewelry on hands" class="img-fluid w-100 h-100 object-fit-cover hero-img">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary px-4 py-2" style="white-space:nowrap;">Choose My Look</button>
                 </div>
-                <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil">
-                <input type="hidden" id="hidden-event-tablet" name="event" value="Mehendi">
-            </form>
+            </div>
         </div>
-  </div>
-  </div>
+    </div>
+    <div class="container step-1-tablet-view px-0">
+        <!-- Background Image -->
+        <div class="step-container  active mx-auto" id="step1-tablet" style="height: 100vh;">
+            <img src="https://storage.googleapis.com/msgsndr/0pbzpC0j1SUC7nWRJx4Y/media/68ac1cac6979a0a583db004c.jpeg"
+                alt="Wedding" class="background-image">
+
+            <!-- Top Logo Overlay -->
+            <div class="overlay-top">
+                <img src="https://test.webshotglobal.com/image/logo.png" alt="Tanishq Logo">
+            </div>
+
+            <!-- Bottom Form Overlay -->
+            <div class="overlay-bottom">
+                <form id="step1-tablet-form" autocomplete="off">
+                    <div class="form-section d-flex flex-row align-items-center justify-content-between"
+                        style="gap: 1.5rem;">
+                        <div class="d-flex flex-row align-items-center g-2rem w-100">
+                            <div class="d-flex flex-column flex-grow-1">
+                                <label for="dream-select-tablet" class="fw-semibold mb-1 text-start">My Dream:</label>
+                                <select id="dream-select-tablet" class="form-select">
+                                    <option selected>Tamil</option>
+                                    <option>Telugu</option>
+                                    <option>Gujarati</option>
+                                    <option>Bengali</option>
+                                    <option>Odia</option>
+                                    <option>Bihari</option>
+                                    <option>UP</option>
+                                    <option>Marwari</option>
+                                    <option>Punjabi</option>
+                                    <option>Marathi</option>
+                                    <option>Kannada</option>
+                                    <option>Jat</option>
+                                    <option>Rajput</option>
+                                    <option>Assamese</option>
+                                    <option>Manipuri</option>
+                                    <option>Malayalee</option>
+                                    <option>Kumaoni</option>
+                                    <option>Muslim</option>
+                                </select>
+                            </div>
+                            <div class="d-flex flex-column flex-grow-1">
+                                <label for="occasion-select-tablet"
+                                    class="fw-semibold mb-1 text-start">Occasion:</label>
+                                <select id="occasion-select-tablet" class="form-select">
+                                    <option selected>Mehendi</option>
+                                    <option>Engagement</option>
+                                    <option>Sangeet</option>
+                                    <option>Haldi</option>
+                                    <option>Cocktail</option>
+                                    <option>Reception</option>
+                                    <option>Wedding</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary px-4 py-2" style="white-space:nowrap;">Choose My
+                            Look</button>
+                    </div>
+                    <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil">
+                    <input type="hidden" id="hidden-event-tablet" name="event" value="Mehendi">
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="container px-0">
         <!-- STEP 2 -->
-        <div id="step2" class="step-container   overflow-hidden" style="min-height: 100vh; width: 100%;">
-            <div class="row align-items-center ">
-                <div class="col-12 col-xl-10 card py-4 px-4 border-0 bg-transparent mx-auto rounded-4 overflow-hidden">
+        <div id="step2" class="step-container    overflow-hidden" style="min-height: 100vh; width: 100%;">
+            <div class="row align-items-center jewelry-section">
+                <div class="col-12 col-xl-12 card py-4 px-4 border-0 bg-transparent mx-auto rounded-4 overflow-hidden">
                     <div class="text-center mb-4 d-flex align-items-center justify-content-center" style="gap: 1rem;">
                         <button type="button" class="btn btn-link p-0 me-3 d-flex align-items-center"
                             onclick="prevStep(1)" style="position: absolute; left: 2rem;">
@@ -355,60 +568,49 @@
                         <a href="/"><img src="{{ asset('image/logo.png') }}"class="form-logo-img mb-2"
                                 alt="Tanishq Logo"></a>
                     </div>
-
-                    <div class="row text-center outfit-selection-row mt-4">
+                           <div class="parallax-bg" data-swiper-parallax="-23%"></div>
+                    <div class="row text-center outfit-selection-row mt-4 px-2">
                         <span class="fw-normal fs-1 base-color mb-5 light-font">
                             Jewellery For <span id="dynamic-language">Tamil</span> Style
                             <span id="dynamic-event">Mehendi</span> Ceremony
                         </span>
 
-                        <!-- Scrollable Row -->
-                        <div class="d-flex flex-wrap md-flex-nowrap overflow-auto px-3 w-100 ">
+                           <!-- Scrollable Row -->
+                        <div class="swiper jewelry-swiper">
+                            <div class="swiper-wrapper">
+                                 <!-- Slide 1 - Gown -->
+                                <div class="swiper-slide">
+                                    <div class="jewelry-card shimmer" data-outfit="gown">
+                                        <img src="{{ asset('image/gown.jpeg') }}" class="card-image" alt="Gown">
+                                    </div>
+                                </div>
+                                <!-- Slide 2 - Lehanga (Active) -->
+                                <div class="swiper-slide">
+                                    <div class="jewelry-card active shimmer " data-outfit="lehanga">
 
-                            <!-- Card 1 -->
-                            <div class="outfit-card-wrapper mb-3  px-2">
-                                <div class="card outfit-card bg-transparent shadow-md" data-outfit="gown">
-                                    <img src="{{ asset('image/gown.jpeg') }}" class="card-img-top outfit-img"
-                                        alt="Gown">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-semibold">Gown</h5>
+                                        <img src="{{ asset('image/lahnga.jpeg') }}" class="card-image"
+                                            alt="Lehanga">
+
+                                    </div>
+                                </div>
+                                <!-- Slide 3 - Saree -->
+                                <div class="swiper-slide">
+                                    <div class="jewelry-card shimmer" data-outfit="saree">
+
+                                        <img src="{{ asset('image/saree.jpeg') }}" class="card-image" alt="Saree">
+
+                                    </div>
+                                </div>
+                                <!-- Slide 4 - Anarkali -->
+                                <div class="swiper-slide">
+                                    <div class="jewelry-card shimmer" data-outfit="anarkali">
+
+                                        <img src="{{ asset('image/anarkali.jpeg') }}" class="card-image"
+                                            alt="Anarkali">
+
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Card 2 -->
-                            <div class="outfit-card-wrapper  mb-3 px-2">
-                                <div class="card outfit-card bg-transparent active shadow-md" data-outfit="lehanga">
-                                    <img src="{{ asset('image/lahnga.jpeg') }}" class="card-img-top outfit-img"
-                                        alt="Lehanga">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-semibold">Lehanga</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="outfit-card-wrapper mb-3  px-2">
-                                <div class="card outfit-card bg-transparent" data-outfit="saree">
-                                    <img src="{{ asset('image/saree.jpeg') }}" class="card-img-top outfit-img"
-                                        alt="Saree">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-semibold">Saree</h5>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 4 -->
-                            <div class="outfit-card-wrapper  mb-3 px-2">
-                                <div class="card outfit-card bg-transparent" data-outfit="anarkali">
-                                    <img src="{{ asset('image/anarkali.jpeg') }}" class="card-img-top outfit-img"
-                                        alt="Anarkali">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-semibold">Anarkali</h5>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
@@ -424,7 +626,7 @@
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item lehanga-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
@@ -443,7 +645,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
 
                                     <div class="jewellery-input">
@@ -454,7 +656,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-earrings-drops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
@@ -464,7 +666,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img mx-0"
                                         alt="">
 
                                     <div class="jewellery-input">
@@ -489,11 +691,11 @@
                                             value="choker-necklace" class="jewellery-checkbox d-none">
                                         <label for="choker-necklace-cb">Choker Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item lehanga-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
@@ -521,7 +723,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-bracelet">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
@@ -549,7 +751,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
@@ -559,7 +761,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
@@ -569,7 +771,7 @@
                                 </div>
 
                                 <div class="jewellery-item lehanga-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
@@ -581,7 +783,7 @@
                         </div>
 
 
-                        <div id="gown-details" class="detail-section active">
+                        <div id="gown-details" class="detail-section ">
                             <h3 class="text-center fw-semibold mt-4">Gown Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
@@ -590,7 +792,7 @@
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item gown-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-gown" name="jewellery_pieces"
@@ -609,7 +811,7 @@
                                 </div>
 
                                 <div class="jewellery-item gown-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-gown" name="jewellery_pieces"
@@ -637,7 +839,7 @@
                                 </div>
 
                                 <div class="jewellery-item gown-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
 
                                     <div class="jewellery-input">
@@ -648,17 +850,19 @@
                                 </div>
 
                                 <div class="jewellery-item gown-nose-pin">
+                                     <img class="right-img mx-0 d-none d-md-block" src="{{ asset('image/pointers/right-long.png') }}" alt="">
+
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="nose-pin-gown" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox d-none">
                                         <label for="nose-pin-gown">Nose Pin</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-long.png') }}" alt="">
+ <img class=" mx-0 d-block d-md-none" src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
 
                                 <div class="jewellery-item gown-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-gown" name="jewellery_pieces"
@@ -673,7 +877,7 @@
                                             value="long-necklace" class="jewellery-checkbox d-none">
                                         <label for="long-necklace-gown">Long Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-long.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item gown-multiple-bangles">
@@ -682,11 +886,11 @@
                                             value="multiple-bangles" class="jewellery-checkbox d-none">
                                         <label for="multiple-bangles-gown">Multiple Bangles</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item gown-bracelet">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-gown" name="jewellery_pieces"
@@ -696,12 +900,13 @@
                                 </div>
 
                                 <div class="jewellery-item gown-single-bangle">
+                                    <img class="right-img mx-0" src="{{ asset('image/pointers/right-mid-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="single-bangle-gown" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox d-none">
                                         <label for="single-bangle-gown">Single Bangle</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+
                                 </div>
 
                                 <div class="jewellery-item gown-rings">
@@ -715,7 +920,7 @@
                                 </div>
 
                                 <div class="jewellery-item gown-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-gown" name="jewellery_pieces"
@@ -725,7 +930,7 @@
                                 </div>
 
                                 <div class="jewellery-item gown-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-gown" name="jewellery_pieces"
@@ -735,7 +940,7 @@
                                 </div>
 
                                 <div class="jewellery-item gown-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-gown" name="jewellery_pieces"
@@ -747,7 +952,7 @@
                         </div>
 
 
-                        <div id="saree-details" class="detail-section active">
+                        <div id="saree-details" class="detail-section ">
                             <h3 class="text-center fw-semibold mt-4">Saree Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
@@ -756,7 +961,7 @@
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item saree-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-saree" name="jewellery_pieces"
@@ -771,11 +976,11 @@
                                             value="forehead-pendant" class="jewellery-checkbox d-none">
                                         <label for="forehead-pendant-saree">Forehead Pendant</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img class="mx-0" src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
 
                                     <div class="jewellery-input">
@@ -786,7 +991,7 @@
                                 </div>
 
                                 <div class="jewellery-item saree-earrings-drops">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-saree" name="jewellery_pieces"
@@ -796,7 +1001,7 @@
                                 </div>
 
                                 <div class="jewellery-item saree-ear-loops">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img mx-0"
                                         alt="">
 
                                     <div class="jewellery-input">
@@ -812,7 +1017,7 @@
                                             value="nose-pin" class="jewellery-checkbox d-none">
                                         <label for="nose-pin-saree">Nose Pin</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
+                                    <img class="mx-0" src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-choker-necklace">
@@ -825,7 +1030,7 @@
                                 </div>
 
                                 <div class="jewellery-item saree-short-necklace">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-saree" name="jewellery_pieces"
@@ -849,11 +1054,11 @@
                                             value="multiple-bangles" class="jewellery-checkbox d-none">
                                         <label for="multiple-bangles-saree">Multiple Bangles</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-bracelet">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-saree" name="jewellery_pieces"
@@ -868,20 +1073,21 @@
                                             value="single-bangle" class="jewellery-checkbox d-none">
                                         <label for="single-bangle-saree">Single Bangle</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img class="mx-0" src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-rings">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" alt="">
+
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-saree" name="jewellery_pieces"
                                             value="rings" class="jewellery-checkbox d-none">
                                         <label for="rings-saree">Rings</label>
                                     </div>
+                                     <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item saree-waist-belt">
-                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-saree" name="jewellery_pieces"
@@ -891,7 +1097,7 @@
                                 </div>
 
                                 <div class="jewellery-item saree-anklet">
-                                    <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-saree" name="jewellery_pieces"
@@ -901,7 +1107,7 @@
                                 </div>
 
                                 <div class="jewellery-item saree-toe-ring">
-                                    <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img"
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-saree" name="jewellery_pieces"
@@ -913,7 +1119,7 @@
                         </div>
 
 
-                        <div id="anarkali-details" class="detail-section active">
+                        <div id="anarkali-details" class="detail-section ">
                             <h3 class="text-center fw-semibold mt-4">Anarkali Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
@@ -922,7 +1128,7 @@
                                     alt="Lehanga Model">
 
                                 <div class="jewellery-item anarkali-hair-jewellery">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-anarkali" name="jewellery_pieces"
                                             value="hair-jewellery" class="jewellery-checkbox d-none">
@@ -940,7 +1146,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-earrings-stud">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-stud-anarkali" name="jewellery_pieces"
@@ -950,7 +1156,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-earrings-drops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-anarkali" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox d-none">
@@ -959,7 +1165,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-ear-loops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0" alt="">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="ear-loops-anarkali" name="jewellery_pieces"
@@ -983,11 +1189,11 @@
                                             value="choker-necklace" class="jewellery-checkbox d-none">
                                         <label for="choker-necklace-anarkali">Choker Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item anarkali-short-necklace">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-anarkali" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox d-none">
@@ -1001,7 +1207,7 @@
                                             value="long-necklace" class="jewellery-checkbox d-none">
                                         <label for="long-necklace-anarkali">Long Necklace</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item anarkali-multiple-bangles">
@@ -1010,11 +1216,11 @@
                                             value="multiple-bangles" class="jewellery-checkbox d-none">
                                         <label for="multiple-bangles-anarkali">Multiple Bangles</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item anarkali-bracelet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-anarkali" name="jewellery_pieces"
                                             value="bracelet" class="jewellery-checkbox d-none">
@@ -1028,11 +1234,11 @@
                                             value="single-bangle" class="jewellery-checkbox d-none">
                                         <label for="single-bangle-anarkali">Single Bangle</label>
                                     </div>
-                                    <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
                                 <div class="jewellery-item anarkali-rings">
-                                    <img src="{{ asset('image/right-line.png') }}" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-anarkali" name="jewellery_pieces"
                                             value="rings" class="jewellery-checkbox d-none">
@@ -1041,7 +1247,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-waist-belt">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-anarkali" name="jewellery_pieces"
                                             value="waist-belt" class="jewellery-checkbox d-none">
@@ -1050,7 +1256,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-anklet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-anarkali" name="jewellery_pieces"
                                             value="anklet" class="jewellery-checkbox d-none">
@@ -1059,7 +1265,7 @@
                                 </div>
 
                                 <div class="jewellery-item anarkali-toe-ring">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
+                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-anarkali" name="jewellery_pieces"
                                             value="toe-ring" class="jewellery-checkbox d-none">
@@ -1068,449 +1274,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div id="gown-details" class="detail-section">
-                            <h3 class="text-center fw-semibold base-color mt-4">Gown Checklist</h3>
-                            <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces
-                                you want to see</p>
-
-                            <div class="animated-image-container position-relative">
-                                <img src="{{ asset('image/gown.png') }}" class="img-fluid outfit-img"
-                                    alt="Gown Model">
-
-                                <div class="jewellery-item hair-jewellery">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
-                                            value="hair-jewellery" class="jewellery-checkbox d-none">
-                                        <label for="hair-jewellery-cb">Hair Jewellery</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item forehead-pendant">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
-                                            value="forehead-pendant" class="jewellery-checkbox d-none">
-                                        <label for="forehead-pendant-cb">Forehead Pendant</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item earrings-stud">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
-                                            value="earrings-stud" class="jewellery-checkbox d-none">
-                                        <label for="earrings-stud-cb">Earrings - Stud</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item earrings-drops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
-                                            value="earrings-drops" class="jewellery-checkbox d-none">
-                                        <label for="earrings-drops-cb">Earrings - Drops</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item ear-loops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
-                                            value="ear-loops" class="jewellery-checkbox d-none">
-                                        <label for="ear-loops-cb">Ear Loops</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item nose-pin">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
-                                            value="nose-pin" class="jewellery-checkbox d-none">
-                                        <label for="nose-pin-cb">Nose Pin</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item choker-necklace">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
-                                            value="choker-necklace" class="jewellery-checkbox d-none">
-                                        <label for="choker-necklace-cb">Choker Necklace</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item short-necklace">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
-                                            value="short-necklace" class="jewellery-checkbox d-none">
-                                        <label for="short-necklace-cb">Short Necklace</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item long-necklace">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
-                                            value="long-necklace" class="jewellery-checkbox d-none">
-                                        <label for="long-necklace-cb">Long Necklace</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-
-
-                                </div>
-
-                                <div class="jewellery-item multiple-bangles">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
-                                            value="multiple-bangles" class="jewellery-checkbox d-none">
-                                        <label for="multiple-bangles-cb">Multiple Bangles</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item bracelet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
-                                            value="bracelet" class="jewellery-checkbox d-none">
-                                        <label for="bracelet-cb">Bracelet</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item single-bangle">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
-                                            value="single-bangle" class="jewellery-checkbox d-none">
-                                        <label for="single-bangle-cb">Single Bangle</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item rings">
-                                    <img src="{{ asset('image/right-line.png') }}" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
-                                            class="jewellery-checkbox d-none">
-                                        <label for="rings-cb">Rings</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item waist-belt">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
-                                            value="waist-belt" class="jewellery-checkbox d-none">
-                                        <label for="waist-belt-cb">Waist Belt</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item anklet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
-                                            class="jewellery-checkbox d-none">
-                                        <label for="anklet-cb">Anklet</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item toe-ring">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
-                                            value="toe-ring" class="jewellery-checkbox d-none">
-                                        <label for="toe-ring-cb">Toe Ring</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="saree-details" class="detail-section">
-                            <h3 class="text-center fw-semibold base-color mt-4">Saree Checklist</h3>
-                            <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces
-                                you want to see</p>
-                            <div class="animated-image-container position-relative">
-                                <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img"
-                                    alt="Saree Model">
-                                <div class="jewellery-item hair-jewellery">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-cb" name="jewellery_pieces"
-                                            value="hair-jewellery" class="jewellery-checkbox d-none">
-                                        <label for="hair-jewellery-cb">Hair Jewellery</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item forehead-pendant">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
-                                            value="forehead-pendant" class="jewellery-checkbox d-none">
-                                        <label for="forehead-pendant-cb">Forehead Pendant</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item earrings-stud">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-cb" name="jewellery_pieces"
-                                            value="earrings-stud" class="jewellery-checkbox d-none">
-                                        <label for="earrings-stud-cb">Earrings - Stud</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item earrings-drops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-drops-cb" name="jewellery_pieces"
-                                            value="earrings-drops" class="jewellery-checkbox d-none">
-                                        <label for="earrings-drops-cb">Earrings - Drops</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item ear-loops">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="ear-loops-cb" name="jewellery_pieces"
-                                            value="ear-loops" class="jewellery-checkbox d-none">
-                                        <label for="ear-loops-cb">Ear Loops</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item nose-pin">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
-                                            value="nose-pin" class="jewellery-checkbox d-none">
-                                        <label for="nose-pin-cb">Nose Pin</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item choker-necklace">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
-                                            value="choker-necklace" class="jewellery-checkbox d-none">
-                                        <label for="choker-necklace-cb">Choker Necklace</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item short-necklace">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="short-necklace-cb" name="jewellery_pieces"
-                                            value="short-necklace" class="jewellery-checkbox d-none">
-                                        <label for="short-necklace-cb">Short Necklace</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item long-necklace">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
-                                            value="long-necklace" class="jewellery-checkbox d-none">
-                                        <label for="long-necklace-cb">Long Necklace</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-
-
-                                </div>
-
-                                <div class="jewellery-item multiple-bangles">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
-                                            value="multiple-bangles" class="jewellery-checkbox d-none">
-                                        <label for="multiple-bangles-cb">Multiple Bangles</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item bracelet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="bracelet-cb" name="jewellery_pieces"
-                                            value="bracelet" class="jewellery-checkbox d-none">
-                                        <label for="bracelet-cb">Bracelet</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item single-bangle">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
-                                            value="single-bangle" class="jewellery-checkbox d-none">
-                                        <label for="single-bangle-cb">Single Bangle</label>
-                                    </div>
-                                    <img src="{{ asset('image/line.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item rings">
-                                    <img src="{{ asset('image/right-line.png') }}" alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
-                                            class="jewellery-checkbox d-none">
-                                        <label for="rings-cb">Rings</label>
-
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item waist-belt">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="waist-belt-cb" name="jewellery_pieces"
-                                            value="waist-belt" class="jewellery-checkbox d-none">
-                                        <label for="waist-belt-cb">Waist Belt</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item anklet">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="anklet-cb" name="jewellery_pieces" value="anklet"
-                                            class="jewellery-checkbox d-none">
-                                        <label for="anklet-cb">Anklet</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="jewellery-item toe-ring">
-                                    <img src="{{ asset('image/right-line.png') }}" class="right-img" alt="">
-
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="toe-ring-cb" name="jewellery_pieces"
-                                            value="toe-ring" class="jewellery-checkbox d-none">
-                                        <label for="toe-ring-cb">Toe Ring</label>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div id="anarkali-details" class="detail-section">
-                            <h3 class="text-center fw-semibold mt-4">Anarkali Checklist</h3>
-                            <p class="text-center text-muted light-weight text-dark-gray">Click on the Jewellery Pieces
-                                you want to see</p>
-                            <div class="animated-image-container position-relative">
-                                <img src="{{ asset('image/anarkali.png') }}" class="img-fluid" alt="Anarkali Model">
-
-                                <div class="jewellery-item saree-hair-jewellery">
-                                    <input type="checkbox" id="saree-hair-jewellery-cb" name="jewellery_pieces"
-                                        value="saree-hair-jewellery" class="jewellery-checkbox d-none">
-                                    <label for="saree-hair-jewellery-cb">Hair Jewellery</label>
-                                </div>
-
-                                <div class="jewellery-item saree-forehead-pendant">
-                                    <input type="checkbox" id="saree-forehead-pendant-cb" name="jewellery_pieces"
-                                        value="saree-forehead-pendant" class="jewellery-checkbox d-none">
-                                    <label for="saree-forehead-pendant-cb">Forehead Pendant</label>
-                                </div>
-
-                                <div class="jewellery-item saree-earrings-stud">
-                                    <input type="checkbox" id="saree-earrings-stud-cb" name="jewellery_pieces"
-                                        value="saree-earrings-stud" class="jewellery-checkbox d-none">
-                                    <label for="saree-earrings-stud-cb">Earrings - Stud</label>
-                                </div>
-
-                                <div class="jewellery-item saree-earrings-drops">
-                                    <input type="checkbox" id="saree-earrings-drops-cb" name="jewellery_pieces"
-                                        value="saree-earrings-drops" class="jewellery-checkbox d-none">
-                                    <label for="saree-earrings-drops-cb">Earrings - Drops</label>
-                                </div>
-
-                                <div class="jewellery-item saree-ear-loops">
-                                    <input type="checkbox" id="saree-ear-loops-cb" name="jewellery_pieces"
-                                        value="saree-ear-loops" class="jewellery-checkbox d-none">
-                                    <label for="saree-ear-loops-cb">Ear Loops</label>
-                                </div>
-
-                                <div class="jewellery-item saree-nose-pin">
-                                    <input type="checkbox" id="saree-nose-pin-cb" name="jewellery_pieces"
-                                        value="saree-nose-pin" class="jewellery-checkbox d-none">
-                                    <label for="saree-nose-pin-cb">Nose Pin</label>
-                                </div>
-
-                                <div class="jewellery-item saree-choker-necklace">
-                                    <input type="checkbox" id="saree-choker-necklace-cb" name="jewellery_pieces"
-                                        value="saree-choker-necklace" class="jewellery-checkbox d-none">
-                                    <label for="saree-choker-necklace-cb">Choker Necklace</label>
-                                </div>
-
-                                <div class="jewellery-item saree-short-necklace">
-                                    <input type="checkbox" id="saree-short-necklace-cb" name="jewellery_pieces"
-                                        value="saree-short-necklace" class="jewellery-checkbox d-none">
-                                    <label for="saree-short-necklace-cb">Short Necklace</label>
-                                </div>
-
-                                <div class="jewellery-item saree-long-necklace">
-                                    <input type="checkbox" id="saree-long-necklace-cb" name="jewellery_pieces"
-                                        value="saree-long-necklace" class="jewellery-checkbox d-none">
-                                    <label for="saree-long-necklace-cb">Long Necklace</label>
-                                </div>
-
-                                <div class="jewellery-item saree-waist-belt">
-                                    <input type="checkbox" id="saree-waist-belt-cb" name="jewellery_pieces"
-                                        value="saree-waist-belt" class="jewellery-checkbox d-none">
-                                    <label for="saree-waist-belt-cb">Waist Belt</label>
-                                </div>
-
-                                <div class="jewellery-item saree-multiple-bangles">
-                                    <input type="checkbox" id="saree-multiple-bangles-cb" name="jewellery_pieces"
-                                        value="saree-multiple-bangles" class="jewellery-checkbox d-none">
-                                    <label for="saree-multiple-bangles-cb">Multiple Bangles</label>
-                                </div>
-
-                                <div class="jewellery-item saree-bracelet">
-                                    <input type="checkbox" id="saree-bracelet-cb" name="jewellery_pieces"
-                                        value="saree-bracelet" class="jewellery-checkbox d-none">
-                                    <label for="saree-bracelet-cb">Bracelet</label>
-                                </div>
-
-                                <div class="jewellery-item saree-single-bangle">
-                                    <input type="checkbox" id="saree-single-bangle-cb" name="jewellery_pieces"
-                                        value="saree-single-bangle" class="jewellery-checkbox d-none">
-                                    <label for="saree-single-bangle-cb">Single Bangle</label>
-                                </div>
-
-                                <div class="jewellery-item saree-rings">
-                                    <input type="checkbox" id="saree-rings-cb" name="jewellery_pieces"
-                                        value="saree-rings" class="jewellery-checkbox d-none">
-                                    <label for="saree-rings-cb">Rings</label>
-                                </div>
-
-                                <div class="jewellery-item saree-anklet">
-                                    <input type="checkbox" id="saree-anklet-cb" name="jewellery_pieces"
-                                        value="saree-anklet" class="jewellery-checkbox d-none">
-                                    <label for="saree-anklet-cb">Anklet</label>
-                                </div>
-
-                                <div class="jewellery-item saree-toe-ring">
-                                    <input type="checkbox" id="saree-toe-ring-cb" name="jewellery_pieces"
-                                        value="saree-toe-ring" class="jewellery-checkbox d-none">
-                                    <label for="saree-toe-ring-cb">Toe Ring</label>
-                                </div>
-                            </div>
-                        </div> --}}
-
-
                     </div>
 
 
@@ -1532,7 +1295,7 @@
 
 
     <!-- STEP 3 -->
-    <div class="step-container container active" id="step3">
+    <div class="step-container container " id="step3">
         <div class="row align-items-center container px-0 mx-auto">
             <div
                 class="col-12 col-xl-10 py-4 text-center mx-auto d-flex align-items-center justify-content-center justify-normal position-relative">
@@ -1625,7 +1388,7 @@
         <!-- OTP Modal -->
         <div id="otp-modal">
             <div class="otp-modal-content" style="position:relative;">
-                <button id="otp-modal-close" type="button"
+                <button id="otp-modal-close" class="d-flex justify-content-end" type="button"
                     style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
                     aria-label="Close OTP Modal">&times;</button>
 
@@ -1692,135 +1455,231 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-       <script>
-// Hide phone error when user corrects input
-document.addEventListener('DOMContentLoaded', function() {
-    var phoneInput = document.getElementById('contactNumber');
-    var phoneError = document.getElementById('phone-error');
-    if (phoneInput && phoneError) {
-        phoneInput.addEventListener('input', function() {
-            if (/^\d{10}$/.test(phoneInput.value.trim())) {
-                phoneError.textContent = '';
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper with parallax and responsive breakpoints
+        const swiper = new Swiper('.jewelry-swiper', {
+            // Enable parallax
+            parallax: true,
+            speed: 1000,
+            // Responsive breakpoints
+            slidesPerView: 1.5,
+            spaceBetween: 30,
+            breakpoints: {
+                // Mobile landscape and up
+                576: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20
+                },
+                // Tablet and up
+                768: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30
+                },
+                // Desktop small and up
+                992: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 30
+                },
+                // Desktop large and up
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 30
+                }
+            },
+            // Navigation arrows
+            // Enable centered slides for better visual effect
+            centeredSlides: false,
+            // Smooth scrolling
+            freeMode: false,
+            // Auto height
+            autoHeight: false,
+            // Loop for infinite scrolling
+            loop: false,
+            // Advanced touch settings
+            touchRatio: 1,
+            touchAngle: 45,
+            grabCursor: true,
+            // Smooth transitions
+            effect: 'slide',
+            // Callback functions
+            on: {
+                slideChange: function() {
+                    // Remove active class from all cards
+                    document.querySelectorAll('.jewelry-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                },
+                slideChangeTransitionEnd: function() {
+                    // Add some custom animations or effects here if needed
+                    console.log('Slide transition completed');
+                }
             }
         });
-    }
-});
-// Step 3 form validation: show errors only on submit
-document.addEventListener('DOMContentLoaded', function() {
-    var step3Form = document.getElementById('step3-form');
-    if (!step3Form) return;
-    var nameInput = document.getElementById('name');
-    var phoneInput = document.getElementById('contactNumber');
-    var emailInput = document.getElementById('email');
-    var dateInput = document.getElementById('weddingDate');
-    var nameError = document.getElementById('name-error');
-    var phoneError = document.getElementById('phone-error');
-    var emailError = document.getElementById('email-error');
-    var dateError = document.getElementById('date-error');
-    function validateStep3() {
-        var valid = true;
-        nameError.textContent = '';
-        phoneError.textContent = '';
-        emailError.textContent = '';
-        dateError.textContent = '';
-        if (!nameInput.value.trim()) {
-            nameError.textContent = 'Name is required.';
-            valid = false;
-        }
-        if (!phoneInput.value.match(/^\d{10}$/)) {
-            phoneError.textContent = 'Enter a valid 10-digit phone number.';
-            valid = false;
-        }
-        if (!emailInput.value.match(/^\S+@\S+\.\S+$/)) {
-            emailError.textContent = 'Enter a valid email address.';
-            valid = false;
-        }
-        if (!dateInput.value) {
-            dateError.textContent = 'Wedding date is required.';
-            valid = false;
-        }
-        return valid;
-    }
-    step3Form.addEventListener('submit', function(e) {
-        if (!validateStep3()) {
-            e.preventDefault();
-        }
-    });
-});
-// Responsive step 1 container toggle
-function showCorrectStep1Container() {
-    const desktopStep = document.getElementById('step1-desktop');
-    const tabletStep = document.getElementById('step1-tablet');
-    if (!desktopStep || !tabletStep) return;
-    if (window.innerWidth <= 991) {
-        desktopStep.style.display = 'none';
-        tabletStep.style.display = '';
-    } else {
-        desktopStep.style.display = '';
-        tabletStep.style.display = 'none';
-    }
-}
-document.addEventListener('DOMContentLoaded', showCorrectStep1Container);
-window.addEventListener('resize', function() {
-    // Only toggle if step 1 is active
-    if (document.getElementById('step1-desktop').classList.contains('active') || document.getElementById('step1-tablet').classList.contains('active')) {
-        showCorrectStep1Container();
-    }
-});
-// Tablet step 1 form logic
-document.addEventListener('DOMContentLoaded', function() {
-    const tabletForm = document.getElementById('step1-tablet-form');
-    if (tabletForm) {
-        tabletForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const languageSelect = document.getElementById('dream-select-tablet');
-            const eventSelect = document.getElementById('occasion-select-tablet');
-            const language = languageSelect.options[languageSelect.selectedIndex].text || 'Tamil';
-            const event = eventSelect.options[eventSelect.selectedIndex].text || 'Mehendi';
-            document.getElementById('hidden-language-tablet').value = language;
-            document.getElementById('hidden-event-tablet').value = event;
-            // Also set main hidden fields for backend
-            var mainLang = document.getElementById('hidden-language');
-            var mainEvent = document.getElementById('hidden-event');
-            if (mainLang) mainLang.value = language;
-            if (mainEvent) mainEvent.value = event;
-            const dynLang = document.getElementById('dynamic-language');
-            const dynEvent = document.getElementById('dynamic-event');
-            if (dynLang) dynLang.textContent = language;
-            if (dynEvent) dynEvent.textContent = event;
-            goToStep(2);
+
+        // Add click event listeners to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.jewelry-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove active class from all cards
+                    document.querySelectorAll('.jewelry-card').forEach(c => c.classList.remove('active'));
+                    // Add active class to clicked card
+                    this.classList.add('active');
+                    // Get outfit type
+                    const outfitType = this.getAttribute('data-outfit');
+                    // Hide all detail sections
+                    document.querySelectorAll('.detail-section').forEach(section => section.style.display = 'none');
+                    // Show the selected outfit's details
+                    const detailsId = outfitType + '-details';
+                    const detailsSection = document.getElementById(detailsId);
+                    if (detailsSection) {
+                        detailsSection.style.display = 'block';
+                    }
+                    // Scroll to details container
+                    var detailsContainer = document.getElementById('outfit-details-container');
+                    if (detailsContainer) {
+                        detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
         });
-    }
-});
-                                    // Set min date to today for wedding date input
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var weddingDateInput = document.getElementById('weddingDate');
-                                        if (weddingDateInput) {
-                                            var today = new Date();
-                                            var yyyy = today.getFullYear();
-                                            var mm = String(today.getMonth() + 1).padStart(2, '0');
-                                            var dd = String(today.getDate()).padStart(2, '0');
-                                            var minDate = yyyy + '-' + mm + '-' + dd;
-                                            weddingDateInput.setAttribute('min', minDate);
-                                        }
-                                    });
-                                </script>
-                                <script>
-                                    // Persist wedding date value between steps using sessionStorage
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var weddingDateInput = document.getElementById('weddingDate');
-                                        if (weddingDateInput) {
-                                            // Restore from sessionStorage if available
-                                            var savedDate = sessionStorage.getItem('weddingDate');
-                                            if (savedDate) {
-                                                weddingDateInput.value = savedDate;
-                                            }
-                                            weddingDateInput.addEventListener('change', function() {
-                                                sessionStorage.setItem('weddingDate', this.value);
-                                            });
-                                        }
-                                    });
-                                </script>
+
+
+        // });
+    </script>
+
+
+    <script>
+        // Hide phone error when user corrects input
+        document.addEventListener('DOMContentLoaded', function() {
+            var phoneInput = document.getElementById('contactNumber');
+            var phoneError = document.getElementById('phone-error');
+            if (phoneInput && phoneError) {
+                phoneInput.addEventListener('input', function() {
+                    if (/^\d{10}$/.test(phoneInput.value.trim())) {
+                        phoneError.textContent = '';
+                    }
+                });
+            }
+        });
+        // Step 3 form validation: show errors only on submit
+        document.addEventListener('DOMContentLoaded', function() {
+            var step3Form = document.getElementById('step3-form');
+            if (!step3Form) return;
+            var nameInput = document.getElementById('name');
+            var phoneInput = document.getElementById('contactNumber');
+            var emailInput = document.getElementById('email');
+            var dateInput = document.getElementById('weddingDate');
+            var nameError = document.getElementById('name-error');
+            var phoneError = document.getElementById('phone-error');
+            var emailError = document.getElementById('email-error');
+            var dateError = document.getElementById('date-error');
+
+            function validateStep3() {
+                var valid = true;
+                nameError.textContent = '';
+                phoneError.textContent = '';
+                emailError.textContent = '';
+                dateError.textContent = '';
+                if (!nameInput.value.trim()) {
+                    nameError.textContent = 'Name is required.';
+                    valid = false;
+                }
+                if (!phoneInput.value.match(/^\d{10}$/)) {
+                    phoneError.textContent = 'Enter a valid 10-digit phone number.';
+                    valid = false;
+                }
+                if (!emailInput.value.match(/^\S+@\S+\.\S+$/)) {
+                    emailError.textContent = 'Enter a valid email address.';
+                    valid = false;
+                }
+                if (!dateInput.value) {
+                    dateError.textContent = 'Wedding date is required.';
+                    valid = false;
+                }
+                return valid;
+            }
+            step3Form.addEventListener('submit', function(e) {
+                if (!validateStep3()) {
+                    e.preventDefault();
+                }
+            });
+        });
+        // Responsive step 1 container toggle
+        function showCorrectStep1Container() {
+            const desktopStep = document.getElementById('step1-desktop');
+            const tabletStep = document.getElementById('step1-tablet');
+            if (!desktopStep || !tabletStep) return;
+            if (window.innerWidth <= 991) {
+                desktopStep.style.display = 'none';
+                tabletStep.style.display = '';
+            } else {
+                desktopStep.style.display = '';
+                tabletStep.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', showCorrectStep1Container);
+        window.addEventListener('resize', function() {
+            // Only toggle if step 1 is active
+            if (document.getElementById('step1-desktop').classList.contains('active') || document.getElementById(
+                    'step1-tablet').classList.contains('active')) {
+                showCorrectStep1Container();
+            }
+        });
+        // Tablet step 1 form logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabletForm = document.getElementById('step1-tablet-form');
+            if (tabletForm) {
+                tabletForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const languageSelect = document.getElementById('dream-select-tablet');
+                    const eventSelect = document.getElementById('occasion-select-tablet');
+                    const language = languageSelect.options[languageSelect.selectedIndex].text || 'Tamil';
+                    const event = eventSelect.options[eventSelect.selectedIndex].text || 'Mehendi';
+                    document.getElementById('hidden-language-tablet').value = language;
+                    document.getElementById('hidden-event-tablet').value = event;
+                    // Also set main hidden fields for backend
+                    var mainLang = document.getElementById('hidden-language');
+                    var mainEvent = document.getElementById('hidden-event');
+                    if (mainLang) mainLang.value = language;
+                    if (mainEvent) mainEvent.value = event;
+                    const dynLang = document.getElementById('dynamic-language');
+                    const dynEvent = document.getElementById('dynamic-event');
+                    if (dynLang) dynLang.textContent = language;
+                    if (dynEvent) dynEvent.textContent = event;
+                    goToStep(2);
+                });
+            }
+        });
+        // Set min date to today for wedding date input
+        document.addEventListener('DOMContentLoaded', function() {
+            var weddingDateInput = document.getElementById('weddingDate');
+            if (weddingDateInput) {
+                var today = new Date();
+                var yyyy = today.getFullYear();
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                var dd = String(today.getDate()).padStart(2, '0');
+                var minDate = yyyy + '-' + mm + '-' + dd;
+                weddingDateInput.setAttribute('min', minDate);
+            }
+        });
+    </script>
+    <script>
+        // Persist wedding date value between steps using sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            var weddingDateInput = document.getElementById('weddingDate');
+            if (weddingDateInput) {
+                // Restore from sessionStorage if available
+                var savedDate = sessionStorage.getItem('weddingDate');
+                if (savedDate) {
+                    weddingDateInput.value = savedDate;
+                }
+                weddingDateInput.addEventListener('change', function() {
+                    sessionStorage.setItem('weddingDate', this.value);
+                });
+            }
+        });
+    </script>
 
     <script>
         // OTP Modal close button logic
@@ -2024,7 +1883,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.addEventListener('click', function() {
                     document.querySelectorAll('.outfit-card').forEach(c => c.classList.remove('active'));
                     this.classList.add('active');
-                    document.querySelectorAll('.detail-section').forEach(section => section.style.display = 'none');
+                    document.querySelectorAll('.detail-section').forEach(section => section.style.display =
+                        'none');
                     const outfit = this.getAttribute('data-outfit');
                     const detailsId = outfit + '-details';
                     const detailsSection = document.getElementById(detailsId);
@@ -2034,7 +1894,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Scroll to details container
                     var detailsContainer = document.getElementById('outfit-details-container');
                     if (detailsContainer) {
-                        detailsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        detailsContainer.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     }
                 });
             });
