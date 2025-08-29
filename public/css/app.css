@@ -1485,6 +1485,13 @@ body {
   min-height: 100vh;
 }
 
+.copied-effect {
+  background: #8a2323 !important;
+  color: #fff !important;
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+
 /* Category Tabs */
 .category-tabs {
   display: flex;
@@ -1495,7 +1502,8 @@ body {
   padding: 5px;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
+  padding-bottom: 10px;
 }
 
 .category-tabs::-webkit-scrollbar {

@@ -237,6 +237,7 @@
 
         </section>
     </div>
+    
 
 @endsection
 
@@ -270,11 +271,7 @@
             });
 
             const searchWrapper = document.querySelector('.search-wrapper');
-// const searchBtn = document.querySelector('.search-btn');
 
-// searchBtn.addEventListener('click', () => {
-//   searchWrapper.classList.toggle('active');
-// });
 
             if (clearFiltersBtn) {
                 clearFiltersBtn.addEventListener('click', function() {
@@ -341,30 +338,30 @@
             });
 
             // 4. Heart Icon Functionality
-            heartIcons.forEach(icon => {
-                icon.addEventListener('click', function(event) {
-                    event.stopPropagation();
-                    const btn = this.closest('.wishlist-btn');
-                    const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
-                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                    const borderHeart = btn.querySelector('.border-heart');
-                    const fillHeart = btn.querySelector('.fill-heart');
-                    const isFavorited = fillHeart.style.display === 'inline';
-                    if (!sku) return;
-                    if (isFavorited) {
-                        // Remove from wishlist
-                        borderHeart.style.display = 'inline';
-                        fillHeart.style.display = 'none';
-                        wishlistSkus = wishlistSkus.filter(id => id !== sku);
-                    } else {
-                        // Add to wishlist
-                        borderHeart.style.display = 'none';
-                        fillHeart.style.display = 'inline';
-                        if (!wishlistSkus.includes(sku)) wishlistSkus.push(sku);
-                    }
-                    localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
-                });
-            });
+            // heartIcons.forEach(icon => {
+            //     icon.addEventListener('click', function(event) {
+            //         event.stopPropagation();
+            //         const btn = this.closest('.wishlist-btn');
+            //         const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
+            //         const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+            //         const borderHeart = btn.querySelector('.border-heart');
+            //         const fillHeart = btn.querySelector('.fill-heart');
+            //         const isFavorited = fillHeart.style.display === 'inline';
+            //         if (!sku) return;
+            //         if (isFavorited) {
+            //             // Remove from wishlist
+            //             borderHeart.style.display = 'inline';
+            //             fillHeart.style.display = 'none';
+            //             wishlistSkus = wishlistSkus.filter(id => id !== sku);
+            //         } else {
+            //             // Add to wishlist
+            //             borderHeart.style.display = 'none';
+            //             fillHeart.style.display = 'inline';
+            //             if (!wishlistSkus.includes(sku)) wishlistSkus.push(sku);
+            //         }
+            //         localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
+            //     });
+            // });
 
             // 5. Search Functionality (AJAX)
             const searchBtnEl = document.querySelector('.search-btn');
@@ -439,7 +436,7 @@
                                                 </svg>
                                                 <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
                                                      style="${isWishlisted ? '' : 'display:none;'}">
-                                                    <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                                    <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
                                                         c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
                                                         C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
                                                         C195.532,17.899,236.466,55.92,256.001,105.69"/>
@@ -467,24 +464,24 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const heartIcons = document.querySelectorAll('.heart-icon');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const heartIcons = document.querySelectorAll('.heart-icon');
 
-            heartIcons.forEach(icon => {
-                icon.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Prevent triggering other click events
+        //     heartIcons.forEach(icon => {
+        //         icon.addEventListener('click', function(event) {
+        //             event.stopPropagation(); // Prevent triggering other click events
 
-                    // Find the <path> element inside the SVG
-                    const svgPath = this.querySelector('svg path');
+        //             // Find the <path> element inside the SVG
+        //             const svgPath = this.querySelector('svg path');
 
-                    // Check the current color and toggle it
-                    const isFavorited = svgPath.getAttribute('fill') ===
-                        '#e74c3c'; // Red color for favorited
-                    svgPath.setAttribute('fill', isFavorited ? '#ccc' :
-                        '#e74c3c'); // Toggle between gray and red
-                });
-            });
-        });
+        //             // Check the current color and toggle it
+        //             const isFavorited = svgPath.getAttribute('fill') ===
+        //                 '#e74c3c'; // Red color for favorited
+        //             svgPath.setAttribute('fill', isFavorited ? '#ccc' :
+        //                 '#e74c3c'); // Toggle between gray and red
+        //         });
+        //     });
+        // });
     </script>
     {{-- categor-tab  --}}
     <script>
@@ -632,7 +629,7 @@
                                         </svg>
                                         <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
                                              style="${isWishlisted ? '' : 'display:none;'}">
-                                            <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
                                                 c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
                                                 C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
                                                 C195.532,17.899,236.466,55.92,256.001,105.69"/>
@@ -756,6 +753,10 @@
                 document.querySelectorAll('.wishlist-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const productCard = this.closest('.product-item-card');
+                        if (!productCard) {
+                            console.warn('wishlist-btn not inside .product-item-card');
+                            return;
+                        }
                         const skuBtn = productCard.querySelector('.try-on-btn');
                         const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
                         const borderHeart = this.querySelector('.border-heart');
@@ -778,7 +779,7 @@
                         const variantThumbnails = imgElem ? imgElem.src : '';
                         const categoryKey = productCard.closest('.product-listing-section')?.querySelector('.category-tab.active')?.dataset.category || '';
                         const productTitle = productCard.querySelector('.product-item-id')?.textContent || '';
-                            showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
+                        showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
                         fetch(url, {
                             method: method,
                             headers: {
@@ -846,97 +847,5 @@
             }
         });
     </script>
-    {{-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-            // Search functionality for SKU, variant SKU, and product name
-            function filterProducts() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                const activeGrid = document.querySelector('.product-grid-container.active');
-                if (activeGrid) {
-                    const productItems = activeGrid.querySelectorAll('.product-item-card');
-                    productItems.forEach(item => {
-                        const productName = item.querySelector('.product-item-id')?.textContent.toLowerCase() || '';
-                        const skuBtn = item.querySelector('.try-on-btn');
-                        const variantSku = skuBtn ? skuBtn.getAttribute('data-sku').toLowerCase() : '';
-                        const productId = item.getAttribute('data-product-id')?.toLowerCase() || '';
-                        if (
-                            productName.includes(searchTerm) ||
-                            variantSku.includes(searchTerm) ||
-                            productId.includes(searchTerm)
-                        ) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                }
-            }
-            searchInput.addEventListener('input', filterProducts);
-            const searchBtnEl = document.querySelector('.search-btn');
-            if (searchBtnEl) {
-                searchBtnEl.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    filterProducts();
-                });
-            }
-    // Get user_id and id_token from Blade (Laravel session)
-
-
-    function attachWishlistListeners() {
-        document.querySelectorAll('.wishlist-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                console.log('Wishlist button clicked');
-                try {
-                    const skuBtn = this.closest('.product-item-card').querySelector('.try-on-btn');
-                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                    const borderHeart = this.querySelector('.border-heart');
-                    const fillHeart = this.querySelector('.fill-heart');
-
-                    console.log('Wishlist clicked:', { userId, idToken, sku });
-
-                    if (!userId || !idToken || !sku) {
-                        console.error('Missing userId, idToken, or sku for wishlist API call');
-                        alert('Missing userId, idToken, or sku for wishlist API call');
-                        return;
-                    }
-
-                    // Toggle UI
-                    borderHeart.style.display = 'none';
-                    fillHeart.style.display = 'inline';
-
-                    // Send API request
-                    fetch(`/users/${userId}/wishlist`, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': 'Bearer ' + idToken,
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ sku: sku })
-                    })
-                    .then(response => {
-                        console.log('Fetch response:', response);
-                        if (!response.ok) throw new Error('Failed to add to wishlist');
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log('API response:', data);
-                        alert('Wishlist API success!');
-                    })
-                    .catch(error => {
-                        console.error('Wishlist API error:', error);
-                        alert('Wishlist API error: ' + error);
-                        borderHeart.style.display = 'inline';
-                        fillHeart.style.display = 'none';
-                    });
-                } catch (err) {
-                    console.error('Wishlist JS error:', err);
-                    alert('Wishlist JS error: ' + err);
-                }
-            });
-        });
-    }
-
-    attachWishlistListeners();
-});
-</script> --}}
+  
 @endpush

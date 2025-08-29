@@ -355,7 +355,7 @@
             }
 
             .card-image {
-                /* height: 220px; */
+                height: 100%;
             }
 
             .jewelry-section {
@@ -540,7 +540,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary px-4 py-2" style="white-space:nowrap;">Choose My
+                        <button type="submit" class="btn btn-primary px-4 py-2 w-100" style="white-space:nowrap;">Choose My
                             Look</button>
                     </div>
                     <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil">
@@ -1463,8 +1463,8 @@
             parallax: true,
             speed: 1000,
             // Responsive breakpoints
-            slidesPerView: 1.5,
-            spaceBetween: 30,
+            slidesPerView: 1.2,
+            spaceBetween: 20,
             breakpoints: {
                 // Mobile landscape and up
                 576: {
@@ -1478,6 +1478,7 @@
                 },
                 // Desktop small and up
                 992: {
+                     spaceBetween: 30,
                     slidesPerView: 3.5,
                     spaceBetween: 30
                 },

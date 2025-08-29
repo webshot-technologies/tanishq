@@ -35,8 +35,8 @@
     <div class="modal fade" id="shareWishlistModal" tabindex="-1" aria-labelledby="shareWishlistModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title " id="shareWishlistModalLabel">Share Your Wishlist</h5>
+          <div class="modal-header border-0">
+            <h5 class="modal-title " id="shareWishlistModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center">
@@ -54,35 +54,27 @@
             <div class="d-flex justify-content-center gap-3">
                 <a href="https://wa.me/?text={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-whatsapp"></i> WhatsApp --}}
-                    <img src="{{asset('image/whatsapp.png')}}" style="width:50px" alt="">
+                    <img src="{{asset('image/whatsapp.png')}}" style="width:30px" alt="">
                 </a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-facebook"></i> Facebook --}}
-                    <img src="{{asset('image/facebook.png')}}" style="width:50px" alt="">
+                    <img src="{{asset('image/facebook.png')}}" style="width:30px" alt="">
                 </a>
                 <a href="https://www.instagram.com/?url={{ urlencode($shareUrl) }}" target="_blank" class="btn ">
                     {{-- <i class="fab fa-instagram"></i> Instagram --}}
-                    <img src="{{asset('image/instagram.png')}}" style="width:50px" alt="">
+                    <img src="{{asset('image/instagram.png')}}" style="width:30px" alt="">
                 </a>
                 <a href="mailto:?subject=My Wishlist&body={{ urlencode($shareUrl) }}" class="btn ">
                     {{-- <i class="fa fa-envelope"></i> Email --}}
-                    <img src="{{asset('image/gmail.png')}}" style="width:50px" alt="">
+                    <img src="{{asset('image/gmail.png')}}" style="width:30px" alt="">
                 </a>
 
                 <button class="border-0 bg-transparent p-0" type="button" id="copy-share-link" title="Copy link">
-                    <img id="copy-share-link-img" src="{{asset('image/copy.png')}}" style="width:50px;cursor:pointer;" alt="Copy">
+                    <img id="copy-share-link-img" src="{{asset('image/copy.png')}}" style="width:30px; cursor:pointer;" alt="Copy">
                 </button>
                 <input type="text" id="share-link-input" value="{{ $shareUrl }}" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;">
             </div>
-            {{-- <div class="mt-3">
-                <div class="input-group">
-                    <input type="text" id="share-link-input" class="form-control" value="{{ $shareUrl }}" readonly onclick="this.select();">
-                                 <button class="border-none  " type="button" id="copy-share-link">
-                        <img src="{{asset('image/copy.png')}}"  style="width:30px"  alt="">
-                     </button>
-                </div>
-                <small class="text-muted">Copy and share this link anywhere</small>
-            </div> --}}
+            
             @else
             <div class="alert alert-warning">Unable to generate share link.</div>
             @endif
@@ -111,7 +103,7 @@
                                         data-product-sku="{{ $sku }}">
                                     <span class="wishlist-icon-wrapper">
                                         <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003">
-                                            <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
                                                 c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
                                                 C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
                                                 C195.532,17.899,236.466,55.92,256.001,105.69"/>
@@ -138,44 +130,50 @@
     </div>
 </div>
   <div class="mt-auto text-center py-4 fs-6 fw-200 text-custom-dark text-dark-gray opacity-75">
-                                                                        &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
+ &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
 
                                     </div>
 
+<style>
+.copied-effect {
+  background: #8a2323 !important;
+  color: #fff !important;
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+</style>
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Copy to clipboard functionality for share link (Clipboard API)
     const copyBtn = document.getElementById('copy-share-link');
     const copyImg = document.getElementById('copy-share-link-img');
     const shareInput = document.getElementById('share-link-input');
     if (copyBtn && shareInput && copyImg) {
         copyBtn.addEventListener('click', function() {
-            const url = shareInput.value;
+            // Copy logic
             if (navigator.clipboard) {
-                navigator.clipboard.writeText(url).then(function() {
+                navigator.clipboard.writeText(shareInput.value).then(function() {
                     copyImg.src = "{{ asset('image/checkmark.png') }}";
-                    copyImg.style.width = '50px';
+                    copyBtn.classList.add('copied-effect');
                     setTimeout(() => {
                         copyImg.src = "{{ asset('image/copy.png') }}";
-                        copyImg.style.width = '50px';
+                        copyBtn.classList.remove('copied-effect');
                     }, 1200);
                 }, function() {
                     copyImg.src = "{{ asset('image/copy.png') }}";
                 });
             } else {
-                // Fallback for older browsers
                 shareInput.style.display = 'block';
                 shareInput.select();
                 shareInput.setSelectionRange(0, 99999);
                 try {
                     document.execCommand('copy');
-                    copyImg.src = "{{ asset('image/checkmark.png') }}";
-                    copyImg.style.width = '50px';
+                    copyImg.src = "{{ asset('image/facebook.png') }}";
+                    copyBtn.classList.add('copied-effect');
                     setTimeout(() => {
                         copyImg.src = "{{ asset('image/copy.png') }}";
-                        copyImg.style.width = '50px';
+                        copyBtn.classList.remove('copied-effect');
                     }, 1200);
                 } catch (err) {
                     copyImg.src = "{{ asset('image/copy.png') }}";
@@ -311,6 +309,21 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.show();
         });
     }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Your copy logic here (if not already present)
+      if (navigator.clipboard && btn.dataset.copy) {
+        navigator.clipboard.writeText(btn.dataset.copy);
+      }
+      btn.classList.add('copied-effect');
+      setTimeout(() => btn.classList.remove('copied-effect'), 700);
+    });
+  });
 });
 </script>
 
