@@ -313,10 +313,11 @@ public function shareWishlist($username,$userId, $shareId){
 
     $isShared = 1;
 
-    return view('wishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared'));
+    return view('sharedWishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared'));
 
 
 }
+
 
 
 // / Add these private methods for token handling

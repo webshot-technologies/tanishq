@@ -237,7 +237,7 @@
 
         </section>
     </div>
-    
+
 
 @endsection
 
@@ -828,24 +828,24 @@
             }
 
             // Function to initialize wishlist state from localStorage
-            function initializeWishlistState() {
-                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
-                document.querySelectorAll('.wishlist-btn').forEach(btn => {
-                    const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
-                    const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                    const borderHeart = btn.querySelector('.border-heart');
-                    const fillHeart = btn.querySelector('.fill-heart');
+            // function initializeWishlistState() {
+            //     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
+            //     document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            //         const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
+            //         const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+            //         const borderHeart = btn.querySelector('.border-heart');
+            //         const fillHeart = btn.querySelector('.fill-heart');
 
-                    if (sku && wishlist[sku]) {
-                        borderHeart.style.display = 'none';
-                        fillHeart.style.display = 'inline';
-                    } else {
-                        borderHeart.style.display = 'inline';
-                        fillHeart.style.display = 'none';
-                    }
-                });
-            }
+            //         if (sku && wishlist[sku]) {
+            //             borderHeart.style.display = 'none';
+            //             fillHeart.style.display = 'inline';
+            //         } else {
+            //             borderHeart.style.display = 'inline';
+            //             fillHeart.style.display = 'none';
+            //         }
+            //     });
+            // }
         });
     </script>
-  
+
 @endpush
