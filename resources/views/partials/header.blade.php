@@ -62,6 +62,8 @@
                         </g>
                         <g>
                         </g>
+                        <g>
+                        </g>
                     </svg>
                     Wishlist
                 </button>
@@ -181,3 +183,5 @@
         }
     }
 </style>
+
+

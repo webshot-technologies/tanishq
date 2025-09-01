@@ -2,6 +2,26 @@
 
 @section('title', 'Wishlist')
 @section('content')
+
+    <!-- Debug: Show session user info -->
+    @if(session('user_id'))
+    @php
+        // dd(session()->all());
+
+
+        @endphp
+        <div style="background:#e7f7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
+            <strong>Session User Info:</strong><br>
+            User ID: {{ session('user_id') }}<br>
+            ID Token: {{ session('id_token') }}<br>
+            Refresh Token: {{ session('refresh_token') }}<br>
+            Username: {{ session('username') }}
+        </div>
+    @else
+        <div style="background:#fbe7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
+            <strong>No user session found.</strong>
+        </div>
+    @endif
     <!-- Wishlist Notification Popup -->
     <div id="wishlist-popup"
         style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
@@ -62,46 +82,25 @@
                                             data-action="like" style="background:none;border:none;cursor:pointer;">
                                             <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-                                            <svg version="1.1" id="svg9" xml:space="preserve" width="20"
-                                                height="20" viewBox="0 0 682.66669 682.66669"
-                                                xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                                                <defs id="defs13">
-                                                    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath23">
-                                                        <path d="M 0,512 H 512 V 0 H 0 Z" id="path21" />
-                                                    </clipPath>
-                                                </defs>
-                                                <g id="g15" transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
-                                                    <g id="g17">
-                                                        <g id="g19" clip-path="url(#clipPath23)">
-                                                            <g id="g25" transform="translate(127.4668,39.0996)">
-                                                                <path
-                                                                    d="m 0,0 h -72.3 c -22.092,0 -40.167,18.076 -40.167,40.167 v 160.667 c 0,22.092 18.075,40.166 40.167,40.166 H 0"
-                                                                    style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-                                                                    id="path27" />
-                                                            </g>
-                                                            <g id="g29" transform="translate(456.8325,312.2334)">
-                                                                <path
-                                                                    d="m 0,0 h -152.633 v 120.499 c 0,22.092 -18.074,40.168 -40.166,40.168 h -32.133 c -22.092,0 -40.167,-18.076 -40.167,-40.168 V 48.2 l -64.267,-80.334 v -241 h 249.034 c 22.092,0 48.943,15.801 59.672,35.112 l 41.322,74.377 c 10.729,19.312 19.506,53.187 19.506,75.279 v 48.199 C 40.168,-18.075 22.092,0 0,0 Z"
-                                                                    style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
-                                                                    id="path31" />
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
-
+                                          <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
+  <g>
+    <!-- Thumbs up style shape only, border removed -->
+    <path d="M347.861 218.803h-25.444c16.446-28.293 21.18-55.293 12.164-73.569-6.608-13.396-19.856-20.772-37.304-20.772-5.063 0-9.626 3.055-11.557 7.735-11.836 28.71-41.981 69.492-71.228 97.803-4.875-9.641-14.872-16.271-26.394-16.271h-38.576c-16.301 0-29.563 13.262-29.563 29.563v114.685c0 16.301 13.262 29.563 29.563 29.563h38.576c8.586 0 16.326-3.682 21.732-9.547 7.374 5.981 16.588 9.547 26.58 9.547h97.134c21.437 0 38.524-17.243 43.534-43.928l14.317-76.267c2.116-11.271-.968-22.601-8.685-31.9-8.646-10.422-21.673-16.642-34.849-16.642zm-155.2 139.173c0 2.474-2.089 4.563-4.563 4.563h-38.576c-2.473 0-4.563-2.089-4.563-4.563v-114.685c0-2.474 2.089-4.563 4.563-4.563h38.576c2.474 0 4.563 2.089 4.563 4.563zm174.163-95.246-14.317 76.267c-.738 3.932-5.121 23.541-18.963 23.541h-97.134c-10.338 0-18.749-9.525-18.749-21.234v-80.456c33.186-27.958 69.915-74.558 87.259-110.415 5.108 1.541 6.573 4.51 7.24 5.86 5.557 11.265-.601 38.034-23.122 67.402-2.896 3.776-3.396 8.869-1.291 13.137s6.451 6.97 11.21 6.97h48.903c5.649 0 11.776 2.984 15.609 7.604 2.04 2.457 4.277 6.416 3.355 11.324z"
+          fill="#000000"/>
+  </g>
+</svg>
                                         </button>
 
                                         <button
                                             class="dislike-btn wishlist-btn "
                                             data-action="dislike" style="background:none;border:none;cursor:pointer;">
-                                            <svg width="20" height="20"
-                                                enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m9 1.125h-8.5c-.2070313 0-.375.1679688-.375.375v6c0 .2070313.1679688.375.375.375h3.7993164l1.2998047 1.9506836c.3237305.4916992.6899414 1.0493164 1.4008789 1.0493164h.5c.3774414 0 .7070313-.1567383.9038086-.4296875.2055664-.2856445.2490234-.6733398.1186523-1.0639648l-.5024414-1.5063477h2.4799805c.7583008 0 1.375-.6166992 1.3730469-1.4121094-.0546875-.5463867-.5991211-5.3378906-2.8730469-5.3378906zm-8.125.75h2.25v5.25h-2.25zm9.625 5.25h-3c-.1206055 0-.2338867.0581055-.3041992.1557617s-.0898438.2236328-.0517578.3378906l.6669922 2c.0527344.1591797.0473633.3007813-.0161133.3886719-.0737305.1025391-.2163086.1176758-.2949219.1176758h-.5c-.2573242 0-.4375-.2104492-.675293-.5629883-.0039062-.0068359-.0083007-.0131836-.0126953-.0200195l-.1665039-.25c-.0019531-.0029297-.0039062-.0053711-.0058594-.0083008l-1.3276367-1.9916992c-.0693359-.1044922-.1865234-.1669922-.3120117-.1669922h-.625v-5.25h5.125c1.3535156 0 2.0053711 3.4526367 2.125 4.625 0 .3447266-.2802734.625-.625.625z"
-                                                    fill="rgb(0,0,0)" />
-                                            </svg>
+                                         <svg id="Layer_1" enable-background="new 0 0 512 512" height="20" width="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs">
+  <g width="100%" height="100%" transform="matrix(-1,0,0,-1,512,512)">
+    <path d="M347.861 218.803h-25.444c16.446-28.293 21.18-55.293 12.164-73.569-6.608-13.396-19.856-20.772-37.304-20.772-5.063 0-9.626 3.055-11.557 7.735-11.836 28.71-41.981 69.492-71.228 97.803-4.875-9.641-14.872-16.271-26.394-16.271h-38.576c-16.301 0-29.563 13.262-29.563 29.563v114.685c0 16.301 13.262 29.563 29.563 29.563h38.576c8.586 0 16.326-3.682 21.732-9.547 7.374 5.981 16.588 9.547 26.58 9.547h97.134c21.437 0 38.524-17.243 43.534-43.928l14.317-76.267c2.116-11.271-.968-22.601-8.685-31.9-8.646-10.422-21.673-16.642-34.849-16.642zm-155.2 139.173c0 2.474-2.089 4.563-4.563 4.563h-38.576c-2.473 0-4.563-2.089-4.563-4.563v-114.685c0-2.474 2.089-4.563 4.563-4.563h38.576c2.474 0 4.563 2.089 4.563 4.563zm174.163-95.246-14.317 76.267c-.738 3.932-5.121 23.541-18.963 23.541h-97.134c-10.338 0-18.749-9.525-18.749-21.234v-80.456c33.186-27.958 69.915-74.558 87.259-110.415 5.108 1.541 6.573 4.51 7.24 5.86 5.557 11.265-.601 38.034-23.122 67.402-2.896 3.776-3.396 8.869-1.291 13.137s6.451 6.97 11.21 6.97h48.903c5.649 0 11.776 2.984 15.609 7.604 2.04 2.457 4.277 6.416 3.355 11.324z" fill="#000000"/>
+  </g>
+</svg>
+
+
                                         </button>
                                     </div>
 
@@ -145,6 +144,7 @@
                     style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
                     aria-label="Close Auth Modal">&times;</button>
                 <form id="auth-form">
+                    @csrf
                     <h5 class="mb-3">Authenticate to Like/Dislike</h5>
                     <div class="mb-2">
                         <input type="text" id="auth-name" class="form-control" placeholder="Name" required>
@@ -191,7 +191,7 @@
                     <span class="text-success">Verified!</span>
                 </div>
                 <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
-                <button id="verify-otp-btn" class="btn btn-success w-100" disabled>Verify OTP</button>
+                <button id="verify-otp-btn" class="btn btn-success w-100" >Verify OTP</button>
                 <div id="recaptcha-container" class="d-none"></div>
             </div>
         </div>
@@ -206,6 +206,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const copyBtn = document.getElementById('copy-share-link');
@@ -296,6 +297,62 @@
 
             const auth = firebase.auth();
             let confirmationResult = null;
+
+            // OTP modal logic (all functions together)
+            var otpInputs = document.querySelectorAll('.otp-box');
+            var verifyBtn = document.getElementById('verify-otp-btn');
+            otpInputs.forEach((input, idx) => {
+                input.addEventListener('input', function(e) {
+                    // Only allow numbers
+                    if (this.value && !/^\d$/.test(this.value)) {
+                        this.value = '';
+                        return;
+                    }
+                    // Auto-move to next
+                    if (this.value && idx < otpInputs.length - 1) {
+                        otpInputs[idx + 1].focus();
+                    }
+                    // Enable verify button only if all filled
+                    const allFilled = Array.from(otpInputs).every(inp => inp.value.length === 1);
+                    verifyBtn.disabled = !allFilled;
+                });
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value === '' && idx > 0) {
+                        otpInputs[idx - 1].focus();
+                    }
+                });
+            });
+
+            function getOTP() {
+                return Array.from(otpInputs).map(inp => inp.value).join('');
+            }
+
+            function showLoading(show) {
+                const loadingEl = document.querySelector('.otp-loading');
+                const errorEl = document.getElementById('otp-error');
+                if (show) {
+                    loadingEl.style.display = 'block';
+                    errorEl.textContent = '';
+                    verifyBtn.disabled = true;
+                } else {
+                    loadingEl.style.display = 'none';
+                    verifyBtn.disabled = false;
+                }
+            }
+
+            function showSuccess() {
+                const successEl = document.querySelector('.otp-success');
+                successEl.style.display = 'block';
+                showLoading(false);
+                document.querySelector('.otp-inputs').style.opacity = '0.5';
+                verifyBtn.style.display = 'none';
+                setTimeout(() => {
+                    hideOTPModal();
+                    if (window.pendingBtn) handleLikeDislike(window.pendingBtn);
+                }, 1000);
+            }
+
+            // Auth form submit
             document.getElementById('auth-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const name = document.getElementById('auth-name').value.trim();
@@ -312,49 +369,82 @@
                 hideAuthModal();
                 showOTPModal();
                 const fullPhone = '+91' + phone;
+                console.log('fullPhone', fullPhone);
                 auth.signInWithPhoneNumber(fullPhone, recaptchaVerifier)
                     .then(function(result) {
                         confirmationResult = result;
-                        console.log(confirmationResult);
+                        window.confirmationResult = result;
+                        console.log('OTP sent successfully');
+                        console.log('window.confirmationResult:', window.confirmationResult);
                     }).catch(function(error) {
                         console.log(error);
                         document.getElementById('otp-error').textContent = 'OTP send error.';
                     });
             });
-            document.getElementById('verify-otp-btn').addEventListener('click', function() {
-                const otp = Array.from(document.querySelectorAll('.otp-box')).map(inp => inp.value).join('');
+
+            // OTP verify (single handler, prevent duplicate AJAX)
+            verifyBtn.addEventListener('click', function() {
+                if (window.otpVerifiedCalled) return;
+                window.otpVerifiedCalled = true;
+                verifyBtn.disabled = true;
+                var otp = getOTP();
+                console.log('otp:', otp);
                 if (otp.length !== 6 || !confirmationResult) {
                     document.getElementById('otp-error').textContent = 'Enter 6-digit OTP.';
+                    window.otpVerifiedCalled = false;
+                    verifyBtn.disabled = false;
                     return;
                 }
-                document.querySelector('.otp-loading').style.display = 'flex';
+                // showLoading(true);
                 confirmationResult.confirm(otp)
                     .then(async function(result) {
-                        document.querySelector('.otp-loading').style.display = 'none';
-                        document.querySelector('.otp-success').style.display = 'flex';
+                        // showSuccess();
                         isAuthenticated = true;
                         userId = result.user.uid;
-                        // AJAX call to create user
                         const name = document.getElementById('auth-name').value.trim();
-                        const phone = document.getElementById('auth-phone').value.trim();
-                        fetch('/api/create-user', {
+                        // Use verified phone number from Firebase user object
+                        const phone = result.user.phoneNumber;
+                        const idToken = await result.user.getIdToken();
+                        // Static owner fields (replace with actual values if needed)
+                        const ownername = 'staticOwnerName';
+                        const owneruserid = 'staticOwnerUserId';
+                        fetch('/user/create', {
                             method: 'POST',
                             headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                             },
-                            body: JSON.stringify({ name, phone, uid: userId })
+                            body: JSON.stringify({
+                                username: name,
+                                phoneno: phone,
+                                idToken: idToken,
+                                ownername: ownername,
+                                owneruserid: owneruserid
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            // Optionally handle response
+                            console.log('User created:', data);
+                            // Show success message and close OTP modal
+                            document.querySelector('.otp-success').style.display = 'block';
+                            document.querySelector('.otp-inputs').style.opacity = '0.5';
+                            verifyBtn.style.display = 'none';
+                            setTimeout(() => {
+                                hideOTPModal();
+                                if (window.pendingBtn) handleLikeDislike(window.pendingBtn);
+                            }, 1200);
                         });
-                        setTimeout(() => {
-                            hideOTPModal();
-                            if (window.pendingBtn) handleLikeDislike(window.pendingBtn);
-                        }, 1000);
-                    })
                     .catch(function(error) {
-                        document.querySelector('.otp-loading').style.display = 'none';
+                        // showLoading(false);
+                        console.log('OTP verification error:', error);
                         document.getElementById('otp-error').textContent = 'Invalid OTP.';
+                        window.otpVerifiedCalled = false;
+                        verifyBtn.disabled = false;
                     });
             });
-            // OTP timer logic (same as welcome.blade.php)
+
+            // OTP timer logic
             let otpTimer = null;
             let otpTimeLeft = 120;
             function startOTPTimer() {
@@ -378,6 +468,7 @@
                     timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
             }
+        });
         });
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -462,6 +553,11 @@
                 // Like/Dislike logic with authentication and OTP
                 let isAuthenticated = false;
                 let userId = null;
+                // If user_id exists in session, set isAuthenticated true
+                @if(session('user_id'))
+                    isAuthenticated = true;
+                    userId = '{{ session('user_id') }}';
+                @endif
                 document.querySelectorAll('.like-btn, .dislike-btn').forEach(btn => {
                     btn.addEventListener('click', function(e) {
                         if (!isAuthenticated) {
@@ -475,16 +571,80 @@
                 });
 
                 function handleLikeDislike(btn) {
+                    // Like/dislike API integration
                     const action = btn.getAttribute('data-action');
+                    console.log('action', action);
                     const card = btn.closest('.product-item-card');
-                    card.querySelectorAll('.like-btn .like-icon').forEach(icon => icon.style.stroke = '#888');
-                    card.querySelectorAll('.dislike-btn .dislike-icon').forEach(icon => icon.style.stroke = '#888');
-                    if (action === 'like') {
-                        btn.querySelector('.like-icon').style.stroke = 'green';
-                    } else {
-                        btn.querySelector('.dislike-icon').style.stroke = 'red';
+                    const likeBtn = card.querySelector('.like-btn');
+                    const dislikeBtn = card.querySelector('.dislike-btn');
+                    const sku = btn.closest('.wishlist-product-card').getAttribute('data-sku');
+                    const userId = "{{ session('user_id') }}";
+                    const ownerId = "{{$ownerId}}"
+                    console.log(ownerId);
+                    if (action === 'like' && userId && sku) {
+                        $.ajax({
+                            url: '/users/' + ownerId + '/wishlist/items/like',
+                            type: 'POST',
+                            data: { sku: sku },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                console.log('Like API response:', response);
+                                // Optionally show popup or update UI
+                            },
+                            error: function(xhr) {
+                                console.error('Like API error:', xhr);
+                            }
+                        });
                     }
-                    // Optionally, send like/dislike to backend here
+                    // SVGs for selected/unselected states
+                    const likeSelectedSVG = `<svg height="20" viewBox="0 0 426.66667 426.66667" width="20" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Removed the sky-blue circle -->
+    <path d="m288 170.667969h-32c-5.882812-.019531-10.648438-4.785157-10.667969-10.667969 0-39.148438-.746093-50.558594-21.546875-52.90625-2.558594 56.640625-25.597656 71.679688-63.785156 73.8125v87.46875c5.609375 1.859375 10.871094 4.636719 15.574219 8.210938 10.71875 8.386718 24.1875 12.457031 37.757812 11.414062h64c17.652344-.050781 31.949219-14.347656 32-32v-74.667969c0-5.011719 0-10.664062-21.332031-10.664062zm0 0" fill="#c0c6cc"/>
+    <path d="m117.332031 160h21.335938v128h-21.335938zm0 0" fill="#c0c6cc"/>
+    <g fill="#fff">
+      <path d="m288 149.332031h-21.332031c-.429688-36.480469-4.589844-64-53.335938-64-5.882812.019531-10.648437 4.785157-10.664062 10.667969 0 52.054688-13.121094 62.1875-42.667969 63.679688v-10.347657c-.015625-5.882812-4.78125-10.648437-10.667969-10.664062h-42.664062c-5.886719.015625-10.652344 4.78125-10.667969 10.664062v149.335938c.015625 5.882812 4.78125 10.648437 10.667969 10.664062h42.664062c5.886719-.015625 10.652344-4.78125 10.667969-10.664062v-6.722657c7.359375 2.453126 17.171875 17.386719 53.332031 17.386719h64c29.453125-.007812 53.324219-23.882812 53.335938-53.332031v-74.667969c0-21.226562-14.402344-32-42.667969-32zm-149.332031 138.667969h-21.335938v-128h21.335938zm170.664062-32c-.050781 17.652344-14.347656 31.949219-32 32h-64c-13.570312 1.042969-27.039062-3.027344-37.757812-11.414062-4.703125-3.574219-9.964844-6.351563-15.574219-8.210938v-87.46875c38.1875-2.132812 61.226562-17.171875 63.785156-73.8125 20.800782 2.347656 21.546875 13.757812 21.546875 52.90625.019531 5.882812 4.785157 10.648438 10.667969 10.667969h32c21.332031 0 21.332031 5.652343 21.332031 10.664062zm0 0"/>
+    </g>
+  </g>
+</svg>
+`;
+                    const likeUnselectedSVG = ` <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
+  <g>
+    <!-- Thumbs up style shape only, border removed -->
+    <path d="M347.861 218.803h-25.444c16.446-28.293 21.18-55.293 12.164-73.569-6.608-13.396-19.856-20.772-37.304-20.772-5.063 0-9.626 3.055-11.557 7.735-11.836 28.71-41.981 69.492-71.228 97.803-4.875-9.641-14.872-16.271-26.394-16.271h-38.576c-16.301 0-29.563 13.262-29.563 29.563v114.685c0 16.301 13.262 29.563 29.563 29.563h38.576c8.586 0 16.326-3.682 21.732-9.547 7.374 5.981 16.588 9.547 26.58 9.547h97.134c21.437 0 38.524-17.243 43.534-43.928l14.317-76.267c2.116-11.271-.968-22.601-8.685-31.9-8.646-10.422-21.673-16.642-34.849-16.642zm-155.2 139.173c0 2.474-2.089 4.563-4.563 4.563h-38.576c-2.473 0-4.563-2.089-4.563-4.563v-114.685c0-2.474 2.089-4.563 4.563-4.563h38.576c2.474 0 4.563 2.089 4.563 4.563zm174.163-95.246-14.317 76.267c-.738 3.932-5.121 23.541-18.963 23.541h-97.134c-10.338 0-18.749-9.525-18.749-21.234v-80.456c33.186-27.958 69.915-74.558 87.259-110.415 5.108 1.541 6.573 4.51 7.24 5.86 5.557 11.265-.601 38.034-23.122 67.402-2.896 3.776-3.396 8.869-1.291 13.137s6.451 6.97 11.21 6.97h48.903c5.649 0 11.776 2.984 15.609 7.604 2.04 2.457 4.277 6.416 3.355 11.324z"
+          fill="#000000"/>
+  </g>
+</svg>`;
+                    const dislikeSelectedSVG = `<svg height="20" viewBox="0 0 426.66667 426.66667" width="20" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(-1,0,0,-1,426.66796875,426.66796875)">
+    <!-- Removed sky-blue background and outer circle -->
+    <path d="m288 170.667969h-32c-5.882812-.019531-10.648438-4.785157-10.667969-10.667969 0-39.148438-.746093-50.558594-21.546875-52.90625-2.558594 56.640625-25.597656 71.679688-63.785156 73.8125v87.46875c5.609375 1.859375 10.871094 4.636719 15.574219 8.210938 10.71875 8.386718 24.1875 12.457031 37.757812 11.414062h64c17.652344-.050781 31.949219-14.347656 32-32v-74.667969c0-5.011719 0-10.664062-21.332031-10.664062zm0 0" fill="#c0c6cc"/>
+    <path d="m117.332031 160h21.335938v128h-21.335938zm0 0" fill="#c0c6cc"/>
+    <g fill="#fff">
+      <path d="m288 149.332031h-21.332031c-.429688-36.480469-4.589844-64-53.335938-64-5.882812.019531-10.648437 4.785157-10.664062 10.667969 0 52.054688-13.121094 62.1875-42.667969 63.679688v-10.347657c-.015625-5.882812-4.78125-10.648437-10.667969-10.664062h-42.664062c-5.886719.015625-10.652344 4.78125-10.667969 10.664062v149.335938c.015625 5.882812 4.78125 10.648437 10.667969 10.664062h42.664062c5.886719-.015625 10.652344-4.78125 10.667969-10.664062v-6.722657c7.359375 2.453126 17.171875 17.386719 53.332031 17.386719h64c29.453125-.007812 53.324219-23.882812 53.335938-53.332031v-74.667969c0-21.226562-14.402344-32-42.667969-32zm-149.332031 138.667969h-21.335938v-128h21.335938zm170.664062-32c-.050781 17.652344-14.347656 31.949219-32 32h-64c-13.570312 1.042969-27.039062-3.027344-37.757812-11.414062-4.703125-3.574219-9.964844-6.351563-15.574219-8.210938v-87.46875c38.1875-2.132812 61.226562-17.171875 63.785156-73.8125 20.800782 2.347656 21.546875 13.757812 21.546875 52.90625.019531 5.882812 4.785157 10.648438 10.667969 10.667969h32c21.332031 0 21.332031 5.652343 21.332031 10.664062zm0 0"/>
+    </g>
+  </g>
+</svg>
+
+
+`;
+                    const dislikeUnselectedSVG = `  <svg id="Layer_1" enable-background="new 0 0 512 512" height="20" width="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs">
+  <g width="100%" height="100%" transform="matrix(-1,0,0,-1,512,512)">
+    <path d="M347.861 218.803h-25.444c16.446-28.293 21.18-55.293 12.164-73.569-6.608-13.396-19.856-20.772-37.304-20.772-5.063 0-9.626 3.055-11.557 7.735-11.836 28.71-41.981 69.492-71.228 97.803-4.875-9.641-14.872-16.271-26.394-16.271h-38.576c-16.301 0-29.563 13.262-29.563 29.563v114.685c0 16.301 13.262 29.563 29.563 29.563h38.576c8.586 0 16.326-3.682 21.732-9.547 7.374 5.981 16.588 9.547 26.58 9.547h97.134c21.437 0 38.524-17.243 43.534-43.928l14.317-76.267c2.116-11.271-.968-22.601-8.685-31.9-8.646-10.422-21.673-16.642-34.849-16.642zm-155.2 139.173c0 2.474-2.089 4.563-4.563 4.563h-38.576c-2.473 0-4.563-2.089-4.563-4.563v-114.685c0-2.474 2.089-4.563 4.563-4.563h38.576c2.474 0 4.563 2.089 4.563 4.563zm174.163-95.246-14.317 76.267c-.738 3.932-5.121 23.541-18.963 23.541h-97.134c-10.338 0-18.749-9.525-18.749-21.234v-80.456c33.186-27.958 69.915-74.558 87.259-110.415 5.108 1.541 6.573 4.51 7.24 5.86 5.557 11.265-.601 38.034-23.122 67.402-2.896 3.776-3.396 8.869-1.291 13.137s6.451 6.97 11.21 6.97h48.903c5.649 0 11.776 2.984 15.609 7.604 2.04 2.457 4.277 6.416 3.355 11.324z" fill="#000000"/>
+  </g>
+</svg>`;
+
+                    // Toggle SVGs
+                    if (action === 'like') {
+                        if (likeBtn) likeBtn.innerHTML = likeSelectedSVG;
+                        if (dislikeBtn) dislikeBtn.innerHTML = dislikeUnselectedSVG;
+                    } else {
+                        if (likeBtn) likeBtn.innerHTML = likeUnselectedSVG;
+                        if (dislikeBtn) dislikeBtn.innerHTML = dislikeSelectedSVG;
+                    }
+                    // Optionally, send dislike to backend here
                 }
                 // Auth Modal
                 function showAuthModal() {
@@ -497,8 +657,7 @@
                 // OTP Modal
                 function showOTPModal() {
                     document.getElementById('otp-modal').style.display = 'flex';
-                    document.getElementById('otp-phone-number').textContent = document.getElementById('auth-phone')
-                        .value;
+                    document.getElementById('otp-phone-number').textContent = document.getElementById('auth-phone').value;
                     document.querySelector('.otp-box[data-index="1"]').focus();
                     startOTPTimer();
                 }
@@ -508,20 +667,19 @@
                 }
 
                 const firebaseConfig = {
-            apiKey: 'AIzaSyBqLtJbDYe-X-5a-d2BLc-su-X9GlxclQ0',
-            authDomain: 'localhost',
-            projectId: 'user-wishlist',
-            storageBucket: 'user-wishlist.firebasestorage.app',
-            messagingSenderId: '718283592432',
-            appId: '1:718283592432:web:ec986b729c43ae39872835',
-            measurementId: 'G-MJRQ18F8Z4',
-        }
+                    apiKey: 'AIzaSyBqLtJbDYe-X-5a-d2BLc-su-X9GlxclQ0',
+                    authDomain: 'localhost',
+                    projectId: 'user-wishlist',
+                    storageBucket: 'user-wishlist.firebasestorage.app',
+                    messagingSenderId: '718283592432',
+                    appId: '1:718283592432:web:ec986b729c43ae39872835',
+                    measurementId: 'G-MJRQ18F8Z4',
+                }
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth(); // Use a consistent auth variable
-        const db = firebase.firestore();
-        let confirmationResult = null;
-
+                firebase.initializeApp(firebaseConfig);
+                const auth = firebase.auth();
+                const db = firebase.firestore();
+                let confirmationResult = null;
 
                 // Auth form submit
                 document.getElementById('auth-form').addEventListener('submit', function(e) {
@@ -539,77 +697,89 @@
                     document.getElementById('auth-error').textContent = '';
                     hideAuthModal();
                     showOTPModal();
-                    // Send OTP using Firebase
-                    // window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-                    //     size: 'invisible'
-                    // });
-// Initialize reCAPTCHA verifier once on page load
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-            'size': 'invisible',
-            'callback': (response) => {
-                console.log('reCAPTCHA solved, proceed with OTP verification.');
-                // reCAPTCHA solved, you can now proceed
-            },
-            'expired-callback': () => {
-                console.log('reCAPTCHA expired, please try again.');
-                // reCAPTCHA expired, re-render
-            }
-        });
-
+                    // Initialize reCAPTCHA verifier once on page load
+                    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                        'size': 'invisible',
+                        'callback': (response) => {
+                            console.log('reCAPTCHA solved, proceed with OTP verification.');
+                        },
+                        'expired-callback': () => {
+                            console.log('reCAPTCHA expired, please try again.');
+                        }
+                    });
                     const fullPhone = '+91' + phone;
-                    console.log(fullPhone);
                     auth.signInWithPhoneNumber(fullPhone, window.recaptchaVerifier)
                         .then(function(result) {
+                            confirmationResult = result;
                             window.confirmationResult = result;
-console.log(window.confirmationResult);
                         }).catch(function(error) {
-                            console.log(error);
+                            console.log('reCAPTCHA error:', error);
                             document.getElementById('otp-error').textContent = 'OTP send error.';
                         });
                 });
-                // OTP verify
-                document.getElementById('verify-otp-btn').addEventListener('click', function() {
-                    const otp = Array.from(document.querySelectorAll('.otp-box')).map(inp => inp.value).join(
-                    '');
-                    if (otp.length !== 6 || !window.confirmationResult) {
+
+                // OTP verify (single handler, prevent duplicate AJAX)
+                var verifyBtn = document.getElementById('verify-otp-btn');
+                verifyBtn.addEventListener('click', function() {
+                    if (window.otpVerifiedCalled) return;
+                    window.otpVerifiedCalled = true;
+                    verifyBtn.disabled = true;
+                    var otp = Array.from(document.querySelectorAll('.otp-box')).map(inp => inp.value).join('');
+                    if (otp.length !== 6 || !confirmationResult) {
                         document.getElementById('otp-error').textContent = 'Enter 6-digit OTP.';
+                        window.otpVerifiedCalled = false;
+                        verifyBtn.disabled = false;
                         return;
                     }
-                    document.querySelector('.otp-loading').style.display = 'flex';
-                    window.confirmationResult.confirm(otp)
+                    // showLoading(true);
+                    confirmationResult.confirm(otp)
                         .then(async function(result) {
-                            document.querySelector('.otp-loading').style.display = 'none';
-                            document.querySelector('.otp-success').style.display = 'flex';
+                            // showSuccess();
+                            console.log(result);
                             isAuthenticated = true;
                             userId = result.user.uid;
-                            // AJAX call to create user
                             const name = document.getElementById('auth-name').value.trim();
-                            const phone = document.getElementById('auth-phone').value.trim();
-                            fetch('/api/create-user', {
+                            const phone = result.user.phoneNumber;
+                            const idToken = await result.user.getIdToken();
+                            const refreshToken =  result.user.refreshToken;
+                            console.log(phone, "auth-phone");
+                            console.log(idToken);
+                            // Static owner fields (replace with actual values if needed)
+                            const ownername = 'staticOwnerName';
+                            const owneruserid = 'staticOwnerUserId';
+                            fetch('/user/create', {
                                 method: 'POST',
                                 headers: {
-                                    'Content-Type': 'application/json'
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                                 },
                                 body: JSON.stringify({
-                                    name,
-                                    phone,
-                                    uid: userId
+                                    username: name,
+                                    phoneno: phone,
+                                    idToken: idToken,
+                                    ownername: ownername,
+                                    owneruserid: owneruserid
                                 })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log("line4")
+                                // Optionally handle response
+                                console.log('User created:', data);
                             });
-                            setTimeout(() => {
-                                hideOTPModal();
-                                if (window.pendingBtn) handleLikeDislike(window.pendingBtn);
-                            }, 1000);
                         })
                         .catch(function(error) {
-                            document.querySelector('.otp-loading').style.display = 'none';
-                            document.getElementById('otp-error').textContent = 'Invalid OTP.';
+                            // showLoading(false);
+                            console.log('OTP verification error:', error);
+                            document.getElementById('otp-error').textContent = 'Invalid OTP. Please try again.' + error;
+                            window.otpVerifiedCalled = false;
+                            verifyBtn.disabled = false;
                         });
                 });
-                // OTP timer logic (same as welcome.blade.php)
+
+                // OTP timer logic
                 let otpTimer = null;
                 let otpTimeLeft = 120;
-
                 function startOTPTimer() {
                     clearInterval(otpTimer);
                     otpTimeLeft = 120;
@@ -623,14 +793,12 @@ console.log(window.confirmationResult);
                         }
                     }, 1000);
                 }
-
                 function updateTimerDisplay() {
                     const timerEl = document.getElementById('otp-timer');
                     if (timerEl) {
                         const minutes = Math.floor(otpTimeLeft / 60);
                         const seconds = otpTimeLeft % 60;
-                        timerEl.textContent =
-                            `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                        timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                     }
                 }
             });
@@ -656,7 +824,5 @@ console.log(window.confirmationResult);
             });
         </script>
 
-        <script>
 
-        </script>
     @endsection

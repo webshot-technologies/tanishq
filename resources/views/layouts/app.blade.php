@@ -24,4 +24,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     @stack('scripts')
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var logo = document.querySelector('.header-logo, #header-logo, .navbar-brand'); // Adjust selector as needed
+    if (logo) {
+        console.log(logo);
+        logo.addEventListener('click', function() {
+            if (window.posthog && typeof window.posthog.reset === 'function') {
+                window.posthog.reset();
+                console.log('PostHog session reset triggered.');
+            }
+        });
+    }
+});
+</script>
 </body>
