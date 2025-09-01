@@ -10,7 +10,44 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 class SiteController extends Controller
 {
+    // Like a wishlist item (proxy for frontend to avoid CORS)
+    public function likeWishlistItem(Request $request, $ownerId)
+    {
+        $sku = $request->input('sku');
+        $idToken = $this->getValidToken();
+        try {
+            $client = new Client();
+            $body = [
+                'sku' => $sku,
+            ];
 
+
+
+            $response = $client->post(
+                'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $ownerId . '/wishlist/items/like',
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $idToken,
+                        'Content-Type' => 'application/json',
+                    ],
+                    'body' => json_encode($body),
+                    'timeout' => 30
+                ]
+            );
+            $apiResult = json_decode($response->getBody(), true);
+            return response()->json($apiResult, $response->getStatusCode());
+        } catch (\Exception $e) {
+            Log::error('Wishlist like API error', [
+                'error' => $e->getMessage(),
+                'owner_id' => $ownerId,
+                'sku' => $sku
+            ]);
+            return response()->json([
+                'error' => 'Failed to like wishlist item',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 
     public function productChoose(Request $request){
 
@@ -182,12 +219,12 @@ class SiteController extends Controller
             );
 
         $apiResult = json_decode($response->getBody(), true);
-        // \Log::info('External API success', ['response' => $apiResult]);
+        // Log::info('External API success', ['response' => $apiResult]);
 
         return response()->json($apiResult, $response->getStatusCode());
 
     } catch (\Exception $e) {
-        \Log::error('Wishlist API error', [
+        Log::error('Wishlist API error', [
             'error' => $e->getMessage(),
             'user_id' => $user_id,
             'sku' => $sku
@@ -295,11 +332,12 @@ public function removeFromWishlist(Request $request, $user_id) {
     }
 
 public function shareWishlist($username,$userId, $shareId){
-
+// dd($userId);
     $client = new Client();
     // For feature display: first word before hyphen or space, possessive
     $username_first = strtolower(preg_split('/[- ]/', trim($username))[0]);
     $wishlistOwner = ucfirst($username_first) . "'s";
+   $ownerId = $userId;
 
     $shareurl = "https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/" . $shareId;
     $productResponse = $client->get($shareurl, [
@@ -313,10 +351,11 @@ public function shareWishlist($username,$userId, $shareId){
 
     $isShared = 1;
 
-    return view('wishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared'));
+    return view('sharedWishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared','ownerId'));
 
 
 }
+
 
 
 // / Add these private methods for token handling
@@ -373,6 +412,44 @@ public function shareWishlist($username,$userId, $shareId){
         }
 
         return $idToken;
+    }
+
+    public function createUserAfterOtp(Request $request)
+    {
+        $username = $request->input('username');
+        $phoneNumber = $request->input('phoneno');
+        $idToken = $request->input('idToken');
+        $ownername = $request->input('ownername');
+        $owneruserid = $request->input('owneruserid');
+
+        try {
+            $client = new Client();
+            $response = $client->post('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'body' => json_encode([
+                    "phoneNumber" => $phoneNumber,
+                    "idToken"     => $idToken,
+                    "username"    => $username,
+                    "anonId"      => $owneruserid,
+
+                ]),
+            ]);
+            $apiResult = json_decode($response->getBody(), true);
+            // Store userId, idToken, refreshToken in session
+            session([
+                'user_id' => $apiResult['user_id'] ?? null,
+                'id_token' =>  $idToken,
+                // 'refresh_token' => $apiResult['refreshToken'] ?? null,
+                'username' => $username,
+                'token_created_at' => time()
+            ]);
+            return response()->json(['success' => true, 'data' => $apiResult]);
+        } catch (\Exception $e) {
+            // return redirect()->route('/');
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
     }
 
 }

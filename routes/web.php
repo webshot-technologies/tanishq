@@ -18,7 +18,7 @@ Route::get('/', function () {
     Route::get('product/category-list', 'category_list')->name('category.list');
     Route::get('product/full-catalogue', 'full_catalogue')->name('full.catalogue');
 Route::get('wishlist', 'viewWishlist')->name('wishlist.page');
-Route::get('/wishlist/share/{username}/{user_id}/{shareId?}', 'shareWishlist')->name('wishlist.share');
+Route::get('/wishlist/share/{username}/{user_id}/{shareId?}', 'viewWishlist')->name('wishlist.share');
 
 
     });
@@ -29,7 +29,10 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.d
 // Route::post('users/{user_id}/wishlist', [SiteController::class, 'addToWishlist']);
 
 Route::post('users/{user_id}/wishlist', [SiteController::class, 'addToWishlist'])->name('wishlist.add');
+// Like wishlist item (proxy for frontend)
+Route::post('users/{share_id}/wishlist/items/like', [SiteController::class, 'likeWishlistItem'])->name('wishlist.like');
 
 // Remove from wishlist
-Route::delete('users/{user_id}/wishlist', [SiteController::class, 'removeFromWishlist'])->name('wishlist.remove');
+Route::delete('users/{ownerId}/wishlist', [SiteController::class, 'removeFromWishlist'])->name('wishlist.remove');
 Route::post('/refresh', [SiteController::class, 'refreshToken']);
+Route::post('/user/create', [App\Http\Controllers\SiteController::class, 'createUserAfterOtp'])->name('user.create');

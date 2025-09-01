@@ -36,12 +36,12 @@
     fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${categoryKey}/inventories`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ product_code: productId, limit: 10000 })
+    body: JSON.stringify({ product_code: productId, limit: 1 })
     })
     .then(res => res.json())
     .then(data => {
         const products = data.data || [];
-        console.log(products);
+
 
         const product = products.find(p =>  p.variants?.[0]?.variantSku == productId) || {};
         if (!product.productTitle) {

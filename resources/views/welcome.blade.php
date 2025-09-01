@@ -364,10 +364,13 @@
 
             .card-image {
                 height: 100%;
+                object-fit:fill;
             }
 
             .jewelry-section {
-                padding: 2rem 0;
+
+
+                /* padding: 2rem 0; */
             }
         }
 
@@ -1205,13 +1208,13 @@
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-anarkali" name="jewellery_pieces"
                                             value="short-necklace" class="jewellery-checkbox d-none">
-                                        <label for="short-necklace-cb">Short Necklace</label>
+                                        <label for="short-necklace-anarkali">Short Necklace</label>
                                     </div>
                                 </div>
 
                                 <div class="jewellery-item anarkali-long-necklace">
                                     <div class="jewellery-input">
-                                        <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
+                                        <input type="checkbox" id="long-necklace-anarkali" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox d-none">
                                         <label for="long-necklace-anarkali">Long Necklace</label>
                                     </div>
@@ -1704,15 +1707,19 @@
         // Helper: Store selected outfit and jewellery pieces in hidden fields when moving to step 3
         function storeStep2Selections() {
             // Get selected outfit
-            var activeOutfitCard = document.querySelector('.outfit-card.active');
+            var activeOutfitCard = document.querySelector('.jewelry-card.active');
+            console.log(activeOutfitCard, "activeOutfitcard");
+
             var outfit = activeOutfitCard ? activeOutfitCard.getAttribute('data-outfit') : '';
+            console.log(outfit, "outfit");
             document.getElementById('hidden-outfit').value = outfit;
 
             // Get selected jewellery pieces (all checked checkboxes)
-            var checkedJewellery = document.querySelectorAll('.jewellery-checkbox d-none:checked');
+            var checkedJewellery = document.querySelectorAll('.jewellery-checkbox:checked');
             var jewelleryPieces = Array.from(checkedJewellery).map(function(cb) {
                 return cb.value;
             });
+            console.log(jewelleryPieces, "jewelleryPieces");
             document.getElementById('hidden-jewellery-pieces').value = jewelleryPieces.join(',');
         }
 
@@ -1936,12 +1943,12 @@
                     contactNumber = '+91' + contactNumber;
                 }
                 console.log('Formatted Contact Number:', contactNumber);
-                if (!contactNumber.match(/^\+\d{10,15}$/)) {
-                    document.getElementById('otp-error').textContent =
-                        'Please enter a valid phone number (e.g. +919876543210)';
-                    document.getElementById('otp-modal').style.display = 'none'; // Hide modal if invalid
-                    return;
-                }
+                // if (!contactNumber.match(/^\+\d{10,15}$/)) {
+                //     document.getElementById('otp-error').textContent =
+                //         'Please enter a valid phone number (e.g. +919876543210)';
+                //     document.getElementById('otp-modal').style.display = 'none'; // Hide modal if invalid
+                //     return;
+                // }
 
                 document.getElementById('otp-modal').style.display = 'flex';
                 console.log('Sending OTP to:', contactNumber);
