@@ -74,7 +74,7 @@
                 </button>
                 <input type="text" id="share-link-input" value="{{ $shareUrl }}" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;">
             </div>
-            
+
             @else
             <div class="alert alert-warning">Unable to generate share link.</div>
             @endif
@@ -114,11 +114,11 @@
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">{{ $product['productTitle'] ?? '' }}</p>
                                 <div class="product-item-buttons">
-                                    <button class="btn " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+                                    <button class="btn " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {sku: '{{ $product['sku'] }}', category: '{{ $product['categoryKey'] ?? '' }}'});">
                                         <a class="base-color text-decoration-none" href="/product/{{ $product['sku'] }}?category={{ $product['categoryKey'] ?? '' }}">View Details</a>
                                     </button>
 
-                                     <button id="tryOnButton"  class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try On</button>
+                                     <button id="tryOnButton"  class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {sku: '{{ $product['sku'] }}', category: '{{ $product['categoryKey'] ?? '' }}', page: 'wishlist'});">Try On</button>
                                 {{-- <button class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try On</button> --}}
                                 </div>
                             </div>
