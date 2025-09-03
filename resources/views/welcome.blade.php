@@ -1369,7 +1369,7 @@
                         </div>
                         <div class="form-check mb-4 d-flex justify-content-center px-0 ">
                             <input class="form-check-input " style="margin-right:5px" type="checkbox" value="1"
-                                id="receiveCall" name="receiveCall">
+                                id="receiveCall" name="receiveCall" onclick="posthog.capture('receive-call-clicked')">
                             <label class="form-check-label" for="receiveCall">
                                 Receive call from store for follow-up.
                             </label>
