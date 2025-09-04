@@ -21,9 +21,21 @@
 
 </div>
 
-<div class="container">
 
-    @if(!$isShared )
+<div  class="container d-flex justify-content-between mt-4 mb-2">
+
+      <div class="d-flex mb-3">
+
+                <button id="" class="btn explore-btn bg-color">
+                    <a class="text-decoration-none text-white"
+                        href="{{ route('product.list') }}">
+                        <i class="fa fa-share-alt"></i> Explore Catalogue
+                    </a>
+                </button>
+
+            </div>
+
+
     <div class="d-flex justify-content-end mb-3">
         @if(!empty($products) && count($products) > 0 && !empty(session('user_id')))
             <button id="share-wishlist-btn" class="btn bg-color">
@@ -48,7 +60,7 @@
                     $shareUrl = url('/wishlist/share/'. $username . '/' . session('user_id') . '/' . $shareId);
                 }
 
-
+// dd($products)
             @endphp
             @if($shareUrl)
             <div class="d-flex justify-content-center gap-3">
@@ -74,7 +86,7 @@
                 </button>
                 <input type="text" id="share-link-input" value="{{ $shareUrl }}" tabindex="-1" style="position:absolute;left:-9999px;opacity:0;">
             </div>
-            
+
             @else
             <div class="alert alert-warning">Unable to generate share link.</div>
             @endif
@@ -82,7 +94,12 @@
         </div>
       </div>
     </div>
-    @endif
+
+</div>
+
+<div class="container">
+
+
     <div id="wishlist-grids-container">
         @if(empty($products) || count($products) === 0)
             <div class="text-center py-5">No products found in wishlist.</div>
@@ -97,7 +114,11 @@
                         <div class="product-item-card">
                             <div class="product-image-wrapper position-relative">
                                 <img src="{{ $imgSrc }}" class="default-image" alt="{{ $product['productCollection'] ?? '' }}">
-                                <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+
+
+                                <div
+                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-flex flex-column">
+                                            <button class="wishlist-btn  top-0 end-0 m1-2 p-0 border-0 bg-transparent"
                                         style="z-index:2;"
                                         aria-label="Remove from wishlist"
                                         data-product-sku="{{ $sku }}">
@@ -110,6 +131,43 @@
                                         </svg>
                                     </span>
                                 </button>
+                                            <!-- Like/Dislike Icons -->
+                                            <div class="d-flex flex-column align-items-center"
+                                                style="z-index:2;">
+
+
+                                            <button class="like-btn  my-1 wishlist-btn" data-action="like"
+                                                style="background:none;border:none;cursor:pointer;">
+                                                <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+                                                <svg id="Glyph" height="20" viewBox="0 0 64 64" width="20" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(1,0,0,1,0,0)"><g fill="rgb(0,0,0)"><path d="m56.71588 26.64856a6.90936 6.90936 0 0 0 -5.33-1.6l-1.61.17c-1.19.13-2.53.27-3.85.4a2.98168 2.98168 0 0 1 -2.6-1.03 2.95185 2.95185 0 0 1 -.64-2.69 43.28241 43.28241 0 0 0 1.47-8.19c0-3.29 0-9.42-8.43005-9.42a1.01208 1.01208 0 0 0 -.9.56c-.03.07-3.47 7-7.22 13.17a25.64458 25.64458 0 0 1 -9.6 8.95c.09.21.18.42.26.63995a6.77 6.77 0 0 1 .35 1.30005 7.4175 7.4175 0 0 1 .16 1.55v20.54a8.93837 8.93837 0 0 1 -.19 1.8 8.57389 8.57389 0 0 1 -.76 2.11 9.57177 9.57177 0 0 0 4.52 2.45c7.71 1.78 18.59 3.47 26.61 1.4a10.85148 10.85148 0 0 0 7.19-6.46c2.85002-7.18003 6.72001-20.05002.57005-25.65z" fill="#8a2323" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/><path d="m14.88586 25.94855a6.28991 6.28991 0 0 0 -4.49-1.86 6.391 6.391 0 0 0 -6.39 6.37v20.54a6.3867 6.3867 0 0 0 6.38 6.39 6.38459 6.38459 0 0 0 6.39-6.39v-20.54a6.37783 6.37783 0 0 0 -.39-2.17 6.04215 6.04215 0 0 0 -1.5-2.34z" fill="#8a2323" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/></g></g></svg>
+                                            </button>
+                                            <?php
+                                            // dd($product)
+                                            ?>
+                                            @if($product['likesCount'] > 0 )
+                                            <span class="d-block" style="font-size:10px; font-weight:500">{{$product['likesCount']}}</span>
+                                            @endif
+                                               </div>
+
+                                            <div class="d-flex flex-column align-items-center"
+                                                style="z-index:2;">
+
+                                            <button class="dislike-btn my-1  wishlist-btn " data-action="dislike"
+                                                style="background:none;border:none;cursor:pointer;">
+                                              <svg id="Glyph" height="20" viewBox="0 0 64 64" width="20" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><g width="100%" height="100%" transform="matrix(-1,0,0,-1,63.9999942779541,63.99995994567871)"><g fill="rgb(0,0,0)"><path d="m56.71588 26.64856a6.90936 6.90936 0 0 0 -5.33-1.6l-1.61.17c-1.19.13-2.53.27-3.85.4a2.98168 2.98168 0 0 1 -2.6-1.03 2.95185 2.95185 0 0 1 -.64-2.69 43.28241 43.28241 0 0 0 1.47-8.19c0-3.29 0-9.42-8.43005-9.42a1.01208 1.01208 0 0 0 -.9.56c-.03.07-3.47 7-7.22 13.17a25.64458 25.64458 0 0 1 -9.6 8.95c.09.21.18.42.26.63995a6.77 6.77 0 0 1 .35 1.30005 7.4175 7.4175 0 0 1 .16 1.55v20.54a8.93837 8.93837 0 0 1 -.19 1.8 8.57389 8.57389 0 0 1 -.76 2.11 9.57177 9.57177 0 0 0 4.52 2.45c7.71 1.78 18.59 3.47 26.61 1.4a10.85148 10.85148 0 0 0 7.19-6.46c2.85002-7.18003 6.72001-20.05002.57005-25.65z" fill="#8a2323" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/><path d="m14.88586 25.94855a6.28991 6.28991 0 0 0 -4.49-1.86 6.391 6.391 0 0 0 -6.39 6.37v20.54a6.3867 6.3867 0 0 0 6.38 6.39 6.38459 6.38459 0 0 0 6.39-6.39v-20.54a6.37783 6.37783 0 0 0 -.39-2.17 6.04215 6.04215 0 0 0 -1.5-2.34z" fill="#8a2323" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1"/></g></g></svg>
+
+
+                                            </button>
+                                            @if($product['dislikesCount'] > 0 )
+                                            <span class="d-block" style="font-size:10px; font-weight:500">{{$product['dislikesCount']}}</span>
+                                            @endif
+                                               </div>
+
+
+                                        </div>
+
+
                             </div>
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">{{ $product['productTitle'] ?? '' }}</p>
@@ -128,7 +186,94 @@
             </div>
         @endif
     </div>
+
+
 </div>
+  {{-- Recommenedated product  --}}
+          <div class="container">
+
+
+                <div class="row mt-5">
+
+                    <div class="container py-4">
+                        <div class="d-flex mb-3">
+                            <h3 class="text-base">
+                                Recommendation Products
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    @foreach ($recommendedProducts as $product)
+                        @php
+                            $imgSrc = !empty($product['variantThumbnails'])
+                                ? $product['variantThumbnails']
+                                : 'https://placehold.co/300x220?text=No+Image';
+                            $sku = $product['skuId'] ?? '';
+                            // dd($product);
+                        @endphp
+                        <div class="col-lg-3 col-md-4 col-6 mb-4 wishlist-product-card" data-sku="{{ $sku }}">
+                            <div class="product-item-card">
+                                <div class="product-image-wrapper position-relative">
+                                    <img src="{{ $imgSrc }}" class="default-image"
+                                        alt="{{ $product['productCollection'] ?? '' }}">
+
+                                       <div
+                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-flex flex-column">
+                                            <button class="wishlist-btn top-0 end-0 m1-2 p-0 border-0 bg-transparent"
+                                        style="z-index:2;"
+                                        aria-label="Add to wishlist"
+                                        data-product-sku="{{ $sku }}"
+                                         data-variant-thumbnails="{{ $imgSrc }}"
+                                                data-category-key="{{ $product['categoryKey'] ?? '' }}"
+                                                data-product-title="{{ $product['productTitle'] ?? '' }}">
+                                    <span class="wishlist-icon-wrapper">
+                                        <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289" style="display:inline;">
+                                            <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
+                                                c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
+                                                c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
+                                                c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
+                                                c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
+                                                c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
+                                                c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
+                                                c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                                            <!-- Like/Dislike Icons -->
+
+
+
+                                        </div>
+
+                                </div>
+                                <div class="product-item-body">
+                                    <p class="product-item-id base-color">{{ $product['productTitle'] ?? '' }}</p>
+                                    <div class="product-item-buttons">
+                                        <button class="btn "
+                                            style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+                                            <a class="base-color text-decoration-none"
+                                                href="/product/{{ $product['skuId'] }}?category={{ $product['categoryKey'] ?? '' }}">View
+                                                Details</a>
+                                        </button>
+
+                                        <button id="tryOnButton" class="btn btn-outline-secondary try-on-btn"
+                                            data-sku="{{ $product['skuId'] }}"
+                                            style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try
+                                            On</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
   <div class="mt-auto text-center py-4 fs-6 fw-200 text-custom-dark text-dark-gray opacity-75">
  &copy; Powered By <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
 
@@ -276,28 +421,75 @@ document.addEventListener('DOMContentLoaded', function() {
             const card = this.closest('.wishlist-product-card');
             const sku = this.getAttribute('data-product-sku');
             if (!sku) return;
-            // Send AJAX request to remove from wishlist
-            fetch(`/users/${"{{ session('user_id') }}"}/wishlist`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer ' + "{{ session('id_token') }}",
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
-                },
-                body: JSON.stringify({ sku: sku })
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to remove from wishlist');
-                return response.json();
-            })
-            .then(() => {
-                card.style.display = 'none';
-                showWishlistPopup('remove', sku);
-            })
-            .catch(error => {
-                alert('Error: ' + error.message);
-            });
+            // Detect if this is a recommended product (border heart)
+            const borderHeart = this.querySelector('.border-heart');
+            const fillHeart = this.querySelector('.fill-heart');
+            const isRecommended = borderHeart && borderHeart.style.display !== 'none';
+            const dataVariantThumbnails = this.getAttribute('data-variant-thumbnails') || '';
+            const variantThumbnails = dataVariantThumbnails || '';
+            const categoryKey = this.getAttribute('data-category-key') || '';
+            const productTitle = this.getAttribute('data-product-title') || '';
+
+
+            if (isRecommended) {
+                // Add to wishlist (POST)
+                fetch(`/users/${"{{ session('user_id') }}"}/wishlist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + "{{ session('id_token') }}",
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
+                    },
+                    body: JSON.stringify({ sku: sku,
+                         variantThumbnails: variantThumbnails,
+                                categoryKey: categoryKey,
+                                productTitle: productTitle,
+
+                     })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to add to wishlist');
+                    return response.json();
+                })
+                .then(() => {
+                    // Move product card to top wishlist section
+                    const wishlistContainer = document.getElementById('wishlist-grids-container');
+                    if (wishlistContainer && card) {
+                        wishlistContainer.prepend(card);
+                    }
+                    // Toggle heart icon
+                    if (borderHeart) borderHeart.style.display = 'none';
+                    if (fillHeart) fillHeart.style.display = 'inline';
+                    showWishlistPopup('add', sku);
+                })
+                .catch(error => {
+                    alert('Error: ' + error.message);
+                });
+            } else {
+                // Remove from wishlist (DELETE)
+                fetch(`/users/${"{{ session('user_id') }}"}/wishlist`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer ' + "{{ session('id_token') }}",
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
+                    },
+                    body: JSON.stringify({ sku: sku })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to remove from wishlist');
+                    return response.json();
+                })
+                .then(() => {
+                    card.style.display = 'none';
+                    showWishlistPopup('remove', sku);
+                })
+                .catch(error => {
+                    alert('Error: ' + error.message);
+                });
+            }
         });
     });
 

@@ -2217,8 +2217,8 @@
                     confirmationResult = await auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier);
                     console.log('OTP sent successfully');
                 } catch (error) {
-                    console.error("Error sending OTP:", error);
-                    document.getElementById('otp-error').textContent = "Error: " + error.message;
+                    // console.error("Error sending OTP:", error);
+                    // document.getElementById('otp-error').textContent = "Error: " + error.message;
                 }
             });
         }

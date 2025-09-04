@@ -20,7 +20,15 @@
         <div class="d-flex justify-content-end wishlist-btn">
             <!-- Right: Wishlist Button -->
             <div class="header-right">
-                <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
+
+                @php
+                // dd(session()->all());
+                @endphp
+                @if(session('owner_id'))
+                <a href="{{route('wishlist.share', ['username' => session('owner_name'),'user_id' => session('owner_id'), 'shareId' => "s_6nmyszg6"])}}" class="d-inline-block mx-auto text-decoration-none">
+                    @else
+                    <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
+                   @endif
                     <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist">
                         <svg version="1.1" class="mr-3" width="20px" height="20px" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

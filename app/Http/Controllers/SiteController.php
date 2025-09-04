@@ -8,13 +8,61 @@ use App\Services\TokenService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Http;
+use GuzzleHttp\Client;
+use App\Services\TokenService;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+
 class SiteController extends Controller
 {
+    // Dislike a wishlist item (proxy for frontend to avoid CORS)
+    public function dislikeWishlistItem(Request $request, $ownerId)
+    {
+        $sku = $request->input('sku');
+        $refreshToken = Session::get('refresh_token');
+       $idToken = $this->refreshToken($refreshToken);
+
+        try {
+            $client = new Client();
+            $body = [
+                'sku' => $sku,
+            ];
+            $response = $client->post(
+                'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $ownerId . '/wishlist/items/dislike',
+                [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $idToken,
+                        'Content-Type' => 'application/json',
+                    ],
+                    'body' => json_encode($body),
+                ]
+            );
+            $apiResult = json_decode($response->getBody(), true);
+            return response()->json($apiResult, $response->getStatusCode());
+        } catch (\Exception $e) {
+            Log::error('Wishlist dislike API error', [
+                'error' => $e->getMessage(),
+                'owner_id' => $ownerId,
+                'sku' => $sku
+            ]);
+            return response()->json([
+                'error' => 'Failed to dislike wishlist item',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
     // Like a wishlist item (proxy for frontend to avoid CORS)
     public function likeWishlistItem(Request $request, $ownerId)
     {
         $sku = $request->input('sku');
         $idToken = $this->getValidToken();
+       $refreshToken = Session::get('refresh_token');
+       $idToken = $this->refreshToken($refreshToken);
+        // $idToken = $this->refreshToken($refreshToken);
         try {
             $client = new Client();
             $body = [
@@ -31,7 +79,7 @@ class SiteController extends Controller
                         'Content-Type' => 'application/json',
                     ],
                     'body' => json_encode($body),
-                    'timeout' => 30
+
                 ]
             );
             $apiResult = json_decode($response->getBody(), true);
@@ -48,6 +96,63 @@ class SiteController extends Controller
             ], 500);
         }
     }
+
+
+    // ...existing methods...
+
+    /**
+     * Return wishlist products HTML for AJAX refresh
+     */
+    public function wishlistPartial(Request $request)
+    {
+        $userId = session('user_id');
+        // Fetch wishlist products for the user (same logic as main wishlist)
+        $products = $this->getWishlistProducts($userId); // You may need to adjust this method name
+        return view('partials.wishlist_products', compact('products'))->render();
+    }
+
+
+     /**
+     * Fetch wishlist products for a user (used for AJAX partial refresh)
+     */
+    private function getWishlistProducts($userId)
+    {
+        $idToken = Session::get('id_token');
+        $refreshToken = Session::get('refresh_token');
+        $products = [];
+
+        // Get valid token (refresh if needed)
+        $idToken = $this->refreshToken($refreshToken);
+
+        try {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $idToken,
+                    'Content-Type' => 'application/json',
+                ],
+                'timeout' => 30
+            ]);
+            $apiResult = json_decode($response->getBody(), true);
+            $shareUrl = $apiResult['shareUrl'] ?? null;
+            if ($shareUrl) {
+                $productResponse = $client->get($shareUrl, [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ],
+                    'timeout' => 30
+                ]);
+                $productResult = json_decode($productResponse->getBody(), true);
+                $products = $productResult['items'] ?? [];
+            }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $products = [];
+        }
+        return $products;
+    }
+
+    // ...existing methods...
+
 
     public function productChoose(Request $request){
 
@@ -78,10 +183,8 @@ class SiteController extends Controller
             $userId = $apiResult['user_id'];
             $idToken = $apiResult['idToken'];
             $refreshToken = $request->refresh_token ?? null;
-            // dd($idToken);
-            // dd($refreshToken);
 
-             $idToken = $this->getValidToken();
+            $idToken = $this->getValidToken();
 
         } catch (\Exception $e) {
             return redirect()->route('home');
@@ -164,6 +267,10 @@ class SiteController extends Controller
 
     }
     public function recommended_products()
+    {
+        return view('productList');
+    }
+    public function product_show()
     {
         return view('productList');
     }
@@ -275,14 +382,14 @@ public function removeFromWishlist(Request $request, $user_id) {
     public function viewWishlist() {
     $userId = Session::get('user_id');
     $idToken = Session::get('id_token');
-   $refreshToken = Session::get('refresh_token');
+    $refreshToken = Session::get('refresh_token');
     $products = [];
 
     // Get valid token (refresh if needed)
     $idToken = $this->refreshToken($refreshToken);
 
             try {
-                //fetcing share-url
+
                 $client = new Client();
                 $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
                     'headers' => [
@@ -293,8 +400,8 @@ public function removeFromWishlist(Request $request, $user_id) {
                 ]);
 
                 $apiResult = json_decode($response->getBody(), true);
-                $shareUrl = $apiResult['shareUrl'] ?? null;
 
+                $shareUrl = $apiResult['shareUrl'] ?? null;
                 $shareId  = $apiResult['shareId'] ?? null;              // fetching wishlist product details
                 if ($shareUrl) {
                     $productResponse = $client->get($shareUrl, [
@@ -304,8 +411,9 @@ public function removeFromWishlist(Request $request, $user_id) {
                         'timeout' => 30
                     ]);
                     $productResult = json_decode($productResponse->getBody(), true);
-                    // dd($productResult);
+
                     $products = $productResult['items'] ?? [];
+                    // dd($products);
                 }
             } catch (RequestException $e) {
 
@@ -315,30 +423,63 @@ public function removeFromWishlist(Request $request, $user_id) {
 
             }
 
-    $isShared = 0;
+            // recommendation products
+    $recommendApiUrl = 'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/wishlist/recommend/get';
+    $recommendedProducts = [];
+    try {
+        $response = $client->post($recommendApiUrl, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'body' => json_encode([
+                'wishlist-id' => $shareId,
+
+            ]),
+            'timeout' => 30
+        ]);
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['items'])) {
+            // Filter out items without a valid categoryKey
+            $recommendedProducts = array_filter($data['items'], function($item) {
+                return isset($item['categoryKey']) && !empty($item['categoryKey']);
+            });
+        }
+    } catch (\Exception $e) {
+        dd($e);
+        $recommendedProducts = [];
+    }
+
+        // Determine if viewing own or shared wishlist
+
+      $isShared = 0;
         $username = session('username');
         // Slug for URL (lowercase, hyphenated)
 
 
-        $username_first = strtolower(preg_split('/[- ]/', $username)[0]);
+        // $username_first = strtolower(preg_split('/[- ]/', $username)[0]);
         $wishlistOwner = ucfirst($username) . "'s";
-        // dd($wishlistOwner);
+
         // dd($products);
         // for slug
         $username = strtolower(str_replace(' ', '-', trim($username)));
+        // dd("sd");
 
 
-        return view('wishlist', compact('products', 'shareId', 'isShared', 'username','wishlistOwner'));
+        return view('wishlist', compact('products', 'shareId', 'isShared', 'username','wishlistOwner','recommendedProducts'));
     }
 
 public function shareWishlist($username,$userId, $shareId){
-// dd($userId);
-    $client = new Client();
-    // For feature display: first word before hyphen or space, possessive
-    $username_first = strtolower(preg_split('/[- ]/', trim($username))[0]);
-    $wishlistOwner = ucfirst($username_first) . "'s";
-   $ownerId = $userId;
 
+    // dd($shareId);
+    $client = new Client();
+    $name = str_replace('-', ' ', $username);
+    $name = ucwords($name);
+    $wishlistOwner = $name . "'s";
+    $user_slug = $username;
+    $ownerId = $userId;
+
+    // wishlist products
     $shareurl = "https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/" . $shareId;
     $productResponse = $client->get($shareurl, [
         'headers' => [
@@ -348,12 +489,43 @@ public function shareWishlist($username,$userId, $shareId){
     ]);
     $productResult = json_decode($productResponse->getBody(), true);
     $products = $productResult['items'] ?? [];
+//
+    // dd($products);
+
+    // recommendation products
+    $recommendApiUrl = 'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/wishlist/recommend/get';
+    $recommendedProducts = [];
+    try {
+        $response = $client->post($recommendApiUrl, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'body' => json_encode([
+                'wishlist-id' => $shareId,
+
+            ]),
+            'timeout' => 30
+        ]);
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['items'])) {
+            // Filter out items without a valid categoryKey
+            $recommendedProducts = array_filter($data['items'], function($item) {
+                return isset($item['categoryKey']) && !empty($item['categoryKey']);
+            });
+        }
+    } catch (\Exception $e) {
+        dd($e);
+        $recommendedProducts = [];
+    }
+
+// Session::flush();
+
+
 
     $isShared = 1;
 
-    return view('sharedWishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared','ownerId'));
-
-
+    return view('sharedWishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared', 'ownerId', 'user_slug', 'recommendedProducts'));
 }
 
 
@@ -421,6 +593,8 @@ public function shareWishlist($username,$userId, $shareId){
         $idToken = $request->input('idToken');
         $ownername = $request->input('ownername');
         $owneruserid = $request->input('owneruserid');
+        $shareId = $request->input('shareId');
+        $refreshToken = $request->input('refreshToken');
 
         try {
             $client = new Client();
@@ -441,9 +615,12 @@ public function shareWishlist($username,$userId, $shareId){
             session([
                 'user_id' => $apiResult['user_id'] ?? null,
                 'id_token' =>  $idToken,
-                // 'refresh_token' => $apiResult['refreshToken'] ?? null,
+                'refresh_token' => $refreshToken,
                 'username' => $username,
-                'token_created_at' => time()
+                'token_created_at' => time(),
+                'owner_id' => $owneruserid,
+                'owner_name' => $ownername,
+                'shareId' => $shareId,
             ]);
             return response()->json(['success' => true, 'data' => $apiResult]);
         } catch (\Exception $e) {
@@ -452,4 +629,67 @@ public function shareWishlist($username,$userId, $shareId){
         }
     }
 
+//
+    public function shared_full_catalogue( $username,$user_id, $wishlist_id){
+        // Fetch the shared wishlist items for the user
+
+        $user_id = $user_id;
+        $username= $username;
+        $wishlistId = $wishlist_id;
+
+        session([
+            'owner_id' => $user_id,
+            'owner_name' => $username,
+            'share_id' => $wishlist_id,
+        ]);
+
+
+        return view('sharedCatalogue', compact('user_id', 'username','wishlistId'));
+    }
+
+
+
+     public function recommendWishlistItem(Request $request)
+    {
+        $sku = $request->input('sku');
+        $wishlistId = $request->input('wishlist-id');
+        $variantThumbnails= $request->input('variantThumbnails');
+        $categoryKey = $request->input('categoryKey');
+        $productTitle = $request->input('productTitle');
+        try {
+            $client = new Client();
+            $body = [
+                'sku' => $sku,
+                'wishlist-id' => $wishlistId,
+                'variantThumbnails' => $variantThumbnails,
+                'categoryKey' => $categoryKey,
+                'productTitle' => $productTitle,
+            ];
+            $response = $client->post(
+                'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/wishlist/recommend',
+                [
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ],
+                    'body' => json_encode($body),
+                ]
+            );
+            $apiResult = json_decode($response->getBody(), true);
+            return response()->json($apiResult, $response->getStatusCode());
+        } catch (\Exception $e) {
+            Log::error('Wishlist recommend API error', [
+                'error' => $e->getMessage(),
+                'sku' => $sku,
+                'wishlist_id' => $wishlistId,
+
+            ]);
+            return response()->json([
+                'error' => 'Failed to recommend wishlist item',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
+
+
+

@@ -1,16 +1,12 @@
 @extends('layouts.app')
 
-<!-- DEBUG: Show CSRF token for troubleshooting -->
-
-
 @section('title', 'Wishlist')
 @section('content')
 
     <!-- Debug: Show session user info -->
-    <!-- If you see the CSRF token above, it is being rendered by Blade and available in the DOM. -->
-    {{-- @if (session('user_id'))
+    @if (session('user_id'))
 
-    <div style="background:#e7f7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
+        <div style="background:#e7f7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
             <strong>Session User Info:</strong><br>
             User ID: {{ session('user_id') }}<br>
             ID Token: {{ session('id_token') }}<br>
@@ -22,10 +18,10 @@
 
         @endphp
     @else
-    <div style="background:#fbe7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
+        <div style="background:#fbe7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
             <strong>No user session found.</strong>
         </div>
-    @endif --}}
+    @endif
     <!-- Wishlist Notification Popup -->
     <div id="wishlist-popup"
         style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
@@ -208,15 +204,13 @@
         <!-- Authentication Modal -->
         <div id="auth-modal"
             style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
-            <div class="otp-modal-content" style="position:relative;">
-                <div class="otp-right w-100">
+            <div style="background:#fff;padding:2rem;border-radius:12px;max-width:350px;width:100%;position:relative;">
                 <button type="button" id="auth-modal-close"
                     style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
                     aria-label="Close Auth Modal">&times;</button>
                 <form id="auth-form" method="POST" action="{{ route('user.create') }}">
-                    @csrf
-
-                    <h5 class="mb-3">Login </h5>
+                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                    <h5 class="mb-3">Authenticate to Like/Dislike</h5>
                     <div class="mb-2">
                         <input type="text" id="auth-name" class="form-control" placeholder="Name" required>
                     </div>
@@ -225,9 +219,8 @@
                             maxlength="10" required>
                     </div>
                     <div id="auth-error" class="text-danger small mb-2"></div>
-                    <button type="submit" class="otp-btn w-100 mt-3">Send OTP</button>
+                    <button type="submit" class="btn btn-primary w-100">Send OTP</button>
                 </form>
-            </div>
             </div>
         </div>
 
@@ -235,16 +228,13 @@
         <!-- OTP Modal -->
         <div id="otp-modal"
             style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
-            <div class="otp-modal-content" style="position:relative;">
+            <div style="background:#fff;padding:2rem;border-radius:12px;max-width:350px;width:100%;position:relative;">
                 <button type="button" id="otp-modal-close"
                     style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
                     aria-label="Close OTP Modal">&times;</button>
-              <div class="otp-right">
-
-                    <h4 class="otp-heading">Verify with OTP</h4>
-                    <p>Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
-
-                     <div class="d-flex gap-2 mb-2 otp-inputs">
+                <h5>Verify OTP</h5>
+                <p>Sent to <span id="otp-phone-number"></span></p>
+                <div class="d-flex gap-2 mb-2 otp-inputs">
                     <input type="text" maxlength="1" class="otp-box" data-index="1"
                         style="width:2rem;text-align:center;">
                     <input type="text" maxlength="1" class="otp-box" data-index="2"
@@ -258,39 +248,16 @@
                     <input type="text" maxlength="1" class="otp-box" data-index="6"
                         style="width:2rem;text-align:center;">
                 </div>
-
-                    <div id="otp-error" class="otp-error"></div>
-
-
-                    <div class="otp-loading" style="display:none;">
-                        <div class="otp-spinner"></div>
-                        <span>Verifying OTP...</span>
-                    </div>
-
-                    <div class="otp-success" style="display:none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </svg>
-                        Verified successfully!
-                    </div>
-
-                    <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
-
-                    <button id="verify-otp-btn" class=" otp-btn w-100">Verify OTP</button>
-
-                <div id="recaptcha-container" class="d-none"></div>
-
-                    {{-- <p class="otp-terms">
-                        By continuing, I agree to <a href="#">Terms of Use</a> & <a href="#">Privacy
-                            Policy</a>
-                    </p> --}}
+                <div id="otp-error" class="text-danger small mb-2"></div>
+                <div class="otp-loading" style="display:none;">
+                    <span>Verifying OTP...</span>
                 </div>
-
-
-
-
+                <div class="otp-success" style="display:none;">
+                    <span class="text-success">Verified!</span>
+                </div>
+                <p class="otp-timer">Resend OTP in <span id="otp-timer">02:00</span></p>
+                <button id="verify-otp-btn" class="btn btn-success w-100">Verify OTP</button>
+                <div id="recaptcha-container" class="d-none"></div>
             </div>
         </div>
         <style>
@@ -469,6 +436,77 @@
                         });
                 });
 
+                // OTP verify (single handler, prevent duplicate AJAX)
+                // verifyBtn.addEventListener('click', function() {
+                //     if (window.otpVerifiedCalled) return;
+                //     window.otpVerifiedCalled = true;
+                //     verifyBtn.disabled = true;
+                //     var otp = getOTP();
+                //     console.log("OTP value:", otp);
+                //     if (otp.length !== 6 || !confirmationResult) {
+                //         document.getElementById('otp-error').textContent = 'Enter 6-digit OTP.';
+                //         window.otpVerifiedCalled = false;
+                //         verifyBtn.disabled = false;
+                //         return;
+                //     }
+                //     confirmationResult.confirm(otp)
+                //         .then(async function(result) {
+                //             isAuthenticated = true;
+                //             userId = result.user.uid;
+                //             const name = document.getElementById('auth-name').value.trim();
+                //             const phone = result.user.phoneNumber;
+                //             const idToken = await result.user.getIdToken();
+                //             const refreshToken = result.user.refreshToken;
+                //             const ownername = '{{ $user_slug }}';
+                //             const owneruserid = "{{ $ownerId }}";
+                //             const shareId = "{{ $shareId }}";
+                //             fetch('/user/create', {
+                //                 method: 'POST',
+                //                 headers: {
+                //                     'Content-Type': 'application/json',
+                //                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                //                 },
+                //                 body: JSON.stringify({
+                //                     username: name,
+                //                     phoneno: phone,
+                //                     idToken: idToken,
+                //                     ownername: ownername,
+                //                     owneruserid: owneruserid,
+                //                     refreshToken: refreshToken,
+                //                     shareId: shareId
+                //                 })
+                //             })
+                //             .then(res => {
+                //                 if (res.status === 419) {
+                //                     throw new Error('Session expired. Please refresh and try again.');
+                //                 }
+                //                 return res.json();
+                //             })
+                //             .then(data => {
+                //                 document.querySelector('.otp-success').style.display = 'block';
+                //                 document.querySelector('.otp-inputs').style.opacity = '0.5';
+                //                 verifyBtn.style.display = 'none';
+                //                 setTimeout(() => {
+                //                     hideOTPModal();
+                //                     window.location.reload();
+                //                 }, 1200);
+                //             })
+                //             .catch(function(error) {
+                //                 console.log('OTP verification error:', error);
+                //                 document.getElementById('otp-error').textContent =
+                //                     'Invalid OTP. ' + error.message;
+                //                 window.otpVerifiedCalled = false;
+                //                 verifyBtn.disabled = false;
+                //             });
+                //         })
+                //         .catch(function(error) {
+                //             console.log('OTP verification error:', error);
+                //             document.getElementById('otp-error').textContent =
+                //                 'Invalid OTP. Please try again.';
+                //             window.otpVerifiedCalled = false;
+                //             verifyBtn.disabled = false;
+                //         });
+                // });
 
                 // OTP timer logic
                 let otpTimer = null;
@@ -761,32 +799,51 @@
                     if (window.otpVerifiedCalled) return;
                     window.otpVerifiedCalled = true;
                     verifyBtn.disabled = true;
+                    console.log("line 803");
                     var otp = getOTP();
+                    console.log(otp,"otp");
+                    console.log(confirmationResult);
                     if (otp.length !== 6 || !confirmationResult) {
-                        document.getElementById('otp-error').textContent = 'Please enter a valid 6-digit OTP.';
+                        document.getElementById('otp-error').textContent = 'Enter 6-digit OTP.';
                         window.otpVerifiedCalled = false;
                         verifyBtn.disabled = false;
                         return;
                     }
-                    document.querySelector('.otp-loading').style.display = 'block';
+                    // showLoading(true);
                     confirmationResult.confirm(otp)
                         .then(async function(result) {
+                            // showSuccess();
+                            console.log(result,"result",otp);
                             isAuthenticated = true;
+                            console.log(isAuthenticated,"isAuthenticated");
                             userId = result.user.uid;
+                            console.log(userId,'userId');
                             const name = document.getElementById('auth-name').value.trim();
                             const phone = result.user.phoneNumber;
                             const idToken = await result.user.getIdToken();
                             const refreshToken = result.user.refreshToken;
+                            console.log(refreshToken,'refreshToken');
+                            console.log(phone, "auth-phone");
+                            console.log(idToken,'idToken');
+                            console.log("805");
+                            console.log("name =", name);
+                            console.log("phone =", phone);
+                            console.log("idToken =", idToken);
+                            // Static owner fields (replace with actual values if needed)
                             const csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                            const ownername = '{{ $user_slug }}';
+                            console.log(csrf,'csrf');
+                           const ownername = '{{ $user_slug }}';
                             const owneruserid = "{{ $ownerId }}";
                             const shareId = "{{ $shareId }}";
                             fetch("{{ route('user.create') }}", {
                                 method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': csrf
-                                },
+                              headers: {
+
+                                'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                        'content')  },
+
+
                                 body: JSON.stringify({
                                     username: name,
                                     phoneno: phone,
@@ -800,6 +857,7 @@
                             .then(res => {
                                 const contentType = res.headers.get('content-type');
                                 if (!res.ok) {
+                                    console.log("errir cirr");
                                     return res.text().then(text => { throw new Error(text); });
                                 }
                                 if (contentType && contentType.indexOf('application/json') !== -1) {
@@ -809,24 +867,19 @@
                                 }
                             })
                             .then(data => {
-                                document.querySelector('.otp-loading').style.display = 'none';
-                                document.querySelector('.otp-success').style.display = 'block';
-                                document.querySelector('.otp-inputs').style.opacity = '0.5';
-                                verifyBtn.style.display = 'none';
-                                setTimeout(() => {
-                                    hideOTPModal();
-                                }, 1200);
+                                console.log("line4");
+                                // Optionally handle response
+                                console.log('User created:', data);
                             })
                             .catch(function(error) {
-                                document.querySelector('.otp-loading').style.display = 'none';
+                                console.log('User creation error:', error);
                                 document.getElementById('otp-error').textContent =
                                     'User creation failed or server error. ' + error.message;
-                                window.otpVerifiedCalled = false;
-                                verifyBtn.disabled = false;
                             });
                         })
                         .catch(function(error) {
-                            document.querySelector('.otp-loading').style.display = 'none';
+                            // showLoading(false);x
+                            console.log('OTP verification error:', error);
                             document.getElementById('otp-error').textContent =
                                 'Invalid OTP. Please try again.' + error;
                             window.otpVerifiedCalled = false;

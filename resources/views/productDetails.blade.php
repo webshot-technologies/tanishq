@@ -79,7 +79,7 @@
                     <div class="col-sm-6">
                        <p><strong>Brand:</strong> Tanishq</p>
                         <p><strong>Product Collection:</strong> ${product.productCollection || '-'}</p>
-                        <p><strong>Product id:</strong> ${product.productId || '-'}</p>
+
                           <p><strong>Gender:</strong> ${product.variants?.[0]?.variantInventory?.gender || '-'}</p>
                           <p><strong>SKU ID:</strong> ${product.variants?.[0]?.variantSku || '-'}</p>
                     </div>
