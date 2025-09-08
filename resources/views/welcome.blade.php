@@ -1429,7 +1429,7 @@
             <div class="otp-modal-content" style="position:relative;">
                 <button id="otp-modal-close" class="d-flex justify-content-end" type="button"
                     style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;line-height:1;z-index:10;cursor:pointer;"
-                    aria-label="Close OTP Modal" onclick="posthog.capture('close-otp-modal-clicked')">&times;</button>
+                    aria-label="Close OTP Modal" onclick="posthog.capture('otp-closed')">&times;</button>
 
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
