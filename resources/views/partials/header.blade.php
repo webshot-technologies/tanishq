@@ -21,7 +21,7 @@
             <!-- Right: Wishlist Button -->
             <div class="header-right">
                 <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
-                    <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist">
+                    <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist" onclick="posthog.capture('wishlist-screen')">
                         <svg version="1.1" class="mr-3" width="20px" height="20px" id="Layer_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 512.003 512.003" style="enable-background:new 0 0 512.003 512.003;"

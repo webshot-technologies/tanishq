@@ -117,7 +117,7 @@
 
                                             <button id="tryOnButton" class="btn btn-outline-secondary try-on-btn"
                                                 data-sku="{{ $product['sku'] }}"
-                                                style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try
+                                                style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {sku: '{{ $product['sku'] }}', category: '{{ $product['categoryKey'] ?? '' }}')">Try
                                                 On</button>
                                             {{-- <button class="btn btn-outline-secondary try-on-btn" data-sku="{{ $product['sku'] }}" style="border:2px solid #8a2323;background:#8a2323;color:#fff;font-weight:500;">Try On</button> --}}
                                         </div>
