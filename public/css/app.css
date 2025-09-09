@@ -80,6 +80,13 @@ body {
     color:white;
     background-color:#8a2323;
 }
+.explore-btn.btn:hover{
+    background-color:#8a2323;
+}
+.explore-btn.btn{
+    color:white;
+    background-color:#8a2323;
+}
 .text-custom-dark {
   color: #300708;
 }

@@ -33,6 +33,13 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+
+          // ...
+    'brevo' => [
+        'key'   => env('BREVO_API_KEY'),
+        'from'  => env('BREVO_SENDER_EMAIL'),
+        'name'  => env('BREVO_SENDER_NAME', 'App'),
+    ],
     ],
 
 ];

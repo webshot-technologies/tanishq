@@ -219,7 +219,7 @@
                         @endphp
                         @foreach ($showCategories as $catKey)
                             @if(isset($allCategories[$catKey]))
-                                <button class="category-tab" data-category="{{ $catKey }}"  onclick="posthog.capture('category-selected', { category: '{{ $catKey }}', page: 'plp' })">{{ $allCategories[$catKey] }}</button>
+                                <button class="category-tab" data-category="{{ $catKey }}">{{ $allCategories[$catKey] }}</button>
                             @endif
                         @endforeach
                     </div>
@@ -311,179 +311,112 @@
                 });
             });
 
-            // 3. Wishlist State Sync on Page Load
-            const userId = "{{ session('user_id') }}";
-            const idToken = "{{ session('id_token') }}";
-            // Get wishlist productIds from backend (Blade)
-            @if(isset($wishlistProductIds) && is_array($wishlistProductIds))
-                let wishlistSkus = @json($wishlistProductIds);
-            @else
-                let wishlistSkus = [];
-            @endif
-            // console.log(wishlistSkus);
-            localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
-            // Sync UI hearts
-            document.querySelectorAll('.wishlist-btn').forEach(btn => {
-                const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
-                const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                const borderHeart = btn.querySelector('.border-heart');
-                const fillHeart = btn.querySelector('.fill-heart');
-                if (sku && wishlistSkus.includes(sku)) {
-                    borderHeart.style.display = 'none';
-                    fillHeart.style.display = 'inline';
-                } else {
-                    borderHeart.style.display = 'inline';
-                    fillHeart.style.display = 'none';
-                }
-            });
 
-            // 4. Heart Icon Functionality
-            // heartIcons.forEach(icon => {
-            //     icon.addEventListener('click', function(event) {
-            //         event.stopPropagation();
-            //         const btn = this.closest('.wishlist-btn');
-            //         const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
-            //         const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-            //         const borderHeart = btn.querySelector('.border-heart');
-            //         const fillHeart = btn.querySelector('.fill-heart');
-            //         const isFavorited = fillHeart.style.display === 'inline';
-            //         if (!sku) return;
-            //         if (isFavorited) {
-            //             // Remove from wishlist
-            //             borderHeart.style.display = 'inline';
-            //             fillHeart.style.display = 'none';
-            //             wishlistSkus = wishlistSkus.filter(id => id !== sku);
-            //         } else {
-            //             // Add to wishlist
-            //             borderHeart.style.display = 'none';
-            //             fillHeart.style.display = 'inline';
-            //             if (!wishlistSkus.includes(sku)) wishlistSkus.push(sku);
-            //         }
-            //         localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
-            //     });
-            // });
+
 
             // 5. Search Functionality (AJAX)
-
-            // const searchBtnEl = document.querySelector('.search-btn');
-            // searchBtnEl.addEventListener('click', function(e) {
-            //     e.preventDefault();
-            //     const searchTerm = searchInput.value.trim();
-            //     if (!searchTerm) return;
-            //     // Get active category
-            //     const activeTab = document.querySelector('.category-tab.active');
-            //     const categoryKey = activeTab ? activeTab.dataset.category : '';
-            //     const gridsContainer = document.getElementById('product-grids-container');
-            //     gridsContainer.innerHTML = '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
-            //     // AJAX call to fetch products by search
-            //     fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
-            //         method: 'POST',
-            //         headers: {
-            //             'Content-Type': 'application/json',
-            //         },
-            //         body: JSON.stringify({
-            //             limit: 20,
-            //             product_code: searchTerm,
-            //             filter_field: {
-            //                 page: 1,
-            //                 isSetOnly: [false]
-            //             }
-            //         })
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         const products = data.data || [];
-            //         if (products.length === 0) {
-            //             gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
-            //             return;
-            //         }
-            //         let wishlistSkus = [];
-            //         try {
-            //             wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
-            //         } catch (e) {}
-            //         let html = '<div class="row">';
-            //         products.forEach(product => {
-            //             const productId = product.productId || product.sku;
-            //             const isWishlisted = wishlistSkus.includes(productId);
-            //             let imgSrc = 'https://placehold.co/300x220?text=No+Image';
-            //             const variant = product.variants?.[0];
-            //             if (variant) {
-            //                 if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
-            //                     imgSrc = Object.values(variant.variantThumbnails)[0];
-            //                 } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
-            //                     imgSrc = Object.values(variant.variantImageURLs)[0];
-            //                 }
-            //             }
-            //             html += `
-            //                 <div class="col-lg-3 col-md-4 col-6 mb-4">
-            //                     <div class="product-item-card">
-            //                         <div class="product-image-wrapper position-relative">
-            //                             <img src="${imgSrc}" class="default-image" alt="${product.productCollection}">
-            //                             <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
-            //                                     style="z-index:2;"
-            //                                     aria-label="Add to wishlist"
-            //                                     data-product-id="${productId}">
-            //                                 <span class="wishlist-icon-wrapper">
-            //                                     <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
-            //                                          style="${isWishlisted ? 'display:none;' : ''}">
-            //                                         <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
-            //                                             c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
-            //                                             c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
-            //                                             c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
-            //                                             c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
-            //                                             c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
-            //                                             c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
-            //                                             c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
-            //                                     </svg>
-            //                                     <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
-            //                                          style="${isWishlisted ? '' : 'display:none;'}">
-            //                                         <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
-            //                                             c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
-            //                                             C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
-            //                                             C195.532,17.899,236.466,55.92,256.001,105.69"/>
-            //                                     </svg>
-            //                                 </span>
-            //                             </button>
-            //                         </div>
-            //                         <div class="product-item-body">
-            //                             <p class="product-item-id base-color">${product.productTitle || ''}</p>
-            //                             <div class="product-item-buttons">
-            //                                 <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
-            //                                 <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
-            //                             </div>
-            //                         </div>
-            //                     </div>
-            //                 </div>
-            //             `;
-            //         });
-            //         html += '</div>';
-            //         gridsContainer.innerHTML = html;
-            //     })
-            //     .catch(() => {
-            //         gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
-            //     });
-            // });
-
-        });
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const heartIcons = document.querySelectorAll('.heart-icon');
-
-        //     heartIcons.forEach(icon => {
-        //         icon.addEventListener('click', function(event) {
-        //             event.stopPropagation(); // Prevent triggering other click events
-
-        //             // Find the <path> element inside the SVG
-        //             const svgPath = this.querySelector('svg path');
-
-        //             // Check the current color and toggle it
-        //             const isFavorited = svgPath.getAttribute('fill') ===
-        //                 '#e74c3c'; // Red color for favorited
-        //             svgPath.setAttribute('fill', isFavorited ? '#ccc' :
-        //                 '#e74c3c'); // Toggle between gray and red
+        //     const searchBtnEl = document.querySelector('.search-btn');
+        //     searchBtnEl.addEventListener('click', function(e) {
+        //         e.preventDefault();
+        //         const searchTerm = searchInput.value.trim();
+        //         if (!searchTerm) return;
+        //         // Get active category
+        //         const activeTab = document.querySelector('.category-tab.active');
+        //         const categoryKey = activeTab ? activeTab.dataset.category : '';
+        //         const gridsContainer = document.getElementById('product-grids-container');
+        //         gridsContainer.innerHTML = '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
+        //         // AJAX call to fetch products by search
+        //         fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({
+        //                 limit: 20,
+        //                 product_code: searchTerm,
+        //                 filter_field: {
+        //                     page: 1,
+        //                     isSetOnly: [false]
+        //                 }
+        //             })
+        //         })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const products = data.data || [];
+        //             if (products.length === 0) {
+        //                 gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
+        //                 return;
+        //             }
+        //             let wishlistSkus = [];
+        //             try {
+        //                 wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
+        //             } catch (e) {}
+        //             let html = '<div class="row">';
+        //             products.forEach(product => {
+        //                 const productId = product.productId || product.sku;
+        //                 const isWishlisted = wishlistSkus.includes(productId);
+        //                 let imgSrc = 'https://placehold.co/300x220?text=No+Image';
+        //                 const variant = product.variants?.[0];
+        //                 if (variant) {
+        //                     if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
+        //                         imgSrc = Object.values(variant.variantThumbnails)[0];
+        //                     } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
+        //                         imgSrc = Object.values(variant.variantImageURLs)[0];
+        //                     }
+        //                 }
+        //                 html += `
+        //                     <div class="col-lg-3 col-md-4 col-6 mb-4">
+        //                         <div class="product-item-card">
+        //                             <div class="product-image-wrapper position-relative">
+        //                                 <img src="${imgSrc}" class="default-image" alt="${product.productCollection}">
+        //                                 <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+        //                                         style="z-index:2;"
+        //                                         aria-label="Add to wishlist"
+        //                                         data-product-id="${productId}">
+        //                                     <span class="wishlist-icon-wrapper">
+        //                                         <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
+        //                                              style="${isWishlisted ? 'display:none;' : ''}">
+        //                                             <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
+        //                                                 c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
+        //                                                 c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
+        //                                                 c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
+        //                                                 c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
+        //                                                 c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
+        //                                                 c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
+        //                                                 c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
+        //                                         </svg>
+        //                                         <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
+        //                                              style="${isWishlisted ? '' : 'display:none;'}">
+        //                                             <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+        //                                                 c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+        //                                                 C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+        //                                                 C195.532,17.899,236.466,55.92,256.001,105.69"/>
+        //                                         </svg>
+        //                                     </span>
+        //                                 </button>
+        //                             </div>
+        //                             <div class="product-item-body">
+        //                                 <p class="product-item-id base-color">${product.productTitle || ''}</p>
+        //                                 <div class="product-item-buttons">
+        //                                     <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
+        //                                     <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
+        //                                 </div>
+        //                             </div>
+        //                         </div>
+        //                     </div>
+        //                 `;
+        //             });
+        //             html += '</div>';
+        //             gridsContainer.innerHTML = html;
+        //         })
+        //         .catch(() => {
+        //             gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
         //         });
         //     });
         // });
+        });
+
+
     </script>
     {{-- categor-tab  --}}
     <script>
@@ -516,10 +449,10 @@
                     @if(isset($categoryPresence) && is_array($categoryPresence) && count($categoryPresence) > 0)
                         allowedCategories = @json($categoryPresence);
                     @endif
-                    // console.log(allowedCategories);
+
                     // Filter categories if allowedCategories is set
                     let filteredCategories = categories;
-                    // console.log(categories);
+
                     if (allowedCategories.length > 0) {
                         filteredCategories = categories.filter(cat => allowedCategories.includes(cat.categoryKey));
                     }
@@ -613,40 +546,27 @@
                         <div class="product-item-card">
                             <div class="product-image-wrapper position-relative">
                                 <img src="${imgSrc}" class="default-image" alt="${product.productCollection}">
-                                <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+                                <button class="recommend-btn position-absolute top-0 start-0 m-2 p-0 border-0 bg-transparent"
                                         style="z-index:2;"
-                                        aria-label="Add to wishlist"
-                                        data-product-id="${productId}"
-                                        onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
-                                    <span class="wishlist-icon-wrapper">
-                                        <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
-                                             style="${isWishlisted ? 'display:none;' : ''}">
-                                            <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
-                                                c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
-                                                c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
-                                                c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
-                                                c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
-                                                c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
-                                                c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
-                                                c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
-                                        </svg>
-                                        <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
-                                             style="${isWishlisted ? '' : 'display:none;'}">
-                                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                        aria-label="Recommend product"
+                                        data-sku="${product.variants?.[0]?.variantSku ? product.variants[0].variantSku : (product.sku || productId || '')}"
+                                        data-wishlist-id="{{ $wishlistId }}">
+                                    <span class="recommend-icon-wrapper">
+                                        <svg class="recommend-heart-svg" width="20" height="20" viewBox="0 0 512.003 512.003" fill="#ccc">
+                                            <path style="fill:#ccc;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
                                                 c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
                                                 C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
                                                 C195.532,17.899,236.466,55.92,256.001,105.69"/>
                                         </svg>
                                     </span>
+                                    <span class="recommend-label" style="display:none;color:#8a2323;font-weight:600;font-size:13px;">Added to Recommendation</span>
                                 </button>
                             </div>
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">${product.productTitle || ''}</p>
                                 <div class="product-item-buttons">
-                                    <button class="btn" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}'})">
-                                        <a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a>
-                                    </button>
-                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}', page:'plp'})">Try On</button>
+                                    <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
+                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
                                 </div>
                             </div>
                         </div>
@@ -678,7 +598,7 @@
             </div>`;
 
                         gridsContainer.innerHTML = html;
-                        attachWishlistListeners();
+                        attachRecommendationListeners();
 
                         // Attach Try On button listeners
                         document.querySelectorAll('.try-on-btn').forEach(btn => {
@@ -731,10 +651,10 @@
                 const msg = document.getElementById('wishlist-popup-msg');
                 if (type === 'add') {
                     icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                                    <path style=\"fill:#8a2323;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                                        C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                                                </svg>";
-                    msg.textContent = `Added to wishlist! SKU: ${sku}`;
+                    msg.textContent = `Added To Recommendation! SKU: ${sku}`;
                 } else if (type === 'remove') {
                     icon.innerHTML = '🗑️';
-                    msg.textContent = `Removed from wishlist!  SKU: ${sku}`;
+                    msg.textContent = `Removed From Recommendation!  SKU: ${sku}`;
                 } else {
                     icon.innerHTML = '';
                     msg.textContent = '';
@@ -753,69 +673,57 @@
                 }, 2000);
             }
 
-            // Function to attach event listeners to wishlist buttons
-            function attachWishlistListeners() {
-                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            // Function to attach event listeners to recommendation buttons
+            function attachRecommendationListeners() {
+                document.querySelectorAll('.recommend-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
-                        const productCard = this.closest('.product-item-card');
-                        if (!productCard) {
-                            console.warn('wishlist-btn not inside .product-item-card');
-                            return;
-                        }
-                        const skuBtn = productCard.querySelector('.try-on-btn');
-                        const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                        const borderHeart = this.querySelector('.border-heart');
-                        const fillHeart = this.querySelector('.fill-heart');
-                        if (!userId || !idToken || !sku) {
-                            // console.error('Missing userId, idToken, or sku for wishlist API call');
-                            // alert('Please log in to manage wishlist items');
-                            return;
-                        }
-                        // Determine if we're adding or removing
-                        const isCurrentlyFilled = fillHeart.style.display === 'inline';
-                        const method = isCurrentlyFilled ? 'DELETE' : 'POST';
-                        const url = `/users/${userId}/wishlist`;
-                        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
-                        // Toggle UI immediately for better UX
-                        borderHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                        fillHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
-                        // Get product data from card
-                        const imgElem = productCard.querySelector('img.default-image');
+                        const sku = btn.getAttribute('data-sku');
+                        // Find the closest product card for this button
+                        const productCard = btn.closest('.product-item-card');
+                        const imgElem = productCard ? productCard.querySelector('img.default-image') : null;
+                        const wishlistId = btn.getAttribute('data-wishlist-id');
+                        console.log(wishlistId);
+                        console.log(sku);
                         const variantThumbnails = imgElem ? imgElem.src : '';
                         const categoryKey = productCard.closest('.product-listing-section')?.querySelector('.category-tab.active')?.dataset.category || '';
                         const productTitle = productCard.querySelector('.product-item-id')?.textContent || '';
-                        showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
-                        fetch(url, {
-                            method: method,
+                        console.log(categoryKey);
+                        console.log(productTitle);
+                        console.log(variantThumbnails);
+                        fetch('/wishlist/recommend', {
+                            method: 'POST',
                             headers: {
-                                'Authorization': 'Bearer ' + idToken,
+                                   'Authorization': 'Bearer ' + idToken,
                                 'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': csrfToken,
-                                'Accept': 'application/json'
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                             },
                             body: JSON.stringify({
                                 sku: sku,
+                                'wishlist-id': wishlistId,
                                 variantThumbnails: variantThumbnails,
                                 categoryKey: categoryKey,
                                 productTitle: productTitle,
                             })
                         })
-                        .then(response => {
-                            if (!response.ok) {
-                                return response.json().then(err => {
-                                    // throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
-                                });
-                            }
-                            return response.json();
-                        })
+                        .then(res => res.json())
                         .then(data => {
-                            updateWishlistStorage(sku, method === 'POST');
-                            // showWishlistPopup(method === 'POST' ? 'add' : 'remove');
+                            // Show success popup or feedback
+                            showWishlistPopup('add', sku);
+                            console.log(data);
+                            // Change heart icon to red and show label
+                            const heartSvg = btn.querySelector('.recommend-heart-svg');
+                            if (heartSvg) {
+                                heartSvg.setAttribute('fill', '#8a2323');
+                                // Also update the path color for compatibility
+                                const path = heartSvg.querySelector('path');
+                                if (path) path.setAttribute('style', 'fill:#8a2323;');
+                            }
+                            const label = btn.querySelector('.recommend-label');
+                            if (label) label.style.display = 'inline';
+                            btn.disabled = true;
                         })
-                        .catch(error => {
-                            borderHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
-                            fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                            // alert('Error: ' + error.message);
+                        .catch(err => {
+                            showWishlistPopup('remove', sku);
                         });
                     });
                 });
