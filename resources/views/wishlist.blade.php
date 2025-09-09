@@ -100,12 +100,14 @@
                 </div>
             </div>
 
-            @else
+
+            {{-- @else
             <div class="alert alert-warning">Unable to generate share link.</div>
-            @endif
-          </div>
+            @endif --}}
+          {{-- </div>
         </div>
-      </div>
+      </div> --}}
+
     </div>
 
 </div>
