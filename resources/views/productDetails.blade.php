@@ -87,7 +87,11 @@
             </div>
               <div class="row mt-4 col-md-8 mx-auto" >
             <div class="col-sm-6 col-12 mb-3" >
-                <button id="wishlistBtn" type="button" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+
+
+                <button id="wishlistBtn" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"
+                onclick="posthog.capture('add_to_wishlist_clicked', {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
+
                     <span id="wishlistBtnIcon" style="margin-right:8px;font-size:20px;">
                         <svg class="wishlist-heart-svg border-heart" style="margin-top:-3px" width="18" height="18" viewBox="0 0 512.289 512.289" style="display:inline;">
                             <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
@@ -110,7 +114,7 @@
                 </button>
             </div>
             <div class="col-sm-6 col-12 " >
-                <button id="tryOnButton" class="btn w-100" >Try  on</button>
+                <button id="tryOnButton" class="btn w-100" onclick="posthog.capture('try-on', {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})"> Try on</button>
             </div>
         </div>
         </div>

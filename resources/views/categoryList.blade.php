@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ? assetBase + category.categoryLabel.toLowerCase().replace(/\s+/g, '') + '.webp'
     : 'https://placehold.co/300x300?text=No+Image';
                     row.innerHTML += `
-                        <div class="col-md-3 col-6 mb-4">
+                        <div class="col-md-3 col-6 mb-4" onclick="posthog.capture('category-selected', {category: '${category.categoryLabel}', page: 'catalogue'})">
                             <a href="/product/full-catalogue?category=${encodeURIComponent(category.categoryKey)}" class="text-decoration-none">
                                 <div class="product-category-card">
                                     <img src="${img}" alt="${category.type || category.name}">
