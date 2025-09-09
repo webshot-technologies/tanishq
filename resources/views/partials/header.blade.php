@@ -21,6 +21,9 @@
             <!-- Right: Wishlist Button -->
             <div class="header-right">
 
+                {{-- <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
+                    <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist" onclick="posthog.capture('wishlist-screen')"> --}}
+
 
                 @php
 
@@ -30,9 +33,6 @@
                     @else
                     <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
                    @endif
-                    <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist">
-
-               
                     <button type="button" class="btn btn-link p-0 d-flex align-items-center" aria-label="Wishlist" onclick="posthog.capture('wishlist-screen')">
 
                         <svg version="1.1" class="mr-3" width="20px" height="20px" id="Layer_1"

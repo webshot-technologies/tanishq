@@ -365,6 +365,108 @@
 
             // 5. Search Functionality (AJAX)
 
+            const searchBtnEl = document.querySelector('.search-btn');
+            searchBtnEl.addEventListener('click', function(e) {
+                e.preventDefault();
+                const searchTerm = searchInput.value.trim();
+                if (!searchTerm) return;
+                // Get active category
+                const activeTab = document.querySelector('.category-tab.active');
+                const categoryKey = activeTab ? activeTab.dataset.category : '';
+                const gridsContainer = document.getElementById('product-grids-container');
+                gridsContainer.innerHTML = '<div class="text-center py-5"><img src="{{ asset('/image/logo.png') }}" alt="Loading..." style="width:60px;height:60px;" /></div>';
+                // AJAX call to fetch products by search
+                fetch(`https://ar-api.mirrar.com/product/brand/2df975fa-c1b8-45a1-a7c0-f94d9a9becd8/categories/${encodeURIComponent(categoryKey)}/inventories`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        limit: 20,
+                        product_code: searchTerm,
+                        filter_field: {
+                            page: 1,
+                            isSetOnly: [false]
+                        }
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const products = data.data || [];
+                    if (products.length === 0) {
+                        gridsContainer.innerHTML = '<div class="text-center py-5">No products found.</div>';
+                        return;
+                    }
+                    let wishlistSkus = [];
+                    try {
+                        wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    } catch (e) {}
+                    let html = '<div class="row">';
+                    products.forEach(product => {
+                        const productId = product.productId || product.sku;
+                        const isWishlisted = wishlistSkus.includes(productId);
+                        let imgSrc = 'https://placehold.co/300x220?text=No+Image';
+                        const variant = product.variants?.[0];
+                        if (variant) {
+                            if (variant.variantThumbnails && Object.values(variant.variantThumbnails).length > 0) {
+                                imgSrc = Object.values(variant.variantThumbnails)[0];
+                            } else if (variant.variantImageURLs && Object.values(variant.variantImageURLs).length > 0) {
+                                imgSrc = Object.values(variant.variantImageURLs)[0];
+                            }
+                        }
+                        html += `
+                            <div class="col-lg-3 col-md-4 col-6 mb-4">
+                                <div class="product-item-card">
+                                    <div class="product-image-wrapper position-relative">
+                                        <img src="${imgSrc}" class="default-image" alt="${product.productCollection}">
+                                        <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+                                                style="z-index:2;"
+                                                aria-label="Add to wishlist"
+                                                data-product-id="${productId}"
+                                                onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
+                                            <span class="wishlist-icon-wrapper">
+                                                <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
+                                                     style="${isWishlisted ? 'display:none;' : ''}">
+                                                    <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
+                                                        c-23.04-45.227-64-72.533-108.373-72.533c-40.96,0-78.507,18.773-111.787,55.467c-39.253,43.52-61.44,141.653,15.36,215.04
+                                                        c35.84,33.28,197.12,203.093,198.827,204.8s3.413,2.56,5.973,2.56s5.12-0.853,6.827-3.413
+                                                        c1.707-1.707,163.84-170.667,198.827-204.8C537.637,213.478,515.451,115.344,477.051,72.678z M448.891,275.771
+                                                        c-31.573,29.867-162.987,167.253-192.853,198.827c-29.867-32.427-160.427-168.96-192.853-199.68
+                                                        c-69.12-65.707-49.493-151.893-14.507-190.293c29.867-32.427,64-49.493,98.987-49.493c42.667,0,81.067,29.867,100.693,79.36
+                                                        c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
+                                                        c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
+                                                </svg>
+                                                <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003"
+                                                     style="${isWishlisted ? '' : 'display:none;'}">
+                                                    <path style="fill:#E8594B;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+                                                        C195.532,17.899,236.466,55.92,256.001,105.69"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <div class="product-item-body">
+                                        <p class="product-item-id base-color">${product.productTitle || ''}</p>
+                                        <div class="product-item-buttons">
+                                            <button class="btn" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}'})">
+                                                <a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a>
+                                            </button>
+                                            <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}', page:'plp'})">Try On</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    gridsContainer.innerHTML = html;
+                })
+                .catch(() => {
+                    gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
+                });
+            });
+
             // const searchBtnEl = document.querySelector('.search-btn');
             // searchBtnEl.addEventListener('click', function(e) {
             //     e.preventDefault();
