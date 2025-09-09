@@ -22,10 +22,10 @@
             <div class="header-right">
 
                 @php
-                // dd(session()->all());
+
                 @endphp
                 @if(session('owner_id'))
-                <a href="{{route('wishlist.share', ['username' => session('owner_name'),'user_id' => session('owner_id'), 'shareId' => "s_6nmyszg6"])}}" class="d-inline-block mx-auto text-decoration-none">
+                <a href="{{route('wishlist.share', ['username' => session('owner_name'),'shareId' => session('owner_id')])}}" class="d-inline-block mx-auto text-decoration-none">
                     @else
                     <a href="{{route('wishlist.page')}}" class="d-inline-block mx-auto text-decoration-none">
                    @endif

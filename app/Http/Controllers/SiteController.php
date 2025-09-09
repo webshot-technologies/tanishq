@@ -8,17 +8,74 @@ use App\Services\TokenService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Http;
-use GuzzleHttp\Client;
-use App\Services\TokenService;
-use GuzzleHttp\Exception\RequestException;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 
 class SiteController extends Controller
 {
+    /**
+     * Send wishlist share email via Brevo SMTP/API
+     */
+    public function sendWishlistEmail(Request $request)
+    {
+        $type = $request->input('type');
+        $shareUrl = $request->input('shareUrl');
+        $email = $request->input('email');
+        $fullname = $request->input('fullname');
+
+        // Determine recipient and template params
+        if ($type === 'self') {
+            $recipientEmail = session('user_email'); // Make sure user_email is stored in session
+            $senderName = session('username');
+            $templateId = 6;
+            $params = [
+                'wishlistUrl' => $shareUrl,
+                'first_name' => $senderName,
+            ];
+        } elseif ($type === 'other') {
+            $recipientEmail = $email;
+            $senderName = session('username');
+            $recipientFullName = $fullname;
+            $templateId = 7;
+            $params = [
+                'wishlistUrl' => $shareUrl,
+                'first_name' => $senderName,
+                'receiver_name' => $recipientFullName,
+            ];
+        } else {
+            return response()->json(['success' => false, 'message' => 'Invalid type'], 400);
+        }
+
+        // Use Brevo template ID and params for email content
+        try {
+            $client = new Client();
+            $apiKey = env('BREVO_API_KEY');
+            $response = $client->post('https://api.brevo.com/v3/smtp/email', [
+                'headers' => [
+                    'api-key' => $apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+                'body' => json_encode([
+                    'sender' => [
+                        'name' => 'Mirrar',
+                        'email' => env('MAIL_FROM_ADDRESS', 'noreply@mirrar.com'),
+                    ],
+                    'to' => [
+                        ['email' => $recipientEmail],
+                    ],
+                    'templateId' => $templateId,
+                    'params' => $params,
+                ]),
+            ]);
+            $result = json_decode($response->getBody(), true);
+            return response()->json(['success' => true, 'result' => $result]);
+        } catch (\Exception $e) {
+            Log::error('Brevo email send error', [
+                'error' => $e->getMessage(),
+                'recipient' => $recipientEmail,
+                'type' => $type,
+            ]);
+            return response()->json(['success' => false, 'message' => 'Failed to send email'], 500);
+        }
+    }
     // Dislike a wishlist item (proxy for frontend to avoid CORS)
     public function dislikeWishlistItem(Request $request, $ownerId)
     {
@@ -196,7 +253,8 @@ class SiteController extends Controller
                     'id_token' => $idToken,
                     'refresh_token' => $refreshToken,
                     'username' => $request->input('name'),
-                    'token_created_at' => time() // store current timestamp
+                    'token_created_at' => time(), // store current timestamp
+                    'user_email' => $request->input('email'),
                 ]);
 
 
@@ -403,6 +461,7 @@ public function removeFromWishlist(Request $request, $user_id) {
 
                 $shareUrl = $apiResult['shareUrl'] ?? null;
                 $shareId  = $apiResult['shareId'] ?? null;              // fetching wishlist product details
+                // dd($shareUrl);
                 if ($shareUrl) {
                     $productResponse = $client->get($shareUrl, [
                         'headers' => [
@@ -446,12 +505,12 @@ public function removeFromWishlist(Request $request, $user_id) {
             });
         }
     } catch (\Exception $e) {
-        dd($e);
+        // dd($e);
         $recommendedProducts = [];
     }
 
         // Determine if viewing own or shared wishlist
-
+// dd($recommendedProducts);
       $isShared = 0;
         $username = session('username');
         // Slug for URL (lowercase, hyphenated)
@@ -469,15 +528,15 @@ public function removeFromWishlist(Request $request, $user_id) {
         return view('wishlist', compact('products', 'shareId', 'isShared', 'username','wishlistOwner','recommendedProducts'));
     }
 
-public function shareWishlist($username,$userId, $shareId){
+public function shareWishlist($username, $shareId){
 
-    // dd($shareId);
+
     $client = new Client();
     $name = str_replace('-', ' ', $username);
     $name = ucwords($name);
     $wishlistOwner = $name . "'s";
     $user_slug = $username;
-    $ownerId = $userId;
+    $ownerId = $shareId;
 
     // wishlist products
     $shareurl = "https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/" . $shareId;
@@ -515,7 +574,7 @@ public function shareWishlist($username,$userId, $shareId){
             });
         }
     } catch (\Exception $e) {
-        dd($e);
+
         $recommendedProducts = [];
     }
 
@@ -524,6 +583,7 @@ public function shareWishlist($username,$userId, $shareId){
 
 
     $isShared = 1;
+
 
     return view('sharedWishlist', compact('products', 'wishlistOwner', 'shareId', 'isShared', 'ownerId', 'user_slug', 'recommendedProducts'));
 }
@@ -630,10 +690,10 @@ public function shareWishlist($username,$userId, $shareId){
     }
 
 //
-    public function shared_full_catalogue( $username,$user_id, $wishlist_id){
+    public function shared_full_catalogue( $username, $wishlist_id){
         // Fetch the shared wishlist items for the user
 
-        $user_id = $user_id;
+        $user_id = $wishlist_id;
         $username= $username;
         $wishlistId = $wishlist_id;
 
@@ -656,6 +716,12 @@ public function shareWishlist($username,$userId, $shareId){
         $variantThumbnails= $request->input('variantThumbnails');
         $categoryKey = $request->input('categoryKey');
         $productTitle = $request->input('productTitle');
+        $idToken = session('id_token');
+        $refreshToken = Session::get('refresh_token');
+    // $products = [];
+
+    // Get valid token (refresh if needed)
+    $idToken = $this->refreshToken($refreshToken);
         try {
             $client = new Client();
             $body = [
@@ -670,7 +736,9 @@ public function shareWishlist($username,$userId, $shareId){
                 [
                     'headers' => [
                         'Content-Type' => 'application/json',
+                          'Authorization' => 'Bearer ' . $idToken,
                     ],
+
                     'body' => json_encode($body),
                 ]
             );

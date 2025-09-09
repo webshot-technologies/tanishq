@@ -87,7 +87,7 @@
             </div>
               <div class="row mt-4 col-md-8 mx-auto" >
             <div class="col-sm-6 col-12 mb-3" >
-                <button id="wishlistBtn" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
+                <button id="wishlistBtn" type="button" class="btn btn-outline-custom w-100 d-flex align-items-center justify-content-center" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;">
                     <span id="wishlistBtnIcon" style="margin-right:8px;font-size:20px;">
                         <svg class="wishlist-heart-svg border-heart" style="margin-top:-3px" width="18" height="18" viewBox="0 0 512.289 512.289" style="display:inline;">
                             <path d="M477.051,72.678c-32.427-36.693-71.68-55.467-111.787-55.467c-45.227,0-85.333,27.307-109.227,72.533
@@ -118,6 +118,57 @@
         `;
 
         // Attach event listener after rendering
+        // Ensure AJAX for Add to Wishlist
+        const wishlistBtn = document.getElementById('wishlistBtn');
+        if (wishlistBtn) {
+            wishlistBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sku = product.variants?.[0]?.variantSku;
+                const variantThumbnails = product.variants?.[0]?.variantThumbnails || {};
+                const categoryKey = product.categoryKey || '';
+                const productTitle = product.productTitle || '';
+                fetch(`/users/${@json(session('user_id'))}/wishlist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        sku: sku,
+                        variantThumbnails: variantThumbnails,
+                        categoryKey: categoryKey,
+                        productTitle: productTitle
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    // Show success popup
+                    const popup = document.getElementById('wishlist-popup');
+                    const icon = document.getElementById('wishlist-popup-icon');
+                    const msg = document.getElementById('wishlist-popup-msg');
+                    icon.innerHTML = '❤️';
+                    msg.textContent = 'Added to wishlist!';
+                    popup.style.display = 'flex';
+                    setTimeout(() => {
+                        popup.style.opacity = '1';
+                        popup.style.transform = 'translateX(0)';
+                    }, 10);
+                    setTimeout(() => {
+                        popup.style.opacity = '0';
+                        popup.style.transform = 'translateX(-60px)';
+                        setTimeout(() => {
+                            popup.style.display = 'none';
+                        }, 400);
+                    }, 2000);
+                    // Toggle heart icon
+                    wishlistBtn.querySelector('.border-heart').style.display = 'none';
+                    wishlistBtn.querySelector('.fill-heart').style.display = 'inline';
+                })
+                .catch(error => {
+                    alert('Failed to add to wishlist.');
+                });
+            });
+        }
         setTimeout(() => {
             // Wishlist button logic
             const wishlistBtn = document.getElementById('wishlistBtn');

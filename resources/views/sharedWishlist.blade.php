@@ -6,26 +6,7 @@
 @section('title', 'Wishlist')
 @section('content')
 
-    <!-- Debug: Show session user info -->
-    <!-- If you see the CSRF token above, it is being rendered by Blade and available in the DOM. -->
-    {{-- @if (session('user_id'))
 
-    <div style="background:#e7f7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
-            <strong>Session User Info:</strong><br>
-            User ID: {{ session('user_id') }}<br>
-            ID Token: {{ session('id_token') }}<br>
-            Refresh Token: {{ session('refresh_token') }}<br>
-            Username: {{ session('username') }}
-            Share ID: {{ session('shareId') }}
-        </div>
-        @php
-
-        @endphp
-    @else
-    <div style="background:#fbe7e7;color:#222;padding:10px;margin-bottom:10px;border:1px solid #8a2323;">
-            <strong>No user session found.</strong>
-        </div>
-    @endif --}}
     <!-- Wishlist Notification Popup -->
     <div id="wishlist-popup"
         style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
@@ -48,7 +29,7 @@
 
                 <button id="" class="btn explore-btn bg-color">
                     <a class="text-decoration-none text-white"
-                        href="{{ route('shared.full.catalogue', ['username' => $user_slug, 'user_id' => $ownerId, 'wishlist_id' => $shareId]) }}">
+                        href="{{ route('shared.full.catalogue', ['username' => $user_slug, 'wishlist_id' => $shareId]) }}">
                         <i class="fa fa-share-alt"></i> Explore Catalogue
                     </a>
                 </button>

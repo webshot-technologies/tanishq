@@ -19,9 +19,9 @@ Route::get('/', function () {
     Route::get('product/category-list', 'category_list')->name('category.list');
     Route::get('product/full-catalogue', 'full_catalogue')->name('full.catalogue');
     Route::get('wishlist', 'viewWishlist')->name('wishlist.page');
-    Route::middleware(['web'])->get('wishlist/share/{username}/{user_id}/{shareId}', 'viewWishlist')->name('wishlist.share');
+    Route::middleware(['web'])->get('wishlist/share/{username}/{shareId}', 'shareWishlist')->name('wishlist.share');
     // shared person full catalogue
-    Route::get('product/full-catalogue/{username}/{user_id}/{wishlist_id}', 'shared_full_catalogue')->name('shared.full.catalogue');
+    Route::get('product/full-catalogue/{username}/{wishlist_id}', 'shared_full_catalogue')->name('shared.full.catalogue');
     });
 
 // Product details page
@@ -44,3 +44,4 @@ Route::middleware(['web'])->post('user/create', [SiteController::class, 'createU
 
 Route::post('/wishlist/recommend', [SiteController::class, 'recommendWishlistItem'])->name('wishlist.recommend');
 Route::get('/wishlist/partial', [App\Http\Controllers\SiteController::class, 'wishlistPartial'])->name('wishlist.partial');
+Route::post('/wishlist/send-email', [App\Http\Controllers\SiteController::class, 'sendWishlistEmail'])->name('wishlist.sendEmail');
