@@ -219,7 +219,7 @@
                         @endphp
                         @foreach ($showCategories as $catKey)
                             @if(isset($allCategories[$catKey]))
-                                <button class="category-tab" data-category="{{ $catKey }}">{{ $allCategories[$catKey] }}</button>
+                                <button class="category-tab" data-category="{{ $catKey }}"  onclick="posthog.capture('category-selected', { category: '{{ $catKey }}', page: 'plp' })">{{ $allCategories[$catKey] }}</button>
                             @endif
                         @endforeach
                     </div>
@@ -614,7 +614,8 @@
                                 <button class="wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
                                         style="z-index:2;"
                                         aria-label="Add to wishlist"
-                                        data-product-id="${productId}">
+                                        data-product-id="${productId}"
+                                        onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
                                     <span class="wishlist-icon-wrapper">
                                         <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
                                              style="${isWishlisted ? 'display:none;' : ''}">
@@ -640,8 +641,10 @@
                             <div class="product-item-body">
                                 <p class="product-item-id base-color">${product.productTitle || ''}</p>
                                 <div class="product-item-buttons">
-                                    <button class="btn  " style="border:2px solid #8a2323;color:#8a2323;font-weight:500;"><a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a></button>
-                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;">Try On</button>
+                                    <button class="btn" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}'})">
+                                        <a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a>
+                                    </button>
+                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}', page:'plp'})">Try On</button>
                                 </div>
                             </div>
                         </div>
