@@ -1307,7 +1307,7 @@
 
 
     <!-- STEP 3 -->
-    <div class="step-container container " id="step3">
+    <div class="step-container container overflow-hidden" id="step3">
         <div class="row align-items-center container px-0 mx-auto">
             <div
                 class="col-12 col-xl-10 py-4 text-center mx-auto d-flex align-items-center justify-content-center justify-normal position-relative">
@@ -1343,17 +1343,17 @@
                             <div class="col-md-6">
                                 <label for="name" class="form-label fw-normal">Name *</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Contact person’s name" required>
+                                    placeholder="full name" required>
                                 <div id="name-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="contactNumber" class="form-label fw-normal">Contact Number *</label>
                                 <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
-                                    placeholder="Contact person's phone number" required>
+                                    placeholder="phone number" required>
                                 <div id="phone-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
-                                <label for="email" class="form-label fw-normal">Your E-mail ID *</label>
+                                <label for="email" class="form-label fw-normal"> E-mail ID *</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="you@example.com" required>
                                 <div id="email-error" style="color:#d00;font-size:13px;"></div>
@@ -1433,7 +1433,7 @@
 
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
-                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
+                    <p class="otp-text">Sent to <span id="otp-phone-number">91 •••• ••••••</span></p>
 
                     <!-- OTP Input Boxes -->
                     <div class="otp-inputs">

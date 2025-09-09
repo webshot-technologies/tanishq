@@ -132,7 +132,7 @@
 
 
                                 <div
-                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-flex flex-column">
+                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-block flex-column">
                                             <button class="wishlist-btn  top-0 end-0 m1-2 p-0 border-0 bg-transparent"
                                         style="z-index:2;"
                                         aria-label="Remove from wishlist"
@@ -153,7 +153,7 @@
 
                                             @if($product['likesCount'] > 0 )
                                             <div class="position-relative">
-                                                <button class="like-btn my-1 wishlist-btn" data-action="like"
+                                                <button class="like-btn my-1 wishlist-btn px-0" data-action="like"
                                                     style="background:none;border:none;cursor:pointer;"
                                                     onmouseover="this.nextElementSibling.style.display='block'"
                                                     onmouseout="this.nextElementSibling.style.display='none'">
@@ -161,7 +161,7 @@
                                                 </button>
                                                 <span class="d-block text-center" style="font-size:10px; font-weight:500">{{$product['likesCount']}}</span>
                                                 <!-- Hover box for likes -->
-                                                <div class="position-absolute bg-white border rounded shadow-sm px-2 py-1" style="display:none; min-width:120px; z-index:10; font-size:12px;left: -80px;
+                                                <div class="position-absolute bg-white border rounded shadow-sm px-2 py-1" style="min-width:max-content; z-index:10; font-size:12px;left: -80px;
   top: -10px;">
                                                     <strong>Liked by:</strong><br>
                                                     @foreach($product['related']['likes'] ?? [] as $likeUser)
@@ -177,7 +177,7 @@
 
                                               @if($product['dislikesCount'] > 0 )
                                               <div class="position-relative">
-                                                  <button class="dislike-btn my-1 wishlist-btn" data-action="dislike"
+                                                  <button class="dislike-btn my-1 wishlist-btn px-0" data-action="dislike"
                                                       style="background:none;border:none;cursor:pointer;"
                                                       onmouseover="this.nextElementSibling.style.display='block'"
                                                       onmouseout="this.nextElementSibling.style.display='none'">
@@ -185,7 +185,7 @@
                                                   </button>
                                                   <span class="d-block text-center" style="font-size:10px; font-weight:500">{{$product['dislikesCount']}}</span>
                                                   <!-- Hover box for dislikes -->
-                                                  <div class="position-absolute  bg-white border rounded shadow-sm px-2 py-1" style="display:none; min-width:120px; z-index:10; font-size:12px; left: -80px;
+                                                  <div class="position-absolute  bg-white border rounded shadow-sm px-2 py-1" style="min-width:max-content; z-index:10; font-size:12px; left: -80px;
   top: -10px;">
                                                       <strong>Disliked by:</strong><br>
                                                       @foreach($product['related']['dislikes'] ?? [] as $dislikeUser)
@@ -254,7 +254,7 @@
                                     @php
                                         $firstName = explode(' ', $product['recommenderUsername'])[0];
                                     @endphp
-                                    <div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-white rounded shadow-sm" style="z-index:3; font-size:13px; color:#8a2323; font-weight:600;">
+                                    <div class="position-absolute top-0 recommend-btn start-0 m-md-2 px-2 py-1 bg-white rounded shadow-sm d-block" style="z-index:3;  color:#8a2323; font-weight:600;">
                                         Recommend by {{ $firstName }}
                                     </div>
                                     @endif
@@ -283,7 +283,6 @@
                                         </svg>
                                     </span>
                                 </button>
-                                            <!-- Like/Dislike Icons -->
 
 
 
@@ -332,6 +331,14 @@
   color: #fff !important;
   transform: scale(1.1);
   transition: all 0.3s;
+}
+
+/* Show hover box only when parent is hovered */
+.position-relative:hover > .position-absolute {
+  display: block !important;
+}
+.position-absolute {
+  display: none;
 }
 </style>
 @push('scripts')

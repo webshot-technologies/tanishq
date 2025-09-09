@@ -452,7 +452,7 @@
                                             <button class="btn" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}'})">
                                                 <a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a>
                                             </button>
-                                            <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}', page:'plp'})">Try On</button>
+                                            <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500; border:2px solid #8a2323;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}', page:'plp'})">Try On</button>
                                         </div>
                                     </div>
                                 </div>
@@ -748,7 +748,7 @@
                                     <button class="btn" style="border:2px solid #8a2323;color:#8a2323;font-weight:500;" onclick="posthog.capture('view-details', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}'})">
                                         <a class="base-color text-decoration-none" href="/product/${product.variants?.[0]?.variantSku }?category=${categoryKey}"> View Details </a>
                                     </button>
-                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}', page:'plp'})">Try On</button>
+                                    <button class="btn btn-outline-secondary try-on-btn" data-sku="${product.variants?.[0]?.variantSku || ''}" style="border:2px solid #8a2323; background:#8a2323;color:#fff;font-weight:500;" onclick="posthog.capture('try-on', {variantSku: '${product.variants?.[0]?.variantSku || ''}', categoryKey: '${categoryKey}', page:'plp'})">Try On</button>
                                 </div>
                             </div>
                         </div>

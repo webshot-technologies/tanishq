@@ -2086,6 +2086,26 @@ body {
     text-decoration: underline;
 }
 
+@media screen and (max-width:592px){
+ .recommend-btn{
+font-size: 10px;
+}
+}
+
+@media screen and (max-width:392px){
+    .otp-box {
+  width: 30px;
+  height: 30px;
+  font-size:15px;
+}
+.otp-btn {
+ padding:8px;
+  font-size: 14px;
+
+}
+
+}
+
 /* ===============================================
    PRODUCT DETAILS IMAGE
    =============================================== */
