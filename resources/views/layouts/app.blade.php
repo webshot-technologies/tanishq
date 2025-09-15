@@ -48,4 +48,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+@push('scripts')
+<script>
+// Auto-logout/redirect to homepage after inactivity
+(function() {
+    let timeout;
+    const INACTIVITY_LIMIT = 3 * 60 * 1000; // 3 minutes
+    function resetTimer() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            window.location.href = '/';
+        }, INACTIVITY_LIMIT);
+    }
+    // Reset timer on user activity
+    ['mousemove', 'keydown', 'scroll', 'touchstart'].forEach(evt => {
+        window.addEventListener(evt, resetTimer);
+    });
+    resetTimer();
+})();
+</script>
+@endpush
 </body>
+</html>

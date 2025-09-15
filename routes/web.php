@@ -45,3 +45,8 @@ Route::middleware(['web'])->post('user/create', [SiteController::class, 'createU
 Route::post('/wishlist/recommend', [SiteController::class, 'recommendWishlistItem'])->name('wishlist.recommend');
 Route::get('/wishlist/partial', [App\Http\Controllers\SiteController::class, 'wishlistPartial'])->name('wishlist.partial');
 Route::post('/wishlist/send-email', [App\Http\Controllers\SiteController::class, 'sendWishlistEmail'])->name('wishlist.sendEmail');
+
+// AJAX endpoints for wishlist and recommendations
+Route::get('/wishlist/ajax', [SiteController::class, 'ajaxWishlist'])->name('wishlist.ajax');
+Route::get('/recommendations/ajax', [SiteController::class, 'ajaxRecommendations'])->name('recommendations.ajax');
+Route::get('/wishlist/sync', [SiteController::class, 'syncWishlist'])->name('wishlist.sync');

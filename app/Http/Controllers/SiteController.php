@@ -314,9 +314,24 @@ class SiteController extends Controller
 
 
 
-        // Example: $categoryPresence = ['necklace', 'bracelets']
-        // Pass categoryPresence to recommended products view
-        return view('productList', compact('userId', 'idToken', 'categoryPresence'));
+        // Fetch wishlist products for the user
+        $wishlistProductIds = [];
+        try {
+            $client = new Client();
+            $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/' . $userId, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'timeout' => 30
+            ]);
+            $result = json_decode($response->getBody(), true);
+            $wishlistProductIds = array_column($result['items'] ?? [], 'sku');
+        } catch (\Exception $e) {
+            $wishlistProductIds = [];
+        }
+        // dd($wishlistProductIds);
+        // Pass categoryPresence and wishlistProductIds to view
+        return view('productList', compact('userId', 'idToken', 'categoryPresence', 'wishlistProductIds'));
         } elseif ($request->submit_type === 'full_catalogue') {
             return redirect()->route('category.list', compact('userId', 'idToken'));
         }
@@ -439,29 +454,32 @@ public function removeFromWishlist(Request $request, $user_id) {
 
     public function viewWishlist() {
     $userId = Session::get('user_id');
+
     $idToken = Session::get('id_token');
     $refreshToken = Session::get('refresh_token');
     $products = [];
 
     // Get valid token (refresh if needed)
-    $idToken = $this->refreshToken($refreshToken);
+    // $idToken = $this->refreshToken($refreshToken);
+     $idToken = $this->getValidToken();
 
             try {
 
                 $client = new Client();
-                $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $idToken,
-                        'Content-Type' => 'application/json',
-                    ],
-                    'timeout' => 30
-                ]);
+                // $response = $client->get('https://firebase-wishlist-user-item.ismail-biswas.workers.dev/users/' . $userId . '/wishlist/share', [
+                //     'headers' => [
+                //         'Authorization' => 'Bearer ' . $idToken,
+                //         'Content-Type' => 'application/json',
+                //     ],
+                //     'timeout' => 30
+                // ]);
+                // $apiResult = json_decode($response->getBody(), true);
+                // dd($apiResult);
 
-                $apiResult = json_decode($response->getBody(), true);
 
-                $shareUrl = $apiResult['shareUrl'] ?? null;
-                $shareId  = $apiResult['shareId'] ?? null;              // fetching wishlist product details
-                // dd($shareUrl);
+                $shareUrl ='https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/' . $userId;
+               $shareId = $userId;             //
+
                 if ($shareUrl) {
                     $productResponse = $client->get($shareUrl, [
                         'headers' => [
@@ -630,18 +648,21 @@ public function shareWishlist($username, $shareId){
         $idToken = Session::get('id_token');
         $refreshToken = Session::get('refresh_token');
         $tokenCreatedAt = Session::get('token_created_at');
-
         // If token is missing, try to refresh
         if (!$idToken && $refreshToken) {
-
-            return $this->refreshToken($refreshToken);
+            $newToken = $this->refreshToken($refreshToken);
+            Session::put('token_created_at', time());
+            return $newToken;
         }
 
         // If token is older than 3600 seconds (1 hour), refresh
         if ($tokenCreatedAt && (time() - $tokenCreatedAt > 3600) && $refreshToken) {
 
-            return $this->refreshToken($refreshToken);
+            $newToken = $this->refreshToken($refreshToken);
+            Session::put('token_created_at', time());
+            return $newToken;
         }
+
 
         return $idToken;
     }
@@ -667,7 +688,6 @@ public function shareWishlist($username, $shareId){
                     "idToken"     => $idToken,
                     "username"    => $username,
                     "anonId"      => $owneruserid,
-
                 ]),
             ]);
             $apiResult = json_decode($response->getBody(), true);
@@ -682,9 +702,10 @@ public function shareWishlist($username, $shareId){
                 'owner_name' => $ownername,
                 'shareId' => $shareId,
             ]);
+            // If user_id matches owneruserid, redirect to wishlist page
+
             return response()->json(['success' => true, 'data' => $apiResult]);
         } catch (\Exception $e) {
-            // return redirect()->route('/');
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
     }
@@ -709,7 +730,7 @@ public function shareWishlist($username, $shareId){
 
 
 
-     public function recommendWishlistItem(Request $request)
+    public function recommendWishlistItem(Request $request)
     {
         $sku = $request->input('sku');
         $wishlistId = $request->input('wishlist-id');
@@ -753,6 +774,60 @@ public function shareWishlist($username, $shareId){
             ]);
             return response()->json([
                 'error' => 'Failed to recommend wishlist item',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Get current user's wishlist items for synchronization
+     * Returns array of SKUs that are currently in the user's wishlist
+     */
+    public function syncWishlist(Request $request)
+    {
+        $userId = Session::get('user_id');
+
+        if (!$userId) {
+            return response()->json(['error' => 'User not authenticated'], 401);
+        }
+
+        $idToken = $this->getValidToken();
+
+        if (!$idToken) {
+            return response()->json(['error' => 'Invalid token'], 401);
+        }
+
+        try {
+            $client = new Client();
+            $shareUrl = 'https://firebase-wishlist-user-item.ismail-biswas.workers.dev/shared/wishlists/' . $userId;
+
+            $response = $client->get($shareUrl, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'timeout' => 30
+            ]);
+
+            $result = json_decode($response->getBody(), true);
+            $items = $result['items'] ?? [];
+
+            // Extract SKUs from wishlist items
+            $skus = array_column($items, 'sku');
+
+            return response()->json([
+                'success' => true,
+                'wishlist_skus' => $skus,
+                'timestamp' => time()
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Wishlist sync error', [
+                'error' => $e->getMessage(),
+                'user_id' => $userId
+            ]);
+
+            return response()->json([
+                'error' => 'Failed to sync wishlist',
                 'message' => $e->getMessage()
             ], 500);
         }

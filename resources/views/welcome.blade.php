@@ -1552,7 +1552,7 @@
                 },
                 slideChangeTransitionEnd: function() {
                     // Add some custom animations or effects here if needed
-                    console.log('Slide transition completed');
+                    // console.log('Slide transition completed');
                 }
             }
         });
@@ -1736,10 +1736,10 @@
         function storeStep2Selections() {
             // Get selected outfit
             var activeOutfitCard = document.querySelector('.jewelry-card.active');
-            console.log(activeOutfitCard, "activeOutfitcard");
+            // console.log(activeOutfitCard, "activeOutfitcard");
 
             var outfit = activeOutfitCard ? activeOutfitCard.getAttribute('data-outfit') : '';
-            console.log(outfit, "outfit");
+            // console.log(outfit, "outfit");
             document.getElementById('hidden-outfit').value = outfit;
 
             // Get selected jewellery pieces (all checked checkboxes)
@@ -1747,7 +1747,7 @@
             var jewelleryPieces = Array.from(checkedJewellery).map(function(cb) {
                 return cb.value;
             });
-            console.log(jewelleryPieces, "jewelleryPieces");
+            // console.log(jewelleryPieces, "jewelleryPieces");
             document.getElementById('hidden-jewellery-pieces').value = jewelleryPieces.join(',');
         }
 
@@ -1863,11 +1863,11 @@
             recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
                 'size': 'invisible',
                 'callback': (response) => {
-                    console.log('reCAPTCHA solved, proceed with OTP verification.');
+                    // console.log('reCAPTCHA solved, proceed with OTP verification.');
                     // reCAPTCHA solved, you can now proceed
                 },
                 'expired-callback': () => {
-                    console.log('reCAPTCHA expired, please try again.');
+                    // console.log('reCAPTCHA expired, please try again.');
                     // reCAPTCHA expired, re-render
                 }
             });
@@ -1970,7 +1970,7 @@
                 if (/^\d{10}$/.test(contactNumber)) {
                     contactNumber = '+91' + contactNumber;
                 }
-                console.log('Formatted Contact Number:', contactNumber);
+                // console.log('Formatted Contact Number:', contactNumber);
                 // if (!contactNumber.match(/^\+\d{10,15}$/)) {
                 //     document.getElementById('otp-error').textContent =
                 //         'Please enter a valid phone number (e.g. +919876543210)';
@@ -1979,16 +1979,16 @@
                 // }
 
                 document.getElementById('otp-modal').style.display = 'flex';
-                console.log('Sending OTP to:', contactNumber);
+                // console.log('Sending OTP to:', contactNumber);
 
                 auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier)
                     .then(function(result) {
                         confirmationResult = result;
-                        console.log(result);
-                        console.log('OTP sent successfully.');
-                        console.log(confirmationResult);
+                        // console.log(result);
+                        // console.log('OTP sent successfully.');
+                        // console.log(confirmationResult);
                         document.getElementById('otp-error').textContent = ''; // Clear previous errors
-                        console.log('OTP sent successfully.');
+                        // console.log('OTP sent successfully.');
                     }).catch(function(error) {
                         // console.error("Error sending OTP:", error);
                         document.getElementById('otp-error').textContent = "";
@@ -2143,7 +2143,7 @@
                     const user = result.user;
                     const idToken = await user.getIdToken();
                     const uid = user.uid;
-                    console.log(user);
+                    // console.log(user);
                     // Get required fields from form
                     const nameInput = document.getElementById('name');
                     const contactInput = document.getElementById('contactNumber');
@@ -2243,7 +2243,7 @@
                 try {
                     // Send OTP
                     confirmationResult = await auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier);
-                    console.log('OTP sent successfully');
+                    // console.log('OTP sent successfully');
                 } catch (error) {
                     // console.error("Error sending OTP:", error);
                     // document.getElementById('otp-error').textContent = "Error: " + error.message;
@@ -2261,10 +2261,10 @@
             window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
                 'size': 'invisible',
                 'callback': (response) => {
-                    console.log('reCAPTCHA solved, proceed with OTP verification.');
+                    // console.log('reCAPTCHA solved, proceed with OTP verification.');
                 },
                 'expired-callback': () => {
-                    console.log('reCAPTCHA expired, please try again.');
+                    // console.log('reCAPTCHA expired, please try again.');
                 }
             });
 
