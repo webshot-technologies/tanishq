@@ -1398,15 +1398,12 @@ body {
     left: 46%;
 }
 
-
-
 }
 
 @media screen and (max-width:442px){
     .g-2rem{
         gap:1rem;
     }
-
 
 
     #outfit-details-container{
