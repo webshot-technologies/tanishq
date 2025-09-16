@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-
-
 @section('title', 'Wishlist')
 @section('content')
+    <!-- Include wishlist manager -->
+    <script src="{{ asset('js/wishlist-manager.js') }}"></script>
     <!-- Wishlist Notification Popup -->
     <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;min-width:max-content;max-width:320px;padding:16px 24px;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
         <span id="wishlist-popup-icon" style="font-size:22px;"></span>
@@ -132,7 +132,7 @@
 
 
                                 <div
-                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-flex flex-column">
+                                            class="position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent d-block flex-column">
                                             <button class="wishlist-btn  top-0 end-0 m1-2 p-0 border-0 bg-transparent"
                                         style="z-index:2;"
                                         aria-label="Remove from wishlist"
@@ -153,7 +153,7 @@
 
                                             @if($product['likesCount'] > 0 )
                                             <div class="position-relative">
-                                                <button class="like-btn my-1 wishlist-btn" data-action="like"
+                                                <button class="like-btn my-1 wishlist-btn px-0" data-action="like"
                                                     style="background:none;border:none;cursor:pointer;"
                                                     onmouseover="this.nextElementSibling.style.display='block'"
                                                     onmouseout="this.nextElementSibling.style.display='none'">
@@ -161,7 +161,7 @@
                                                 </button>
                                                 <span class="d-block text-center" style="font-size:10px; font-weight:500">{{$product['likesCount']}}</span>
                                                 <!-- Hover box for likes -->
-                                                <div class="position-absolute bg-white border rounded shadow-sm px-2 py-1" style="display:none; min-width:120px; z-index:10; font-size:12px;left: -80px;
+                                                <div class="position-absolute bg-white border rounded shadow-sm px-2 py-1" style="min-width:max-content; z-index:10; font-size:12px;left: -80px;
   top: -10px;">
                                                     <strong>Liked by:</strong><br>
                                                     @foreach($product['related']['likes'] ?? [] as $likeUser)
@@ -177,7 +177,7 @@
 
                                               @if($product['dislikesCount'] > 0 )
                                               <div class="position-relative">
-                                                  <button class="dislike-btn my-1 wishlist-btn" data-action="dislike"
+                                                  <button class="dislike-btn my-1 wishlist-btn px-0" data-action="dislike"
                                                       style="background:none;border:none;cursor:pointer;"
                                                       onmouseover="this.nextElementSibling.style.display='block'"
                                                       onmouseout="this.nextElementSibling.style.display='none'">
@@ -185,7 +185,7 @@
                                                   </button>
                                                   <span class="d-block text-center" style="font-size:10px; font-weight:500">{{$product['dislikesCount']}}</span>
                                                   <!-- Hover box for dislikes -->
-                                                  <div class="position-absolute  bg-white border rounded shadow-sm px-2 py-1" style="display:none; min-width:120px; z-index:10; font-size:12px; left: -80px;
+                                                  <div class="position-absolute  bg-white border rounded shadow-sm px-2 py-1" style="min-width:max-content; z-index:10; font-size:12px; left: -80px;
   top: -10px;">
                                                       <strong>Disliked by:</strong><br>
                                                       @foreach($product['related']['dislikes'] ?? [] as $dislikeUser)
@@ -254,7 +254,7 @@
                                     @php
                                         $firstName = explode(' ', $product['recommenderUsername'])[0];
                                     @endphp
-                                    <div class="position-absolute top-0 start-0 m-2 px-2 py-1 bg-white rounded shadow-sm" style="z-index:3; font-size:13px; color:#8a2323; font-weight:600;">
+                                    <div class="position-absolute top-0 recommend-btn start-0 m-md-2 px-2 py-1 bg-white rounded shadow-sm d-block" style="z-index:3;  color:#8a2323; font-weight:600;">
                                         Recommend by {{ $firstName }}
                                     </div>
                                     @endif
@@ -281,9 +281,14 @@
                                                 c0.853,2.56,4.267,5.12,7.68,5.12s6.827-2.56,7.68-5.12c19.627-48.64,58.027-79.36,101.547-79.36
                                                 c35.84,0,69.12,16.213,98.133,50.347C497.531,123.024,517.157,210.064,448.891,275.771z" fill="#111"/>
                                         </svg>
+                                        <svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003" style="display:none;">
+                                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
+                                                c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
+                                                C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
+                                                C195.532,17.899,236.466,55.92,256.001,105.69"/>
+                                        </svg>
                                     </span>
                                 </button>
-                                            <!-- Like/Dislike Icons -->
 
 
 
@@ -332,6 +337,14 @@
   color: #fff !important;
   transform: scale(1.1);
   transition: all 0.3s;
+}
+
+/* Show hover box only when parent is hovered */
+.position-relative:hover > .position-absolute {
+  display: block !important;
+}
+.position-absolute {
+  display: none;
 }
 </style>
 @push('scripts')
@@ -531,34 +544,46 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Wishlist notification popup
+    // Enhanced wishlist notification popup
     function showWishlistPopup(type, sku) {
         const popup = document.getElementById('wishlist-popup');
         const icon = document.getElementById('wishlist-popup-icon');
         const msg = document.getElementById('wishlist-popup-msg');
-        if (type === 'add') {
-                               icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                                    <path style=\"fill:#8a2323;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                                        C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                                                </svg>";
 
+        if (type === 'add') {
+            icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                <path style=\"fill:#8a2323;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                    c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                    C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                    C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                            </svg>";
             msg.textContent = `Added to wishlist! SKU: ${sku}`;
+            popup.style.background = '#fff';
+            popup.style.color = '#222';
         } else if (type === 'remove') {
             icon.innerHTML = '🗑️';
             msg.textContent = `Removed from wishlist! SKU: ${sku}`;
+            popup.style.background = '#fff';
+            popup.style.color = '#222';
+        } else if (type === 'error') {
+            icon.innerHTML = '⚠️';
+            msg.textContent = `Error updating wishlist! SKU: ${sku}`;
+            popup.style.background = '#f8d7da';
+            popup.style.color = '#721c24';
         } else {
             icon.innerHTML = '';
             msg.textContent = '';
         }
+
         popup.style.display = 'flex';
         setTimeout(() => {
             popup.style.opacity = '1';
             popup.style.transform = 'translateX(0)';
         }, 10);
+
+        const delay = type === 'error' ? 4000 : 2000; // Show errors longer
         setTimeout(() => {
             popup.style.opacity = '0';
             popup.style.transform = 'translateX(-60px)';
             setTimeout(() => {
                 popup.style.display = 'none';
             }, 400);
-        }, 2000);
+        }, delay);
     }
     // Copy to clipboard functionality
     const copyBtn = document.getElementById('copy-share-link');
@@ -579,96 +604,231 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    // Remove product from wishlist
+    // Initialize wishlist manager
+    const userId = "{{ session('user_id') }}";
+    const idToken = "{{ session('id_token') }}";
+
+    if (typeof initWishlistManager === 'function') {
+        window.wishlistManager = initWishlistManager({
+            userId: userId,
+            idToken: idToken,
+            syncEndpoint: '/wishlist/sync',
+            syncInterval: 300000 // 5 minutes
+        });
+
+        // Listen for wishlist update events to sync UI across all sections
+        document.addEventListener('wishlistUpdate', function(event) {
+            const { action, sku, isInWishlist } = event.detail;
+            console.log('Wishlist update:', action, sku, isInWishlist);
+
+            // Update all buttons with this SKU on the page (both wishlist and recommendations)
+            document.querySelectorAll(`[data-product-sku="${sku}"]`).forEach(btn => {
+                const borderHeart = btn.querySelector('.border-heart');
+                const fillHeart = btn.querySelector('.fill-heart');
+                updateHeartUI(borderHeart, fillHeart, isInWishlist);
+            });
+        });
+
+            // On page load, sync all recommended product hearts with wishlist state
+            setTimeout(() => {
+                // Sync wishlist state for main wishlist products
+                document.querySelectorAll('.wishlist-btn[data-product-sku]').forEach(btn => {
+                    const sku = btn.getAttribute('data-product-sku');
+                    const borderHeart = btn.querySelector('.border-heart');
+                    const fillHeart = btn.querySelector('.fill-heart');
+                    if (sku && window.wishlistManager) {
+                        const isWishlisted = window.wishlistManager.isInWishlist(sku);
+                        if (borderHeart && fillHeart) {
+                            borderHeart.style.display = isWishlisted ? 'none' : 'inline';
+                            fillHeart.style.display = isWishlisted ? 'inline' : 'none';
+                        }
+                    }
+                });
+
+                // Sync wishlist state for recommended products (border heart)
+                document.querySelectorAll('.wishlist-btn[data-product-sku]').forEach(btn => {
+                    const sku = btn.getAttribute('data-product-sku');
+                    const borderHeart = btn.querySelector('.border-heart');
+                    if (sku && window.wishlistManager && borderHeart) {
+                        const isWishlisted = window.wishlistManager.isInWishlist(sku);
+                        borderHeart.style.display = isWishlisted ? 'none' : 'inline';
+                        // If you have a fillHeart for recommended, show it
+                        const fillHeart = btn.querySelector('.fill-heart');
+                        if (fillHeart) fillHeart.style.display = isWishlisted ? 'inline' : 'none';
+                    }
+                });
+            }, 100);
+    }
+
+    // Helper function to update heart UI
+    function updateHeartUI(borderHeart, fillHeart, isWishlisted) {
+        if (borderHeart && fillHeart) {
+            if (isWishlisted) {
+                borderHeart.style.display = 'none';
+                fillHeart.style.display = 'inline';
+            } else {
+                borderHeart.style.display = 'inline';
+                fillHeart.style.display = 'none';
+            }
+        }
+    }
+
+    // Enhanced wishlist button functionality with new manager
     document.querySelectorAll('.wishlist-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const card = this.closest('.wishlist-product-card');
             const sku = this.getAttribute('data-product-sku');
             if (!sku) return;
-            // Detect if this is a recommended product (border heart)
+
+            // Get heart elements
             const borderHeart = this.querySelector('.border-heart');
             const fillHeart = this.querySelector('.fill-heart');
-            const isRecommended = borderHeart && borderHeart.style.display !== 'none';
+
+            // Check current wishlist state from manager
+            const isCurrentlyWishlisted = window.wishlistManager ?
+                window.wishlistManager.isInWishlist(sku) :
+                (fillHeart && fillHeart.style.display !== 'none');
+
+            // Determine if this is an add or remove operation
+            const isAddOperation = !isCurrentlyWishlisted;
             const dataVariantThumbnails = this.getAttribute('data-variant-thumbnails') || '';
             const variantThumbnails = dataVariantThumbnails || '';
             const categoryKey = this.getAttribute('data-category-key') || '';
             const productTitle = this.getAttribute('data-product-title') || '';
 
-            if (isRecommended) {
+            if (isAddOperation) {
                 // Add to wishlist (POST)
-                fetch(`/users/${"{{ session('user_id') }}"}/wishlist`, {
+
+                // Optimistic update using wishlist manager
+                if (window.wishlistManager) {
+                    window.wishlistManager.addToWishlist(sku);
+                }
+
+                // Update UI immediately
+                updateHeartUI(borderHeart, fillHeart, true);
+
+                // Show popup immediately
+                showWishlistPopup('add', sku);
+
+                // API call
+                fetch(`/users/${userId}/wishlist`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + "{{ session('id_token') }}",
+                        'Authorization': 'Bearer ' + idToken,
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
                     },
-                    body: JSON.stringify({ sku: sku,
-                         variantThumbnails: variantThumbnails,
-                                categoryKey: categoryKey,
-                                productTitle: productTitle,
-                     })
+                    body: JSON.stringify({
+                        sku: sku,
+                        variantThumbnails: variantThumbnails,
+                        categoryKey: categoryKey,
+                        productTitle: productTitle,
+                    })
                 })
                 .then(response => {
-                    if (!response.ok) throw new Error('Failed to add to wishlist');
+                    const success = response.ok;
+                    if (!success) {
+                        throw new Error('Failed to add to wishlist');
+                    }
                     return response.json();
                 })
                 .then(() => {
-                    // Fill the heart icon in recommendation section
-                    if (borderHeart) {
-                        // Replace border heart SVG with fill heart SVG
-                        borderHeart.outerHTML = `<svg class="wishlist-heart-svg fill-heart" width="20" height="20" viewBox="0 0 512.003 512.003" style="">
-                            <path style="fill:#8a2323;" d="M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44
-                                c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579
-                                C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44
-                                C195.532,17.899,236.466,55.92,256.001,105.69"/>
-                        </svg>`;
+                    // API call succeeded
+                    if (window.wishlistManager) {
+                        window.wishlistManager.handleApiResponse(sku, 'add', true);
                     }
-                    if (fillHeart) fillHeart.style.display = 'inline';
+
                     // Clone the product card and prepend to wishlist grid
                     const wishlistContainer = document.getElementById('wishlist-grids-container');
                     if (wishlistContainer && card) {
-                        // Find the .row inside wishlistContainer
                         const wishlistRow = wishlistContainer.querySelector('.row');
                         if (wishlistRow) {
                             const clonedCard = card.cloneNode(true);
-                            // Ensure the heart icon is filled in the cloned card
                             const clonedBorderHeart = clonedCard.querySelector('.border-heart');
                             const clonedFillHeart = clonedCard.querySelector('.fill-heart');
-                            if (clonedBorderHeart) clonedBorderHeart.style.display = 'inline';
+                            if (clonedBorderHeart) clonedBorderHeart.style.display = 'none';
                             if (clonedFillHeart) clonedFillHeart.style.display = 'inline';
                             wishlistRow.appendChild(clonedCard);
                         }
                     }
-                    showWishlistPopup('add', sku);
                 })
                 .catch(error => {
-                    alert('Error: ' + error.message);
+                    console.error('Add to wishlist error:', error);
+
+                    // Revert optimistic update on error
+                    if (window.wishlistManager) {
+                        window.wishlistManager.handleApiResponse(sku, 'add', false);
+                    }
+
+                    // Revert UI changes
+                    updateHeartUI(borderHeart, fillHeart, false);
+                    showWishlistPopup('error', sku);
                 });
             } else {
                 // Remove from wishlist (DELETE)
-                fetch(`/users/${"{{ session('user_id') }}"}/wishlist`, {
+
+                // Optimistic update using wishlist manager
+                if (window.wishlistManager) {
+                    window.wishlistManager.removeFromWishlist(sku);
+                }
+
+                // Update UI immediately
+                // If this is in the main wishlist section, hide the card
+                // If this is in recommendations, just change heart
+                const isInMainWishlist = card.closest('#wishlist-grids-container');
+                if (isInMainWishlist) {
+                    card.style.display = 'none';
+                } else {
+                    // This is in recommendations, just update heart
+                    updateHeartUI(borderHeart, fillHeart, false);
+                }
+
+                // Show popup immediately
+                showWishlistPopup('remove', sku);
+
+                // API call
+                fetch(`/users/${userId}/wishlist`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + "{{ session('id_token') }}",
+                        'Authorization': 'Bearer ' + idToken,
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content
                     },
                     body: JSON.stringify({ sku: sku })
                 })
                 .then(response => {
-                    if (!response.ok) throw new Error('Failed to remove from wishlist');
+                    const success = response.ok;
+                    if (!success) {
+                        throw new Error('Failed to remove from wishlist');
+                    }
                     return response.json();
                 })
                 .then(() => {
-                    card.style.display = 'none';
-                    showWishlistPopup('remove', sku);
+                    // API call succeeded
+                    if (window.wishlistManager) {
+                        window.wishlistManager.handleApiResponse(sku, 'remove', true);
+                    }
+                    // Card is already hidden
                 })
                 .catch(error => {
-                    alert('Error: ' + error.message);
+                    console.error('Remove from wishlist error:', error);
+
+                    // Revert optimistic update on error
+                    if (window.wishlistManager) {
+                        window.wishlistManager.handleApiResponse(sku, 'remove', false);
+                    }
+
+                    // Revert UI changes
+                    const isInMainWishlist = card.closest('#wishlist-grids-container');
+                    if (isInMainWishlist) {
+                        card.style.display = 'block';
+                    } else {
+                        updateHeartUI(borderHeart, fillHeart, true);
+                    }
+                    showWishlistPopup('error', sku);
                 });
             }
         });

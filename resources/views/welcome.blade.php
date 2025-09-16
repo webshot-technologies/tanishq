@@ -45,13 +45,18 @@
         }
 
         .outfit-btn {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 12px 24px;
-            margin-right: 10px;
-            background: white;
-            font-weight: bold;
-        }
+           border: none;
+  z-index: 9999;
+  position: absolute;
+  left: 0px;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+  padding: 10px;
+  background: #300708cf;
+  color: white;
+}
+
 
         .highlight {
             font-weight: bold;
@@ -217,17 +222,7 @@
             overflow: visible;
         }
 
-        /* Parallax Background */
-        /* .parallax-bg {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 130%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            background-size: cover;
-            background-position: center;
-        } */
+
 
         /* Slide Card */
         .jewelry-card {
@@ -238,7 +233,7 @@
             border-radius: 24px;
             padding: 0;
             overflow: hidden;
-            height: 380px;
+            /* height: 380px; */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 16px rgba(0, 0, 0, 0.08); */
@@ -251,13 +246,14 @@
 
         .jewelry-card.active {
             /* background: rgba(255, 255, 255, 0.2); */
-            border: 2px solid #8a2323;
+            border: 3px solid #8a2323;
             transform: scale(1.02);
         }
 
         .card-image {
             width: 100%;
             /* height: 280px; */
+            height:400px;
             object-fit: cover;
             transition: transform 0.4s ease;
         }
@@ -335,7 +331,7 @@
             }
 
             .jewelry-card {
-                height: 380px;
+                /* height: 380px; */
             }
         }
 
@@ -345,7 +341,7 @@
             }
 
             .jewelry-card {
-                height: 360px;
+                /* height: 360px; */
             }
 
             .card-image {
@@ -407,7 +403,9 @@
         .jewelry-card:hover .shimmer::before {
             left: 100%;
         }
-    </style>
+
+
+</style>
 
 </head>
 
@@ -564,7 +562,7 @@
 
     <div class="container px-0">
         <!-- STEP 2 -->
-        <div id="step2" class="step-container    overflow-hidden" style="min-height: 100vh; width: 100%;">
+        <div id="step2" class="step-container overflow-hidden" style="min-height: 100vh; width: 100%;">
             <div class="row align-items-center jewelry-section">
                 <div class="col-12 col-xl-12 card py-4 px-4 border-0 bg-transparent mx-auto rounded-4 overflow-hidden">
                     <div class="text-center mb-4 d-flex align-items-center justify-content-center" style="gap: 1rem;">
@@ -592,16 +590,18 @@
                             <div class="swiper-wrapper">
                                  <!-- Slide 1 - Gown -->
                                 <div class="swiper-slide" onclick="posthog.capture('model-1', { page: 'form'})">
-                                    <div class="jewelry-card shimmer" data-outfit="gown">
+                                    <div class="jewelry-card shimmer active" data-outfit="gown">
                                         <img src="{{ asset('image/gown.jpeg') }}" class="card-image" alt="Gown">
+                                       <button type="button" class="outfit-btn">Gown</button>
                                     </div>
                                 </div>
                                 <!-- Slide 2 - Lehanga (Active) -->
                                 <div class="swiper-slide" onclick="posthog.capture('model-2', { page: 'form'})">
-                                    <div class="jewelry-card active shimmer " data-outfit="lehanga">
+                                    <div class="jewelry-card  shimmer " data-outfit="lehanga">
 
                                         <img src="{{ asset('image/lahnga.jpeg') }}" class="card-image"
                                             alt="Lehanga">
+                                            <button type="button" class="outfit-btn">Lehanga</button>
 
                                     </div>
                                 </div>
@@ -610,7 +610,7 @@
                                     <div class="jewelry-card shimmer" data-outfit="saree">
 
                                         <img src="{{ asset('image/saree.jpeg') }}" class="card-image" alt="Saree">
-
+                                        <button type="button" class="outfit-btn">Saree</button>
                                     </div>
                                 </div>
                                 <!-- Slide 4 - Anarkali -->
@@ -619,15 +619,18 @@
 
                                         <img src="{{ asset('image/anarkali.jpeg') }}" class="card-image"
                                             alt="Anarkali">
+                                            <button type="button" class="outfit-btn">Anarkali</button>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
 
 
-                    <div id="outfit-details-container" class="mt-4">
+                    <div id="outfit-details-container" class="">
 
                         <div id="lehanga-details" class="detail-section active">
                             <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
@@ -1307,7 +1310,7 @@
 
 
     <!-- STEP 3 -->
-    <div class="step-container container " id="step3">
+    <div class="step-container container overflow-hidden" id="step3">
         <div class="row align-items-center container px-0 mx-auto">
             <div
                 class="col-12 col-xl-10 py-4 text-center mx-auto d-flex align-items-center justify-content-center justify-normal position-relative">
@@ -1343,17 +1346,17 @@
                             <div class="col-md-6">
                                 <label for="name" class="form-label fw-normal">Name *</label>
                                 <input type="text" class="form-control" id="name" name="name"
-                                    placeholder="Contact person’s name" required>
+                                    placeholder="full name" required>
                                 <div id="name-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="contactNumber" class="form-label fw-normal">Contact Number *</label>
                                 <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
-                                    placeholder="Contact person's phone number" required>
+                                    placeholder="phone number" required>
                                 <div id="phone-error" style="color:#d00;font-size:13px;"></div>
                             </div>
                             <div class="col-md-6">
-                                <label for="email" class="form-label fw-normal">Your E-mail ID *</label>
+                                <label for="email" class="form-label fw-normal"> E-mail ID *</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     placeholder="you@example.com" required>
                                 <div id="email-error" style="color:#d00;font-size:13px;"></div>
@@ -1433,7 +1436,7 @@
 
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
-                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
+                    <p class="otp-text">Sent to <span id="otp-phone-number">91 •••• ••••••</span></p>
 
                     <!-- OTP Input Boxes -->
                     <div class="otp-inputs">
@@ -1495,6 +1498,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+
     <script>
         // Initialize Swiper with parallax and responsive breakpoints
         const swiper = new Swiper('.jewelry-swiper', {
@@ -1508,12 +1512,12 @@
                 // Mobile landscape and up
                 576: {
                     slidesPerView: 1.5,
-                    spaceBetween: 20
+                    spaceBetween: 10
                 },
                 // Tablet and up
                 768: {
                     slidesPerView: 2.5,
-                    spaceBetween: 30
+                    spaceBetween: 10
                 },
                 // Desktop small and up
                 992: {
@@ -1552,7 +1556,7 @@
                 },
                 slideChangeTransitionEnd: function() {
                     // Add some custom animations or effects here if needed
-                    console.log('Slide transition completed');
+                    // console.log('Slide transition completed');
                 }
             }
         });
@@ -1736,10 +1740,10 @@
         function storeStep2Selections() {
             // Get selected outfit
             var activeOutfitCard = document.querySelector('.jewelry-card.active');
-            console.log(activeOutfitCard, "activeOutfitcard");
+            // console.log(activeOutfitCard, "activeOutfitcard");
 
             var outfit = activeOutfitCard ? activeOutfitCard.getAttribute('data-outfit') : '';
-            console.log(outfit, "outfit");
+            // console.log(outfit, "outfit");
             document.getElementById('hidden-outfit').value = outfit;
 
             // Get selected jewellery pieces (all checked checkboxes)
@@ -1747,7 +1751,7 @@
             var jewelleryPieces = Array.from(checkedJewellery).map(function(cb) {
                 return cb.value;
             });
-            console.log(jewelleryPieces, "jewelleryPieces");
+            // console.log(jewelleryPieces, "jewelleryPieces");
             document.getElementById('hidden-jewellery-pieces').value = jewelleryPieces.join(',');
         }
 
@@ -1863,11 +1867,11 @@
             recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
                 'size': 'invisible',
                 'callback': (response) => {
-                    console.log('reCAPTCHA solved, proceed with OTP verification.');
+                    // console.log('reCAPTCHA solved, proceed with OTP verification.');
                     // reCAPTCHA solved, you can now proceed
                 },
                 'expired-callback': () => {
-                    console.log('reCAPTCHA expired, please try again.');
+                    // console.log('reCAPTCHA expired, please try again.');
                     // reCAPTCHA expired, re-render
                 }
             });
@@ -1970,7 +1974,7 @@
                 if (/^\d{10}$/.test(contactNumber)) {
                     contactNumber = '+91' + contactNumber;
                 }
-                console.log('Formatted Contact Number:', contactNumber);
+                // console.log('Formatted Contact Number:', contactNumber);
                 // if (!contactNumber.match(/^\+\d{10,15}$/)) {
                 //     document.getElementById('otp-error').textContent =
                 //         'Please enter a valid phone number (e.g. +919876543210)';
@@ -1979,16 +1983,16 @@
                 // }
 
                 document.getElementById('otp-modal').style.display = 'flex';
-                console.log('Sending OTP to:', contactNumber);
+                // console.log('Sending OTP to:', contactNumber);
 
                 auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier)
                     .then(function(result) {
                         confirmationResult = result;
-                        console.log(result);
-                        console.log('OTP sent successfully.');
-                        console.log(confirmationResult);
+                        // console.log(result);
+                        // console.log('OTP sent successfully.');
+                        // console.log(confirmationResult);
                         document.getElementById('otp-error').textContent = ''; // Clear previous errors
-                        console.log('OTP sent successfully.');
+                        // console.log('OTP sent successfully.');
                     }).catch(function(error) {
                         // console.error("Error sending OTP:", error);
                         document.getElementById('otp-error').textContent = "";
@@ -2143,7 +2147,7 @@
                     const user = result.user;
                     const idToken = await user.getIdToken();
                     const uid = user.uid;
-                    console.log(user);
+                    // console.log(user);
                     // Get required fields from form
                     const nameInput = document.getElementById('name');
                     const contactInput = document.getElementById('contactNumber');
@@ -2243,7 +2247,7 @@
                 try {
                     // Send OTP
                     confirmationResult = await auth.signInWithPhoneNumber(contactNumber, recaptchaVerifier);
-                    console.log('OTP sent successfully');
+                    // console.log('OTP sent successfully');
                 } catch (error) {
                     // console.error("Error sending OTP:", error);
                     // document.getElementById('otp-error').textContent = "Error: " + error.message;
@@ -2261,10 +2265,10 @@
             window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
                 'size': 'invisible',
                 'callback': (response) => {
-                    console.log('reCAPTCHA solved, proceed with OTP verification.');
+                    // console.log('reCAPTCHA solved, proceed with OTP verification.');
                 },
                 'expired-callback': () => {
-                    console.log('reCAPTCHA expired, please try again.');
+                    // console.log('reCAPTCHA expired, please try again.');
                 }
             });
 

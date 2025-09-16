@@ -2,6 +2,9 @@
 
 @section('title', 'Product List')
 @section('content')
+
+    <!-- Include wishlist manager -->
+    <script src="{{ asset('js/wishlist-manager.js') }}"></script>
     <!-- Wishlist Notification Popup -->
     <div id="wishlist-popup" style="position:fixed;bottom:30px;left:30px;z-index:9999;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.15);color:#222;display:none;align-items:center;gap:10px;font-size:16px;opacity:0;transform:translateX(-60px);transition:opacity 0.4s cubic-bezier(.4,0,.2,1),transform 0.4s cubic-bezier(.4,0,.2,1);">
         <span id="wishlist-popup-icon"></span>
@@ -311,31 +314,37 @@
                 });
             });
 
-            // 3. Wishlist State Sync on Page Load
-            const userId = "{{ session('user_id') }}";
-            const idToken = "{{ session('id_token') }}";
-            // Get wishlist productIds from backend (Blade)
+            // 3. Initialize wishlist from backend data (for server-side pre-populated data)
             @if(isset($wishlistProductIds) && is_array($wishlistProductIds))
-                let wishlistSkus = @json($wishlistProductIds);
-            @else
-                let wishlistSkus = [];
-            @endif
-            // console.log(wishlistSkus);
-            localStorage.setItem('wishlist', JSON.stringify(wishlistSkus));
-            // Sync UI hearts
-            document.querySelectorAll('.wishlist-btn').forEach(btn => {
-                const skuBtn = btn.closest('.product-item-card').querySelector('.try-on-btn');
-                const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
-                const borderHeart = btn.querySelector('.border-heart');
-                const fillHeart = btn.querySelector('.fill-heart');
-                if (sku && wishlistSkus.includes(sku)) {
-                    borderHeart.style.display = 'none';
-                    fillHeart.style.display = 'inline';
-                } else {
-                    borderHeart.style.display = 'inline';
-                    fillHeart.style.display = 'none';
+                const backendWishlistSkus = @json($wishlistProductIds);
+                // Pre-populate localStorage if wishlist manager is not available yet
+                if (!window.wishlistManager && backendWishlistSkus.length > 0) {
+                    const existingWishlist = JSON.parse(localStorage.getItem('wishlist') || '{}');
+                    backendWishlistSkus.forEach(sku => {
+                        existingWishlist[sku] = true;
+                    });
+                    localStorage.setItem('wishlist', JSON.stringify(existingWishlist));
                 }
-            });
+            @endif
+
+            // Function to sync UI with current wishlist state
+            function syncWishlistUI() {
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    const sku = btn.getAttribute('data-variant-sku') ||
+                               btn.closest('.product-item-card')?.querySelector('.try-on-btn')?.getAttribute('data-sku');
+                    const borderHeart = btn.querySelector('.border-heart');
+                    const fillHeart = btn.querySelector('.fill-heart');
+
+                    if (sku) {
+                        const isWishlisted = window.wishlistManager ?
+                            window.wishlistManager.isInWishlist(sku) : false;
+                        updateHeartUI(borderHeart, fillHeart, isWishlisted);
+                    }
+                });
+            }
+
+            // Initial UI sync after a short delay to ensure wishlist manager is loaded
+            setTimeout(syncWishlistUI, 100);
 
             // 4. Heart Icon Functionality
             // heartIcons.forEach(icon => {
@@ -398,13 +407,17 @@
                         return;
                     }
                     let wishlistSkus = [];
-                    try {
-                        wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
-                    } catch (e) {}
+                    if (window.wishlistManager) {
+                        wishlistSkus = window.wishlistManager.getWishlistSkus();
+                    }
+
                     let html = '<div class="row">';
                     products.forEach(product => {
                         const productId = product.productId || product.sku;
-                        const isWishlisted = wishlistSkus.includes(productId);
+                        const variantSku = product.variants?.[0]?.variantSku || productId;
+                        const isWishlisted = window.wishlistManager ?
+                            window.wishlistManager.isInWishlist(variantSku) :
+                            wishlistSkus.includes(variantSku);
                         let imgSrc = 'https://placehold.co/300x220?text=No+Image';
                         const variant = product.variants?.[0];
                         if (variant) {
@@ -423,7 +436,8 @@
                                                 style="z-index:2;"
                                                 aria-label="Add to wishlist"
                                                 data-product-id="${productId}"
-                                                onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
+                                                data-variant-sku="${variantSku}"
+                                                onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${variantSku}', category: '${categoryKey}'})">
                                             <span class="wishlist-icon-wrapper">
                                                 <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
                                                      style="${isWishlisted ? 'display:none;' : ''}">
@@ -461,6 +475,26 @@
                     });
                     html += '</div>';
                     gridsContainer.innerHTML = html;
+
+                    // Ensure wishlist manager is ready before attaching listeners to search results
+                    if (window.wishlistManager) {
+                        attachWishlistListeners();
+                        setTimeout(() => {
+                            updateAllWishlistButtons();
+                        }, 100);
+                    } else {
+                        const waitForManagerSearch = () => {
+                            if (window.wishlistManager) {
+                                attachWishlistListeners();
+                                setTimeout(() => {
+                                    updateAllWishlistButtons();
+                                }, 100);
+                            } else {
+                                setTimeout(waitForManagerSearch, 50);
+                            }
+                        };
+                        waitForManagerSearch();
+                    }
                 })
                 .catch(() => {
                     gridsContainer.innerHTML = '<div class="text-center py-5 text-danger">Failed to load products.</div>';
@@ -594,10 +628,29 @@
             const gridsContainer = document.getElementById('product-grids-container');
             const userId = "{{ session('user_id') }}";
             const idToken = "{{ session('id_token') }}";
-            // console.log('Wishlist userId:', userId, 'idToken:', idToken);
+
+            // Initialize wishlist manager
+            if (typeof initWishlistManager === 'function') {
+                window.wishlistManager = initWishlistManager({
+                    userId: userId,
+                    idToken: idToken,
+                    syncEndpoint: '/wishlist/sync',
+                    syncInterval: 300000 // 5 minutes
+                });
+
+                // Listen for wishlist update events
+                document.addEventListener('wishlistUpdate', function(event) {
+                    const { action, sku, isInWishlist } = event.detail;
+                    // Update all visible buttons with this SKU
+                    document.querySelectorAll(`[data-variant-sku="${sku}"]`).forEach(btn => {
+                        const borderHeart = btn.querySelector('.border-heart');
+                        const fillHeart = btn.querySelector('.fill-heart');
+                        updateHeartUI(borderHeart, fillHeart, isInWishlist);
+                    });
+                });
+            }
+
             let categories = [];
-            // Store wishlist items (using localStorage for persistence)
-            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
 
             // Get selected category from query param
             function getQueryParam(name) {
@@ -688,16 +741,19 @@
                             return;
                         }
 
-                        // Sync wishlist from localStorage (set by backend fetch)
-                        let wishlistSkus = [];
-                        try {
-                            wishlistSkus = JSON.parse(localStorage.getItem('wishlist')) || [];
-                        } catch (e) {}
+                    // Get wishlist data from wishlist manager
+                    let wishlistSkus = [];
+                    if (window.wishlistManager) {
+                        wishlistSkus = window.wishlistManager.getWishlistSkus();
+                    }
 
                         let html = '<div class="row">';
                         products.forEach(product => {
                             const productId = product.productId || product.sku;
-                            const isWishlisted = wishlistSkus.includes(productId);
+                            const variantSku = product.variants?.[0]?.variantSku || productId;
+                            const isWishlisted = window.wishlistManager ?
+                                window.wishlistManager.isInWishlist(variantSku) :
+                                wishlistSkus.includes(variantSku);
 
                             let imgSrc = 'https://placehold.co/300x220?text=No+Image';
                             const variant = product.variants?.[0];
@@ -719,7 +775,8 @@
                                         style="z-index:2;"
                                         aria-label="Add to wishlist"
                                         data-product-id="${productId}"
-                                        onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${product.variants?.[0]?.variantSku || ''}', category: '${categoryKey}'})">
+                                        data-variant-sku="${variantSku}"
+                                        onclick="posthog.capture(${isWishlisted ? '\'remove_from_wishlist_clicked\'' : '\'add_to_wishlist_clicked\''}, {sku: '${variantSku}', category: '${categoryKey}'})">
                                     <span class="wishlist-icon-wrapper">
                                         <svg class="wishlist-heart-svg border-heart" width="20" height="20" viewBox="0 0 512.289 512.289"
                                              style="${isWishlisted ? 'display:none;' : ''}">
@@ -780,7 +837,28 @@
             </div>`;
 
                         gridsContainer.innerHTML = html;
-                        attachWishlistListeners();
+
+                        // Ensure wishlist manager is ready before attaching listeners
+                        if (window.wishlistManager) {
+                            attachWishlistListeners();
+                            // Sync wishlist UI for newly loaded products
+                            setTimeout(() => {
+                                updateAllWishlistButtons();
+                            }, 100);
+                        } else {
+                            // Wishlist manager not ready yet, wait and retry
+                            const waitForManager = () => {
+                                if (window.wishlistManager) {
+                                    attachWishlistListeners();
+                                    setTimeout(() => {
+                                        updateAllWishlistButtons();
+                                    }, 100);
+                                } else {
+                                    setTimeout(waitForManager, 50);
+                                }
+                            };
+                            waitForManager();
+                        }
 
                         // Attach Try On button listeners
                         document.querySelectorAll('.try-on-btn').forEach(btn => {
@@ -831,28 +909,41 @@
                 const popup = document.getElementById('wishlist-popup');
                 const icon = document.getElementById('wishlist-popup-icon');
                 const msg = document.getElementById('wishlist-popup-msg');
+
                 if (type === 'add') {
                     icon.innerHTML = "<svg class=\"wishlist-heart-svg fill-heart\" width=\"20\" height=\"20\" viewBox=\"0 0 512.003 512.003\" style=\"\">\n                                                    <path style=\"fill:#8a2323;\" d=\"M256.001,105.69c19.535-49.77,61.325-87.79,113.231-87.79c43.705,0,80.225,22.572,108.871,54.44\n                                                        c39.186,43.591,56.497,139.193-15.863,209.24c-37.129,35.946-205.815,212.524-205.815,212.524S88.171,317.084,50.619,281.579\n                                                        C-22.447,212.495-6.01,116.919,34.756,72.339c28.919-31.629,65.165-54.44,108.871-54.44\n                                                        C195.532,17.899,236.466,55.92,256.001,105.69\"/>\n                                                </svg>";
                     msg.textContent = `Added to wishlist! SKU: ${sku}`;
+                    popup.style.background = '#fff';
+                    popup.style.color = '#222';
                 } else if (type === 'remove') {
                     icon.innerHTML = '🗑️';
-                    msg.textContent = `Removed from wishlist!  SKU: ${sku}`;
+                    msg.textContent = `Removed from wishlist! SKU: ${sku}`;
+                    popup.style.background = '#fff';
+                    popup.style.color = '#222';
+                } else if (type === 'error') {
+                    icon.innerHTML = '⚠️';
+                    msg.textContent = `Error updating wishlist! SKU: ${sku}`;
+                    popup.style.background = '#f8d7da';
+                    popup.style.color = '#721c24';
                 } else {
                     icon.innerHTML = '';
                     msg.textContent = '';
                 }
+
                 popup.style.display = 'flex';
                 setTimeout(() => {
                     popup.style.opacity = '1';
                     popup.style.transform = 'translateX(0)';
                 }, 10);
+
+                const delay = type === 'error' ? 4000 : 2000; // Show errors longer
                 setTimeout(() => {
                     popup.style.opacity = '0';
                     popup.style.transform = 'translateX(-60px)';
                     setTimeout(() => {
                         popup.style.display = 'none';
                     }, 400);
-                }, 2000);
+                }, delay);
             }
 
             // Function to attach event listeners to wishlist buttons
@@ -864,29 +955,51 @@
                             console.warn('wishlist-btn not inside .product-item-card');
                             return;
                         }
-                        const skuBtn = productCard.querySelector('.try-on-btn');
-                        const sku = skuBtn ? skuBtn.getAttribute('data-sku') : null;
+
+                        // Get SKU from data attribute (more reliable)
+                        const sku = this.getAttribute('data-variant-sku') ||
+                                   productCard.querySelector('.try-on-btn')?.getAttribute('data-sku');
+
                         const borderHeart = this.querySelector('.border-heart');
                         const fillHeart = this.querySelector('.fill-heart');
+
                         if (!userId || !idToken || !sku) {
-                            // console.error('Missing userId, idToken, or sku for wishlist API call');
-                            // alert('Please log in to manage wishlist items');
+                            console.warn('Missing userId, idToken, or sku for wishlist API call');
                             return;
                         }
-                        // Determine if we're adding or removing
-                        const isCurrentlyFilled = fillHeart.style.display === 'inline';
-                        const method = isCurrentlyFilled ? 'DELETE' : 'POST';
+
+                        // Check current wishlist state using wishlist manager
+                        const isCurrentlyWishlisted = window.wishlistManager ?
+                            window.wishlistManager.isInWishlist(sku) :
+                            fillHeart.style.display === 'inline';
+
+                        const method = isCurrentlyWishlisted ? 'DELETE' : 'POST';
+                        const action = isCurrentlyWishlisted ? 'remove' : 'add';
                         const url = `/users/${userId}/wishlist`;
                         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
-                        // Toggle UI immediately for better UX
-                        borderHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                        fillHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
+
+                        // Optimistic update using wishlist manager
+                        if (window.wishlistManager) {
+                            if (action === 'add') {
+                                window.wishlistManager.addToWishlist(sku);
+                            } else {
+                                window.wishlistManager.removeFromWishlist(sku);
+                            }
+                        }
+
+                        // Update UI immediately
+                        updateHeartUI(borderHeart, fillHeart, action === 'add');
+
                         // Get product data from card
                         const imgElem = productCard.querySelector('img.default-image');
                         const variantThumbnails = imgElem ? imgElem.src : '';
-                        const categoryKey = productCard.closest('.product-listing-section')?.querySelector('.category-tab.active')?.dataset.category || '';
+                        const categoryKey = document.querySelector('.category-tab.active')?.dataset.category || '';
                         const productTitle = productCard.querySelector('.product-item-id')?.textContent || '';
-                        showWishlistPopup(method === 'POST' ? 'add' : 'remove', sku);
+
+                        // Show popup notification
+                        showWishlistPopup(action, sku);
+
+                        // API call
                         fetch(url, {
                             method: method,
                             headers: {
@@ -903,35 +1016,55 @@
                             })
                         })
                         .then(response => {
-                            if (!response.ok) {
-                                return response.json().then(err => {
-                                    // throw new Error(err.message || `Failed to ${method === 'POST' ? 'add to' : 'remove from'} wishlist`)
-                                });
+                            const success = response.ok;
+                            if (!success) {
+                                throw new Error(`Failed to ${action} wishlist item`);
                             }
                             return response.json();
                         })
                         .then(data => {
-                            updateWishlistStorage(sku, method === 'POST');
-                            // showWishlistPopup(method === 'POST' ? 'add' : 'remove');
+                            // API call succeeded, wishlist manager already updated optimistically
+                            if (window.wishlistManager) {
+                                window.wishlistManager.handleApiResponse(sku, action, true);
+                            }
                         })
                         .catch(error => {
-                            borderHeart.style.display = isCurrentlyFilled ? 'none' : 'inline';
-                            fillHeart.style.display = isCurrentlyFilled ? 'inline' : 'none';
-                            // alert('Error: ' + error.message);
+                            console.error('Wishlist API error:', error);
+
+                            // Revert optimistic update on error
+                            if (window.wishlistManager) {
+                                window.wishlistManager.handleApiResponse(sku, action, false);
+                            }
+
+                            // Revert UI changes
+                            updateHeartUI(borderHeart, fillHeart, action !== 'add');
+
+                            // Show error popup (optional)
+                            showWishlistPopup('error', sku);
                         });
                     });
                 });
             }
 
-            // Helper function to manage localStorage
-            function updateWishlistStorage(sku, isAdded) {
-                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || {};
-                if (isAdded) {
-                    wishlist[sku] = true;
-                } else {
-                    delete wishlist[sku];
+            // Helper function to update heart UI
+            function updateHeartUI(borderHeart, fillHeart, isWishlisted) {
+                if (borderHeart && fillHeart) {
+                    borderHeart.style.display = isWishlisted ? 'none' : 'inline';
+                    fillHeart.style.display = isWishlisted ? 'inline' : 'none';
                 }
-                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+
+            // Helper function to update all visible wishlist buttons (used for sync)
+            function updateAllWishlistButtons() {
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    const sku = btn.getAttribute('data-variant-sku');
+                    if (sku && window.wishlistManager) {
+                        const isWishlisted = window.wishlistManager.isInWishlist(sku);
+                        const borderHeart = btn.querySelector('.border-heart');
+                        const fillHeart = btn.querySelector('.fill-heart');
+                        updateHeartUI(borderHeart, fillHeart, isWishlisted);
+                    }
+                });
             }
 
 
