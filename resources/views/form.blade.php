@@ -109,7 +109,7 @@
                                         </select>
                                         <h2 class="display-4 fw-bold">checklist.</h2>
                                     </div>
-                                    <button type="submit" class="btn border border-2 rounded-5 btn-custom">Choose My Look</button>
+                                    <button type="submit" class="btn border border-2 rounded-5 btn-custom">Let’s Find My Perfect Look!</button>
                                 </form>
                             </div>
 
