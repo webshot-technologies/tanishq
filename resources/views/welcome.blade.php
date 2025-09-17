@@ -437,31 +437,32 @@
                                     <!-- Step 1 Form -->
                                     <form id="step1-form" class="mt-5">
                                         <div class="d-flex form-content mb-5 align-items-baseline">
-                                            <span class="mb-0 text-nowrap form-text">My Dream</span>
+                                            <span class="mb-0 text-nowrap form-text">I Am A</span>
                                             <select class="form-select border-bottom  py-0" required
                                                 id="language-select" aria-label="Select community" onchange="posthog.capture('region', { region: this.options[this.selectedIndex].text })">
-                                                <option selected>Tamil</option>
-                                                <option>Telugu</option>
-                                                <option>Gujarati</option>
-                                                <option>Bengali</option>
-                                                <option>Odia</option>
-                                                <option>Bihari</option>
-                                                <option>UP</option>
-                                                <option>Marwari</option>
-                                                <option>Punjabi</option>
-                                                <option>Marathi</option>
-                                                <option>Kannada</option>
-                                                <option>Jat</option>
-                                                <option>Rajput</option>
-                                                <option>Assamese</option>
-                                                <option>Manipuri</option>
-                                                <option>Malayalee</option>
-                                                <option>Kumaoni</option>
-                                                <option>Muslim</option>
+                                                <option selected>Tamil Bride</option>
+                                                <option>Telugu Bride</option>
+                                                <option>Gujarati Bride</option>
+                                                <option>Bengali Bride</option>
+                                                <option>Odia Bride</option>
+                                                <option>Bihari Bride</option>
+                                                <option>UP Bride</option>
+                                                <option>Marwari Bride</option>
+                                                <option>Punjabi Bride</option>
+                                                <option>Marathi Bride</option>
+                                                <option>Kannada Bride</option>
+                                                <option>Jat Bride</option>
+                                                <option>Rajput Bride</option>
+                                                <option>Assamese Bride</option>
+                                                <option>Manipuri Bride</option>
+                                                <option>Malayalee Bride</option>
+                                                <option>Kumaoni Bride</option>
+                                                <option>Muslim Bride</option>
                                             </select>
                                         </div>
 
                                         <div class="d-flex align-items-baseline mb-5">
+                                        <span class="mb-0 form-text">Planning for My</span>
                                             <select class="form-select border-bottom  me-3 py-0" required
                                                 id="event-select" aria-label="Select occasion" onchange="posthog.capture('occasion', { occasion: this.options[this.selectedIndex].text })">
                                                 <option selected>Mehendi</option>
@@ -472,12 +473,10 @@
                                                 <option>Reception</option>
                                                 <option>Wedding</option>
                                             </select>
-                                            <span class="mb-0 form-text">Checklist</span>
                                         </div>
 
                                         <div class="mx-auto d-flex justify-content-center justify-content-lg-start">
-                                            <button type="submit" class="btn rounded-5 mx-auto btn-custom" onclick="posthog.capture('choose-my-look')">Choose My
-                                                Look</button>
+                                            <button type="submit" class="btn rounded-5 mx-auto btn-custom" onclick="posthog.capture('choose-my-look')">Let’s Find My Perfect Look!</button>
                                         </div>
                                     </form>
                                 </div>
@@ -516,26 +515,26 @@
                         style="gap: 1.5rem;">
                         <div class="d-flex flex-row align-items-center g-2rem w-100">
                             <div class="d-flex flex-column flex-grow-1">
-                                <label for="dream-select-tablet" class="fw-semibold mb-1 text-start">My Dream:</label>
+                                <label for="dream-select-tablet" class="fw-semibold mb-1 text-start">I am A:</label>
                                 <select id="dream-select-tablet" class="form-select" onchange="posthog.capture('region', { region: this.options[this.selectedIndex].text })">
-                                    <option selected>Tamil</option>
-                                    <option>Telugu</option>
-                                    <option>Gujarati</option>
-                                    <option>Bengali</option>
-                                    <option>Odia</option>
-                                    <option>Bihari</option>
-                                    <option>UP</option>
-                                    <option>Marwari</option>
-                                    <option>Punjabi</option>
-                                    <option>Marathi</option>
-                                    <option>Kannada</option>
-                                    <option>Jat</option>
-                                    <option>Rajput</option>
-                                    <option>Assamese</option>
-                                    <option>Manipuri</option>
-                                    <option>Malayalee</option>
-                                    <option>Kumaoni</option>
-                                    <option>Muslim</option>
+                                    <option selected>Tamil Bride</option>
+                                    <option>Telugu Bride</option>
+                                    <option>Gujarati Bride</option>
+                                    <option>Bengali Bride</option>
+                                    <option>Odia Bride</option>
+                                    <option>Bihari Bride</option>
+                                    <option>UP Bride</option>
+                                    <option>Marwari Bride</option>
+                                    <option>Punjabi Bride</option>
+                                    <option>Marathi Bride</option>
+                                    <option>Kannada Bride</option>
+                                    <option>Jat Bride</option>
+                                    <option>Rajput Bride</option>
+                                    <option>Assamese Bride</option>
+                                    <option>Manipuri Bride</option>
+                                    <option>Malayalee Bride</option>
+                                    <option>Kumaoni Bride</option>
+                                    <option>Muslim Bride</option>
                                 </select>
                             </div>
                             <div class="d-flex flex-column flex-grow-1">
@@ -552,10 +551,9 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary px-4 py-2 w-100" style="white-space:nowrap;" onclick="posthog.capture('choose-my-look')">Choose My
-                            Look</button>
+                        <button type="submit" class="btn btn-primary px-4 py-2 w-100" style="white-space:nowrap;" onclick="posthog.capture('choose-my-look')">Let’s Find My Perfect Look!</button>
                     </div>
-                    <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil">
+                    <input type="hidden" id="hidden-language-tablet" name="language" value="Tamil Bride">
                     <input type="hidden" id="hidden-event-tablet" name="event" value="Mehendi">
                 </form>
             </div>
@@ -629,15 +627,15 @@
 
                     <div id="outfit-details-container" class="mt-4">
 
-                        <div id="lehanga-details" class="detail-section active">
-                            <h3 class="text-center fw-semibold mt-4">Lehanga Checklist</h3>
+                        <div id="outfit-details" class="detail-section active">
+                            <h3 id="outfit-title" class="text-center fw-semibold mt-4">Outfit Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
-                            <div class="animated-image-container position-relative">
+                            <div class="animated-image-container position-relative" id="jewellery-container">
                                 <img src="{{ asset('image/lehnga.png') }}" class="img-fluid outfit-img"
-                                    alt="Lehanga Model">
+                                    alt="Outfit Model">
 
-                                <div class="jewellery-item lehanga-hair-jewellery">
+                                <div class="jewellery-item hair-jewellery">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -647,7 +645,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-forehead-pendant">
+                                <div class="jewellery-item forehead-pendant">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="forehead-pendant-cb" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'forehead-pendant', model: 'model-1', page: 'form' })">
@@ -656,7 +654,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-earrings-stud">
+                                <div class="jewellery-item earrings-stud">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
 
@@ -667,7 +665,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-earrings-drops">
+                                <div class="jewellery-item earrings-drops">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -677,7 +675,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-ear-loops">
+                                <div class="jewellery-item ear-loops">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img mx-0"
                                         alt="">
 
@@ -688,7 +686,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-nose-pin">
+                                <div class="jewellery-item nose-pin">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="nose-pin-cb" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'nose-pin', model: 'model-1', page: 'form' })">
@@ -697,7 +695,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-choker-necklace">
+                                <div class="jewellery-item choker-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="choker-necklace-cb" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'choker-necklace', model: 'model-1', page: 'form' })">
@@ -706,7 +704,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-short-necklace">
+                                <div class="jewellery-item short-necklace">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -716,7 +714,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-long-necklace">
+                                <div class="jewellery-item long-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="long-necklace-cb" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'long-necklace', model: 'model-1', page: 'form' })">
@@ -725,7 +723,7 @@
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-multiple-bangles">
+                                <div class="jewellery-item multiple-bangles">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="multiple-bangles-cb" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'multiple-bangles', model: 'model-1', page: 'form' })">
@@ -734,7 +732,7 @@
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-bracelet">
+                                <div class="jewellery-item bracelet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -744,7 +742,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-single-bangle">
+                                <div class="jewellery-item single-bangle">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="single-bangle-cb" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'single-bangle', model: 'model-1', page: 'form' })">
@@ -753,7 +751,7 @@
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item lehanga-rings">
+                                <div class="jewellery-item rings">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-cb" name="jewellery_pieces" value="rings"
@@ -762,7 +760,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-waist-belt">
+                                <div class="jewellery-item waist-belt">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -772,7 +770,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-anklet">
+                                <div class="jewellery-item anklet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -782,7 +780,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item lehanga-toe-ring">
+                                <div class="jewellery-item toe-ring">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -793,46 +791,39 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+
+                <div class=" col-12 col-xl-10 d-flex px-4 mx-auto justify-content-center my-4">
+
+                    <button type="" onclick="nextStep(3)" class="btn border-2 rounded-5 btn-custom"  onclick="posthog.capture('choose-create-list', { page: 'form' })">Choose
+                        Create List</button>
+
+                    {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
+                </div>
+                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
+                    &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-                        <div id="gown-details" class="detail-section ">
-                            <h3 class="text-center fw-semibold mt-4">Gown Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
-                                you want to explore</p>
-                            <div class="animated-image-container position-relative">
-                                <img src="{{ asset('image/gown.png') }}" class="img-fluid outfit-img"
-                                    alt="Lehanga Model">
-
-                                <div class="jewellery-item gown-hair-jewellery">
-                                    <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
-                                        alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="hair-jewellery-gown" name="jewellery_pieces"
-                                            value="hair-jewellery" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'hair-jewellery', model: 'model-2', page: 'form' })">
-                                        <label for="hair-jewellery-gown">Hair Jewellery</label>
-                                    </div>
-                                </div>
-
-                                <div class="jewellery-item gown-forehead-pendant">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="forehead-pendant-gown" name="jewellery_pieces"
-                                            value="forehead-pendant" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'forehead-pendant', model: 'model-2', page: 'form' })">
-                                        <label for="forehead-pendant-gown">Forehead Pendant</label>
-                                    </div>
-                                    <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
-                                </div>
-
-                                <div class="jewellery-item gown-earrings-stud">
-                                    <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
-                                        alt="">
-                                    <div class="jewellery-input">
-                                        <input type="checkbox" id="earrings-stud-gown" name="jewellery_pieces"
-                                            value="earrings-stud" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'earrings-stud', model: 'model-2', page: 'form' })">
+    <!-- STEP 3 -->
+    <div class="step-container container " id="step3">
+        <div class="row align-items-center container px-0 mx-auto">
+            <div
+                class="col-12 col-xl-10 py-4 text-center mx-auto d-flex align-items-center justify-content-center justify-normal position-relative">
+                <!-- Back Button -->
+                <button type="button" class="btn btn-link p-0 me-3 d-flex align-items-center position-absolute"
+                    onclick="prevStep(2)" style="left: 2rem; top: 50%; transform: translateY(-50%);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#300708"
                                         <label for="earrings-stud-gown">Earrings - Stud</label>
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-earrings-drops">
+                                <div class="jewellery-item earrings-drops">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-gown" name="jewellery_pieces"
                                             value="earrings-drops" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'earrings-drops', model: 'model-2', page: 'form' })">
@@ -841,7 +832,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item gown-choker-necklace">
+                                <div class="jewellery-item choker-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="choker-necklace-gown" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'choker-necklace', model: 'model-2', page: 'form' })">
@@ -850,7 +841,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item gown-ear-loops">
+                                <div class="jewellery-item ear-loops">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
 
@@ -861,7 +852,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-nose-pin">
+                                <div class="jewellery-item nose-pin">
                                      <img class="right-img mx-0 d-none d-md-block" src="{{ asset('image/pointers/right-long.png') }}" alt="">
 
                                     <div class="jewellery-input">
@@ -873,7 +864,7 @@
                                 </div>
 
 
-                                <div class="jewellery-item gown-short-necklace">
+                                <div class="jewellery-item short-necklace">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -883,7 +874,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-long-necklace">
+                                <div class="jewellery-item long-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="long-necklace-gown" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'long-necklace', model: 'model-2', page: 'form' })">
@@ -892,7 +883,7 @@
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item gown-multiple-bangles">
+                                <div class="jewellery-item multiple-bangles">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="multiple-bangles-gown" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'multiple-bangles', model: 'model-2', page: 'form' })">
@@ -901,7 +892,7 @@
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item gown-bracelet">
+                                <div class="jewellery-item bracelet">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -911,7 +902,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-single-bangle">
+                                <div class="jewellery-item single-bangle">
                                     <img class="right-img mx-0" src="{{ asset('image/pointers/right-mid-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="single-bangle-gown" name="jewellery_pieces"
@@ -921,7 +912,7 @@
 
                                 </div>
 
-                                <div class="jewellery-item gown-rings">
+                                <div class="jewellery-item rings">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-gown" name="jewellery_pieces"
                                             value="rings" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'rings', model: 'model-2', page: 'form' })">
@@ -931,7 +922,7 @@
 
                                 </div>
 
-                                <div class="jewellery-item gown-waist-belt">
+                                <div class="jewellery-item waist-belt">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -941,7 +932,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-anklet">
+                                <div class="jewellery-item anklet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -951,7 +942,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item gown-toe-ring">
+                                <div class="jewellery-item toe-ring">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -964,7 +955,7 @@
                         </div>
 
 
-                        <div id="saree-details" class="detail-section ">
+                        <div id="details" class="detail-section ">
                             <h3 class="text-center fw-semibold mt-4">Saree Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
@@ -972,7 +963,7 @@
                                 <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
-                                <div class="jewellery-item saree-hair-jewellery">
+                                <div class="jewellery-item hair-jewellery">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -982,7 +973,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-forehead-pendant">
+                                <div class="jewellery-item forehead-pendant">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="forehead-pendant-saree" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'forehead-pendant', model: 'model-3', page: 'form' })">
@@ -991,7 +982,7 @@
                                     <img class="mx-0" src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-earrings-stud">
+                                <div class="jewellery-item earrings-stud">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
 
@@ -1002,7 +993,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-earrings-drops">
+                                <div class="jewellery-item earrings-drops">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1012,7 +1003,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-ear-loops">
+                                <div class="jewellery-item ear-loops">
                                     <img src="{{ asset('image/pointers/right-long.png') }}" class="right-img mx-0"
                                         alt="">
 
@@ -1023,7 +1014,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-nose-pin">
+                                <div class="jewellery-item nose-pin">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="nose-pin-saree" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'nose-pin', model: 'model-3', page: 'form' })">
@@ -1032,7 +1023,7 @@
                                     <img class="mx-0" src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-choker-necklace">
+                                <div class="jewellery-item choker-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="choker-necklace-saree" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'choker-necklace', model: 'model-3', page: 'form' })">
@@ -1041,7 +1032,7 @@
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-short-necklace">
+                                <div class="jewellery-item short-necklace">
                                     <img src="{{ asset('image/pointers/right-long-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1051,7 +1042,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-long-necklace">
+                                <div class="jewellery-item long-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="long-necklace-saree" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'long-necklace', model: 'model-3', page: 'form' })">
@@ -1060,7 +1051,7 @@
                                     <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-multiple-bangles">
+                                <div class="jewellery-item multiple-bangles">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="multiple-bangles-saree" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'multiple-bangles', model: 'model-3', page: 'form' })">
@@ -1069,7 +1060,7 @@
                                     <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-bracelet">
+                                <div class="jewellery-item bracelet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1079,7 +1070,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-single-bangle">
+                                <div class="jewellery-item single-bangle">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="single-bangle-saree" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'single-bangle', model: 'model-3', page: 'form' })">
@@ -1088,7 +1079,7 @@
                                     <img class="mx-0" src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-rings">
+                                <div class="jewellery-item rings">
 
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-saree" name="jewellery_pieces"
@@ -1098,7 +1089,7 @@
                                      <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item saree-waist-belt">
+                                <div class="jewellery-item waist-belt">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1108,7 +1099,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-anklet">
+                                <div class="jewellery-item anklet">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1118,7 +1109,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item saree-toe-ring">
+                                <div class="jewellery-item toe-ring">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0"
                                         alt="">
                                     <div class="jewellery-input">
@@ -1131,7 +1122,7 @@
                         </div>
 
 
-                        <div id="anarkali-details" class="detail-section ">
+                        <div id="details" class="detail-section ">
                             <h3 class="text-center fw-semibold mt-4">Anarkali Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
@@ -1139,7 +1130,7 @@
                                 <img src="{{ asset('image/anarkali.png') }}" class="img-fluid outfit-img"
                                     alt="Lehanga Model">
 
-                                <div class="jewellery-item anarkali-hair-jewellery">
+                                <div class="jewellery-item hair-jewellery">
                                     <img src="{{ asset('image/pointers/right-mid.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="hair-jewellery-anarkali" name="jewellery_pieces"
@@ -1148,7 +1139,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-forehead-pendant">
+                                <div class="jewellery-item forehead-pendant">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="forehead-pendant-anarkali" name="jewellery_pieces"
                                             value="forehead-pendant" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'forehead-pendant', model: 'model-4', page: 'form' })">
@@ -1157,7 +1148,7 @@
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-earrings-stud">
+                                <div class="jewellery-item earrings-stud">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
 
                                     <div class="jewellery-input">
@@ -1167,7 +1158,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-earrings-drops">
+                                <div class="jewellery-item earrings-drops">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="earrings-drops-anarkali" name="jewellery_pieces"
@@ -1176,7 +1167,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-ear-loops">
+                                <div class="jewellery-item ear-loops">
                                     <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img mx-0" alt="">
 
                                     <div class="jewellery-input">
@@ -1186,7 +1177,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-nose-pin">
+                                <div class="jewellery-item nose-pin">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="nose-pin-anarkali" name="jewellery_pieces"
                                             value="nose-pin" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'nose-pin', model: 'model-4', page: 'form' })">
@@ -1195,7 +1186,7 @@
                                     <img src="{{ asset('image/pointers/left-mid.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-choker-necklace">
+                                <div class="jewellery-item choker-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="choker-necklace-anarkali" name="jewellery_pieces"
                                             value="choker-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'choker-necklace', model: 'model-4', page: 'form' })">
@@ -1204,7 +1195,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-short-necklace">
+                                <div class="jewellery-item short-necklace">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="short-necklace-anarkali" name="jewellery_pieces"
@@ -1213,7 +1204,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-long-necklace">
+                                <div class="jewellery-item long-necklace">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="long-necklace-anarkali" name="jewellery_pieces"
                                             value="long-necklace" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'long-necklace', model: 'model-4', page: 'form' })">
@@ -1222,7 +1213,7 @@
                                     <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-multiple-bangles">
+                                <div class="jewellery-item multiple-bangles">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="multiple-bangles-anarkali" name="jewellery_pieces"
                                             value="multiple-bangles" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'multiple-bangles', model: 'model-4', page: 'form' })">
@@ -1231,7 +1222,7 @@
                                     <img src="{{ asset('image/pointers/left-short-strt.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-bracelet">
+                                <div class="jewellery-item bracelet">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="bracelet-anarkali" name="jewellery_pieces"
@@ -1240,7 +1231,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-single-bangle">
+                                <div class="jewellery-item single-bangle">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="single-bangle-anarkali" name="jewellery_pieces"
                                             value="single-bangle" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'single-bangle', model: 'model-4', page: 'form' })">
@@ -1249,7 +1240,7 @@
                                     <img src="{{ asset('image/pointers/left-short.png') }}" alt="">
                                 </div>
 
-                                <div class="jewellery-item anarkali-rings">
+                                <div class="jewellery-item rings">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="rings-anarkali" name="jewellery_pieces"
@@ -1258,7 +1249,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-waist-belt">
+                                <div class="jewellery-item waist-belt">
                                     <img src="{{ asset('image/pointers/right-short.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="waist-belt-anarkali" name="jewellery_pieces"
@@ -1267,7 +1258,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-anklet">
+                                <div class="jewellery-item anklet">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="anklet-anarkali" name="jewellery_pieces"
@@ -1276,7 +1267,7 @@
                                     </div>
                                 </div>
 
-                                <div class="jewellery-item anarkali-toe-ring">
+                                <div class="jewellery-item toe-ring">
                                     <img src="{{ asset('image/pointers/right-short-strt.png') }}" class="right-img mx-0" alt="">
                                     <div class="jewellery-input">
                                         <input type="checkbox" id="toe-ring-anarkali" name="jewellery_pieces"
@@ -1567,13 +1558,22 @@
                     this.classList.add('active');
                     // Get outfit type
                     const outfitType = this.getAttribute('data-outfit');
-                    // Hide all detail sections
-                    document.querySelectorAll('.detail-section').forEach(section => section.style.display = 'none');
-                    // Show the selected outfit's details
-                    const detailsId = outfitType + '-details';
-                    const detailsSection = document.getElementById(detailsId);
-                    if (detailsSection) {
-                        detailsSection.style.display = 'block';
+
+                    // Update the main detail section
+                    const outfitDetails = document.getElementById('outfit-details');
+                    const outfitTitle = document.getElementById('outfit-title');
+                    const outfitImg = document.querySelector('#outfit-details .outfit-img');
+
+                    if (outfitDetails && outfitTitle && outfitImg && outfitType) {
+                        // Update image and title based on outfit type
+                        const capitalizedOutfit = outfitType.charAt(0).toUpperCase() + outfitType.slice(1);
+                        const imageName = outfitType === 'lehanga' ? 'lehnga' : outfitType; // Handle lehanga/lehnga naming
+
+                        outfitImg.src = `{{ asset('image/') }}/${imageName}.png`;
+                        outfitTitle.textContent = `${capitalizedOutfit} Checklist`;
+
+                        // Update jewellery positions for the selected outfit
+                        updateJewelleryPositions(outfitType === 'lehanga' ? 'lehnga' : outfitType);
                     }
                     // Scroll to details container
                     var detailsContainer = document.getElementById('outfit-details-container');
@@ -2270,7 +2270,278 @@
 
             // Initialize phone verification
             setupPhoneVerification();
+
+            // Community-based model mapping
+            setupCommunityModelMapping();
+
+            // Load jewellery position data and generate CSS
+            loadJewelleryPositions();
         });
+
+        // Community to model mapping - defines which 4 models to show for each community
+        const communityModelMapping = {
+            'Tamil Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' }
+            },
+            'Telugu Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Gujarati Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Bengali Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Odia Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Bihari Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'UP Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Marwari Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Punjabi Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' }
+            },
+            'Marathi Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Kannada Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Jat Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Rajput Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Assamese Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Manipuri Bride': {
+                slide1: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Malayalee Bride': {
+                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Kumaoni Bride': {
+                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            },
+            'Muslim Bride': {
+                slide1: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
+                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
+                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+            }
+        };
+
+        function setupCommunityModelMapping() {
+            const languageSelect = document.getElementById('language-select');
+
+            // Function to update model images based on selected community
+            function updateModelImages(community) {
+                const mapping = communityModelMapping[community];
+                if (!mapping) return;
+
+                // Update swiper slide images
+                const slides = document.querySelectorAll('.swiper-slide');
+                slides.forEach((slide, index) => {
+                    const slideKey = `slide${index + 1}`;
+                    const slideData = mapping[slideKey];
+                    if (slideData) {
+                        const img = slide.querySelector('.card-image');
+                        const card = slide.querySelector('.jewelry-card');
+                        if (img) {
+                            img.src = `{{ asset('image/') }}/${slideData.jpeg}`;
+                            img.alt = slideData.alt;
+                        }
+                        if (card) {
+                            card.setAttribute('data-outfit', slideData.outfit);
+                        }
+                    }
+                });
+
+                // Update detail section images
+                // Find which slide contains each outfit type and update corresponding detail section
+                const outfitToDetailMapping = {
+                    'lehanga': 'details',
+                    'gown': 'details',
+                    'saree': 'details',
+                    'anarkali': 'details'
+                };
+
+                // Create mapping from outfit to slide data
+                const outfitSlideMapping = {};
+                Object.keys(mapping).forEach(slideKey => {
+                    const slideData = mapping[slideKey];
+                    outfitSlideMapping[slideData.outfit] = slideData;
+                });
+
+                // Update the main outfit detail section
+                const outfitDetails = document.getElementById('outfit-details');
+                const outfitTitle = document.getElementById('outfit-title');
+                const outfitImg = document.querySelector('#outfit-details .outfit-img');
+
+                if (outfitDetails && outfitTitle && outfitImg) {
+                    // Update with the first (active) slide's outfit
+                    const activeSlideData = mapping.slide1; // Always use the first slide as active
+                    outfitImg.src = `{{ asset('image/') }}/${activeSlideData.png}`;
+                    outfitTitle.textContent = `${activeSlideData.alt} Checklist`;
+
+                    // Update jewellery positions for the new image
+                    updateJewelleryPositions(activeSlideData.outfit);
+                }
+            }
+
+            // Initialize with default community (Tamil Bride)
+            updateModelImages('Tamil Bride');
+
+            // Add event listener for community changes
+            if (languageSelect) {
+                languageSelect.addEventListener('change', function() {
+                    const selectedCommunity = this.value;
+                    updateModelImages(selectedCommunity);
+                });
+            }
+        }
+
+        // Load jewellery position data and generate dynamic CSS
+        async function loadJewelleryPositions() {
+            try {
+                const response = await fetch('/data/jewellery-positions.json');
+                const positionData = await response.json();
+
+                // Generate CSS for each image and jewellery combination
+                generateJewelleryCSSRules(positionData);
+
+                // Initialize with default image (lehnga)
+                updateJewelleryPositions('lehnga');
+
+            } catch (error) {
+                console.error('Failed to load jewellery positions:', error);
+                // Fallback to default positioning
+            }
+        }
+
+        // Generate CSS rules for jewellery positioning
+        function generateJewelleryCSSRules(positionData) {
+            const style = document.createElement('style');
+            style.id = 'dynamic-jewellery-css';
+
+            let cssRules = `
+                /* Ensure the image container is the positioning context and matches image size */
+                #jewellery-container {
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                }
+
+                /* Image should fill the container completely */
+                #jewellery-container .outfit-img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    position: relative;
+                }
+
+                /* Jewellery items positioned absolutely within the container */
+                #jewellery-container .jewellery-item {
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    z-index: 10;
+                    pointer-events: auto;
+                }
+            `;
+
+            // Generate CSS classes for each image type
+            Object.keys(positionData).forEach(imageType => {
+                const positions = positionData[imageType];
+
+                Object.keys(positions).forEach(jewelleryType => {
+                    const position = positions[jewelleryType];
+
+                    // Position relative to the image itself using the image as reference
+                    // The coordinates are relative to the image's dimensions
+                    cssRules += `
+                        #jewellery-container.${imageType} .jewellery-item.${jewelleryType} {
+                            left: ${position.x}%;
+                            top: ${position.y}%;
+                        }
+                    `;
+                });
+            });
+
+            style.textContent = cssRules;
+            document.head.appendChild(style);
+        }
+
+        // Update jewellery positions for specific image type
+        function updateJewelleryPositions(imageType) {
+            const container = document.getElementById('jewellery-container');
+            if (!container) return;
+
+            // Remove only existing image type classes (lehnga, gown, saree, anarkali)
+            const imageTypes = ['lehnga', 'gown', 'saree', 'anarkali'];
+            imageTypes.forEach(type => container.classList.remove(type));
+
+            // Add new image type class
+            container.classList.add(imageType);
+        }
     </script>
 </body>
 
