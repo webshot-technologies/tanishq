@@ -1,0 +1,306 @@
+[
+  {
+    "id": 27594,
+    "annotations": [
+      {
+        "id": 14612,
+        "completed_by": 177,
+        "result": [
+          {
+            "id": "UyYznJubIp",
+            "type": "keypointlabels",
+            "value": {
+              "x": 51.917663043499196,
+              "y": 6.640828724165517,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["forehead-pendant"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "dBGDjYpCu_",
+            "type": "keypointlabels",
+            "value": {
+              "x": 56.72574860165365,
+              "y": 5.937892239055218,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["hair-jewellery"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "vqqj1tM2hI",
+            "type": "keypointlabels",
+            "value": {
+              "x": 47.36263461998446,
+              "y": 11.786323795172905,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["earrings-stud"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "fL4bEt6kCI",
+            "type": "keypointlabels",
+            "value": {
+              "x": 47.742220321944025,
+              "y": 14.34501260097439,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["earrings-drops"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "amJbuco1l9",
+            "type": "keypointlabels",
+            "value": {
+              "x": 57.48492000557277,
+              "y": 12.32055552385673,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["ear-loops"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "gmyVBxPi93",
+            "type": "keypointlabels",
+            "value": {
+              "x": 53.05642014937788,
+              "y": 11.561384119937609,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["nose-pin"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "X41pTpqwrZ",
+            "type": "keypointlabels",
+            "value": {
+              "x": 52.761186825631555,
+              "y": 16.060177624643522,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["choker-necklace"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "-4uv93veue",
+            "type": "keypointlabels",
+            "value": {
+              "x": 52.59248206920508,
+              "y": 18.281456917592067,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["short-necklace"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "FOSkzfzvqg",
+            "type": "keypointlabels",
+            "value": {
+              "x": 52.6346582583117,
+              "y": 20.305913994709726,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["long-necklace"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "FfRNkC8wkP",
+            "type": "keypointlabels",
+            "value": {
+              "x": 60.56378181035588,
+              "y": 36.55780553045983,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["multiple-bangles"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "q79tRXSzKS",
+            "type": "keypointlabels",
+            "value": {
+              "x": 58.07538665306542,
+              "y": 36.810862665099535,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["bracelet"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "0k7OoxYwiL",
+            "type": "keypointlabels",
+            "value": {
+              "x": 44.19942043698812,
+              "y": 36.754627746290716,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["single-bangle"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "XAnaor-GRL",
+            "type": "keypointlabels",
+            "value": {
+              "x": 52.761186825631555,
+              "y": 40.69107206290839,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["rings"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "FknXb8FB9H",
+            "type": "keypointlabels",
+            "value": {
+              "x": 52.128543989032295,
+              "y": 31.581015215878917,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["waist-belt"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "osyy6u3INO",
+            "type": "keypointlabels",
+            "value": {
+              "x": 57.17054263565892,
+              "y": 76.48578811369508,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["anklet"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          },
+          {
+            "id": "iF8U7lDy4b",
+            "type": "keypointlabels",
+            "value": {
+              "x": 55.03875968992248,
+              "y": 85.52971576227391,
+              "width": 0.5813953488372093,
+              "keypointlabels": ["toe-ring"]
+            },
+            "origin": "manual",
+            "to_name": "image",
+            "from_name": "kp-annotation",
+            "image_rotation": 0,
+            "original_width": 990,
+            "original_height": 1485
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2025-09-17T06:47:45.548932Z",
+        "updated_at": "2025-09-17T06:58:49.370029Z",
+        "draft_created_at": "2025-09-17T06:46:54.755456Z",
+        "lead_time": 345.461,
+        "prediction": {},
+        "result_count": 16,
+        "unique_id": "7466131b-4887-4870-80b3-00aaeb72c594",
+        "import_id": null,
+        "last_action": null,
+        "bulk_created": false,
+        "task": 27594,
+        "project": 27512,
+        "updated_by": 177,
+        "parent_prediction": null,
+        "parent_annotation": null,
+        "last_created_by": null
+      }
+    ],
+    "file_upload": "84716555-lahnga.jpeg",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "image": "upload/27512/84716555-lahnga.jpeg"
+    },
+    "meta": {},
+    "created_at": "2025-09-17T06:08:04.038307Z",
+    "updated_at": "2025-09-17T06:58:49.515004Z",
+    "inner_id": 1,
+    "total_annotations": 1,
+    "cancelled_annotations": 0,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 27512,
+    "updated_by": 177,
+    "comment_authors": []
+  }
+]
