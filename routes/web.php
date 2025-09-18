@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\JewelleryPositionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,6 +12,10 @@ Route::get('/', function () {
 Route::get('/edit-mode', function () {
     return view('edit-mode');
 })->name('edit-mode');
+
+// Jewellery position management routes
+Route::post('/api/jewellery/save-positions', [JewelleryPositionController::class, 'savePositions']);
+Route::get('/api/jewellery/load-positions', [JewelleryPositionController::class, 'loadPositions']);
 
 
   Route::controller(SiteController::class)->group(function() {

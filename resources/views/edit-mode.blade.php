@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Edit Mode - Jewellery Position Editor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
@@ -636,6 +637,7 @@
         let currentModels = [];
         let currentModelData = null;
         let jewelleryPositions = {};
+        let labelPositions = {}; // Store custom label positions
         let isDragging = false;
         let dragElement = null;
         let dragOffset = { x: 0, y: 0 };
@@ -644,6 +646,9 @@
         document.addEventListener('DOMContentLoaded', async function() {
             // Load jewellery position data first
             await loadJewelleryPositions();
+            
+            // Load saved label positions
+            await loadLabelPositions();
             
             // Generate model grid for all communities
             generateModelGrid();
@@ -659,6 +664,24 @@
                 selectModel(currentModels[0]);
             }
         });
+
+        // Load saved label positions from server
+        async function loadLabelPositions() {
+            try {
+                const response = await fetch('/api/jewellery/load-positions');
+                const data = await response.json();
+                
+                if (data.success) {
+                    labelPositions = data.positions;
+                    console.log('Loaded saved label positions:', labelPositions);
+                } else {
+                    console.error('Failed to load label positions:', data.message);
+                }
+            } catch (error) {
+                console.error('Error loading label positions:', error);
+                labelPositions = {};
+            }
+        }
 
         // Setup drag functionality for labels
         function setupDragFunctionality() {
@@ -902,6 +925,10 @@
             const svg = document.getElementById('connecting-lines');
             svg.innerHTML = ''; // Clear existing lines
             
+            // Get saved positions for current model
+            const currentImagePath = currentModelData ? currentModelData.image : null;
+            const savedPositions = currentImagePath && labelPositions[currentImagePath] ? labelPositions[currentImagePath] : {};
+            
             jewelleryTypes.forEach(type => {
                 const positionDot = document.querySelector(`.jewellery-position[data-type="${type}"]`);
                 const label = document.querySelector(`.jewellery-label[data-type="${type}"]`);
@@ -911,21 +938,30 @@
                     const container = document.getElementById('jewellery-container');
                     const containerRect = container.getBoundingClientRect();
                     
-                    // Position label based on whether it's left or right side
-                    const isRightSide = rightSideTypes.includes(type);
-                    const offsetDistance = 100; // Distance from the dot
-                    
-                    const dotX = dotRect.left - containerRect.left + dotRect.width / 2;
-                    const dotY = dotRect.top - containerRect.top + dotRect.height / 2;
-                    
                     let labelX, labelY;
                     
-                    if (isRightSide) {
-                        labelX = dotX + offsetDistance;
-                        labelY = dotY - label.offsetHeight / 2;
+                    // Check if we have saved positions for this label
+                    if (savedPositions[type]) {
+                        // Use saved positions (convert from percentage to pixels)
+                        labelX = (savedPositions[type].x / 100) * containerRect.width;
+                        labelY = (savedPositions[type].y / 100) * containerRect.height;
+                        console.log(`Using saved position for ${type}:`, savedPositions[type]);
                     } else {
-                        labelX = dotX - offsetDistance - label.offsetWidth;
-                        labelY = dotY - label.offsetHeight / 2;
+                        // Use default positioning logic
+                        const isRightSide = rightSideTypes.includes(type);
+                        const offsetDistance = 100; // Distance from the dot
+                        
+                        const dotX = dotRect.left - containerRect.left + dotRect.width / 2;
+                        const dotY = dotRect.top - containerRect.top + dotRect.height / 2;
+                        
+                        if (isRightSide) {
+                            labelX = dotX + offsetDistance;
+                            labelY = dotY - label.offsetHeight / 2;
+                        } else {
+                            labelX = dotX - offsetDistance - label.offsetWidth;
+                            labelY = dotY - label.offsetHeight / 2;
+                        }
+                        console.log(`Using default position for ${type}`);
                     }
                     
                     // Constrain within container
@@ -997,7 +1033,7 @@
         }
 
         // Save current label positions
-        function savePositions() {
+        async function savePositions() {
             if (!currentModelData) {
                 alert('Please select a model first');
                 return;
@@ -1025,8 +1061,33 @@
                 }
             });
             
-            console.log('Saved positions for', currentModelData.image, positions);
-            alert('Positions saved! (Check console for details)');
+            try {
+                const response = await fetch('/api/jewellery/save-positions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                    },
+                    body: JSON.stringify({
+                        model_image: currentModelData.image,
+                        positions: positions
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Update local storage
+                    labelPositions[currentModelData.image] = positions;
+                    alert('Label positions saved successfully!');
+                    console.log('Saved positions for', currentModelData.image, positions);
+                } else {
+                    alert('Failed to save positions: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error saving positions:', error);
+                alert('Error saving positions. Please try again.');
+            }
         }
 
         // Load jewellery position data (same as main app)
