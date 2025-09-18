@@ -631,8 +631,8 @@
                             <h3 id="outfit-title" class="text-center fw-semibold mt-4">Saree Checklist</h3>
                             <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
                                 you want to explore</p>
-                            <div class="animated-image-container position-relative saree" id="jewellery-container">
-                                <img src="{{ asset('image/saree.png') }}" class="img-fluid outfit-img"
+                            <div class="animated-image-container position-relative telugu-saree" id="jewellery-container">
+                                <img src="{{ asset('image/bystate/telugu-saree.png') }}" class="img-fluid outfit-img"
                                     alt="Outfit Model">
 
                                 <div class="jewellery-item hair-jewellery">
@@ -788,10 +788,10 @@
                                             value="toe-ring" class="jewellery-checkbox d-none" onclick="posthog.capture('category-selected', { category: 'toe-ring', model: 'model-1', page: 'form' })">
                                         <label for="toe-ring-cb">Toe Ring</label>
                                     </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
 
@@ -801,13 +801,13 @@
                         Create List</button>
 
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
-                </div>
+                                    </div>
                 <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
                     &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
-                </div>
-            </div>
+                                </div>
+                                    </div>
         </div>
-    </div>
+                                </div>
 
 
     <!-- STEP 3 -->
@@ -1565,16 +1565,32 @@
                     const outfitImg = document.querySelector('#outfit-details .outfit-img');
 
                     if (outfitDetails && outfitTitle && outfitImg && outfitType) {
-                        // Update image and title based on outfit type
-                        const capitalizedOutfit = outfitType.charAt(0).toUpperCase() + outfitType.slice(1);
-                        const imageName = outfitType === 'lehanga' ? 'lehnga' : outfitType; // Handle lehanga/lehnga naming
+                        // Get current community from the language select
+                        const languageSelect = document.getElementById('language-select');
+                        const currentCommunity = languageSelect ? languageSelect.value : 'Tamil Bride';
 
-                        outfitImg.src = `{{ asset('image/') }}/${imageName}.png`;
-                        outfitTitle.textContent = `${capitalizedOutfit} Checklist`;
+                        // Get the community mapping
+                        const mapping = communityModelMapping[currentCommunity];
+                        if (mapping) {
+                            // Find the slide data for this outfit type
+                            let slideData = null;
+                            Object.values(mapping).forEach(slide => {
+                                if (slide.outfit === outfitType) {
+                                    slideData = slide;
+                                }
+                            });
 
-                        // Update jewellery positions for the selected outfit
-                        const fileName = `${imageName}.png`;
-                        updateJewelleryPositions(fileName);
+                            if (slideData) {
+                                // Update image and title using the state-specific image
+                                const capitalizedOutfit = slideData.alt;
+                                outfitImg.src = `{{ asset('image/') }}/${slideData.png}`;
+                                outfitTitle.textContent = `${capitalizedOutfit} Checklist`;
+
+                                // Update jewellery positions for the selected outfit
+                                const fileName = slideData.png;
+                                updateJewelleryPositions(fileName);
+                            }
+                        }
                     }
                     // Scroll to details container
                     var detailsContainer = document.getElementById('outfit-details-container');
@@ -2277,122 +2293,195 @@
 
             // Community-based model mapping (this will set the correct default positions)
             setupCommunityModelMapping();
+
+            // Initialize event options for default bride type
+            updateEventOptions('Tamil Bride');
         });
+
+        // Bride type to events mapping - defines which events to show for each bride type
+        const brideEventMapping = {
+            'Telugu Bride': ['Nishayathartham', 'Nalangu', 'Muhurtam', 'Reception'],
+            'Gujarati Bride': ['Gol Dhana', 'Sangeet', 'Wedding', 'Reception'],
+            'Tamil Bride': ['Nishayathartham', 'Pandakal Muhurtham', 'Kalyanam', 'Reception'],
+            'Marathi Bride': ['Sakharpuda', 'Haldi', 'Shaadi', 'Reception'],
+            'Bengali Bride': ['Aiburobhat', 'Gaye Holud', 'Wedding', 'Reception'],
+            'Punjabi Bride': ['Sagai', 'Haldi', 'Sangeet', 'Wedding', 'Reception'],
+            'UP Bride': ['Cheka', 'Mehendi', 'Wedding', 'Reception'],
+            'Bihari Bride': ['Cheka', 'Mehendi', 'Shaadi', 'Reception'],
+            'Kannada Bride': ['Nischay Tamulam', 'Naandi', 'Saptapadi', 'Reception'],
+            'Kannadiga Bride': ['Nischay Tamulam', 'Naandi', 'Saptapadi', 'Reception'],
+            'Jharkhand Bride': ['Haldi', 'Wedding', 'Reception'],
+            'Marwari Bride': ['Roka', 'Haldi', 'Mahira Dastoor', 'Wedding'],
+            'Marwadi Bride': ['Roka', 'Haldi', 'Mahira Dastoor', 'Wedding'],
+            'Odia Bride': ['Haldi', 'Wedding', 'Reception'],
+            'Odiya Bride': ['Haldi', 'Wedding', 'Reception'],
+            'Muslim Bride': ['Nikah', 'Mehendi', 'Reception'],
+            // Fallback for other bride types
+            'Jat Bride': ['Engagement', 'Mehendi', 'Wedding', 'Reception'],
+            'Rajput Bride': ['Engagement', 'Mehendi', 'Wedding', 'Reception'],
+            'Assamese Bride': ['Engagement', 'Mehendi', 'Wedding', 'Reception'],
+            'Manipuri Bride': ['Engagement', 'Mehendi', 'Wedding', 'Reception']
+        };
 
         // Community to model mapping - defines which 4 models to show for each community
         const communityModelMapping = {
             'Tamil Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' },
-                slide4: { jpeg: 'new.jpeg', png: 'new.png', alt: 'new', outfit: 'new' }
+                slide1: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/telugu-lehnga.png', png: 'bystate/telugu-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/tamil-gown.png', png: 'bystate/tamil-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Telugu Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/telugu-lehnga.png', png: 'bystate/telugu-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/telugu-gown.png', png: 'bystate/telugu-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Gujarati Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/gujarati-lehnga.png', png: 'bystate/gujarati-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide3: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Bengali Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/bengali-saree.png', png: 'bystate/bengali-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/bengali-lehnga.png', png: 'bystate/bengali-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Odia Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/odiya-saree.png', png: 'bystate/odiya-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/odiya-lehnga.png', png: 'bystate/odiya-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Bihari Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/bihari-saree.png', png: 'bystate/bihari-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/bihari-lehnga.png', png: 'bystate/bihari-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'UP Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/up-lehnga.png', png: 'bystate/up-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Marwari Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/jharkhand-lehnga.png', png: 'bystate/jharkhand-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/jharkhand-saree.png', png: 'bystate/jharkhand-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/jharkhand-gown.png', png: 'bystate/jharkhand-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
+            },
+            'Marwadi Bride': {
+                slide1: { jpeg: 'bystate/jharkhand-lehnga.png', png: 'bystate/jharkhand-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/jharkhand-saree.png', png: 'bystate/jharkhand-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/jharkhand-gown.png', png: 'bystate/jharkhand-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Punjabi Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' },
-                slide4: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' }
+                slide1: { jpeg: 'bystate/punjabi-lehnga.png', png: 'bystate/punjabi-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/punjabi-saree.png', png: 'bystate/punjabi-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Marathi Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/marathi-saree.png', png: 'bystate/marathi-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/marathi-lehnga.png', png: 'bystate/marathi-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Kannada Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/kannadiga-saree.png', png: 'bystate/kannadiga-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/kannadiga-lehnga.png', png: 'bystate/kannadiga-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/telugu-gown.png', png: 'bystate/telugu-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
+            },
+            'Kannadiga Bride': {
+                slide1: { jpeg: 'bystate/kannadiga-saree.png', png: 'bystate/kannadiga-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/kannadiga-lehnga.png', png: 'bystate/kannadiga-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/telugu-gown.png', png: 'bystate/telugu-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
+            },
+            'Jharkhand Bride': {
+                slide1: { jpeg: 'bystate/jharkhand-lehnga.png', png: 'bystate/jharkhand-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/jharkhand-saree.png', png: 'bystate/jharkhand-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/jharkhand-gown.png', png: 'bystate/jharkhand-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Jat Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/up-lehnga.png', png: 'bystate/up-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Rajput Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/up-lehnga.png', png: 'bystate/up-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Assamese Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/bengali-saree.png', png: 'bystate/bengali-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/bengali-lehnga.png', png: 'bystate/bengali-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Manipuri Bride': {
-                slide1: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/bengali-saree.png', png: 'bystate/bengali-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide2: { jpeg: 'bystate/bengali-lehnga.png', png: 'bystate/bengali-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Malayalee Bride': {
-                slide1: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide2: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide3: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/tamil-gown.png', png: 'bystate/tamil-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/telugu-lehnga.png', png: 'bystate/telugu-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Kumaoni Bride': {
-                slide1: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide2: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide3: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/up-lehnga.png', png: 'bystate/up-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             },
             'Muslim Bride': {
-                slide1: { jpeg: 'anarkali.jpeg', png: 'anarkali.png', alt: 'Anarkali', outfit: 'anarkali' },
-                slide2: { jpeg: 'lahnga.jpeg', png: 'lehnga.png', alt: 'Lehanga', outfit: 'lehanga' },
-                slide3: { jpeg: 'saree.jpeg', png: 'saree.png', alt: 'Saree', outfit: 'saree' },
-                slide4: { jpeg: 'gown.jpeg', png: 'gown.png', alt: 'Gown', outfit: 'gown' }
+                slide1: { jpeg: 'bystate/odiya-lehnga.png', png: 'bystate/odiya-lehnga.png', alt: 'Lehenga', outfit: 'lehnga' },
+                slide2: { jpeg: 'bystate/telugu-saree.png', png: 'bystate/telugu-saree.png', alt: 'Saree', outfit: 'saree' },
+                slide3: { jpeg: 'bystate/gujarati-gown.png', png: 'bystate/gujarati-gown.png', alt: 'Gown', outfit: 'gown' },
+                slide4: { jpeg: 'bystate/telugu-others.png', png: 'bystate/telugu-others.png', alt: 'Others', outfit: 'others' }
             }
         };
 
+        // Function to update event dropdown based on selected bride type
+        function updateEventOptions(brideType) {
+            const eventSelects = [
+                document.getElementById('event-select'),
+                document.getElementById('occasion-select-tablet')
+            ];
+
+            const events = brideEventMapping[brideType] || ['Engagement', 'Mehendi', 'Wedding', 'Reception'];
+
+            eventSelects.forEach(eventSelect => {
+                if (!eventSelect) return;
+
+                // Clear existing options
+                eventSelect.innerHTML = '';
+
+                // Add new options based on bride type
+                events.forEach((event, index) => {
+                    const option = document.createElement('option');
+                    option.value = event;
+                    option.textContent = event;
+                    if (index === 0) option.selected = true; // Select first option by default
+                    eventSelect.appendChild(option);
+                });
+            });
+        }
+
         function setupCommunityModelMapping() {
             const languageSelect = document.getElementById('language-select');
+            const tabletLanguageSelect = document.getElementById('dream-select-tablet');
 
             // Function to update model images based on selected community
             function updateModelImages(community) {
@@ -2458,6 +2547,15 @@
                 languageSelect.addEventListener('change', function() {
                     const selectedCommunity = this.value;
                     updateModelImages(selectedCommunity);
+                    updateEventOptions(selectedCommunity);
+                });
+            }
+
+            // Add event listener for tablet community changes
+            if (tabletLanguageSelect) {
+                tabletLanguageSelect.addEventListener('change', function() {
+                    const selectedCommunity = this.value;
+                    updateEventOptions(selectedCommunity);
                 });
             }
         }
@@ -2484,16 +2582,34 @@
                     '/data/gown-annotations.json',     // Gown positioning data
                     '/data/anarkali-annotations.json', // Anarkali positioning data
                     '/data/new-annotations.json',      // New image positioning data
+
+                    // State-specific annotation files
+                    '/data/telegu-saree-annotations.json', // Telugu saree specific positioning
+                    '/data/telugu-lehnga-annotations.json',
+                    '/data/telugu-gown-annotations.json',
+                    '/data/gujarati-lehnga-annotations.json',
+                    '/data/gujarati-gown-annotations.json',
+                    '/data/bengali-lehnga-annotations.json',
+                    '/data/bengali-saree-annotations.json',
+                    '/data/punjabi-lehnga-annotations.json',
+                    '/data/punjabi-saree-annotations.json',
+                    '/data/marathi-lehnga-annotations.json',
+                    '/data/marathi-saree-annotations.json',
+                    '/data/tamil-gown-annotations.json',
+                    '/data/bihari-lehnga-annotations.json',
+                    '/data/bihari-saree-annotations.json',
+                    '/data/kannadiga-lehnga-annotations.json',
+                    '/data/kannadiga-saree-annotations.json',
+                    '/data/jharkhand-lehnga-annotations.json',
+                    '/data/jharkhand-saree-annotations.json',
+                    '/data/jharkhand-gown-annotations.json',
+                    '/data/odiya-lehnga-annotations.json',
+                    '/data/odiya-saree-annotations.json',
+                    '/data/up-lehnga-annotations.json'
                 ];
 
-                // Auto-generate potential filenames for common patterns
-                const autoDetectFiles = [
-                    '/data/annotations.json',          // Generic annotations file
-                    '/data/outfit-annotations.json',   // Generic outfit file
-                    '/data/positions.json',            // Generic positions file
-                ];
-
-                annotationFiles = [...knownFiles, ...autoDetectFiles];
+                // All annotation files are now in knownFiles
+                annotationFiles = knownFiles;
 
                 let positionData = {};
                 let loadedCount = 0;
@@ -2522,7 +2638,7 @@
                 }
 
                 console.log(`Loaded ${loadedCount} position data files`);
-                console.log('Position data:', positionData);
+                console.log('Position data keys:', Object.keys(positionData));
 
                 // Generate CSS for each image and jewellery combination
                 generateJewelleryCSSRules(positionData);
@@ -2578,7 +2694,7 @@
             return positionData;
         }
 
-        // Extract image name from file upload and map to PNG format
+        // Extract image name from file upload and map to bystate PNG format
         function extractImageName(fileUpload) {
             // Extract base name from file upload (e.g., "84716555-lahnga.jpeg" -> "lahnga")
             const fileName = fileUpload.split('/').pop(); // Get filename from path
@@ -2588,22 +2704,53 @@
 
             // console.log(`extractImageName: ${fileUpload} -> ${fileName} -> ${baseName}`);
 
-            // Map to actual PNG file names used in the system
+            // Map to actual bystate PNG file names used in the system
             const nameMapping = {
+                // Generic mappings (fallback)
                 'lahnga.jpeg': 'lehnga.png',
                 'gown.jpeg': 'gown.png',
                 'saree.jpeg': 'saree.png',
                 'saree.png': 'saree.png',
                 'anarkali.jpeg': 'anarkali.png',
                 'new.jpeg': 'new.png',
-                'new.png': 'new.png'
+                'new.png': 'new.png',
+
+                // State-specific mappings (priority) - handle both formats
+                'telugu-saree.png': 'bystate/telugu-saree.png',
+                'telugu-lehnga.png': 'bystate/telugu-lehnga.png',
+                'telugu-gown.png': 'bystate/telugu-gown.png',
+                'gujarati-lehnga.png': 'bystate/gujarati-lehnga.png',
+                'gujarati-gown.png': 'bystate/gujarati-gown.png',
+                'bengali-lehnga.png': 'bystate/bengali-lehnga.png',
+                'bengali-saree.png': 'bystate/bengali-saree.png',
+                'punjabi-lehnga.png': 'bystate/punjabi-lehnga.png',
+                'punjabi-saree.png': 'bystate/punjabi-saree.png',
+                'marathi-lehnga.png': 'bystate/marathi-lehnga.png',
+                'marathi-saree.png': 'bystate/marathi-saree.png',
+                'tamil-gown.png': 'bystate/tamil-gown.png',
+                'bihari-lehnga.png': 'bystate/bihari-lehnga.png',
+                'bihari-saree.png': 'bystate/bihari-saree.png',
+                'kannadiga-lehnga.png': 'bystate/kannadiga-lehnga.png',
+                'kannadiga-saree.png': 'bystate/kannadiga-saree.png',
+                'jharkhand-lehnga.png': 'bystate/jharkhand-lehnga.png',
+                'jharkhand-saree.png': 'bystate/jharkhand-saree.png',
+                'jharkhand-gown.png': 'bystate/jharkhand-gown.png',
+                'odiya-lehnga.png': 'bystate/odiya-lehnga.png',
+                'odiya-saree.png': 'bystate/odiya-saree.png',
+                'up-lehnga.png': 'bystate/up-lehnga.png'
             };
 
             // For future images, automatically convert extensions and handle dynamic mapping
             let result = nameMapping[baseName];
             if (!result) {
-                // Dynamic mapping: replace .jpeg with .png, keep .png as is
-                result = baseName.replace(/\.jpeg$/, '.png');
+                // Check if this is a state-specific image name pattern
+                if (baseName.includes('-') && (baseName.includes('saree') || baseName.includes('lehnga') || baseName.includes('gown'))) {
+                    // This looks like a state-specific image, map it to bystate directory
+                    result = `bystate/${baseName}`;
+                } else {
+                    // Dynamic mapping: replace .jpeg with .png, keep .png as is
+                    result = baseName.replace(/\.jpeg$/, '.png');
+                }
             }
 
             // console.log(`Final mapping: ${baseName} -> ${result}`);
@@ -2694,8 +2841,15 @@
             // Generate CSS classes for each image type
             Object.keys(positionData).forEach(imageFileName => {
                 const positions = positionData[imageFileName];
-                // Create sanitized class name by removing file extension
-                const sanitizedClassName = imageFileName.replace(/\.[^/.]+$/, "");
+                // Create sanitized class name by removing file extension and bystate path
+                let sanitizedClassName = imageFileName.replace(/\.[^/.]+$/, "");
+
+                // Handle bystate paths: "bystate/telugu-saree.png" -> "telugu-saree"
+                if (sanitizedClassName.includes('bystate/')) {
+                    sanitizedClassName = sanitizedClassName.replace('bystate/', '');
+                }
+
+                // console.log(`Generating CSS for image: ${imageFileName} -> class: ${sanitizedClassName}`);
 
                 Object.keys(positions).forEach(jewelleryType => {
                     const position = positions[jewelleryType];
@@ -2714,13 +2868,15 @@
                     // Position relative to the image itself using the image as reference
                     // The coordinates are relative to the image's dimensions
                     // Use the actual file name (without extension) as CSS class
-                    cssRules += `
+                    const cssRule = `
                         #jewellery-container.${sanitizedClassName} .jewellery-item.${jewelleryType} {
                             left: ${position.x}%;
                             top: ${position.y}%;
                             transform: ${transform};
                         }
                     `;
+                    cssRules += cssRule;
+                    // console.log(`Generated CSS rule: #jewellery-container.${sanitizedClassName} .jewellery-item.${jewelleryType}`);
                 });
             });
 
@@ -2733,17 +2889,34 @@
             const container = document.getElementById('jewellery-container');
             if (!container) return;
 
-            // Remove only existing image type classes (file names without extensions)
-            const imageTypes = ['lehnga', 'gown', 'saree', 'anarkali'];
-            imageTypes.forEach(type => container.classList.remove(type));
+            // Remove all existing image type classes
+            const imageTypes = ['lehnga', 'gown', 'saree', 'anarkali', 'others'];
+            // Also remove state-specific classes
+            const stateSpecificClasses = ['telugu-saree', 'telugu-lehnga', 'telugu-gown', 'gujarati-lehnga', 'gujarati-gown',
+                                        'bengali-lehnga', 'bengali-saree', 'punjabi-lehnga', 'punjabi-saree',
+                                        'marathi-lehnga', 'marathi-saree', 'tamil-gown', 'bihari-lehnga', 'bihari-saree',
+                                        'kannadiga-lehnga', 'kannadiga-saree', 'jharkhand-lehnga', 'jharkhand-saree',
+                                        'jharkhand-gown', 'odiya-lehnga', 'odiya-saree', 'up-lehnga'];
 
-            // Convert file name to class name if needed (remove extension)
-            const className = imageTypeOrFileName.includes('.') ?
-                imageTypeOrFileName.replace(/\.[^/.]+$/, "") :
-                imageTypeOrFileName;
+            [...imageTypes, ...stateSpecificClasses].forEach(type => container.classList.remove(type));
+
+            // Extract the appropriate class name from the image path
+            let className = imageTypeOrFileName;
+
+            // Handle bystate paths (e.g., "bystate/telugu-saree.png" -> "telugu-saree")
+            if (className.includes('bystate/')) {
+                const fileName = className.split('/').pop(); // Get filename from path
+                className = fileName.replace(/\.[^/.]+$/, ""); // Remove extension: "telugu-saree.png" -> "telugu-saree"
+            } else {
+                // Handle regular paths (remove extension)
+                className = className.includes('.') ?
+                    className.replace(/\.[^/.]+$/, "") :
+                    className;
+            }
 
             // Add new image type class
             container.classList.add(className);
+            // console.log(`Updated jewellery container class to: ${className}`);
         }
     </script>
 </body>
