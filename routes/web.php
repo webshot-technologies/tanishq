@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/edit-mode', function () {
+    return view('edit-mode');
+})->name('edit-mode');
+
 
   Route::controller(SiteController::class)->group(function() {
 
