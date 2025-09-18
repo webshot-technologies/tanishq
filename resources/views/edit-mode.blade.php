@@ -131,7 +131,7 @@
         }
 
         .connecting-line {
-            stroke: #8a2323;
+            stroke: rgba(138, 35, 35, 0.6);
             stroke-width: 2;
             fill: none;
             stroke-dasharray: 5,5;
@@ -142,10 +142,12 @@
             position: absolute;
             width: 8px;
             height: 8px;
-            background: #8a2323;
+            background: rgba(138, 35, 35, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 8px rgba(138, 35, 35, 0.4);
             z-index: 15;
             transform: translate(-50%, -50%);
             pointer-events: none;
@@ -156,10 +158,12 @@
             position: absolute;
             z-index: 10;
             cursor: move;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 6px;
             padding: 4px 8px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
@@ -206,6 +210,42 @@
             margin-bottom: 1rem;
             border-bottom: 2px solid #8a2323;
             padding-bottom: 0.5rem;
+        }
+
+        /* Mobile simulation styles */
+        .image-container.mobile-preview {
+            max-width: 375px; /* iPhone width */
+            margin: 0 auto;
+        }
+
+        .image-container.mobile-preview .model-image {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Ensure SVG lines work in mobile preview */
+        .image-container.mobile-preview .connecting-lines-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Adjust label sizes for mobile preview */
+        .image-container.mobile-preview .jewellery-label {
+            font-size: 0.7rem;
+            padding: 2px 4px;
+        }
+
+        .image-container.mobile-preview .jewellery-position {
+            width: 6px;
+            height: 6px;
+        }
+
+        /* Ensure connecting lines are visible in mobile */
+        .image-container.mobile-preview .connecting-line {
+            stroke: rgba(138, 35, 35, 0.6);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-dasharray: 3,3;
         }
 
         .jewellery-list {
@@ -444,6 +484,20 @@
                     <!-- Controls Panel -->
                     <div class="controls-panel">
                         <h4 class="controls-title">Jewellery Controls</h4>
+                        
+                        <!-- Device Type Toggle -->
+                        <div class="mb-3 p-3 border rounded">
+                            <h6 class="mb-2">Device Preview</h6>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="device-type" id="device-desktop" value="desktop" checked>
+                                <label class="btn btn-outline-primary" for="device-desktop">Desktop</label>
+                                
+                                <input type="radio" class="btn-check" name="device-type" id="device-mobile" value="mobile">
+                                <label class="btn btn-outline-primary" for="device-mobile">Mobile</label>
+                            </div>
+                            <small class="text-muted d-block mt-1">Switch between desktop and mobile label positioning</small>
+                        </div>
+                        
                         <div class="mb-3">
                             <small class="text-muted">Drag labels to reposition. Red dots show jewellery positions.</small>
                         </div>
@@ -565,6 +619,7 @@
                         <div class="mt-4 pt-3 border-top">
                             <button class="btn btn-custom w-100 mb-2" onclick="showAllJewellery()">Show All</button>
                             <button class="btn btn-outline-secondary w-100 mb-2" onclick="hideAllJewellery()">Hide All</button>
+                            <button class="btn btn-info w-100 mb-2" onclick="debugRedrawLines()">Redraw Lines (Debug)</button>
                             <button class="btn btn-success w-100" onclick="savePositions()">Save Positions</button>
                         </div>
                     </div>
@@ -638,6 +693,7 @@
         let currentModelData = null;
         let jewelleryPositions = {};
         let labelPositions = {}; // Store custom label positions
+        let currentDeviceType = 'desktop'; // Track current device type
         let isDragging = false;
         let dragElement = null;
         let dragOffset = { x: 0, y: 0 };
@@ -658,6 +714,9 @@
             
             // Setup drag functionality
             setupDragFunctionality();
+            
+            // Setup device type switching
+            setupDeviceSwitching();
             
             // Select first model by default
             if (currentModels.length > 0) {
@@ -681,6 +740,75 @@
                 console.error('Error loading label positions:', error);
                 labelPositions = {};
             }
+        }
+
+        // Setup device type switching
+        function setupDeviceSwitching() {
+            const deviceRadios = document.querySelectorAll('input[name="device-type"]');
+            
+            deviceRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    currentDeviceType = this.value;
+                    switchDevicePreview(currentDeviceType);
+                    loadPositionsForDevice(currentDeviceType);
+                });
+            });
+        }
+
+        function switchDevicePreview(deviceType) {
+            const container = document.getElementById('jewellery-container');
+            
+            if (deviceType === 'mobile') {
+                container.classList.add('mobile-preview');
+            } else {
+                container.classList.remove('mobile-preview');
+            }
+            
+            // Use requestAnimationFrame to ensure DOM updates are complete
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    // Clear existing lines first
+                    const svg = document.getElementById('connecting-lines');
+                    if (svg) {
+                        svg.innerHTML = '';
+                    }
+                    
+                    // Force a reflow by reading container dimensions
+                    const containerRect = container.getBoundingClientRect();
+                    console.log(`Container dimensions after ${deviceType} switch:`, containerRect.width, 'x', containerRect.height);
+                    
+                    // Recalculate and redraw everything
+                    positionLabelsAndCreateLines();
+                }, 200); // Increased timeout
+            });
+        }
+
+        function loadPositionsForDevice(deviceType) {
+            if (!currentModelData) return;
+            
+            const currentImagePath = currentModelData.image;
+            const savedPositions = labelPositions[currentImagePath] || {};
+            const devicePositions = savedPositions[deviceType] || {};
+            
+            // Apply saved positions for this device type
+            Object.keys(devicePositions).forEach(jewelleryType => {
+                const label = document.querySelector(`.jewellery-label[data-type="${jewelleryType}"]`);
+                if (label) {
+                    const container = document.getElementById('jewellery-container');
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const x = (devicePositions[jewelleryType].x / 100) * containerRect.width;
+                    const y = (devicePositions[jewelleryType].y / 100) * containerRect.height;
+                    
+                    label.style.left = x + 'px';
+                    label.style.top = y + 'px';
+                }
+            });
+            
+            // Update all connecting lines after positioning
+            setTimeout(() => {
+                updateAllConnectingLines();
+            }, 50);
         }
 
         // Setup drag functionality for labels
@@ -792,7 +920,14 @@
             const label = document.querySelector(`.jewellery-label[data-type="${jewelleryType}"]`);
             const line = document.querySelector(`#line-${jewelleryType}`);
             
-            if (!positionDot || !label || !line) return;
+            if (!positionDot || !label || !line) {
+                console.log(`Missing elements for ${jewelleryType}:`, {
+                    dot: !!positionDot,
+                    label: !!label,
+                    line: !!line
+                });
+                return;
+            }
             
             const container = document.getElementById('jewellery-container');
             const containerRect = container.getBoundingClientRect();
@@ -812,6 +947,15 @@
             line.setAttribute('y1', dotY);
             line.setAttribute('x2', labelX);
             line.setAttribute('y2', labelY);
+            
+            // Debug log for mobile issues
+            if (container.classList.contains('mobile-preview')) {
+                console.log(`Mobile line update for ${jewelleryType}:`, {
+                    dotX, dotY, labelX, labelY,
+                    containerWidth: containerRect.width,
+                    containerHeight: containerRect.height
+                });
+            }
         }
 
         // Update all connecting lines
@@ -922,12 +1066,30 @@
                 'short-necklace', 'rings', 'bracelet', 'waist-belt', 'anklet', 'toe-ring'
             ];
             
+            // Ensure container has proper dimensions before positioning
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            if (containerRect.width === 0 || containerRect.height === 0) {
+                console.log('Container not ready, retrying...');
+                setTimeout(() => positionLabelsAndCreateLines(), 50);
+                return;
+            }
+            
             const svg = document.getElementById('connecting-lines');
             svg.innerHTML = ''; // Clear existing lines
             
-            // Get saved positions for current model
+            // Ensure SVG has proper dimensions for mobile/desktop
+            if (containerRect.width > 0 && containerRect.height > 0) {
+                svg.setAttribute('width', containerRect.width);
+                svg.setAttribute('height', containerRect.height);
+                svg.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+            }
+            
+            // Get saved positions for current model and device
             const currentImagePath = currentModelData ? currentModelData.image : null;
-            const savedPositions = currentImagePath && labelPositions[currentImagePath] ? labelPositions[currentImagePath] : {};
+            const modelPositions = currentImagePath && labelPositions[currentImagePath] ? labelPositions[currentImagePath] : {};
+            const savedPositions = modelPositions[currentDeviceType] || {};
             
             jewelleryTypes.forEach(type => {
                 const positionDot = document.querySelector(`.jewellery-position[data-type="${type}"]`);
@@ -945,7 +1107,7 @@
                         // Use saved positions (convert from percentage to pixels)
                         labelX = (savedPositions[type].x / 100) * containerRect.width;
                         labelY = (savedPositions[type].y / 100) * containerRect.height;
-                        console.log(`Using saved position for ${type}:`, savedPositions[type]);
+                        console.log(`Using saved ${currentDeviceType} position for ${type}:`, savedPositions[type]);
                     } else {
                         // Use default positioning logic
                         const isRightSide = rightSideTypes.includes(type);
@@ -1032,6 +1194,27 @@
             });
         }
 
+        // Debug function to manually redraw lines
+        function debugRedrawLines() {
+            console.log('=== Debug: Manually redrawing lines ===');
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            const svg = document.getElementById('connecting-lines');
+            
+            console.log('Container rect:', containerRect);
+            console.log('SVG element:', svg);
+            console.log('Current device type:', currentDeviceType);
+            console.log('Container classes:', container.className);
+            
+            // Force redraw
+            positionLabelsAndCreateLines();
+            
+            // Also update all lines
+            setTimeout(() => {
+                updateAllConnectingLines();
+            }, 100);
+        }
+
         // Save current label positions
         async function savePositions() {
             if (!currentModelData) {
@@ -1070,7 +1253,8 @@
                     },
                     body: JSON.stringify({
                         model_image: currentModelData.image,
-                        positions: positions
+                        positions: positions,
+                        device_type: currentDeviceType // Include device type
                     })
                 });
                 
@@ -1078,9 +1262,13 @@
                 
                 if (data.success) {
                     // Update local storage
-                    labelPositions[currentModelData.image] = positions;
-                    alert('Label positions saved successfully!');
-                    console.log('Saved positions for', currentModelData.image, positions);
+                    if (!labelPositions[currentModelData.image]) {
+                        labelPositions[currentModelData.image] = {};
+                    }
+                    labelPositions[currentModelData.image][currentDeviceType] = positions;
+                    
+                    alert(`${currentDeviceType.charAt(0).toUpperCase() + currentDeviceType.slice(1)} label positions saved successfully!`);
+                    console.log(`Saved ${currentDeviceType} positions for`, currentModelData.image, positions);
                 } else {
                     alert('Failed to save positions: ' + data.message);
                 }

@@ -14,6 +14,7 @@ class JewelleryPositionController extends Controller
         try {
             $modelImage = $request->input('model_image');
             $positions = $request->input('positions');
+            $deviceType = $request->input('device_type', 'desktop'); // new parameter
             
             // Get existing positions
             $existingPositions = [];
@@ -21,8 +22,13 @@ class JewelleryPositionController extends Controller
                 $existingPositions = json_decode(file_get_contents(public_path($this->positionsFile)), true) ?: [];
             }
             
-            // Update positions for this model
-            $existingPositions[$modelImage] = $positions;
+            // Initialize structure if doesn't exist
+            if (!isset($existingPositions[$modelImage])) {
+                $existingPositions[$modelImage] = [];
+            }
+            
+            // Update positions for this model and device type
+            $existingPositions[$modelImage][$deviceType] = $positions;
             
             // Save back to file
             file_put_contents(

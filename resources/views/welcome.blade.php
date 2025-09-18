@@ -365,7 +365,7 @@
 
             .card-image {
                 height: 100%;
-                object-fit:fill;
+                object-fit: cover;
             }
 
             .jewelry-section {
@@ -435,7 +435,7 @@
         }
 
         .connecting-line {
-            stroke: #8a2323;
+            stroke: rgba(138, 35, 35, 0.6);
             stroke-width: 2;
             fill: none;
             stroke-dasharray: 5,5;
@@ -446,10 +446,12 @@
             position: absolute;
             width: 8px;
             height: 8px;
-            background: #8a2323;
+            background: rgba(138, 35, 35, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 8px rgba(138, 35, 35, 0.4);
             z-index: 15;
             transform: translate(-50%, -50%);
             pointer-events: none;
@@ -459,10 +461,12 @@
         .jewellery-label {
             position: absolute;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 6px;
             padding: 4px 8px;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
@@ -1311,16 +1315,16 @@
 
                 </div>
 
-                <div class=" col-12 col-xl-10 d-flex px-4 mx-auto justify-content-center my-4">
+                <!-- <div class=" col-12 col-xl-10 d-flex px-4 mx-auto justify-content-center my-4">
 
                     <button type="" onclick="nextStep(3)" class="btn border-2 rounded-5 btn-custom"  onclick="posthog.capture('choose-create-list', { page: 'form' })">Choose
                         Create List</button>
 
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
-                </div>
-                <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
+                </div> -->
+                <!-- <div class="mt-4 text-center pt-4 fs-6 text-custom-dark opacity-75">
                     &copy; Powered by <a href="https://www.mirrar.com/" class="base-color"> mirrAR</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -2625,6 +2629,11 @@
         // ========== NEW LABEL POSITIONING FUNCTIONS ==========
         let labelPositions = {}; // Store custom label positions
 
+        // Add device detection
+        function getDeviceType() {
+            return window.innerWidth <= 768 ? 'mobile' : 'desktop';
+        }
+
         // Load saved label positions from server
         async function loadLabelPositions() {
             try {
@@ -2676,9 +2685,13 @@
                 return;
             }
             
+            // Get current device type
+            const deviceType = getDeviceType();
+            
             // Extract image filename for saved positions lookup
             const imagePath = currentImageSrc.split('/').pop();
-            const savedPositions = labelPositions[imagePath] || labelPositions[`bystate/${imagePath}`] || {};
+            const imagePositions = labelPositions[imagePath] || labelPositions[`bystate/${imagePath}`] || {};
+            const savedPositions = imagePositions[deviceType] || {};
             
             jewelleryTypes.forEach(type => {
                 const positionDot = document.querySelector(`.jewellery-position[data-type="${type}"]`);
@@ -2693,7 +2706,7 @@
                         // Use saved positions (convert from percentage to pixels)
                         labelX = (savedPositions[type].x / 100) * containerRect.width;
                         labelY = (savedPositions[type].y / 100) * containerRect.height;
-                        console.log(`Using saved position for ${type}:`, savedPositions[type]);
+                        console.log(`Using saved ${deviceType} position for ${type}:`, savedPositions[type]);
                     } else {
                         // Use default positioning logic
                         const isRightSide = rightSideTypes.includes(type);
@@ -3081,12 +3094,23 @@
             // console.log(`Updated jewellery container class to: ${className}`);
         }
 
-        // Handle window resize to update lines
-        window.addEventListener('resize', () => {
-            setTimeout(() => {
-                updateAllConnectingLines();
-            }, 100);
-        });
+        // Handle window resize to update lines and device changes
+        window.addEventListener('resize', debounce(() => {
+            positionLabelsAndCreateLines();
+        }, 250));
+
+        // Debounce utility function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
 
     </script>
 </body>
