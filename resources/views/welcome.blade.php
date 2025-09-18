@@ -2336,10 +2336,8 @@
             // Initialize event options for default bride type
             updateEventOptions('Tamil Bride');
 
-            // Initialize label positioning after everything is loaded
-            setTimeout(() => {
-                positionLabelsAndCreateLines();
-            }, 500);
+            // Label positioning is now handled by setupCommunityModelMapping()
+            // through image load events to ensure proper timing
         });
 
         // Bride type to events mapping - defines which events to show for each bride type
@@ -2581,12 +2579,25 @@
                     const fileName = `${activeSlideData.png}`;
                     updateJewelleryPositions(fileName);
                     
-                    // Position labels and create connecting lines after image loads
+                    // FIXED: Wait for image to load before positioning labels
                     outfitImg.onload = () => {
-                        setTimeout(() => {
-                            positionLabelsAndCreateLines();
-                        }, 100);
+                        // Use requestAnimationFrame to ensure layout is complete
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                positionLabelsAndCreateLines();
+                            });
+                        });
                     };
+                    
+                    // Handle case where image is already cached and loaded
+                    if (outfitImg.complete && outfitImg.naturalHeight !== 0) {
+                        // Use requestAnimationFrame to ensure layout is complete
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                positionLabelsAndCreateLines();
+                            });
+                        });
+                    }
                 }
             }
 
@@ -2655,6 +2666,16 @@
             const currentImageSrc = document.querySelector('#jewellery-container .outfit-img')?.src;
             if (!currentImageSrc) return;
             
+            // Ensure container has proper dimensions before positioning
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            if (containerRect.width === 0 || containerRect.height === 0) {
+                console.log('Container not ready, retrying...');
+                setTimeout(() => positionLabelsAndCreateLines(), 50);
+                return;
+            }
+            
             // Extract image filename for saved positions lookup
             const imagePath = currentImageSrc.split('/').pop();
             const savedPositions = labelPositions[imagePath] || labelPositions[`bystate/${imagePath}`] || {};
@@ -2664,8 +2685,6 @@
                 const label = document.querySelector(`.jewellery-label[data-type="${type}"]`);
                 
                 if (positionDot && label) {
-                    const container = document.getElementById('jewellery-container');
-                    const containerRect = container.getBoundingClientRect();
                     
                     let labelX, labelY;
                     
