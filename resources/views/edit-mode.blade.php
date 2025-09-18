@@ -118,76 +118,76 @@
             border-radius: 8px;
         }
 
-        /* Jewellery Items positioned absolutely within the container */
-        .image-container .jewellery-item {
+        /* SVG for connecting lines */
+        .connecting-lines-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .connecting-line {
+            stroke: #8a2323;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 5,5;
+        }
+
+        /* Jewellery Position Dots - Fixed positions */
+        .jewellery-position {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #8a2323;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 15;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* Draggable Labels */
+        .jewellery-label {
             position: absolute;
             z-index: 10;
-            pointer-events: auto;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
-
-        /* Default transform for all jewellery items */
-        .image-container .jewellery-item {
-            transform: translate(-50%, -50%);
-        }
-
-        /* Jewellery input styling */
-        .image-container .jewellery-item .jewellery-input {
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            flex-wrap: nowrap;
+            cursor: move;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 6px;
             padding: 4px 8px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            user-select: none;
+            transition: transform 0.1s ease;
         }
 
-        .image-container .jewellery-item .jewellery-input label {
-            white-space: nowrap;
+        .jewellery-label:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .jewellery-label.dragging {
+            z-index: 20;
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .jewellery-label input[type="checkbox"] {
+            margin: 0 5px 0 0;
+        }
+
+        .jewellery-label label {
             margin: 0;
-            padding-left: 5px;
             font-size: 0.85rem;
             font-weight: 500;
             color: #42210b;
-            cursor: pointer;
-        }
-
-        .image-container .jewellery-item .jewellery-input input[type="checkbox"] {
-            margin: 0;
-        }
-
-        /* Pointer images */
-        .image-container .jewellery-item img {
-            max-width: 40px;
-            height: auto;
-        }
-
-        /* Right pointer items alignment */
-        .image-container .jewellery-item.hair-jewellery,
-        .image-container .jewellery-item.earrings-stud,
-        .image-container .jewellery-item.earrings-drops,
-        .image-container .jewellery-item.ear-loops,
-        .image-container .jewellery-item.short-necklace,
-        .image-container .jewellery-item.rings,
-        .image-container .jewellery-item.bracelet,
-        .image-container .jewellery-item.waist-belt,
-        .image-container .jewellery-item.anklet,
-        .image-container .jewellery-item.toe-ring {
-            transform: translate(0%, -50%);
-        }
-
-        /* Left pointer items alignment */
-        .image-container .jewellery-item.forehead-pendant,
-        .image-container .jewellery-item.nose-pin,
-        .image-container .jewellery-item.choker-necklace,
-        .image-container .jewellery-item.long-necklace,
-        .image-container .jewellery-item.multiple-bangles,
-        .image-container .jewellery-item.single-bangle {
-            transform: translate(-100%, -50%);
+            cursor: move;
         }
 
         /* Controls Panel */
@@ -334,133 +334,108 @@
                         <div class="image-container" id="jewellery-container">
                             <img src="" alt="Model" class="model-image" id="current-model-image">
                             
-                            <!-- Jewellery Items (same structure as main app) -->
-                            <div class="jewellery-item forehead-pendant">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-forehead-pendant" class="jewellery-checkbox">
-                                    <label for="edit-forehead-pendant">Forehead Pendant</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <!-- SVG for connecting lines -->
+                            <svg class="connecting-lines-svg" id="connecting-lines">
+                                <!-- Lines will be drawn here -->
+                            </svg>
+                            
+                            <!-- Jewellery Position Dots -->
+                            <div class="jewellery-position" data-type="forehead-pendant"></div>
+                            <div class="jewellery-position" data-type="hair-jewellery"></div>
+                            <div class="jewellery-position" data-type="earrings-stud"></div>
+                            <div class="jewellery-position" data-type="earrings-drops"></div>
+                            <div class="jewellery-position" data-type="ear-loops"></div>
+                            <div class="jewellery-position" data-type="nose-pin"></div>
+                            <div class="jewellery-position" data-type="choker-necklace"></div>
+                            <div class="jewellery-position" data-type="short-necklace"></div>
+                            <div class="jewellery-position" data-type="long-necklace"></div>
+                            <div class="jewellery-position" data-type="multiple-bangles"></div>
+                            <div class="jewellery-position" data-type="bracelet"></div>
+                            <div class="jewellery-position" data-type="single-bangle"></div>
+                            <div class="jewellery-position" data-type="rings"></div>
+                            <div class="jewellery-position" data-type="waist-belt"></div>
+                            <div class="jewellery-position" data-type="anklet"></div>
+                            <div class="jewellery-position" data-type="toe-ring"></div>
+                            
+                            <!-- Draggable Labels -->
+                            <div class="jewellery-label" data-type="forehead-pendant">
+                                <input type="checkbox" id="edit-forehead-pendant" class="jewellery-checkbox" checked>
+                                <label for="edit-forehead-pendant">Forehead Pendant</label>
                             </div>
 
-                            <div class="jewellery-item hair-jewellery">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-hair-jewellery" class="jewellery-checkbox">
-                                    <label for="edit-hair-jewellery">Hair Jewellery</label>
-                                </div>
+                            <div class="jewellery-label" data-type="hair-jewellery">
+                                <input type="checkbox" id="edit-hair-jewellery" class="jewellery-checkbox" checked>
+                                <label for="edit-hair-jewellery">Hair Jewellery</label>
                             </div>
 
-                            <div class="jewellery-item earrings-stud">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-earrings-stud" class="jewellery-checkbox">
-                                    <label for="edit-earrings-stud">Earrings - Stud</label>
-                                </div>
+                            <div class="jewellery-label" data-type="earrings-stud">
+                                <input type="checkbox" id="edit-earrings-stud" class="jewellery-checkbox" checked>
+                                <label for="edit-earrings-stud">Earrings - Stud</label>
                             </div>
 
-                            <div class="jewellery-item earrings-drops">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-earrings-drops" class="jewellery-checkbox">
-                                    <label for="edit-earrings-drops">Earrings - Drops</label>
-                                </div>
+                            <div class="jewellery-label" data-type="earrings-drops">
+                                <input type="checkbox" id="edit-earrings-drops" class="jewellery-checkbox" checked>
+                                <label for="edit-earrings-drops">Earrings - Drops</label>
                             </div>
 
-                            <div class="jewellery-item ear-loops">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-ear-loops" class="jewellery-checkbox">
-                                    <label for="edit-ear-loops">Ear Loops</label>
-                                </div>
+                            <div class="jewellery-label" data-type="ear-loops">
+                                <input type="checkbox" id="edit-ear-loops" class="jewellery-checkbox" checked>
+                                <label for="edit-ear-loops">Ear Loops</label>
                             </div>
 
-                            <div class="jewellery-item nose-pin">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-nose-pin" class="jewellery-checkbox">
-                                    <label for="edit-nose-pin">Nose Pin</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <div class="jewellery-label" data-type="nose-pin">
+                                <input type="checkbox" id="edit-nose-pin" class="jewellery-checkbox" checked>
+                                <label for="edit-nose-pin">Nose Pin</label>
                             </div>
 
-                            <div class="jewellery-item choker-necklace">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-choker-necklace" class="jewellery-checkbox">
-                                    <label for="edit-choker-necklace">Choker Necklace</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <div class="jewellery-label" data-type="choker-necklace">
+                                <input type="checkbox" id="edit-choker-necklace" class="jewellery-checkbox" checked>
+                                <label for="edit-choker-necklace">Choker Necklace</label>
                             </div>
 
-                            <div class="jewellery-item short-necklace">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-short-necklace" class="jewellery-checkbox">
-                                    <label for="edit-short-necklace">Short Necklace</label>
-                                </div>
+                            <div class="jewellery-label" data-type="short-necklace">
+                                <input type="checkbox" id="edit-short-necklace" class="jewellery-checkbox" checked>
+                                <label for="edit-short-necklace">Short Necklace</label>
                             </div>
 
-                            <div class="jewellery-item long-necklace">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-long-necklace" class="jewellery-checkbox">
-                                    <label for="edit-long-necklace">Long Necklace</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <div class="jewellery-label" data-type="long-necklace">
+                                <input type="checkbox" id="edit-long-necklace" class="jewellery-checkbox" checked>
+                                <label for="edit-long-necklace">Long Necklace</label>
                             </div>
 
-                            <div class="jewellery-item multiple-bangles">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-multiple-bangles" class="jewellery-checkbox">
-                                    <label for="edit-multiple-bangles">Multiple Bangles</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <div class="jewellery-label" data-type="multiple-bangles">
+                                <input type="checkbox" id="edit-multiple-bangles" class="jewellery-checkbox" checked>
+                                <label for="edit-multiple-bangles">Multiple Bangles</label>
                             </div>
 
-                            <div class="jewellery-item bracelet">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-bracelet" class="jewellery-checkbox">
-                                    <label for="edit-bracelet">Bracelet</label>
-                                </div>
+                            <div class="jewellery-label" data-type="bracelet">
+                                <input type="checkbox" id="edit-bracelet" class="jewellery-checkbox" checked>
+                                <label for="edit-bracelet">Bracelet</label>
                             </div>
 
-                            <div class="jewellery-item single-bangle">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-single-bangle" class="jewellery-checkbox">
-                                    <label for="edit-single-bangle">Single Bangle</label>
-                                </div>
-                                <img src="{{ asset('image/pointers/left-mid-strt.png') }}" alt="">
+                            <div class="jewellery-label" data-type="single-bangle">
+                                <input type="checkbox" id="edit-single-bangle" class="jewellery-checkbox" checked>
+                                <label for="edit-single-bangle">Single Bangle</label>
                             </div>
 
-                            <div class="jewellery-item rings">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-rings" class="jewellery-checkbox">
-                                    <label for="edit-rings">Rings</label>
-                                </div>
+                            <div class="jewellery-label" data-type="rings">
+                                <input type="checkbox" id="edit-rings" class="jewellery-checkbox" checked>
+                                <label for="edit-rings">Rings</label>
                             </div>
 
-                            <div class="jewellery-item waist-belt">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-waist-belt" class="jewellery-checkbox">
-                                    <label for="edit-waist-belt">Waist Belt</label>
-                                </div>
+                            <div class="jewellery-label" data-type="waist-belt">
+                                <input type="checkbox" id="edit-waist-belt" class="jewellery-checkbox" checked>
+                                <label for="edit-waist-belt">Waist Belt</label>
                             </div>
 
-                            <div class="jewellery-item anklet">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-anklet" class="jewellery-checkbox">
-                                    <label for="edit-anklet">Anklet</label>
-                                </div>
+                            <div class="jewellery-label" data-type="anklet">
+                                <input type="checkbox" id="edit-anklet" class="jewellery-checkbox" checked>
+                                <label for="edit-anklet">Anklet</label>
                             </div>
 
-                            <div class="jewellery-item toe-ring">
-                                <img src="{{ asset('image/pointers/right-mid-strt.png') }}" class="right-img" alt="">
-                                <div class="jewellery-input">
-                                    <input type="checkbox" id="edit-toe-ring" class="jewellery-checkbox">
-                                    <label for="edit-toe-ring">Toe Ring</label>
-                                </div>
+                            <div class="jewellery-label" data-type="toe-ring">
+                                <input type="checkbox" id="edit-toe-ring" class="jewellery-checkbox" checked>
+                                <label for="edit-toe-ring">Toe Ring</label>
                             </div>
                         </div>
                     </div>
@@ -469,7 +444,7 @@
                     <div class="controls-panel">
                         <h4 class="controls-title">Jewellery Controls</h4>
                         <div class="mb-3">
-                            <small class="text-muted">Click checkboxes to show/hide jewellery items on the model</small>
+                            <small class="text-muted">Drag labels to reposition. Red dots show jewellery positions.</small>
                         </div>
                         <ul class="jewellery-list">
                             <li>
@@ -588,7 +563,8 @@
                         
                         <div class="mt-4 pt-3 border-top">
                             <button class="btn btn-custom w-100 mb-2" onclick="showAllJewellery()">Show All</button>
-                            <button class="btn btn-outline-secondary w-100" onclick="hideAllJewellery()">Hide All</button>
+                            <button class="btn btn-outline-secondary w-100 mb-2" onclick="hideAllJewellery()">Hide All</button>
+                            <button class="btn btn-success w-100" onclick="savePositions()">Save Positions</button>
                         </div>
                     </div>
                 </div>
@@ -659,6 +635,10 @@
 
         let currentModels = [];
         let currentModelData = null;
+        let jewelleryPositions = {};
+        let isDragging = false;
+        let dragElement = null;
+        let dragOffset = { x: 0, y: 0 };
 
         // Initialize the edit mode
         document.addEventListener('DOMContentLoaded', async function() {
@@ -671,11 +651,159 @@
             // Set up jewellery toggle controls
             setupJewelleryControls();
             
+            // Setup drag functionality
+            setupDragFunctionality();
+            
             // Select first model by default
             if (currentModels.length > 0) {
                 selectModel(currentModels[0]);
             }
         });
+
+        // Setup drag functionality for labels
+        function setupDragFunctionality() {
+            const labels = document.querySelectorAll('.jewellery-label');
+            
+            labels.forEach(label => {
+                label.addEventListener('mousedown', startDrag);
+            });
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', endDrag);
+            
+            // Touch events for mobile
+            labels.forEach(label => {
+                label.addEventListener('touchstart', startDragTouch);
+            });
+            
+            document.addEventListener('touchmove', dragTouch);
+            document.addEventListener('touchend', endDrag);
+        }
+
+        function startDrag(e) {
+            e.preventDefault();
+            isDragging = true;
+            dragElement = e.currentTarget;
+            dragElement.classList.add('dragging');
+            
+            const rect = dragElement.getBoundingClientRect();
+            const containerRect = document.getElementById('jewellery-container').getBoundingClientRect();
+            
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+        }
+
+        function startDragTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            isDragging = true;
+            dragElement = e.currentTarget;
+            dragElement.classList.add('dragging');
+            
+            const rect = dragElement.getBoundingClientRect();
+            const containerRect = document.getElementById('jewellery-container').getBoundingClientRect();
+            
+            dragOffset.x = touch.clientX - rect.left;
+            dragOffset.y = touch.clientY - rect.top;
+        }
+
+        function drag(e) {
+            if (!isDragging || !dragElement) return;
+            
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            const x = e.clientX - containerRect.left - dragOffset.x;
+            const y = e.clientY - containerRect.top - dragOffset.y;
+            
+            // Constrain within container bounds
+            const maxX = containerRect.width - dragElement.offsetWidth;
+            const maxY = containerRect.height - dragElement.offsetHeight;
+            
+            const constrainedX = Math.max(0, Math.min(x, maxX));
+            const constrainedY = Math.max(0, Math.min(y, maxY));
+            
+            dragElement.style.left = constrainedX + 'px';
+            dragElement.style.top = constrainedY + 'px';
+            
+            // Update connecting line
+            updateConnectingLine(dragElement.dataset.type);
+        }
+
+        function dragTouch(e) {
+            if (!isDragging || !dragElement) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            const x = touch.clientX - containerRect.left - dragOffset.x;
+            const y = touch.clientY - containerRect.top - dragOffset.y;
+            
+            // Constrain within container bounds
+            const maxX = containerRect.width - dragElement.offsetWidth;
+            const maxY = containerRect.height - dragElement.offsetHeight;
+            
+            const constrainedX = Math.max(0, Math.min(x, maxX));
+            const constrainedY = Math.max(0, Math.min(y, maxY));
+            
+            dragElement.style.left = constrainedX + 'px';
+            dragElement.style.top = constrainedY + 'px';
+            
+            // Update connecting line
+            updateConnectingLine(dragElement.dataset.type);
+        }
+
+        function endDrag() {
+            if (isDragging && dragElement) {
+                dragElement.classList.remove('dragging');
+                isDragging = false;
+                dragElement = null;
+            }
+        }
+
+        // Update connecting line between position dot and label
+        function updateConnectingLine(jewelleryType) {
+            const positionDot = document.querySelector(`.jewellery-position[data-type="${jewelleryType}"]`);
+            const label = document.querySelector(`.jewellery-label[data-type="${jewelleryType}"]`);
+            const line = document.querySelector(`#line-${jewelleryType}`);
+            
+            if (!positionDot || !label || !line) return;
+            
+            const container = document.getElementById('jewellery-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Get position dot center
+            const dotRect = positionDot.getBoundingClientRect();
+            const dotX = dotRect.left - containerRect.left + dotRect.width / 2;
+            const dotY = dotRect.top - containerRect.top + dotRect.height / 2;
+            
+            // Get label center
+            const labelRect = label.getBoundingClientRect();
+            const labelX = labelRect.left - containerRect.left + labelRect.width / 2;
+            const labelY = labelRect.top - containerRect.top + labelRect.height / 2;
+            
+            // Update line
+            line.setAttribute('x1', dotX);
+            line.setAttribute('y1', dotY);
+            line.setAttribute('x2', labelX);
+            line.setAttribute('y2', labelY);
+        }
+
+        // Update all connecting lines
+        function updateAllConnectingLines() {
+            const jewelleryTypes = [
+                'forehead-pendant', 'hair-jewellery', 'earrings-stud', 'earrings-drops', 
+                'ear-loops', 'nose-pin', 'choker-necklace', 'short-necklace', 
+                'long-necklace', 'multiple-bangles', 'bracelet', 'single-bangle', 
+                'rings', 'waist-belt', 'anklet', 'toe-ring'
+            ];
+            
+            jewelleryTypes.forEach(type => {
+                updateConnectingLine(type);
+            });
+        }
 
         // Generate model grid from all communities
         function generateModelGrid() {
@@ -744,10 +872,79 @@
             modelImage.src = `{{ asset('image/') }}/${modelData.image}`;
             modelImage.alt = modelData.title;
             
-            // Update jewellery positions
+            // Update jewellery positions and labels
             updateJewelleryPositions(modelData.image);
             
+            // Wait for image to load, then position labels and create lines
+            modelImage.onload = () => {
+                setTimeout(() => {
+                    positionLabelsAndCreateLines();
+                }, 100);
+            };
+            
             console.log('Selected model:', modelData);
+        }
+
+        // Position labels initially and create connecting lines
+        function positionLabelsAndCreateLines() {
+            const jewelleryTypes = [
+                'forehead-pendant', 'hair-jewellery', 'earrings-stud', 'earrings-drops', 
+                'ear-loops', 'nose-pin', 'choker-necklace', 'short-necklace', 
+                'long-necklace', 'multiple-bangles', 'bracelet', 'single-bangle', 
+                'rings', 'waist-belt', 'anklet', 'toe-ring'
+            ];
+            
+            const rightSideTypes = [
+                'hair-jewellery', 'earrings-stud', 'earrings-drops', 'ear-loops',
+                'short-necklace', 'rings', 'bracelet', 'waist-belt', 'anklet', 'toe-ring'
+            ];
+            
+            const svg = document.getElementById('connecting-lines');
+            svg.innerHTML = ''; // Clear existing lines
+            
+            jewelleryTypes.forEach(type => {
+                const positionDot = document.querySelector(`.jewellery-position[data-type="${type}"]`);
+                const label = document.querySelector(`.jewellery-label[data-type="${type}"]`);
+                
+                if (positionDot && label) {
+                    const dotRect = positionDot.getBoundingClientRect();
+                    const container = document.getElementById('jewellery-container');
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    // Position label based on whether it's left or right side
+                    const isRightSide = rightSideTypes.includes(type);
+                    const offsetDistance = 100; // Distance from the dot
+                    
+                    const dotX = dotRect.left - containerRect.left + dotRect.width / 2;
+                    const dotY = dotRect.top - containerRect.top + dotRect.height / 2;
+                    
+                    let labelX, labelY;
+                    
+                    if (isRightSide) {
+                        labelX = dotX + offsetDistance;
+                        labelY = dotY - label.offsetHeight / 2;
+                    } else {
+                        labelX = dotX - offsetDistance - label.offsetWidth;
+                        labelY = dotY - label.offsetHeight / 2;
+                    }
+                    
+                    // Constrain within container
+                    labelX = Math.max(0, Math.min(labelX, containerRect.width - label.offsetWidth));
+                    labelY = Math.max(0, Math.min(labelY, containerRect.height - label.offsetHeight));
+                    
+                    label.style.left = labelX + 'px';
+                    label.style.top = labelY + 'px';
+                    
+                    // Create connecting line
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.id = `line-${type}`;
+                    line.classList.add('connecting-line');
+                    svg.appendChild(line);
+                    
+                    // Update line position
+                    updateConnectingLine(type);
+                }
+            });
         }
 
         // Set up jewellery visibility controls
@@ -764,12 +961,19 @@
                 const indicator = toggle.closest('li').querySelector('.visibility-indicator');
                 
                 toggle.addEventListener('change', function() {
-                    const jewelleryItem = document.querySelector(`.jewellery-item.${type}`);
+                    const positionDot = document.querySelector(`.jewellery-position[data-type="${type}"]`);
+                    const label = document.querySelector(`.jewellery-label[data-type="${type}"]`);
+                    const line = document.querySelector(`#line-${type}`);
+                    
                     if (this.checked) {
-                        jewelleryItem.style.display = 'flex';
+                        if (positionDot) positionDot.style.display = 'block';
+                        if (label) label.style.display = 'flex';
+                        if (line) line.style.display = 'block';
                         indicator.classList.add('visible');
                     } else {
-                        jewelleryItem.style.display = 'none';
+                        if (positionDot) positionDot.style.display = 'none';
+                        if (label) label.style.display = 'none';
+                        if (line) line.style.display = 'none';
                         indicator.classList.remove('visible');
                     }
                 });
@@ -790,6 +994,39 @@
                 toggle.checked = false;
                 toggle.dispatchEvent(new Event('change'));
             });
+        }
+
+        // Save current label positions
+        function savePositions() {
+            if (!currentModelData) {
+                alert('Please select a model first');
+                return;
+            }
+            
+            const positions = {};
+            const jewelleryTypes = [
+                'forehead-pendant', 'hair-jewellery', 'earrings-stud', 'earrings-drops', 
+                'ear-loops', 'nose-pin', 'choker-necklace', 'short-necklace', 
+                'long-necklace', 'multiple-bangles', 'bracelet', 'single-bangle', 
+                'rings', 'waist-belt', 'anklet', 'toe-ring'
+            ];
+            
+            jewelleryTypes.forEach(type => {
+                const label = document.querySelector(`.jewellery-label[data-type="${type}"]`);
+                if (label) {
+                    const container = document.getElementById('jewellery-container');
+                    const containerRect = container.getBoundingClientRect();
+                    const labelRect = label.getBoundingClientRect();
+                    
+                    const x = ((labelRect.left - containerRect.left) / containerRect.width) * 100;
+                    const y = ((labelRect.top - containerRect.top) / containerRect.height) * 100;
+                    
+                    positions[type] = { x, y };
+                }
+            });
+            
+            console.log('Saved positions for', currentModelData.image, positions);
+            alert('Positions saved! (Check console for details)');
         }
 
         // Load jewellery position data (same as main app)
@@ -838,6 +1075,7 @@
                 }
 
                 console.log(`Loaded ${loadedCount} position data files`);
+                jewelleryPositions = positionData;
                 generateJewelleryCSSRules(positionData);
 
             } catch (error) {
@@ -927,7 +1165,7 @@
             return result;
         }
 
-        // Generate CSS rules for jewellery positioning (same as main app)
+        // Generate CSS rules for jewellery positioning (modified for position dots)
         function generateJewelleryCSSRules(positionData) {
             const style = document.createElement('style');
             style.id = 'dynamic-jewellery-css';
@@ -947,26 +1185,12 @@
                     position: relative;
                 }
 
-                .image-container .jewellery-item {
+                .image-container .jewellery-position,
+                .image-container .jewellery-label {
                     position: absolute;
                     z-index: 10;
-                    pointer-events: auto;
-                    display: flex;
-                    align-items: center;
-                    white-space: nowrap;
-                    transform: translate(-50%, -50%);
                 }
             `;
-
-            const rightPointerItems = [
-                'hair-jewellery', 'earrings-stud', 'earrings-drops', 'ear-loops',
-                'short-necklace', 'rings', 'bracelet', 'waist-belt', 'anklet', 'toe-ring'
-            ];
-
-            const leftPointerItems = [
-                'forehead-pendant', 'nose-pin', 'choker-necklace', 'long-necklace',
-                'multiple-bangles', 'single-bangle'
-            ];
 
             Object.keys(positionData).forEach(imageFileName => {
                 const positions = positionData[imageFileName];
@@ -979,19 +1203,10 @@
                 Object.keys(positions).forEach(jewelleryType => {
                     const position = positions[jewelleryType];
 
-                    let transform = 'translate(-50%, -50%)';
-
-                    if (rightPointerItems.includes(jewelleryType)) {
-                        transform = 'translate(0%, -50%)';
-                    } else if (leftPointerItems.includes(jewelleryType)) {
-                        transform = 'translate(-100%, -50%)';
-                    }
-
                     const cssRule = `
-                        .image-container.${sanitizedClassName} .jewellery-item.${jewelleryType} {
+                        .image-container.${sanitizedClassName} .jewellery-position[data-type="${jewelleryType}"] {
                             left: ${position.x}%;
                             top: ${position.y}%;
-                            transform: ${transform};
                         }
                     `;
                     cssRules += cssRule;
@@ -1032,6 +1247,13 @@
             container.classList.add(className);
             console.log(`Updated jewellery container class to: ${className}`);
         }
+
+        // Handle window resize to update lines
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                updateAllConnectingLines();
+            }, 100);
+        });
     </script>
 </body>
 
