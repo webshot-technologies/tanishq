@@ -472,25 +472,59 @@
             align-items: center;
             white-space: nowrap;
             user-select: none;
-            transition: transform 0.1s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .jewellery-label:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Selected state styling */
+        .jewellery-label.selected {
+            background: rgba(138, 35, 35, 0.8);
+            border: 2px solid #8a2323;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .jewellery-label.selected:hover {
+            background: rgba(138, 35, 35, 0.9);
         }
 
         .jewellery-label input[type="checkbox"] {
             margin: 0 5px 0 0;
+            width: 14px;
+            height: 14px;
+            accent-color: #8a2323;
         }
 
         .jewellery-label label {
             margin: 0;
             font-size: 0.85rem;
             font-weight: 500;
-            color: #42210b;
+            color: inherit;
             cursor: pointer;
+        }
+
+        /* Selection counter styling */
+        .selection-counter {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Button disabled state */
+        .btn-custom:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-custom.opacity-50 {
+            opacity: 0.5;
+            pointer-events: none;
         }
     </style>
 
@@ -714,8 +748,11 @@
 
                         <div id="outfit-details" class="detail-section active">
                             <h3 id="outfit-title" class="text-center fw-semibold mt-4">Saree Checklist</h3>
-                            <p class="text-center light-weight text-dark-gray mb-3 text-muted">Click on the jewellery
-                                you want to explore</p>
+                            <p class="text-center light-weight text-dark-gray mb-1 text-muted">Click on the jewellery you want to explore</p>
+                            <!-- Add selection counter -->
+                            <p class="text-center mb-3">
+                                <small id="selection-count" class="text-muted selection-counter">0 item(s) selected</small>
+                            </p>
                             <div class="animated-image-container position-relative telugu-saree" id="jewellery-container">
                                 <img src="{{ asset('image/bystate/telugu-saree.png') }}" class="img-fluid outfit-img"
                                     alt="Outfit Model">
@@ -745,82 +782,82 @@
                                 
                                 <!-- Static Labels (non-draggable) -->
                                 <div class="jewellery-label" data-type="forehead-pendant">
-                                    <input type="checkbox" id="forehead-pendant" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'forehead-pendant', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="forehead-pendant" class="jewellery-checkbox" value="forehead-pendant">
                                     <label for="forehead-pendant">Forehead Pendant</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="hair-jewellery">
-                                    <input type="checkbox" id="hair-jewellery" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'hair-jewellery', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="hair-jewellery" class="jewellery-checkbox" value="hair-jewellery">
                                     <label for="hair-jewellery">Hair Jewellery</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="earrings-stud">
-                                    <input type="checkbox" id="earrings-stud" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'earrings-stud', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="earrings-stud" class="jewellery-checkbox" value="earrings-stud">
                                     <label for="earrings-stud">Earrings - Stud</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="earrings-drops">
-                                    <input type="checkbox" id="earrings-drops" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'earrings-drops', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="earrings-drops" class="jewellery-checkbox" value="earrings-drops">
                                     <label for="earrings-drops">Earrings - Drops</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="ear-loops">
-                                    <input type="checkbox" id="ear-loops" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'ear-loops', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="ear-loops" class="jewellery-checkbox" value="ear-loops">
                                     <label for="ear-loops">Ear Loops</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="nose-pin">
-                                    <input type="checkbox" id="nose-pin" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'nose-pin', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="nose-pin" class="jewellery-checkbox" value="nose-pin">
                                     <label for="nose-pin">Nose Pin</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="choker-necklace">
-                                    <input type="checkbox" id="choker-necklace" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'choker-necklace', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="choker-necklace" class="jewellery-checkbox" value="choker-necklace">
                                     <label for="choker-necklace">Choker Necklace</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="short-necklace">
-                                    <input type="checkbox" id="short-necklace" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'short-necklace', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="short-necklace" class="jewellery-checkbox" value="short-necklace">
                                     <label for="short-necklace">Short Necklace</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="long-necklace">
-                                    <input type="checkbox" id="long-necklace" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'long-necklace', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="long-necklace" class="jewellery-checkbox" value="long-necklace">
                                     <label for="long-necklace">Long Necklace</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="multiple-bangles">
-                                    <input type="checkbox" id="multiple-bangles" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'multiple-bangles', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="multiple-bangles" class="jewellery-checkbox" value="multiple-bangles">
                                     <label for="multiple-bangles">Multiple Bangles</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="bracelet">
-                                    <input type="checkbox" id="bracelet" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'bracelet', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="bracelet" class="jewellery-checkbox" value="bracelet">
                                     <label for="bracelet">Bracelet</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="single-bangle">
-                                    <input type="checkbox" id="single-bangle" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'single-bangle', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="single-bangle" class="jewellery-checkbox" value="single-bangle">
                                     <label for="single-bangle">Single Bangle</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="rings">
-                                    <input type="checkbox" id="rings" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'rings', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="rings" class="jewellery-checkbox" value="rings">
                                     <label for="rings">Rings</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="waist-belt">
-                                    <input type="checkbox" id="waist-belt" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'waist-belt', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="waist-belt" class="jewellery-checkbox" value="waist-belt">
                                     <label for="waist-belt">Waist Belt</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="anklet">
-                                    <input type="checkbox" id="anklet" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'anklet', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="anklet" class="jewellery-checkbox" value="anklet">
                                     <label for="anklet">Anklet</label>
                                 </div>
 
                                 <div class="jewellery-label" data-type="toe-ring">
-                                    <input type="checkbox" id="toe-ring" class="jewellery-checkbox" onclick="posthog.capture('category-selected', { category: 'toe-ring', model: 'model-1', page: 'form' })">
+                                    <input type="checkbox" id="toe-ring" class="jewellery-checkbox" value="toe-ring">
                                     <label for="toe-ring">Toe Ring</label>
                                 </div>
                             </div>
@@ -830,7 +867,7 @@
 
                 <div class=" col-12 col-xl-10 d-flex px-4 mx-auto justify-content-center my-4">
 
-                    <button type="" onclick="nextStep(3)" class="btn border-2 rounded-5 btn-custom"  onclick="posthog.capture('choose-create-list', { page: 'form' })">Choose
+                    <button type="button" onclick="nextStep(3); posthog.capture('choose-create-list', { page: 'form' })" class="btn border-2 rounded-5 btn-custom">Choose
                         Create List</button>
 
                     {{-- <button class="btn btn-primary" onclick="nextStep(3)">Create List</button> --}}
@@ -1402,9 +1439,9 @@
 
                             <div class="">
                                 <button type="submit" name="recommended_products"
-                                    class="btn border border-2 rounded-5 btn-custom mb-2">Recommended Products</button>
+                                    class="btn border-2 rounded-5 btn-custom mb-2">Recommended Products</button>
                                 <button type="submit" name="full_catalogue"
-                                    class="btn border border-2 rounded-5 btn-custom mb-2">Explore Catalogue</button>
+                                    class="btn border-2 rounded-5 btn-custom mb-2">Explore Catalogue</button>
                             </div>
                         </div>
                     </form>
@@ -3111,6 +3148,133 @@
                 timeout = setTimeout(later, wait);
             };
         }
+
+        // Multi-selection functionality for jewellery labels
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup jewellery selection functionality
+            function setupJewellerySelection() {
+                const jewelleryLabels = document.querySelectorAll('.jewellery-label');
+                
+                jewelleryLabels.forEach(label => {
+                    label.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const checkbox = this.querySelector('.jewellery-checkbox');
+                        
+                        if (checkbox) {
+                            // Toggle checkbox state
+                            checkbox.checked = !checkbox.checked;
+                            
+                            // Toggle visual state
+                            if (checkbox.checked) {
+                                this.classList.add('selected');
+                                // Trigger PostHog event
+                                if (typeof posthog !== 'undefined') {
+                                    const category = checkbox.value || this.getAttribute('data-type');
+                                    const activeOutfit = document.querySelector('.jewelry-card.active');
+                                    const model = activeOutfit ? activeOutfit.getAttribute('data-outfit') : 'unknown';
+                                    posthog.capture('category-selected', { 
+                                        category: category, 
+                                        model: model, 
+                                        page: 'form',
+                                        action: 'selected'
+                                    });
+                                }
+                            } else {
+                                this.classList.remove('selected');
+                                // Trigger PostHog event for deselection
+                                if (typeof posthog !== 'undefined') {
+                                    const category = checkbox.value || this.getAttribute('data-type');
+                                    const activeOutfit = document.querySelector('.jewelry-card.active');
+                                    const model = activeOutfit ? activeOutfit.getAttribute('data-outfit') : 'unknown';
+                                    posthog.capture('category-deselected', { 
+                                        category: category, 
+                                        model: model, 
+                                        page: 'form',
+                                        action: 'deselected'
+                                    });
+                                }
+                            }
+                            
+                            // Update selection count display
+                            updateSelectionCount();
+                        }
+                    });
+                    
+                    // Also handle direct checkbox clicks
+                    const checkbox = label.querySelector('.jewellery-checkbox');
+                    if (checkbox) {
+                        checkbox.addEventListener('change', function(e) {
+                            e.stopPropagation();
+                            
+                            if (this.checked) {
+                                label.classList.add('selected');
+                            } else {
+                                label.classList.remove('selected');
+                            }
+                            
+                            updateSelectionCount();
+                        });
+                    }
+                });
+            }
+            
+            // Update selection count
+            function updateSelectionCount() {
+                const selectedCount = document.querySelectorAll('.jewellery-checkbox:checked').length;
+                const countDisplay = document.getElementById('selection-count');
+                if (countDisplay) {
+                    countDisplay.textContent = `${selectedCount} item(s) selected`;
+                }
+                
+                // Enable/disable next button based on selection
+                const nextButton = document.querySelector('button[onclick="nextStep(3)"]');
+                if (nextButton) {
+                    if (selectedCount > 0) {
+                        nextButton.disabled = false;
+                        nextButton.classList.remove('opacity-50');
+                    } else {
+                        nextButton.disabled = true;
+                        nextButton.classList.add('opacity-50');
+                    }
+                }
+            }
+            
+            // Clear all selections when outfit changes
+            function clearAllSelections() {
+                const checkboxes = document.querySelectorAll('.jewellery-checkbox');
+                const labels = document.querySelectorAll('.jewellery-label');
+                
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                labels.forEach(label => {
+                    label.classList.remove('selected');
+                });
+                
+                updateSelectionCount();
+            }
+            
+            // Initialize selection functionality
+            setupJewellerySelection();
+            
+            // Reset selections when outfit changes (attach to existing outfit card click handlers)
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.jewelry-card')) {
+                    // Optional: Clear selections when changing outfits
+                    // Uncomment the next line if you want to clear selections on outfit change
+                    // clearAllSelections();
+                }
+            });
+            
+            // Initialize selection count
+            updateSelectionCount();
+            
+            // Make updateSelectionCount available globally for other functions
+            window.updateSelectionCount = updateSelectionCount;
+        });
 
     </script>
 </body>
