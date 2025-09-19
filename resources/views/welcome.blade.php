@@ -1003,6 +1003,7 @@
                 </div>
             </div>
         </div>
+
         <!-- OTP Modal -->
         <div id="otp-modal">
             <div class="otp-modal-content" style="position:relative;">
@@ -1012,7 +1013,7 @@
 
                 <div class="otp-right">
                     <h4 class="otp-heading">Verify with OTP</h4>
-                    <p class="otp-text">Sent to <span id="otp-phone-number">+91 •••• ••••••</span></p>
+                    <p class="otp-text">Sent to <span id="otp-phone-number">91 •••• ••••••</span></p>
 
                     <!-- OTP Input Boxes -->
                     <div class="otp-inputs">
@@ -1067,7 +1068,9 @@
         <!-- reCAPTCHA container (hidden) -->
         <div id="recaptcha-container" class="d-none"></div>
     </div>
+ @php
 
+        @endphp
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
@@ -1794,7 +1797,9 @@
         // Update phone number in OTP modal
         function updatePhoneNumber(phone) {
             if (!phone) return;
-            const formatted = phone.replace(/(\d{2})(\d{4})(\d+)/, '+$1 $2 ••••');
+            // Remove any existing + sign and format properly
+            const cleanPhone = phone.replace(/^\+/, '');
+            const formatted = cleanPhone.replace(/(\d{2})(\d{4})(\d+)/, '+$1 $2 ••••');
             const phoneEl = document.getElementById('otp-phone-number');
             if (phoneEl) phoneEl.textContent = formatted;
         }
